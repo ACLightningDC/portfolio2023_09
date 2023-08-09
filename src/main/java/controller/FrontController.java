@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.testAction;
 import vo.ActionForward;
 
 /**
@@ -48,8 +49,23 @@ public class FrontController extends HttpServlet {
 		
 		Action action = null;
 		ActionForward forward = null;
-		if(command.equals("")) {
+		if(command.equals("test")) {
+			action = new testAction();
+					
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
+		}
+		
+		if(forward !=null) {
+			if(forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			}else {
+				request.getRequestDispatcher(forward.getPath()).forward(request, response);
+			}
 		}
 	}
 
