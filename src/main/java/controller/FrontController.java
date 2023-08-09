@@ -1,11 +1,15 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import action.Action;
+import vo.ActionForward;
 
 /**
  * Servlet implementation class FrontController
@@ -40,8 +44,13 @@ public class FrontController extends HttpServlet {
 		
 		String requestUri = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String ServletCheck = requestUri.substring(contextPath.length());
-
+		String command = requestUri.substring(contextPath.length());
+		
+		Action action = null;
+		ActionForward forward = null;
+		if(command.equals("")) {
+			
+		}
 	}
 
 }
