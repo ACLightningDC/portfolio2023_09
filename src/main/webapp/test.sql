@@ -11,4 +11,4 @@ select * from test ;
 
 drop table test;
 
-select * from 
+select * from users;
