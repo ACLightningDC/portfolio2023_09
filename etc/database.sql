@@ -23,10 +23,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   `password` VARCHAR(45) NOT NULL,
   `name` NVARCHAR(45) NOT NULL,
   `joinDate` DATE NOT NULL,
-  `email` VARCHAR(45) NULL,
   `phone` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NULL,
   `birthday` DATE NULL,
-  `degree` VARCHAR(45) NULL,
+  `degree` CHAR(1) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -133,6 +133,36 @@ CREATE TABLE IF NOT EXISTS `mydb`.`order` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `mydb`.`inquiry`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`inquiry` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `users_id` INT UNSIGNED NOT NULL,
+  `sellerrMall_id` INT UNSIGNED NOT NULL,
+  `contents` NVARCHAR(300) NULL,
+  `name` NVARCHAR(45) NULL,
+  `date` VARCHAR(45) NULL,
+  `inquirycol` DATE NULL,
+  `result` CHAR(1) NULL,
+  PRIMARY KEY (`id`, `users_id`, `sellerrMall_id`),
+  INDEX `fk_inquiry_users1_idx` (`users_id` ASC) VISIBLE,
+  INDEX `fk_inquiry_sellerrMall1_idx` (`sellerrMall_id` ASC) VISIBLE,
+  CONSTRAINT `fk_inquiry_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `mydb`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_inquiry_sellerrMall1`
+    FOREIGN KEY (`sellerrMall_id`)
+    REFERENCES `mydb`.`sellerrMall` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+select* from users;
