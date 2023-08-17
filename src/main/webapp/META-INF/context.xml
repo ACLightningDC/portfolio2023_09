@@ -5,8 +5,8 @@
 	   
 	   username="java" 
 	   password="java"
-	   driverClassName="com.mysql.jdbc.Driver"
-	   url="jdbc:mysql://127.0.0.1:3306/testdb"
+	   driverClassName="com.mysql.cj.jdbc.Driver"
+	   url="jdbc:mysql://127.0.0.1:3306/testdb?serverTimezone=Asia/Seoul"
 	   
 	   
 	   factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
