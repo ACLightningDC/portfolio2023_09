@@ -10,3 +10,5 @@ insert into test(name) values("가나다");
 select * from test ;
 
 drop table test;
+
+select * from users;
