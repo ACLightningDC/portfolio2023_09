@@ -36,23 +36,41 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
-            </li>
-            <li class="nav-item">
+            </li> 
+            <div class="col-auto">
+				<form class="d-flex col-auto" role="search" >
+		            <input class="form-control" type="search" name="search" placeholder="제품 , 매장 ,카테고리 입력" aria-label="Search">
+		            <button class="btn btn-outline-success col-auto" type="submit">검색</button>
+		          </form>
+            </div>
+          </ul>
+          <ul class="navbar-nav mb-2 mb-lg-0 ">
+          	<li class="nav-item ">
               <a class="nav-link disabled">관리자</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">로그인</a>
             </li>
-			<li class="nav-item">
+			<li class="nav-item ">
               <a class="nav-link" href="#">회원가입</a>
             </li>
+           <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                내정보 관리
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">내정보 보기</a></li>
+                <li><a class="dropdown-item" href="#">내 정보 변경 , 확인</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">로그아웃</a></li>
+              </ul>
+            </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="제품 , 매장 ,카테고리 입력" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">검색</button>
-          </form>
+
         </div>
       </div>
     </nav>
+    
+    
 </body>
 </html>
