@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   `phone` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NULL,
   `birthday` DATE NULL,
-  `degree` CHAR(1) NULL,
+  `degree` CHAR(1) NULL, 
   PRIMARY KEY (`id`),
   UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE)
 ENGINE = InnoDB;
