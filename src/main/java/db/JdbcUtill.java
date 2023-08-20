@@ -17,7 +17,8 @@ public class JdbcUtill {
 		
 		try {
 			Context initCtx = new InitialContext();
-			DataSource ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/portfolio");
+			Context envCtx = (Context)initCtx.lookup("java:comp/env");
+			DataSource ds = (DataSource)envCtx.lookup("jdbc/portfolio");
 			con = ds.getConnection();
 			
 			con.setAutoCommit(false);

@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.testAction;
+import action.loginAction;
 import vo.ActionForward;
 
 /**
  * Servlet implementation class FrontController
  */
-@WebServlet("*.con")
+@WebServlet("*.shop")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,8 +52,8 @@ public class FrontController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("test")) {
-			action = new testAction();
+		if(command.equals("/login.shop")){
+			action = new loginAction();
 					
 			try {
 				forward = action.execute(request, response);
@@ -62,16 +62,7 @@ public class FrontController extends HttpServlet {
 			}
 			
 		}
-		else if(command.equals("test")) {
-			action = new testAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-		}
+
 		
 		if(forward !=null) {
 			if(forward.isRedirect()) {

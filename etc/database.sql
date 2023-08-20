@@ -22,11 +22,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   `userid` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `name` NVARCHAR(45) NOT NULL,
-  `joinDate` DATE NOT NULL,
+  `joinDate` TIMESTAMP NOT NULL DEFAULT now(),
   `phone` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NULL,
   `birthday` DATE NULL,
-  `degree` CHAR(1) NULL, 
+  `degree` CHAR(1) NULL,
+  `grade` CHAR(1) NULL,
+  `ipaddress` NVARCHAR(15) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -57,6 +59,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`sellerrMall` (
   `seller_id` INT UNSIGNED NOT NULL,
   `name` NVARCHAR(45) NOT NULL,
   `create_date` DATE NOT NULL,
+  `grade` CHAR(1) NULL,
+  `sellcount` INT NULL,
   PRIMARY KEY (`id`, `seller_id`),
   INDEX `fk_sellerrMall_seller1_idx` (`seller_id` ASC) VISIBLE,
   CONSTRAINT `fk_sellerrMall_seller1`
@@ -78,6 +82,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`product` (
   `kind` NVARCHAR(45) NOT NULL,
   `date` DATE NOT NULL,
   `img` VARCHAR(45) NOT NULL,
+  `buycount` INT NULL,
   PRIMARY KEY (`id`, `sellerrMall_id`),
   INDEX `fk_product_sellerrMall1_idx` (`sellerrMall_id` ASC) VISIBLE,
   CONSTRAINT `fk_product_sellerrMall1`
@@ -164,5 +169,3 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-select* from users;

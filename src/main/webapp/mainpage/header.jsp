@@ -37,12 +37,6 @@
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li> 
-            <div class="col-auto">
-				<form class="d-flex col-auto" role="search" >
-		            <input class="form-control" type="search" name="search" placeholder="제품 , 매장 ,카테고리 입력" aria-label="Search">
-		            <button class="btn btn-outline-success col-auto" type="submit">검색</button>
-		          </form>
-            </div>
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0 ">
           	<li class="nav-item ">
