@@ -37,12 +37,17 @@ public class DAO {
 			pstmt = con.prepareStatement(sql);
 			//0 prepareStatment 의 setString -> ? 1 부터 함 
 			pstmt.setString(1, id);
+			System.out.println("id 값"+id);
+
 			pstmt.setString(2, password);
+			System.out.println("password 값"+password);
+
 			rs = pstmt.executeQuery();
 			System.out.println(loginCheck);
 
 			if(rs.next()) {
-				rs.getInt(loginCheck);
+				loginCheck = rs.getInt("id");
+				System.out.println("sql 값 인출"+rs.getInt("id"));
 			}
 			System.out.println(loginCheck);
 		}catch(Exception e) {

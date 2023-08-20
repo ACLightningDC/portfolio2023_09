@@ -19,7 +19,7 @@ public class LoginService {
 		
 		int loginCheck = dao.loginCheck(id , password);
 		
-
+		System.out.println("login service logincheck" + loginCheck);
 		
 		
 		return loginCheck;

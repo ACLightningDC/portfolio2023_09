@@ -10,6 +10,11 @@
 <!-- 부트스트랩 리소스 임포트 -->
 <link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
+
+<%
+${sessionScope.users_id}
+%>
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
@@ -43,7 +48,7 @@
               <a class="nav-link disabled">관리자</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">로그인</a>
+              <a class="nav-link" href="${pageContext.request.contextPath}/mainpage/login/loginForm.jsp">로그인</a>
             </li>
 			<li class="nav-item ">
               <a class="nav-link" href="#">회원가입</a>
