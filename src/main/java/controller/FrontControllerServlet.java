@@ -68,6 +68,17 @@ public class FrontControllerServlet extends HttpServlet {
 			}
 			
 		}
+		if(command.equals("/mainpage/login/logout.shop")){
+			action = new loginAction();
+			System.out.println("FrontController 실행 login");
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
 		
 		System.out.println("FrontController 실행 2");
 		

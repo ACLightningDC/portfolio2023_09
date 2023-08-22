@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="en" >
   <head>
@@ -28,12 +28,11 @@
           font-size: 3.5rem;
         }
       }
-
-
-	
     </style>
-
-    
+		
+    <script>
+    	<indocument.get
+    </script>
     <!-- Custom styles for this template -->
     <link href="sign-in.css" rel="stylesheet">
   </head>
@@ -49,15 +48,16 @@
 %>
 세션 스코프의 age 속성값 : ${sessionScope.age}
 
+
 <div class="d-flex align-items-center py-4 pt-5">
 
 <main class="form-signin w-100 m-auto">
 
   <form action="login.shop" method="post">
-    <h1 class="h3 mb-3 fw-normal">로그인 ${sessionScope.users_id.loginCheck}</h1>
-
+    <h1 class="h3 mb-3 fw-normal">로그인 </h1>
+<c:set var="user_id_cookie" value="${cookie.user_id.value}"/>
     <div class="form-floating">
-      <input type="text" name = "userid" value ="" class="form-control" id="floatingInput" placeholder="">
+      <input type="text" name = "userid" value ="${user_id_cookie}" class="form-control" id="floatingInput" placeholder="">
       <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">
@@ -66,7 +66,7 @@
     </div>
 
     <div class="form-check text-start my-3">
-      <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+      <input id = "idremind" class="form-check-input" name ="checkbox" type="checkbox" value="remember-me" id="flexCheckDefault" >
       <label class="form-check-label" for="flexCheckDefault">
         아이디 기억하기
       </label>
