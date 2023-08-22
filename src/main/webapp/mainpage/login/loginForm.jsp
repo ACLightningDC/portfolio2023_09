@@ -29,10 +29,8 @@
         }
       }
     </style>
-		
-    <script>
-    	<indocument.get
-    </script>
+
+    
     <!-- Custom styles for this template -->
     <link href="sign-in.css" rel="stylesheet">
   </head>
