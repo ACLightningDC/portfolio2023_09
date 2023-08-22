@@ -11,12 +11,6 @@
 <link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
 
-<<<<<<< HEAD
-<%
-%>
-=======
->>>>>>> refs/heads/master
-
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
