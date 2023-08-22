@@ -5,7 +5,7 @@ import static db.JdbcUtill.getConnection;
 import java.sql.Connection;
 
 import dao.DAO;
-import vo.ActionForward;
+import vo.Users;
 
 public class LoginService {
 	
@@ -25,6 +25,15 @@ public class LoginService {
 		return loginCheck;
 	}
 	
-	
+	public Users getLoginInfo(String id) {
+		
+		Connection con =getConnection();
+		
+		DAO dao = DAO.getInstance();
+		
+		Users userInfo = dao.getUsersInfo(id);
+				
+		return userInfo;
+	}
 	
 }

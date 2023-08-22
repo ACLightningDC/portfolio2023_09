@@ -29,10 +29,8 @@
         }
       }
     </style>
-		
-    <script>
-    	<indocument.get
-    </script>
+
+    
     <!-- Custom styles for this template -->
     <link href="sign-in.css" rel="stylesheet">
   </head>
@@ -42,11 +40,7 @@
 
   
   <body class="d-flex flex-column min-vh-100 bg-body-tertiary" >
-	
-	<%
-    session.setAttribute("age", 29); //슬픔
-%>
-세션 스코프의 age 속성값 : ${sessionScope.age}
+
 
 
 <div class="d-flex align-items-center py-4 pt-5">
@@ -54,7 +48,8 @@
 <main class="form-signin w-100 m-auto">
 
   <form action="login.shop" method="post">
-    <h1 class="h3 mb-3 fw-normal">로그인 </h1>
+    <h1 class="h3 mb-3 fw-normal">로그인</h1>
+
 <c:set var="user_id_cookie" value="${cookie.user_id.value}"/>
     <div class="form-floating">
       <input type="text" name = "userid" value ="${user_id_cookie}" class="form-control" id="floatingInput" placeholder="">
