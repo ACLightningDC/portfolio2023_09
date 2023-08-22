@@ -11,9 +11,6 @@
 <link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
 
-<%
-${sessionScope.users_id}
-%>
 
 </head>
 <body>
@@ -44,16 +41,14 @@ ${sessionScope.users_id}
             </li> 
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0 ">
-          	<li class="nav-item ">
+          <c:if test="${sessionScope.user_id =! null}"></c:if>
+          <c:choose>
+          <c:when test="${sessionScope.user_id =! null}"> 
+            <li class="nav-item ">
               <a class="nav-link disabled">관리자</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="${pageContext.request.contextPath}/mainpage/login/loginForm.jsp">로그인</a>
-            </li>
-			<li class="nav-item ">
-              <a class="nav-link" href="#">회원가입</a>
-            </li>
-           <li class="nav-item dropdown">
+            
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 내정보 관리
               </a>
@@ -61,9 +56,26 @@ ${sessionScope.users_id}
                 <li><a class="dropdown-item" href="#">내정보 보기</a></li>
                 <li><a class="dropdown-item" href="#">내 정보 변경 , 확인</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                <li><a class="dropdown-item" href="logout.shop">로그아웃</a></li>	
               </ul>
             </li>
+            
+          </c:when>
+          <c:otherwise>
+          	<li class="nav-item">
+              <a class="nav-link" href="${pageContext.request.contextPath}/mainpage/login/loginForm.jsp">로그인</a>
+            </li>
+			<li class="nav-item ">
+              <a class="nav-link" href="#">회원가입</a>
+            </li>
+          
+          </c:otherwise>
+          </c:choose>
+          	<li class="nav-item ">
+              <a class="nav-link disabled">관리자</a>
+            </li>
+
+           
           </ul>
 
         </div>
