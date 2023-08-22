@@ -12,7 +12,6 @@
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
 
 <%
-${sessionScope.users_id}
 %>
 
 </head>

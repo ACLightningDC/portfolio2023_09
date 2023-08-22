@@ -54,7 +54,7 @@
 <main class="form-signin w-100 m-auto">
 
   <form action="login.shop" method="post">
-    <h1 class="h3 mb-3 fw-normal">로그인 ${sessionScope.users_id.loginCheck}</h1>
+    <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
     <div class="form-floating">
       <input type="text" name = "userid" value ="" class="form-control" id="floatingInput" placeholder="">
