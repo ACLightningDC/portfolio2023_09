@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.loginAction;
+import action.user.loginAction;
+import action.user.logoutAction;
 import vo.ActionForward;
 
 /**
@@ -57,7 +58,7 @@ public class FrontControllerServlet extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/mainpage/login/login.shop")){
+		 if(command.equals("/login.shop")){
 			action = new loginAction();
 			System.out.println("FrontController 실행 login");
 
@@ -68,16 +69,15 @@ public class FrontControllerServlet extends HttpServlet {
 			}
 			
 		}
-		if(command.equals("/mainpage/login/logout.shop")){
-			action = new loginAction();
-			System.out.println("FrontController 실행 login");
+		else if(command.equals("/logout.shop")) {
+			action = new logoutAction();
+			System.out.println("FrontController 실행 logout");
 			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 		
 		System.out.println("FrontController 실행 2");

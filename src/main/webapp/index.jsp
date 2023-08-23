@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="test.con"></a>
-testtesttest
+<a href="template.jsp">홈페이지 가기</a>
 </body>
 </html>

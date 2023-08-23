@@ -11,7 +11,9 @@
 <%@include file="header.jsp" %>
 
 <c:if test="${!empty foward}">
-	<jsp:include page="${forward }"></jsp:include>
+	<div>
+		<jsp:include page="${forward}"/>
+	</div>
 </c:if>
 
 

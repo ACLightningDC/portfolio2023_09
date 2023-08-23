@@ -14,20 +14,17 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Table `users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `users` ;
-
 CREATE TABLE IF NOT EXISTS `users` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `userid` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `name` VARCHAR(45) CHARACTER SET 'utf8mb3' NOT NULL,
-  `joinDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` NVARCHAR(45) NOT NULL,
+  `date` TIMESTAMP NOT NULL,
   `phone` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NULL DEFAULT NULL,
-  `birthday` DATE NULL DEFAULT NULL,
-  `degree` CHAR(1) NULL DEFAULT NULL,
-  `grade` CHAR(1) NULL DEFAULT NULL,
-  `ipaddress` VARCHAR(15) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
+  `email` VARCHAR(45) NULL,
+  `birthday` DATE NULL,
+  `grade` NVARCHAR(1) NULL,
+  `ipaddress` VARCHAR(15) CHARACTER SET 'utf8mb3' NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE)
 ENGINE = InnoDB
@@ -38,8 +35,6 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `seller`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `seller` ;
-
 CREATE TABLE IF NOT EXISTS `seller` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `users_id` INT UNSIGNED NOT NULL,
@@ -56,15 +51,12 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `sellerrmall`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `sellerrmall` ;
-
 CREATE TABLE IF NOT EXISTS `sellerrmall` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `seller_id` INT UNSIGNED NOT NULL,
-  `name` VARCHAR(45) CHARACTER SET 'utf8mb3' NOT NULL,
-  `create_date` DATE NOT NULL,
-  `grade` CHAR(1) NULL DEFAULT NULL,
-  `sellcount` INT NULL DEFAULT NULL,
+  `name` NVARCHAR(45) NOT NULL,
+  `create_date` TIMESTAMP NOT NULL,
+  `grade` NVARCHAR(1) NULL,
   PRIMARY KEY (`id`, `seller_id`),
   INDEX `fk_sellerrMall_seller1_idx` (`seller_id` ASC) VISIBLE,
   CONSTRAINT `fk_sellerrMall_seller1`
@@ -77,17 +69,14 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `inquiry`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `inquiry` ;
-
 CREATE TABLE IF NOT EXISTS `inquiry` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `users_id` INT UNSIGNED NOT NULL,
   `sellerrMall_id` INT UNSIGNED NOT NULL,
-  `contents` VARCHAR(300) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
-  `name` VARCHAR(45) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
-  `date` VARCHAR(45) NULL DEFAULT NULL,
-  `inquirycol` DATE NULL DEFAULT NULL,
-  `result` CHAR(1) NULL DEFAULT NULL,
+  `contents` NVARCHAR(300) NULL,
+  `name` NVARCHAR(45) NOT NULL,
+  `date` TIMESTAMP NULL,
+  `result` NVARCHAR(1) NULL,
   PRIMARY KEY (`id`, `users_id`, `sellerrMall_id`),
   INDEX `fk_inquiry_users1_idx` (`users_id` ASC) VISIBLE,
   INDEX `fk_inquiry_sellerrMall1_idx` (`sellerrMall_id` ASC) VISIBLE,
@@ -104,17 +93,15 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `product`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `product` ;
-
 CREATE TABLE IF NOT EXISTS `product` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `sellerrMall_id` INT UNSIGNED NOT NULL,
   `price` INT NOT NULL,
   `name` VARCHAR(45) CHARACTER SET 'utf8mb3' NOT NULL,
-  `kind` VARCHAR(45) CHARACTER SET 'utf8mb3' NOT NULL,
-  `date` DATE NOT NULL,
+  `kind` VARCHAR(45) NOT NULL,
+  `date` TIMESTAMP NOT NULL,
   `img` VARCHAR(45) NOT NULL,
-  `buycount` INT NULL DEFAULT NULL,
+  `buycount` INT NULL,
   PRIMARY KEY (`id`, `sellerrMall_id`),
   INDEX `fk_product_sellerrMall1_idx` (`sellerrMall_id` ASC) VISIBLE,
   CONSTRAINT `fk_product_sellerrMall1`
@@ -127,16 +114,14 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `order`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `order` ;
-
 CREATE TABLE IF NOT EXISTS `order` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `users_id` INT UNSIGNED NOT NULL,
   `product_id` INT UNSIGNED NOT NULL,
   `order_count` INT NOT NULL,
-  `delivery` CHAR(1) NULL DEFAULT NULL,
-  `indate` DATE NOT NULL,
-  `result` VARCHAR(45) NULL DEFAULT NULL,
+  `delivery` NVARCHAR(1) NULL,
+  `date` TIMESTAMP NOT NULL,
+  `result` VARCHAR(45) NULL,
   PRIMARY KEY (`id`, `users_id`, `product_id`),
   INDEX `fk_order_users1_idx` (`users_id` ASC) VISIBLE,
   INDEX `fk_order_product1_idx` (`product_id` ASC) VISIBLE,
@@ -153,13 +138,11 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `product_ description`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `product_ description` ;
-
 CREATE TABLE IF NOT EXISTS `product_ description` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `product_id` INT UNSIGNED NOT NULL,
-  `description_name` VARCHAR(45) CHARACTER SET 'utf8mb3' NOT NULL,
-  `parameter` VARCHAR(45) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
+  `description_name` NVARCHAR(45) NOT NULL,
+  `parameter` NVARCHAR(200)  NULL,
   PRIMARY KEY (`id`, `product_id`),
   INDEX `fk_product_ description_product1_idx` (`product_id` ASC) VISIBLE,
   CONSTRAINT `fk_product_ description_product1`
@@ -167,6 +150,25 @@ CREATE TABLE IF NOT EXISTS `product_ description` (
     REFERENCES `product` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `address`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `users_id` INT UNSIGNED NOT NULL,
+  `postcode` VARCHAR(45) NOT NULL,
+  `address1` VARCHAR(45) NOT NULL,
+  `address2` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`, `users_id`),
+  INDEX `fk_address_users1_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_address_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

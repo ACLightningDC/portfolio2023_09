@@ -11,7 +11,7 @@
 </head>
 <body>
 	<!-- 헤더 -->
-	<jsp:include page="/mainpage/header.jsp"></jsp:include>
+	<jsp:include page="header.jsp"></jsp:include>
 	
 	<!-- 메인 텍스트 컨테이너 -->
  <section class="py-2 text-center container">
@@ -177,7 +177,7 @@
   
   <!-- 푸터 -->
   <div >
-  	<jsp:include page="/mainpage/footer.jsp"></jsp:include>
+  	<jsp:include page="footer.jsp"></jsp:include>
   </div>
 	
 	
