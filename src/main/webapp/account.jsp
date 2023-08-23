@@ -143,8 +143,8 @@
 <div class="container">
   <main>
     <div class="py-5 text-center">
-      <h2>체크 form</h2>
-      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+      <h2>체크</h2>
+      <p class="lead">방문해주셔서 감사합니다. 필수입력은 빠짐없이 입력해주시기 바랍니다. </p>
     </div>
 
     <div class="row g-5 ">
@@ -153,9 +153,34 @@
       
         <form class="needs-validation" novalidate>
           <div class="row g-3">
-            <div class="col-sm-6">
-              <label for="name" class="form-label">이름</label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="필수입력" value="" required="required">
+          
+          <div class="col-12">
+              <label for="id" class="form-label">아이디</label>
+              <input type="text" class="form-control" name="id" id="id" autofocus="autofocus" placeholder="필수입력" required="required">
+               <div class="invalid-feedback">
+                          아이디를 입력해주세요.
+              </div>
+           </div>
+           
+           <div class="col-12">
+              <label for="id" class="form-label">userid->확인필요</label>
+              <input type="text" class="form-control" name="id" id="id" autofocus="autofocus" placeholder="필수입력" required="required">
+               <div class="invalid-feedback">
+                          아이디를 입력해주세요.
+              </div>
+           </div>
+           
+           <div class="col-12">
+              <label for="password" class="form-label">비밀번호</label>
+              <input type="text" class="form-control" name="password" id="password" autofocus="autofocus" placeholder="영문대소문자포함 8~20자 입니다." required="required">
+               <div class="invalid-feedback">
+                          비밀번호를 입력해주세요.
+              </div>
+           </div>
+           
+            <div class="col-12">
+              <label for="name" class="form-label">이 름</label>
+              <input type="text" class="form-control" name="name" id="name" autofocus="autofocus" placeholder="필수입력"  required="required">
                <div class="invalid-feedback">
                             이름을 입력해주세요.
               </div>
@@ -163,149 +188,62 @@
 
             
             <div class="col-12">
-              <label for="add" class="form-label">주민번호</label>
+              <label for="phone" class="form-label">전화번호</label>
              <div class="input-group has-validation">
-                <input type="text" class="form-control" name="" id="add" placeholder="필수입력" required="required">
+                <input type="text" class="form-control" name="phone" id="phone" autofocus="autofocus" placeholder="필수입력" required="required">
                   <div class="invalid-feedback">
-                               주민번호를 입력해주세요.
+                               전화번호를 입력해주세요.
              	  </div>
              </div>
             </div>
 
             <div class="col-12">
-              <label for="email" class="form-label">Email <span class="text-body-secondary">(선택사항)</span></label>
-              <input type="email" class="form-control" name="" id="email" placeholder="you@example.com" required="required">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" id="email" autofocus="autofocus" placeholder="user@example.com" required="required">
               <div class="invalid-feedback">
-                배송 업데이트를 위해 유효한 이메일 주소를 입력하세요.
+                주문확인을 위해 이메일 주소를 입력해주세요.
               </div>
             </div>
 
             <div class="col-12">
-              <label for="address" class="form-label">주소</label>
-              <input type="text" class="form-control" id="address" placeholder="필수입력" required="required">
+              <label for="birthday" class="form-label">생 일</label>
+              <input type="date" class="form-control" id="birthday" value="" placeholder="YYYY-MM-DD" required="required">
               <div class="invalid-feedback">
-                Please enter your shipping address.
+                생년월일을 입력해주세요.
               </div>
             </div>
 
             <div class="col-12">
-              <label for="address2" class="form-label">상세주소 </label>
-              <input type="text" class="form-control" id="address2" placeholder="상세주소" required="required">
+              <label for="grade" class="form-label">등 급</label>
+              <input type="text" class="form-control" id="grade" value="" placeholder="" >
             </div>
 
-            <div class="col-md-5">
-              <label for="country" class="form-label">Country</label>
-              <select class="form-select" id="country" required>
-                <option value="">Choose...</option>
-                <option>United States</option>
-              </select>
-              <div class="invalid-feedback">
-                Please select a valid country.
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <label for="state" class="form-label">State</label>
-              <select class="form-select" id="state" required>
-                <option value="">Choose...</option>
-                <option>California</option>
-              </select>
-              <div class="invalid-feedback">
-                Please provide a valid state.
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="zip" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="zip" placeholder="" required>
-              <div class="invalid-feedback">
-                Zip code required.
-              </div>
-            </div>
-          </div>
-
-          <hr class="my-4">
-
-          <div class="form-check  form-check-inline">
-            <input name ="gender" type="radio" class="form-check-input" id="same-address">
+ 		<label for="grade" class="form-label">성 별</label>
+		<div class="col-md-3">
+          <div class="form-check  form-check">
+            <input type="radio" name ="gender" value="M" class="form-check-input" >
             <label class="form-check-label" for="same-address">남</label>
           </div>
-
+ 		</div>
+ 
+		<div class="col-md-3">
           <div class="form-check  form-check-inline">
-            <input name ="gender" type="radio" class="form-check-input" id="save-info">
+            <input type="radio" name ="gender" value="F" class="form-check-input">
             <label class="form-check-label" for="save-info">여</label>
           </div>
-
+ 		</div>
           <hr class="my-4">
 
-          <h4 class="mb-3">Payment</h4>
-
-          <div class="my-3">
-            <div class="form-check">
-              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-              <label class="form-check-label" for="credit">Credit card</label>
-            </div>
-            <div class="form-check">
-              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-              <label class="form-check-label" for="debit">Debit card</label>
-            </div>
-            <div class="form-check">
-              <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-              <label class="form-check-label" for="paypal">PayPal</label>
-            </div>
           </div>
 
-          <div class="row gy-3">
-            <div class="col-md-6">
-              <label for="cc-name" class="form-label">Name on card</label>
-              <input type="text" class="form-control" id="cc-name" placeholder="" required>
-              <small class="text-body-secondary">Full name as displayed on card</small>
-              <div class="invalid-feedback">
-                Name on card is required
-              </div>
-            </div>
 
-            <div class="col-md-6">
-              <label for="cc-number" class="form-label">Credit card number</label>
-              <input type="text" class="form-control" id="cc-number" placeholder="" required>
-              <div class="invalid-feedback">
-                Credit card number is required
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="cc-expiration" class="form-label">Expiration</label>
-              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-              <div class="invalid-feedback">
-                Expiration date required
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="cc-cvv" class="form-label">CVV</label>
-              <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-              <div class="invalid-feedback">
-                Security code required
-              </div>
-            </div>
-          </div>
-
-          <hr class="my-4">
-
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit">입력완료</button>
         </form>
       </div>
     </div>
   </main>
 
-  <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-    <p class="mb-1">&copy; 2017–2023 Company Name</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-  </footer>
+
 </div>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
