@@ -50,9 +50,11 @@
           <c:when test="${!empty sessionScope.userinfo }"> 
             <li class="nav-item">
             	<span></span>
-				              ${sessionScope.userinfo.name} 로그인되었습니다.
+				              
             </li>
-            
+           <li class="nav-item ">
+              <a class="nav-link" >${sessionScope.userinfo.name} 로그인되었습니다.</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 내정보 관리
