@@ -143,7 +143,7 @@
 <div class="container">
   <main>
     <div class="py-5 text-center">
-      <h2>Checkout form</h2>
+      <h2>체크 form</h2>
       <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
     </div>
 
@@ -154,33 +154,19 @@
         <form class="needs-validation" novalidate>
           <div class="row g-3">
             <div class="col-sm-6">
-              <label for="firstName" class="form-label">name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid first name is required.
+              <label for="name" class="form-label">이름</label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="필수입력" value="" required="required">
+               <div class="invalid-feedback">
+                            이름적어주세요
               </div>
             </div>
 
-            <div class="col-12">
-              <label for="username" class="form-label">Userid</label>
-              <div class="input-group has-validation">
-            
-                <input type="text" class="form-control" id="username" placeholder="Username" required>
-              <div class="invalid-feedback">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
             
             <div class="col-12">
-              <label for="username" class="form-label">주민번호</label>
-              <div class="input-group has-validation">
-            
-                <input type="text" class="form-control" id="username" placeholder="주민번호" required>
-              <div class="invalid-feedback">
-                  Your username is required.
-                </div>
-              </div>
+              <label for="add" class="form-label">주민번호</label>
+             <div class="input-group has-validation">
+                <input type="text" class="form-control" id="add" placeholder="필수입력" required="required">
+             </div>
             </div>
 
             <div class="col-12">
@@ -193,15 +179,15 @@
 
             <div class="col-12">
               <label for="address" class="form-label">주소</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+              <input type="text" class="form-control" id="address" placeholder="필수입력" required="required">
               <div class="invalid-feedback">
                 Please enter your shipping address.
               </div>
             </div>
 
             <div class="col-12">
-              <label for="address2" class="form-label">상세주소 <span class="text-body-secondary">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+              <label for="address2" class="form-label">상세주소 </label>
+              <input type="text" class="form-control" id="address2" placeholder="상세주소" required="required">
             </div>
 
             <div class="col-md-5">
