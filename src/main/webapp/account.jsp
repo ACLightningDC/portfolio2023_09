@@ -157,7 +157,7 @@
               <label for="name" class="form-label">이름</label>
               <input type="text" class="form-control" name="name" id="name" placeholder="필수입력" value="" required="required">
                <div class="invalid-feedback">
-                            이름적어주세요
+                            이름을 입력해주세요.
               </div>
             </div>
 
@@ -165,15 +165,18 @@
             <div class="col-12">
               <label for="add" class="form-label">주민번호</label>
              <div class="input-group has-validation">
-                <input type="text" class="form-control" id="add" placeholder="필수입력" required="required">
+                <input type="text" class="form-control" name="" id="add" placeholder="필수입력" required="required">
+                  <div class="invalid-feedback">
+                               주민번호를 입력해주세요.
+             	  </div>
              </div>
             </div>
 
             <div class="col-12">
-              <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <label for="email" class="form-label">Email <span class="text-body-secondary">(선택사항)</span></label>
+              <input type="email" class="form-control" name="" id="email" placeholder="you@example.com" required="required">
               <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
+                배송 업데이트를 위해 유효한 이메일 주소를 입력하세요.
               </div>
             </div>
 
