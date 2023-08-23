@@ -25,11 +25,14 @@ public class LoginService {
 		return loginCheck;
 	}
 	
-	public Users getLoginInfo(String id) {
+	public Users getLoginInfo(int id) {
 		
 		Connection con =getConnection();
 		
 		DAO dao = DAO.getInstance();
+		
+		dao.setConnection(con);
+
 		
 		Users userInfo = dao.getUsersInfo(id);
 				

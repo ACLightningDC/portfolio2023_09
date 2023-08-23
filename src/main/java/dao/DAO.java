@@ -68,16 +68,18 @@ public class DAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			
-			pstmt.executeQuery();
+			rs= pstmt.executeQuery();
 			
 			if(rs.next()) {
 				userInfo = new Users();
 				userInfo.setId(id);
-				userInfo.setId(id);
-				userInfo.setId(id);
-				userInfo.setId(id);
-				userInfo.setId(id);
-				userInfo.setId(id);
+				userInfo.setUserid(rs.getString("userid"));
+				userInfo.setName(rs.getString("name"));
+				userInfo.setDate(rs.getString("date"));
+				userInfo.setEmail(rs.getString("email"));
+				userInfo.setPhone(rs.getString("Phone"));
+				userInfo.setBirthday(rs.getString("birthday"));
+				userInfo.setGrade(rs.getString("grade"));
 			}
 		}catch(Exception e){
 			System.out.println("[DAO] getUsersInfo 에러" + e );

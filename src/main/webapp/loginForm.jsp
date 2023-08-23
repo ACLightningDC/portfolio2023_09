@@ -36,11 +36,10 @@
   </head>
 
 
-  <jsp:include page="/mainpage/header.jsp" />
+  <jsp:include page="header.jsp" />
 
   
   <body class="d-flex flex-column min-vh-100 bg-body-tertiary" >
-
 
 
 <div class="d-flex align-items-center py-4 pt-5">
@@ -50,9 +49,8 @@
   <form action="login.shop" method="post">
     <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
-<c:set var="user_id_cookie" value="${cookie.user_id.value}"/>
     <div class="form-floating">
-      <input type="text" name = "userid" value ="${user_id_cookie}" class="form-control" id="floatingInput" placeholder="">
+      <input type="text" name = "userid" value ="${cookie.user_id.value}" class="form-control" id="floatingInput" placeholder="">
       <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">
@@ -72,7 +70,7 @@
 </main>
 </div>
 <footer class="mt-auto">
-<%@include file="/mainpage/footer.jsp" %>
+<%@include file="footer.jsp" %>
 </footer>
 
   

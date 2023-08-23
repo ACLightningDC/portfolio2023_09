@@ -4,26 +4,31 @@ public class Users {
 	public int id;
 	public String userid;
 	public String password;
-	public String joinDate;
-	public String email;
+	public String name;
+	
+	public String date;
 	public String phone;
+	public String email;
 	public String birthday;
-	public char degree;
+	public String grade;
+	public String ipaddress;
 	
-	public Users() {}
-	
-	public Users(int id, String userid, String password, String joinDate, String email, String phone, String birthday,
-			char degree) {
+	public Users(int id, String userid, String password, String name, String date, String phone, String email,
+			String birthday, String grade, String ipaddress) {
 		super();
 		this.id = id;
 		this.userid = userid;
 		this.password = password;
-		this.joinDate = joinDate;
-		this.email = email;
+		this.name = name;
+		this.date = date;
 		this.phone = phone;
+		this.email = email;
 		this.birthday = birthday;
-		this.degree = degree;
+		this.grade = grade;
+		this.ipaddress = ipaddress;
 	}
+
+	public Users() {}
 
 	public int getId() {
 		return id;
@@ -49,20 +54,20 @@ public class Users {
 		this.password = password;
 	}
 
-	public String getJoinDate() {
-		return joinDate;
+	public String getName() {
+		return name;
 	}
 
-	public void setJoinDate(String joinDate) {
-		this.joinDate = joinDate;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getDate() {
+		return date;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public String getPhone() {
@@ -73,6 +78,14 @@ public class Users {
 		this.phone = phone;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getBirthday() {
 		return birthday;
 	}
@@ -81,13 +94,23 @@ public class Users {
 		this.birthday = birthday;
 	}
 
-	public char getDegree() {
-		return degree;
+	public String getGrade() {
+		return grade;
 	}
 
-	public void setDegree(char degree) {
-		this.degree = degree;
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
+
+	public String getIpaddress() {
+		return ipaddress;
+	}
+
+	public void setIpaddress(String ipaddress) {
+		this.ipaddress = ipaddress;
+	}
+	
+
 	
 	
 }
