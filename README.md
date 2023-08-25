@@ -4,11 +4,9 @@ dao DAO getUsersInfo
 
 구현됨 
 
-이클립스 단축키 
-Ctrl + Shift + G 작업공간에서 참조 찾기 f3 참조한 곳 찾기 
 
-commit 하기 # + Ctrl
 vo 파일 
+
 sha256 암호화 구현 함 
 
 작업중 
@@ -54,4 +52,9 @@ Ctrl + Shift + R
 
 소셜 로그인 추가 api
 
+이클립스 단축키 
+----------------------------------------------------------
+Ctrl + Shift + G 작업공간에서 참조 찾기 f3 참조한 곳 찾기 
+
+commit 하기 # + Ctrl
 
