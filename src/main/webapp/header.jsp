@@ -73,7 +73,7 @@
           </c:when>
           <c:otherwise>
           	<li class="nav-item">
-              <a class="nav-link" href="loginForm.jsp">로그인</a>
+              <a class="nav-link" href="LoginRelated/loginForm.jsp">로그인</a>
             </li>
 			<li class="nav-item ">
               <a class="nav-link" href="#">회원가입</a>

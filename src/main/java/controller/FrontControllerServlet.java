@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.user.PasswordFindAction;
+import action.user.findIdAction;
 import action.user.loginAction;
 import action.user.logoutAction;
 import vo.ActionForward;
@@ -58,6 +60,10 @@ public class FrontControllerServlet extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
+		/**
+		 * 로그인 로그아웃
+		 */
+		
 		 if(command.equals("/login.shop")){
 			action = new loginAction();
 			System.out.println("FrontController 실행 login");
@@ -79,10 +85,51 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
-		System.out.println("FrontController 실행 2");
-		
+		 
+		/**
+		 * 아이디 찾기  
+		 */
+		else if(command.equals("/LoginRelated/findIdForm.shop")) {
+			request.setAttribute("forward", "/LoginRelated/findIdForm.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		else if(command.equals("/LoginRelated/findIdAction.shop")){
+			action = new findIdAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/LoginRelated/findIdComplete.shop")) {
+			request.setAttribute("forward", "/LoginRelated/findIdComplete.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		 
+		/**
+		 * 비밀번호 찾기  
+		 */		 
+		else if(command.equals("/LoginRelated/PasswordFindFrom.shop")) {
+			request.setAttribute("forward", "/LoginRelated/PasswordFind/PasswordFindFrom.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		else if(command.equals("/LoginRelated/PasswordFind/PasswordFindAction.shop")){
+			action = new PasswordFindAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/LoginRelated/PasswordFind/PasswordFindComplete.shop")) {
+			request.setAttribute("forward", "/LoginRelated/PasswordFind/PasswordFindComplete.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		 
+		 
+		 	System.out.println(forward.getPath());
 		if(forward !=null) {
+			System.out.println("FrontController Forward 실행");
 			if(forward.isRedirect()) {
 				System.out.println("FrontController 실행 리다이렉트");
 

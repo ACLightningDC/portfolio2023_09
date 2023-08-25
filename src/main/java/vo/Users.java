@@ -1,34 +1,42 @@
 package vo;
 
+import util.SHA256;
+
 public class Users {
+	//식별자 입력 불필요
 	public int id;
+	
+	//입력 불필요 
+	public String date;
+	public String grade;
+	
+	//입력 필요 not null
 	public String userid;
 	public String password;
 	public String name;
+	public String gender;
 	
-	public String date;
-	public String phone;
+	//입력 필요 null 가능 
 	public String email;
 	public String birthday;
-	public String grade;
-	public String ipaddress;
+
+	public Users() {} 
 	
-	public Users(int id, String userid, String password, String name, String date, String phone, String email,
-			String birthday, String grade, String ipaddress) {
+	public Users(int id, String date, String grade, String userid, String password, String name, String gender,
+			String phone, String email, String birthday) {
 		super();
 		this.id = id;
-		this.userid = userid;
-		this.password = password;
-		this.name = name;
 		this.date = date;
+		this.grade = grade;
+		this.userid = userid;
+		this.password = SHA256.encodeSHA256(password);
+		this.name = name;
+		this.gender = gender;
 		this.phone = phone;
 		this.email = email;
 		this.birthday = birthday;
-		this.grade = grade;
-		this.ipaddress = ipaddress;
 	}
-
-	public Users() {}
+	public String phone;
 
 	public int getId() {
 		return id;
@@ -36,6 +44,22 @@ public class Users {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 
 	public String getUserid() {
@@ -51,7 +75,7 @@ public class Users {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = SHA256.encodeSHA256(password);
 	}
 
 	public String getName() {
@@ -62,20 +86,12 @@ public class Users {
 		this.name = name;
 	}
 
-	public String getDate() {
-		return date;
+	public String getGender() {
+		return gender;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getEmail() {
@@ -94,23 +110,15 @@ public class Users {
 		this.birthday = birthday;
 	}
 
-	public String getGrade() {
-		return grade;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setGrade(String grade) {
-		this.grade = grade;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public String getIpaddress() {
-		return ipaddress;
-	}
-
-	public void setIpaddress(String ipaddress) {
-		this.ipaddress = ipaddress;
-	}
 	
-
 	
 	
 }
