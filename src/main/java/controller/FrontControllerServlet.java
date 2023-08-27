@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.user.loginAction;
 import action.user.logoutAction;
+import action.user.singInAction;
 import vo.ActionForward;
 
 /**
@@ -71,6 +72,16 @@ public class FrontControllerServlet extends HttpServlet {
 		}
 		else if(command.equals("/logout.shop")) {
 			action = new logoutAction();
+			System.out.println("FrontController 실행 logout");
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/singIn.shop")) {
+			action = new singInAction();
 			System.out.println("FrontController 실행 logout");
 			
 			try {
