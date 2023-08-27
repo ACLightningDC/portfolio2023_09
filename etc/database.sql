@@ -21,12 +21,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` NVARCHAR(45) NOT NULL,
   `date` TIMESTAMP NOT NULL,
   `phone` VARCHAR(45) NOT NULL,
+  `gender` VARCHAR(1) NOT NULL,
   `email` VARCHAR(45) NULL,
   `birthday` DATE NULL,
   `grade` NVARCHAR(1) NULL,
-  `ipaddress` VARCHAR(15) CHARACTER SET 'utf8mb3' NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE)
+  UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb3;
@@ -164,6 +165,24 @@ CREATE TABLE IF NOT EXISTS `address` (
   PRIMARY KEY (`id`, `users_id`),
   INDEX `fk_address_users1_idx` (`users_id` ASC) VISIBLE,
   CONSTRAINT `fk_address_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `user_security`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `user_security` (
+  `id` INT NOT NULL,
+  `users_id` INT UNSIGNED NOT NULL,
+  `ipaddress` VARCHAR(200) NULL,
+  `model` VARCHAR(200) NULL,
+  PRIMARY KEY (`id`, `users_id`),
+  INDEX `fk_user_security_users1_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_user_security_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `users` (`id`)
     ON DELETE NO ACTION
