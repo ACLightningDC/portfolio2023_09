@@ -18,7 +18,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-light  ">
       <div class="container-fluid ">
-        <a class="navbar-brand " href="#">홈쇼핑 ${sessionScope.userinfo.id}</a>
+        <a class="navbar-brand " href="homePage.shop">홈쇼핑 ${sessionScope.userinfo.id}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -63,7 +63,7 @@
                 <li><a class="dropdown-item" href="#">내정보 보기</a></li>
                 <li><a class="dropdown-item" href="#">내 정보 변경 , 확인</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="logout.shop">장바구니</a></li>	
+                <li><a class="dropdown-item" href="LoginRelated/logout.shop">장바구니</a></li>	
               </ul>
             </li>
             <li class="nav-item">
@@ -73,7 +73,7 @@
           </c:when>
           <c:otherwise>
           	<li class="nav-item">
-              <a class="nav-link" href="LoginRelated/loginForm.jsp">로그인</a>
+              <a class="nav-link" href="loginForm.shop">로그인</a>
             </li>
 			<li class="nav-item ">
               <a class="nav-link" href="#">회원가입</a>

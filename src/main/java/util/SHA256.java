@@ -32,7 +32,7 @@ public class SHA256 {
 			
 			StringBuffer sb = new StringBuffer();
 			
-			for(int i=0 ; i<saltPasswordDigest.length ; i++) {
+			for(int i=0 ;i<saltPasswordDigest.length ; i++) {
 				sb.append(Integer.toString((saltPasswordDigest[i]&0xFF)+0x100,16).substring(1));
 			}
 			
@@ -41,30 +41,35 @@ public class SHA256 {
 			System.out.println("[SHA256] 오류 encodeSHA256" + e);
 		}
 		
-		System.out.println("[SHA256] 오류 encodeSHA256" + result);
+		System.out.println("[SHA256] 결과" + result);
 		
 		return result;
 	}
 	
 	public static String getRandomPassword(int size) {
+
+		char[] charSet =  { 
+				'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
+				'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+		};//특수문자 제외
 		
-		char[] charSet = {
-				
-		};
 		
-		StringBuffer sb = new StringBuffer();
+		
+		StringBuffer sb = new StringBuffer();//'A'
 		
 		SecureRandom sr = new SecureRandom();
 		sr.setSeed(new Date().getTime());
 		
 		int len = charSet.length;
 		int idx = 0;
-		for (int i = 0 ; i<size ; i++) {
+		for(int i = 0 ; i<size ; i++) {
 			
-			idx = sr.nextInt(charSet.length);
-			sb.append(charSet[idx]);
+
+			idx = sr.nextInt(charSet.length);//예:idx = 10 =>idx=0
+			sb.append(charSet[idx]);//charSet[11]의 값은 'A' => charSet[0]의 값은 '0'
 		}
 		
 		return sb.toString();
+		
 	}
 }

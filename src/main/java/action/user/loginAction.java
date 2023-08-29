@@ -56,7 +56,7 @@ public class loginAction implements Action {
 
 		
 		
-		forward = new ActionForward("homePage.jsp" ,false);
+		forward = new ActionForward("/homePage.shop" ,false);
 
 		return forward;
 	}
