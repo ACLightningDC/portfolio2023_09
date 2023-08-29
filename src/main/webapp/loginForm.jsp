@@ -36,7 +36,6 @@
   </head>
 
 
-  <jsp:include page="/header.jsp" />
 
   
   <body class="d-flex flex-column min-vh-100 bg-body-tertiary" >
@@ -70,7 +69,6 @@
 </main>
 </div>
 <footer class="mt-auto">
-<%@include file="/footer.jsp" %>
 </footer>
 
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>

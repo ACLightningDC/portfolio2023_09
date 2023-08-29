@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<%@include file="header.jsp" %>
+<jsp:include page="header.jsp"/>
 템플릿
 ${forward}
 <c:if test="${!empty forward}">
@@ -18,8 +18,7 @@ ${forward}
 	</div>
 </c:if>
 
-
-<%@include file="footer.jsp" %>
+<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

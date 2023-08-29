@@ -56,7 +56,6 @@ public class FrontControllerServlet extends HttpServlet {
 		System.out.println("커맨드 변수 "+command);
 
 		
-		System.out.println("FrontController 실행 1");
 		
 		Action action = null;
 		ActionForward forward = null;
@@ -67,8 +66,8 @@ public class FrontControllerServlet extends HttpServlet {
 		
 		 if(command.equals("/login.shop")){
 			action = new loginAction();
-			System.out.println("FrontController 실행 login");
 
+			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -76,9 +75,18 @@ public class FrontControllerServlet extends HttpServlet {
 			}
 			
 		}
+		 if(command.equals("/homePage.shop")){
+			 request.setAttribute("forward", "homePage.jsp");
+			forward = new ActionForward("template.jsp", false);
+			 
+		 }
+		 if(command.equals("/loginForm.shop")){
+			 request.setAttribute("forward", "loginForm.jsp");
+			 forward = new ActionForward("template.jsp", false);
+			 
+		 }
 		else if(command.equals("/logout.shop")) {
 			action = new logoutAction();
-			System.out.println("FrontController 실행 logout");
 			
 			try {
 				forward = action.execute(request, response);
@@ -86,10 +94,8 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-<<<<<<< HEAD
 		else if(command.equals("/singIn.shop")) {
 			action = new singInAction();
-			System.out.println("FrontController 실행 logout");
 			
 			try {
 				forward = action.execute(request, response);
@@ -98,15 +104,13 @@ public class FrontControllerServlet extends HttpServlet {
 			}
 		}
 		
-		System.out.println("FrontController 실행 2");
 		
-=======
-		 
+
 		/**
 		 * 아이디 찾기  
 		 */
-		else if(command.equals("/LoginRelated/findIdForm.shop")) {
-			request.setAttribute("forward", "/LoginRelated/findIdForm.jsp");
+		else if(command.equals("/findIdForm.shop")) {
+			request.setAttribute("forward", "LoginRelated/findIdForm.jsp");
 			forward = new ActionForward("/template.jsp", false);
 		}
 		else if(command.equals("/LoginRelated/findIdAction.shop")){
@@ -125,11 +129,11 @@ public class FrontControllerServlet extends HttpServlet {
 		/**
 		 * 비밀번호 찾기  
 		 */		 
-		else if(command.equals("/LoginRelated/PasswordFindFrom.shop")) {
-			request.setAttribute("forward", "/LoginRelated/PasswordFind/PasswordFindFrom.jsp");
+		else if(command.equals("/PasswordFindFrom.shop")) {
+			request.setAttribute("forward", "LoginRelated/PasswordFind/PasswordFindFrom.jsp");
 			forward = new ActionForward("/template.jsp", false);
 		}
-		else if(command.equals("/LoginRelated/PasswordFind/PasswordFindAction.shop")){
+		else if(command.equals("/PasswordFindAction.shop")){
 			action = new PasswordFindAction();			
 			try {
 				forward = action.execute(request, response);
@@ -137,14 +141,13 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/LoginRelated/PasswordFind/PasswordFindComplete.shop")) {
-			request.setAttribute("forward", "/LoginRelated/PasswordFind/PasswordFindComplete.jsp");
+		else if(command.equals("/PasswordFindComplete.shop")) {
+			request.setAttribute("forward", "/LoginRelated/PasswordFindComplete.jsp");
 			forward = new ActionForward("/template.jsp", false);
 		}
 		 
 		 
 		 	System.out.println(forward.getPath());
->>>>>>> branch 'master' of https://github.com/ACLightningDC/portfolio2023_09.git
 		if(forward !=null) {
 			System.out.println("FrontController Forward 실행");
 			if(forward.isRedirect()) {
