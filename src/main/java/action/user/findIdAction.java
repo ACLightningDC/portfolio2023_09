@@ -29,7 +29,7 @@ public class findIdAction implements Action {
 		if(userid == null) {
 			out.println("<script>");
 			out.println("alert('잘못된 이름 이메일 입니다.');");
-			out.println("history.back()");
+			out.println("history.back();");
 			out.println("</script>");
 		}else {
 			request.setAttribute("userid", userid);

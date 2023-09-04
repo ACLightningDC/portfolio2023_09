@@ -9,6 +9,7 @@ import org.apache.catalina.User;
 
 import action.Action;
 import svc.LoginService;
+import util.SHA256;
 import vo.ActionForward;
 import vo.Users;
 
@@ -24,8 +25,7 @@ public class loginAction implements Action {
 		LoginService loginService =  new LoginService();
 		//로그인 전송 데이터 변수에 받음
 		String id = request.getParameter("userid");
-		String password = request.getParameter("password");
-		
+		String password = 	SHA256.encodeSHA256(request.getParameter("password"));
 		String checkbox = request.getParameter("checkbox");
 		if(checkbox !=null) {
 			Cookie cookie = new Cookie("user_id" , id);

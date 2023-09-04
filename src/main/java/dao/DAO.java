@@ -141,5 +141,30 @@ public class DAO {
 			}
 		return check;
 	}
+
+	public int accountjoin(Users users) {
+		int check = 0;
+		String sql =" insert into users(userid, password, name, phone , birthday  , email ,gender ) value(?, ?, ?, ?, ?, ?, ?)";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, users.getUserid());
+			pstmt.setString(2, users.getPassword());
+			pstmt.setString(3, users.getName());
+			pstmt.setString(4, users.getPhone());
+			pstmt.setString(5, users.getBirthday());
+			pstmt.setString(6, users.getEmail());
+			pstmt.setString(7, users.getGender());
+			
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] accountjoin 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
 	
 }
