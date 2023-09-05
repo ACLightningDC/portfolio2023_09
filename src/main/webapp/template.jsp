@@ -8,9 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@include file="header.jsp" %>
 
-<c:if test="${!empty foward}">
+<%@include file="header.jsp" %>
+템플릿
+${forward}
+<c:if test="${!empty forward}">
 	<div>
 		<jsp:include page="${forward}"/>
 	</div>

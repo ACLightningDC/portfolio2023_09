@@ -90,5 +90,56 @@ public class DAO {
 			
 		return userInfo;
 	}
+
+	public String findId(String name, String email) {
+		String userid = null;
+		String sql = " select userid from users where name =? and email = ?";
+		try {
+			
+			System.out.println(name +" "+email);
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				userid = rs.getString("userid");
+			}
+			
+			System.out.println(userid);
+		}catch(Exception e){
+			System.out.println("[DAO] findId 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return userid;
+	}
+
+	public int PassowordFind(String randomPasswordEncode, String userid, String email) {
+		int check = 0;
+		String sql =" update users set password=? where userid=? and email=?";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, randomPasswordEncode);
+			pstmt.setString(2, userid);
+			pstmt.setString(3, email);
+			
+			check= pstmt.executeUpdate();
+
+				System.out.println(userid);
+			}catch(Exception e){
+				System.out.println("[DAO] PassowordFind 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
 	
 }
