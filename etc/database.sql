@@ -47,15 +47,16 @@ CREATE TABLE IF NOT EXISTS `testdb`.`seller` (
   INDEX `fk_seller_users1_idx` (`users_id` ASC) VISIBLE,
   CONSTRAINT `fk_seller_users1`
     FOREIGN KEY (`users_id`)
-    REFERENCES `testdb`.`users` (`id`))
+    REFERENCES `testdb`.`users` (`id`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`sellerrmall`
+-- Table `testdb`.`sellermall`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`sellerrmall` (
+CREATE TABLE IF NOT EXISTS `testdb`.`sellermall` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `seller_id` INT UNSIGNED NOT NULL,
   `name` NVARCHAR(45) NOT NULL,
@@ -86,10 +87,12 @@ CREATE TABLE IF NOT EXISTS `testdb`.`inquiry` (
   INDEX `fk_inquiry_sellerrMall1_idx` (`sellerrMall_id` ASC) VISIBLE,
   CONSTRAINT `fk_inquiry_sellerrMall1`
     FOREIGN KEY (`sellerrMall_id`)
-    REFERENCES `testdb`.`sellerrmall` (`id`),
+    REFERENCES `testdb`.`sellermall` (`id`)
+    ON DELETE CASCADE,
   CONSTRAINT `fk_inquiry_users1`
     FOREIGN KEY (`users_id`)
-    REFERENCES `testdb`.`users` (`id`))
+    REFERENCES `testdb`.`users` (`id`)
+    ON DELETE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -110,7 +113,8 @@ CREATE TABLE IF NOT EXISTS `testdb`.`product` (
   INDEX `fk_product_sellerrMall1_idx` (`sellerrMall_id` ASC) VISIBLE,
   CONSTRAINT `fk_product_sellerrMall1`
     FOREIGN KEY (`sellerrMall_id`)
-    REFERENCES `testdb`.`sellerrmall` (`id`))
+    REFERENCES `testdb`.`sellermall` (`id`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -134,7 +138,8 @@ CREATE TABLE IF NOT EXISTS `testdb`.`order` (
     REFERENCES `testdb`.`product` (`id`),
   CONSTRAINT `fk_order_users1`
     FOREIGN KEY (`users_id`)
-    REFERENCES `testdb`.`users` (`id`))
+    REFERENCES `testdb`.`users` (`id`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -146,12 +151,13 @@ CREATE TABLE IF NOT EXISTS `testdb`.`product_ description` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `product_id` INT UNSIGNED NOT NULL,
   `description_name` NVARCHAR(45) NOT NULL,
-  `parameter` NVARCHAR(200) CHARACTER SET 'utf8mb3' NULL,
+  `parameter` NVARCHAR(200)  NULL,
   PRIMARY KEY (`id`, `product_id`),
   INDEX `fk_product_ description_product1_idx` (`product_id` ASC) VISIBLE,
   CONSTRAINT `fk_product_ description_product1`
     FOREIGN KEY (`product_id`)
-    REFERENCES `testdb`.`product` (`id`))
+    REFERENCES `testdb`.`product` (`id`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -170,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`address` (
   CONSTRAINT `fk_address_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `testdb`.`users` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -188,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`user_security` (
   CONSTRAINT `fk_user_security_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `testdb`.`users` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 

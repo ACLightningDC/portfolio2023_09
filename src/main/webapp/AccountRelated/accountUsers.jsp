@@ -192,7 +192,7 @@
 
             <div class="col-12">
               <label for="birthday" class="form-label">생 일</label>
-              <input type="date" class="form-control" id="birthday" value="" placeholder="YYYY-MM-DD" required="required">
+              <input type="date" class="form-control" id="birthday" name="birthday" value="" placeholder="YYYY-MM-DD" required="required">
               <div class="invalid-feedback">
                 생년월일을 입력해주세요.
               </div>
@@ -202,21 +202,21 @@
               </div>
             <div class="col-12">
               <label for="postcode" class="form-label">우편번호</label>
-              <input type="text" class="form-control" id="postcode" value="" placeholder="" required="required" readonly="readonly">
+              <input name="postcode" type="text" class="form-control" id="postcode" value="" placeholder="" required="required" readonly="readonly">
               <div class="invalid-feedback">
               	우편번호를 입력해주세요
               </div>
             </div>
             <div class="col-12">
               <label for="address1" class="form-label">주소</label>
-              <input type="text" class="form-control" id="address1" value="" placeholder="" required="required" readonly="readonly">
+              <input name="address1" type="text" class="form-control" id="address1" value="" placeholder="" required="required" readonly="readonly">
               <div class="invalid-feedback">
                 주소를 입력해주세요.
               </div>
             </div>
             <div class="col-12">
               <label for="address2" class="form-label">상세주소</label>
-              <input type="text" class="form-control" id="address2" value="" placeholder="" required="required">
+              <input name="address2" type="text" class="form-control" id="address2" value="" placeholder="" required="required">
               <div class="invalid-feedback">
                 상세주소를 입력해주세요.
               </div>

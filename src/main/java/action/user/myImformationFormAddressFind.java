@@ -1,28 +1,33 @@
 package action.user;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.User;
 
 import action.Action;
+import svc.user.AddressFindService;
 import svc.user.FindIdService;
 import vo.ActionForward;
+import vo.Address;
+import vo.Users;
 
-public class findIdAction implements Action {
+public class myImformationFormAddressFind implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward = null;
 		
-		String name =request.getParameter("name");
-		String email =request.getParameter("email");
+		HttpSession session = request.getSession();
 		
-		System.out.println(name + " "+email);
+		Users users = (Users) session.getAttribute("userinfo");
+				
+		AddressFindService addressFindService= new AddressFindService();
 		
-		FindIdService findIdService = new FindIdService();
-		
-		String userid = findIdService.findId(name , email);
+		ArrayList<Address> addressS = AddressFindService.findAddress(users.getId());
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -38,6 +43,7 @@ public class findIdAction implements Action {
 			forward = new ActionForward("findIdComplete.shop", false); 
 		}
 		
+		ActionForward forward = new ActionForward("findIdComplete.shop", false); 
 		return forward;
 	}
 

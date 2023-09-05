@@ -23,6 +23,12 @@ public class accountAction implements Action {
 		String email= request.getParameter("email");
 		String gender = request.getParameter("gender");
 		
+		String postcode = request.getParameter("postcode");
+		String address1 = request.getParameter("address1");
+		String address2 = request.getParameter("address2");
+		
+		String CompanyRegistrationNumber = request.getParameter("CompanyRegistrationNumber");
+		
 		Users users =  new Users();
 		
 		users.setUserid(userid);
@@ -37,10 +43,19 @@ public class accountAction implements Action {
 		
 		int resultCheck = accountService.account(users);
 		
+		int user_id = accountService.idGet(userid , users.getPassword() );
+		
+		int resultAddressCheck = accountService.address(user_id ,postcode , address1, address2);
+		
+		if(CompanyRegistrationNumber != null) {
+			int resulCompanyRegistrationNumber = accountService.CompanyRegistrationNumber(user_id , CompanyRegistrationNumber);
+		}
+		
+		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();	
 		
-		if(resultCheck < 0 ) {
+		if(resultCheck < 0 && resultAddressCheck < 0 ) {
 			out.println("<script>");
 			out.println("alert('잘못된 이름 이메일 입니다.');");
 			out.println("history.back()");

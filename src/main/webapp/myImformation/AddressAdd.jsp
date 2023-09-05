@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+${sessionScope.userinfo.name} 유저의 주소 추가 
+<form>
+<br><input type="text" name=""
+
+
+</form>
 
 </body>
 </html>

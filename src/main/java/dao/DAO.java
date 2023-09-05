@@ -3,9 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import static db.JdbcUtill.*;
+
+import vo.Address;
 import vo.Users;
+import vo.sellermall;
 
 public class DAO {
 	private Connection con =null;
@@ -77,7 +81,7 @@ public class DAO {
 				userInfo.setName(rs.getString("name"));
 				userInfo.setDate(rs.getString("date"));
 				userInfo.setEmail(rs.getString("email"));
-				userInfo.setPhone(rs.getString("Phone"));
+				userInfo.setPhone(rs.getString("phone"));
 				userInfo.setBirthday(rs.getString("birthday"));
 				userInfo.setGrade(rs.getString("grade"));
 			}
@@ -165,6 +169,249 @@ public class DAO {
 				close(pstmt);
 			}
 		return check;
+	}
+
+	public int addressAdd(int users_id , String postcode, String address1, String address2) {
+		int check = 0;
+		String sql =" insert into address(users_id , postcode, address1, address2) value(?, ?, ?,?)";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, users_id);
+			pstmt.setString(2, postcode);
+			pstmt.setString(3, address1);
+			pstmt.setString(4, address2);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] addressAdd 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+
+	public int usersIdGet(String userid, String password) {
+		int user_id = 0;
+		String sql = " select id from users where userid =? and password = ?";
+		try {
+			
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, userid);
+			pstmt.setString(2, password);
+			
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				user_id = rs.getInt("id");
+			}
+			
+			System.out.println(userid);
+		}catch(Exception e){
+			System.out.println("[DAO] findId 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return user_id;
+	}
+
+	/**
+	 * 작업중 
+	 */
+//	public ArrayList<Address> findAddress(int id) {
+//		ArrayList<Address> addressS = null;
+//		String sql = " select * from address where users_id = ?";
+//		try {
+//			
+//			pstmt = con.prepareStatement(sql);
+//			
+//			pstmt.setString(1, id);
+//			
+//			rs= pstmt.executeQuery();
+//			
+//			if(rs.next()) {
+//				user_id = rs.getInt("id");
+//			}
+//			
+//			System.out.println(userid);
+//		}catch(Exception e){
+//			System.out.println("[DAO] findId 에러" + e );
+//		}finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+//			
+//		return user_id;	}
+
+	/**
+	 * 유저 삭제
+	 */
+	public int accountDelete(int id) {
+		int check = 0;
+		String sql =" delete from users where id = ?";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] accoutDelete 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+	/**
+	 * 
+	 * @param userid
+	 * @param name
+	 * @param phone
+	 * @param birthday
+	 * @return
+	 * 
+	 * 유저 수정
+	 */
+	public int userupdate(int id ,String userid, String name, String phone, String birthday) {
+		int check = 0;
+		String sql =" update users set userid = ?, name = ?, phone = ? , birthday = ? where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, userid);
+			pstmt.setString(2, name);
+			pstmt.setString(3, phone);
+			pstmt.setString(4, birthday);
+			pstmt.setInt(5, id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] accoutupdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+		}
+
+	public int CompanyRegistrationNumber(int user_id, String companyRegistrationNumber) {
+		int check = 0;
+		String sql =" insert into seller(users_id , CompanyRegistrationNumber) value(?,?) ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, user_id);
+			pstmt.setString(2, companyRegistrationNumber);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] CompanyRegistrationNumber 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+		}
+
+	public int sellerGrade(int user_id) {
+		
+		int check = 0;
+		String sql =" update users set grade = 'S' where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, user_id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] sellerGrade 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+
+	public int getSeller_id(int users_id) {
+		int seller_id = 0;
+		String sql = " select id from seller where users_id = ?";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, users_id);
+			
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				seller_id= rs.getInt("id");
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getSeller_id 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return seller_id;
+	}
+
+	public int createMall(int seller_id, String name) {
+		
+		int check = 0;
+		String sql =" insert into sellermall(seller_id , name )value(? , ?)";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, seller_id);
+			pstmt.setString(2, name);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] sellerGrade 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+
+	public ArrayList<sellermall> findSellerMall(int seller_id) {
+		 ArrayList<sellermall> sellerMalls = null;
+		String sql = " select * from sellermall where seller_id= ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, seller_id);
+			
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				sellermall mall = new sellermall();
+				mall.setId(rs.getInt("id"));
+				mall.setSeller_id(rs.getInt("seller_id"));
+				mall.setName(rs.getString("name"));
+				mall.setCreate_date(rs.getString("create_date"));
+				mall.setGrade(rs.getString("grade"));
+				sellerMalls.add(mall);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] findSellerMall 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return sellerMalls;
 	}
 	
 }

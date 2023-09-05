@@ -1,5 +1,7 @@
 package action.user;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,8 +50,19 @@ public class loginAction implements Action {
 			Users user =  loginService.getLoginInfo(loginCheck);
 			
 			session.setAttribute("userinfo", user);
-		}else {
 			
+			if(user.getGrade().equals("S")) {
+				int Seller_id = loginService.getSeller_id(user.getId());
+				session.setAttribute("Seller_id", Seller_id);
+			}
+		}else {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			
+			out.println("<script>");
+			out.println("alert('잘못된 이름 이메일 입니다.');");
+			out.println("history.back();");
+			out.println("</script>");
 		}
 		
 		

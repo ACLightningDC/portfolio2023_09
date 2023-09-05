@@ -53,17 +53,21 @@
 				              
             </li>
            <li class="nav-item ">
-              <a class="nav-link" >${sessionScope.userinfo.name} 로그인되었습니다.</a>
-            </li>
+              <a class="nav-link" >${sessionScope.Seller_id}/${sessionScope.userinfo.name}${sessionScope.userinfo.grade == 'S' ? '판매자님' : '님' } 로그인되었습니다.</a>
+            </li> 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                내정보 관리
+                내정보 관리 ${sessionScope.userinfo.grade} ${sessionScope.userinfo.grade == 'S'}
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="myImformationForm.shop">내정보 보기</a></li>
-                <li><a class="dropdown-item" href="#">내 정보 변경 , 확인</a></li>
+                <li><a class="dropdown-item" href="myImformationForm.shop">내 정보 변경 , 확인</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="shoppingCart.shop">장바구니</a></li>	
+                <li><a class="dropdown-item" href="shoppingCart.shop">장바구니</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <c:if test="${sessionScope.userinfo.grade == 'S'}">
+					<li><a class="dropdown-item" href="ShoppingMallManage.shop">쇼핑몰 관리하기</a></li>
+                </c:if>	
+                
               </ul>
             </li>
             <li class="nav-item">

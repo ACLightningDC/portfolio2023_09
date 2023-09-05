@@ -74,7 +74,6 @@
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <a href="findIdForm.shop">아이디 찾기</a>
 <a href="PasswordFindFrom.shop">비밀번호 찾기</a>
-<a href="joinUser.shop">회원가입</a>
 <a href="">소셜 로그인 하기</a>
     </body>
 </html>
