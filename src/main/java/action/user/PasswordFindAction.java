@@ -38,12 +38,9 @@ ActionForward forward = null;
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		if(!(Check > 0)) {
-			out.println("<script>");
-			out.println("alert('잘못된 입력이거나 없는 계정 입니다.');");
-			out.println("history.back()");
-			out.println("</script>");
-		}else {
+		if(Check > 0) {
+
+		
 			//메일전송 합니다.
 			String sender = "0523mytop@gmail.com"; //보내는사람
 			String receiver = email; //받는사람 : 1명
@@ -54,7 +51,7 @@ ActionForward forward = null;
 			String host = "smtp.gmail.com";
 			
 			final String username = "0523mytop";
-			final String password = "uypdshsuoppdvsgs" ;
+			final String password = "alwtmskuwirbkyil";
 			
 			final int port=587;
 			
@@ -88,16 +85,19 @@ ActionForward forward = null;
 				
 				Transport.send(message);
 				
-				out.println("<h3>메일이 정상적으로 전송되었습니다.</h3>");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
 			
-			
 			request.setAttribute("userid", userid);
 			request.setAttribute("email", email);
 			forward = new ActionForward("PasswordFindComplete.shop", false); 
+		}else {
+			out.println("<script>");
+			out.println("alert('잘못된 입력이거나 없는 계정 입니다.');");
+			out.println("history.back()");
+			out.println("</script>");
 		}
 		
 		return forward;

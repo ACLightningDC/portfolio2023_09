@@ -9,10 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.seller.CreateMallAction;
+import action.seller.ShoppingMallManageAction;
 import action.user.PasswordFindAction;
+import action.user.accountAction;
+import action.user.accountDeleteAction;
 import action.user.findIdAction;
 import action.user.loginAction;
 import action.user.logoutAction;
+import action.user.myImformationFormAddressFind;
+import action.user.usersupdateAction;
 import vo.ActionForward;
 
 /**
@@ -55,7 +61,6 @@ public class FrontControllerServlet extends HttpServlet {
 		System.out.println("커맨드 변수 "+command);
 
 		
-		System.out.println("FrontController 실행 1");
 		
 		Action action = null;
 		ActionForward forward = null;
@@ -66,8 +71,6 @@ public class FrontControllerServlet extends HttpServlet {
 		
 		 if(command.equals("/login.shop")){
 			action = new loginAction();
-			System.out.println("FrontController 실행 login");
-
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -75,9 +78,64 @@ public class FrontControllerServlet extends HttpServlet {
 			}
 			
 		}
+		 if(command.equals("/homePage.shop")){
+			 request.setAttribute("forward", "homePage.jsp");
+			forward = new ActionForward("template.jsp", false);
+			 
+		 }
+		 if(command.equals("/loginForm.shop")){
+			 request.setAttribute("forward", "loginForm.jsp");
+			 forward = new ActionForward("template.jsp", false);
+			 
+		 }
 		else if(command.equals("/logout.shop")) {
 			action = new logoutAction();
-			System.out.println("FrontController 실행 logout");
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		/**
+		 * 회원가입
+		 */
+		else if(command.equals("/account.shop")) {
+			request.setAttribute("forward", "/accountSelect.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		else if(command.equals("/accountBuisness.shop")) {
+			request.setAttribute("forward", "/AccountRelated/accountBuisness.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		else if(command.equals("/accountUsers.shop")) {
+			request.setAttribute("forward", "/AccountRelated/accountUsers.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		else if(command.equals("/accountAction.shop")) {
+			action = new accountAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		 /**
+		  * 회원 수정
+		  */
+		 
+		else if(command.equals("/myImformationDelete.shop")) {
+			action = new accountDeleteAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/usersupdateAction.shop")) {
+			action = new usersupdateAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -86,14 +144,36 @@ public class FrontControllerServlet extends HttpServlet {
 			}
 		}
 		 
+		else if(command.equals("/myImformationUpdateForm.shop")) {
+			request.setAttribute("forward", "/myImformation/myImformationUpdateForm.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		else if(command.equals("/myImformationForm.shop")) {
+			request.setAttribute("forward", "/myImformationForm.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		else if(command.equals("/AddressAdd.shop")) {
+			request.setAttribute("forward", "/myImformation/AddressAdd.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		
+		 /**
+		  * 쇼핑 카트 
+		  */
+		else if(command.equals("/shoppingCart.shop")) {
+			request.setAttribute("forward", "/shoppingCart.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		 
+
 		/**
 		 * 아이디 찾기  
 		 */
-		else if(command.equals("/LoginRelated/findIdForm.shop")) {
-			request.setAttribute("forward", "/LoginRelated/findIdForm.jsp");
+		else if(command.equals("/findIdForm.shop")) {
+			request.setAttribute("forward", "LoginRelated/findIdForm.jsp");
 			forward = new ActionForward("/template.jsp", false);
 		}
-		else if(command.equals("/LoginRelated/findIdAction.shop")){
+		else if(command.equals("/findIdAction.shop")){
 			action = new findIdAction();			
 			try {
 				forward = action.execute(request, response);
@@ -101,7 +181,7 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/LoginRelated/findIdComplete.shop")) {
+		else if(command.equals("/findIdComplete.shop")) {
 			request.setAttribute("forward", "/LoginRelated/findIdComplete.jsp");
 			forward = new ActionForward("/template.jsp", false);
 		}
@@ -109,11 +189,11 @@ public class FrontControllerServlet extends HttpServlet {
 		/**
 		 * 비밀번호 찾기  
 		 */		 
-		else if(command.equals("/LoginRelated/PasswordFindFrom.shop")) {
-			request.setAttribute("forward", "/LoginRelated/PasswordFind/PasswordFindFrom.jsp");
+		else if(command.equals("/PasswordFindFrom.shop")) {
+			request.setAttribute("forward", "LoginRelated/PasswordFind/PasswordFindFrom.jsp");
 			forward = new ActionForward("/template.jsp", false);
 		}
-		else if(command.equals("/LoginRelated/PasswordFind/PasswordFindAction.shop")){
+		else if(command.equals("/PasswordFindAction.shop")){
 			action = new PasswordFindAction();			
 			try {
 				forward = action.execute(request, response);
@@ -121,10 +201,36 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/LoginRelated/PasswordFind/PasswordFindComplete.shop")) {
+		else if(command.equals("/PasswordFindComplete.shop")) {
 			request.setAttribute("forward", "/LoginRelated/PasswordFind/PasswordFindComplete.jsp");
 			forward = new ActionForward("/template.jsp", false);
 		}
+		 /**
+		  * 홈쇼핑 생성
+		  */
+		else if(command.equals("/ShoppingMallManage.shop")) {
+			action = new ShoppingMallManageAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		else if(command.equals("/shopCreateForm.shop")) {
+			request.setAttribute("forward", "/MallManage/CreateShopForm.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		} 
+		else if(command.equals("/CreateMall.shop")){
+			action = new CreateMallAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		 
+		 
+
 		 
 		 
 		 	System.out.println(forward.getPath());

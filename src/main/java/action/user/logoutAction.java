@@ -16,8 +16,7 @@ public class logoutAction implements Action {
 		HttpSession session= request.getSession();
 		
 		session.removeAttribute("userinfo");
-		
-		request.setAttribute("forward","homePage.jsp");
+		 request.setAttribute("forward", "loginForm.jsp");
 		forward = new ActionForward("template.jsp", true);
 		return forward;
 	}

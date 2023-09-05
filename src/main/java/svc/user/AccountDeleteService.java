@@ -8,24 +8,23 @@ import java.sql.Connection;
 
 import dao.DAO;
 
-public class PasswordFindService {
+public class AccountDeleteService {
 
-	public int PasswordFind(String randomPasswordEncode, String userid, String email) {
+	public int accountDelete(int id) {
 		
-		Connection con = getConnection();
+Connection con = getConnection();
 		
 		DAO dao = DAO.getInstance();
 				
 		dao.setConnection(con);
 		
-		int Check = dao.PassowordFind(randomPasswordEncode , userid ,email);
+		int Check = dao.accountDelete(id);
 		
 		if(Check > 0  ) {
 			commit(con);
 		}else {
 			rollback(con);
 		}
-		
 		
 		return Check;
 	}

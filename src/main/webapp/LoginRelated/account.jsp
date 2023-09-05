@@ -89,8 +89,6 @@
       .bd-mode-toggle {
         z-index: 1500;
       }
-      
-
     </style>
 
     
@@ -142,7 +140,7 @@
     </div>
 
     
-<div class="container" style="width:50%">
+<div class="container">
   <main>
     <div class="py-5 text-center">
       <h2>체크 form</h2>

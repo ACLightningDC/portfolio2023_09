@@ -38,5 +38,18 @@ public class LoginService {
 				
 		return userInfo;
 	}
+
+	public int getSeller_id(int id) {
+		Connection con =getConnection();
+		
+		DAO dao = DAO.getInstance();
+		
+		dao.setConnection(con);
+
+		
+		int seller_id = dao.getSeller_id(id);
+				
+		return seller_id;
+	}
 	
 }

@@ -9,7 +9,7 @@
 <body>
 	<div>
 	<form action="findIdAction.shop">
-		아이디<input type ="text" name ="name">
+		이름<input type ="text" name ="name">
 		이메일<input type ="text" name ="email">
 		<input type="submit" value="아이디 찾기">
 	</form>

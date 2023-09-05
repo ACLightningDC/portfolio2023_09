@@ -1,4 +1,4 @@
-package action.user;
+package svc.user;
 
 import static db.JdbcUtill.*;
 

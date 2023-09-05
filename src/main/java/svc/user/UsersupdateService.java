@@ -8,17 +8,16 @@ import java.sql.Connection;
 
 import dao.DAO;
 
-public class PasswordFindService {
+public class UsersupdateService {
 
-	public int PasswordFind(String randomPasswordEncode, String userid, String email) {
-		
+	public int userupdate(int id , String userid, String name, String phone, String birthday) {
 		Connection con = getConnection();
 		
 		DAO dao = DAO.getInstance();
 				
 		dao.setConnection(con);
 		
-		int Check = dao.PassowordFind(randomPasswordEncode , userid ,email);
+		int Check = dao.userupdate(id , userid , name, phone, birthday);
 		
 		if(Check > 0  ) {
 			commit(con);
@@ -26,8 +25,7 @@ public class PasswordFindService {
 			rollback(con);
 		}
 		
-		
 		return Check;
 	}
-
+	
 }

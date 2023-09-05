@@ -1,5 +1,7 @@
 package action.user;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +11,7 @@ import org.apache.catalina.User;
 
 import action.Action;
 import svc.LoginService;
+import util.SHA256;
 import vo.ActionForward;
 import vo.Users;
 
@@ -24,8 +27,7 @@ public class loginAction implements Action {
 		LoginService loginService =  new LoginService();
 		//로그인 전송 데이터 변수에 받음
 		String id = request.getParameter("userid");
-		String password = request.getParameter("password");
-		
+		String password = 	SHA256.encodeSHA256(request.getParameter("password"));
 		String checkbox = request.getParameter("checkbox");
 		if(checkbox !=null) {
 			Cookie cookie = new Cookie("user_id" , id);
@@ -48,15 +50,26 @@ public class loginAction implements Action {
 			Users user =  loginService.getLoginInfo(loginCheck);
 			
 			session.setAttribute("userinfo", user);
-		}else {
 			
+			if(user.getGrade().equals("S")) {
+				int Seller_id = loginService.getSeller_id(user.getId());
+				session.setAttribute("Seller_id", Seller_id);
+			}
+		}else {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			
+			out.println("<script>");
+			out.println("alert('잘못된 이름 이메일 입니다.');");
+			out.println("history.back();");
+			out.println("</script>");
 		}
 		
 		
 
 		
 		
-		forward = new ActionForward("homePage.jsp" ,false);
+		forward = new ActionForward("/homePage.shop" ,false);
 
 		return forward;
 	}
