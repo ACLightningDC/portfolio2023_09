@@ -6,8 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=deivce-width, initial-scale=1">
-<link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
-<script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
 </head>
 <body>
 	

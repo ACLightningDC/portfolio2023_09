@@ -4,6 +4,7 @@ select * from users;
 select * from address;
 select * from seller;
 select * from sellermall;
+select * from product;
 
 select * from address where users_id = ?;
 //유저 기본 데이터 입력
@@ -26,3 +27,5 @@ update users set userid = ?, name = ?, phone = ? , birthday = ? where id = ?
 insert into sellermall(seller_id , name )value(? , ?)
 
 select * from sellermall where seller_id=1;
+
+insert into product(sellerrMall_id , name , kind , img)value(?,?,?,?);
