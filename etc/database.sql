@@ -102,17 +102,17 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `testdb`.`product` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `sellerrMall_id` INT UNSIGNED NOT NULL,
+  `sellerMall_id` INT UNSIGNED NOT NULL,
   `price` INT NOT NULL,
   `name` VARCHAR(45) CHARACTER SET 'utf8mb3' NOT NULL,
   `kind` VARCHAR(45) NOT NULL,
   `date` TIMESTAMP NOT NULL DEFAULT current_timestamp,
   `img` VARCHAR(200) NOT NULL,
-  `buycount` INT NULL,
-  PRIMARY KEY (`id`, `sellerrMall_id`),
-  INDEX `fk_product_sellerrMall1_idx` (`sellerrMall_id` ASC) VISIBLE,
+  `buycount` INT NULL DEFAULT 0,
+  PRIMARY KEY (`id`, `sellerMall_id`),
+  INDEX `fk_product_sellerrMall1_idx` (`sellerMall_id` ASC) VISIBLE,
   CONSTRAINT `fk_product_sellerrMall1`
-    FOREIGN KEY (`sellerrMall_id`)
+    FOREIGN KEY (`sellerMall_id`)
     REFERENCES `testdb`.`sellermall` (`id`)
     ON DELETE CASCADE)
 ENGINE = InnoDB
@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`product_ description` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `product_id` INT UNSIGNED NOT NULL,
   `description_name` NVARCHAR(45) NOT NULL,
-  `parameter` NVARCHAR(200)  NULL,
+  `parameter` NVARCHAR(200) NULL,
   PRIMARY KEY (`id`, `product_id`),
   INDEX `fk_product_ description_product1_idx` (`product_id` ASC) VISIBLE,
   CONSTRAINT `fk_product_ description_product1`

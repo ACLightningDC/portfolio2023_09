@@ -9,8 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.Cart.ShoppingCartProductAddAction;
+import action.mainPage.ProductPageGetAction;
+import action.mainPage.ShopPageGetAction;
 import action.seller.CreateMallAction;
 import action.seller.ShoppingMallManageAction;
+import action.seller.ShoppingMallManageActionOne;
+import action.seller.product.productAddAction;
+import action.seller.product.productManageAction;
 import action.user.PasswordFindAction;
 import action.user.accountAction;
 import action.user.accountDeleteAction;
@@ -64,6 +70,26 @@ public class FrontControllerServlet extends HttpServlet {
 		
 		Action action = null;
 		ActionForward forward = null;
+		/**
+		 * 헤더 이동
+		 */
+		if(command.equals("/productPage.shop")){
+			action = new ProductPageGetAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if(command.equals("/shopPage.shop")){
+			action = new ShopPageGetAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
 		
 		/**
 		 * 로그인 로그아웃
@@ -164,6 +190,15 @@ public class FrontControllerServlet extends HttpServlet {
 			request.setAttribute("forward", "/shoppingCart.jsp");
 			forward = new ActionForward("/template.jsp", false);
 		}
+		else if(command.equals("/shoppingCartProductAdd.shop")) {
+			action = new ShoppingCartProductAddAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		 
 
 		/**
@@ -228,10 +263,59 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		 
-		 
+		 /**
+		  * 홈쇼핑 관리
+		  */
+		else if(command.equals("/ShoppingMallManageOne.shop")) {
+			action = new ShoppingMallManageActionOne();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		else if(command.equals("/ShopUpdate.shop")) {
+			request.setAttribute("forward", "/MallManage/ShopManage/ShopUpdateForm.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		} 
+		 /**
+		  * 제품 관리
+		  */
+		else if(command.equals("/productAdd.shop")) {
+			request.setAttribute("forward", "/MallManage/productManage/productAdd.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		} 
+		else if(command.equals("/productManage.shop")) {
+			action = new productManageAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
-		 
+		} 
+		else if(command.equals("/productAddAction.shop")) {
+			action = new productAddAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		 /**
+		  * 문의사항 관리
+		  */
+		else if(command.equals("/inquiryManage.shop")) {
+			request.setAttribute("forward", "/MallManage/inquiryManage/inquiryManage.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		} 
+		 /**
+		  * 배송관리
+		  */
+		else if(command.equals("/orderManage.shop.shop")) {
+			request.setAttribute("forward", "/MallManage/orderManage/orderManage.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		} 
 		 
 		 	System.out.println(forward.getPath());
 		if(forward !=null) {

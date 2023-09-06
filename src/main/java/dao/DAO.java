@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import static db.JdbcUtill.*;
 
 import vo.Address;
+import vo.Product;
 import vo.Users;
 import vo.sellermall;
 
@@ -384,7 +385,7 @@ public class DAO {
 	}
 
 	public ArrayList<sellermall> findSellerMall(int seller_id) {
-		 ArrayList<sellermall> sellerMalls = null;
+		 ArrayList<sellermall> sellerMalls = new ArrayList<sellermall>();
 		String sql = " select * from sellermall where seller_id= ? ";
 		try {
 			
@@ -412,6 +413,157 @@ public class DAO {
 		}
 			
 		return sellerMalls;
+	}
+	
+	/*
+	 * 제품 추가
+	 */
+	public int ProductAdd(Product product) {
+		
+		int check = 0;
+		String sql =" insert into product(sellerMall_id,name,kind,img,price)value(?,?,?,?,?)";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, product.getSellerMall_id());
+			pstmt.setString(2, product.getName());
+			pstmt.setString(3, product.getKind());
+			pstmt.setString(4, product.getImg());
+			pstmt.setInt(5, product.getPrice());
+			
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] ProductAdd 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public ArrayList<Product> getProductList(int sellerMallid) {
+		 ArrayList<Product> productList = new ArrayList<Product>();
+		String sql = " select * from product where sellerMall_id= ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, sellerMallid);
+			
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getInt("id"));
+				product.setSellerMall_id(rs.getInt("sellerMall_id"));
+				product.setPrice(rs.getInt("price"));
+				product.setKind(rs.getString("kind"));
+				product.setName(rs.getString("name"));
+				product.setDate(rs.getString("date"));
+				product.setImg(rs.getString("img"));
+				product.setBuycount(rs.getInt("buycount"));
+				
+				productList.add(product);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getProductList 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return productList;
+	}
+
+	public ArrayList<Product> getAllProductList() {
+		 ArrayList<Product> productList = new ArrayList<Product>();
+			String sql = " select * from product ";
+			try {
+				
+				pstmt = con.prepareStatement(sql);
+				
+				
+				rs= pstmt.executeQuery();
+				
+				while(rs.next()) {
+					Product product = new Product();
+					product.setId(rs.getInt("id"));
+					product.setSellerMall_id(rs.getInt("sellerMall_id"));
+					product.setPrice(rs.getInt("price"));
+					product.setKind(rs.getString("kind"));
+					product.setName(rs.getString("name"));
+					product.setDate(rs.getString("date"));
+					product.setImg(rs.getString("img"));
+					product.setBuycount(rs.getInt("buycount"));
+					
+					productList.add(product);
+				}
+				
+			}catch(Exception e){
+				System.out.println("[DAO] getAllProductList 에러" + e );
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+				
+			return productList;
+	}
+
+	public ArrayList<sellermall> getAllsellermallList() {
+		 ArrayList<sellermall> sellerMalls = new ArrayList<sellermall>();
+			String sql = " select * from sellermall";
+			try {
+				
+				pstmt = con.prepareStatement(sql);
+								
+				rs= pstmt.executeQuery();
+				
+				while(rs.next()) {
+					sellermall mall = new sellermall();
+					mall.setId(rs.getInt("id"));
+					mall.setSeller_id(rs.getInt("seller_id"));
+					mall.setName(rs.getString("name"));
+					mall.setCreate_date(rs.getString("create_date"));
+					mall.setGrade(rs.getString("grade"));
+					sellerMalls.add(mall);
+				}
+				
+			}catch(Exception e){
+				System.out.println("[DAO] getAllsellermallList 에러" + e );
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+				
+			return sellerMalls;
+	}
+
+	public int shoppingCartProductAdd(int users_id, int product_id) {
+
+		int check = 0;
+		String sql =" insert into order()value(?,?,?,?,?)";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, product.getSellerMall_id());
+			pstmt.setString(2, product.getName());
+			pstmt.setString(3, product.getKind());
+			pstmt.setString(4, product.getImg());
+			pstmt.setInt(5, product.getPrice());
+			
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] ProductAdd 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
 	}
 	
 }

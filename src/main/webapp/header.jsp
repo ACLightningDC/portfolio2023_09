@@ -8,8 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>헤드 네비게이션</title>
 <!-- 부트스트랩 리소스 임포트 -->
-<link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
+<link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 <style>
 	.container-fluid{
 	}
@@ -25,20 +25,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">베스트&세일</a>
+              <a class="nav-link active" aria-current="page" href="productPage.shop">상품별 보기</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">베스트 매장</a>
+              <a class="nav-link" href="shopPage.shop">매장별 보기</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 카테고리
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">식자재</a></li>
+                <li><a class="dropdown-item" href="#">전자재품</a></li>
+                <li><a class="dropdown-item" href="#">생활용품</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li> 
           </ul>

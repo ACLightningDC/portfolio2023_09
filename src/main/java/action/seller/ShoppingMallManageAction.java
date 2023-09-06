@@ -24,6 +24,7 @@ public class ShoppingMallManageAction implements Action {
 		ArrayList<sellermall> sellermalls =  shoppingMallManageService.getShoppingMallList(seller_id);
 		
 		if(sellermalls != null) {
+			System.out.println("셀러 몰"+sellermalls);
 			request.setAttribute("sellermalls", sellermalls);
 		}
 		request.setAttribute("forward", "/ShoppingMallManage.jsp");
