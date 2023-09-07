@@ -126,7 +126,7 @@
 		}).open();
 	}
 </script>
-
+<script src="${pageContext.request.contextPath}/javascript/accountJoin.js"></script>
   </head>
   <body class="bg-body-tertiary">
  
@@ -153,6 +153,21 @@
                <div class="invalid-feedback">
                           아이디를 입력해주세요.
               </div>
+           </div>
+           <div class="col-12">
+           	<button type="button" onclick="check_email()" >아이디 확인</button>
+           </div>
+           
+            <div class="col-12">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" id="email" autofocus="autofocus" placeholder="user@example.com" required="required">
+              <div class="invalid-feedback">
+                주문확인을 위해 이메일 주소를 입력해주세요.
+              </div>
+            </div>
+            
+			<div class="col-12">
+           	<button type="button" onclick="check_email">이메일 확인</button>
            </div>
            
            <div class="col-12">
@@ -182,13 +197,6 @@
              </div>
             </div>
 
-            <div class="col-12">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" id="email" autofocus="autofocus" placeholder="user@example.com" required="required">
-              <div class="invalid-feedback">
-                주문확인을 위해 이메일 주소를 입력해주세요.
-              </div>
-            </div>
 
             <div class="col-12">
               <label for="birthday" class="form-label">생 일</label>
