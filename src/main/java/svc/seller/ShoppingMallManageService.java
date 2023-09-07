@@ -1,5 +1,6 @@
 package svc.seller;
 
+import static db.JdbcUtill.close;
 import static db.JdbcUtill.getConnection;
 
 import java.sql.Connection;
@@ -20,6 +21,8 @@ public class ShoppingMallManageService {
 		
 		ArrayList<sellermall> sellermalls = dao.findSellerMall(seller_id);
 		
+		close(con);
+
 		return sellermalls;
 		
 	}

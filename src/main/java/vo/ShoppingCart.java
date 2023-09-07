@@ -1,13 +1,21 @@
 package vo;
 
-public class order {
-	private int id ; 
-	private int users_id ;
-	private int product_id ;
+public class ShoppingCart {
+
+	private int id;
+	private int users_id;
+	private int product_id;
 	private int order_count;
 	private String delivery;
 	private String date;
 	private String result;
+	
+	private int sellerMall_id;
+	private int price;
+	private String name;
+	private String kind;
+	private String img;
+	
 	
 	public int getId() {
 		return id;
@@ -51,4 +59,36 @@ public class order {
 	public void setResult(String result) {
 		this.result = result;
 	}
+	public int getSellerMall_id() {
+		return sellerMall_id;
+	}
+	public void setSellerMall_id(int sellerMall_id) {
+		this.sellerMall_id = sellerMall_id;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	
+	
 }

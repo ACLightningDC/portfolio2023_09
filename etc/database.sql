@@ -120,23 +120,23 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`order`
+-- Table `testdb`.`order_list`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`order` (
+CREATE TABLE IF NOT EXISTS `testdb`.`order_list` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `users_id` INT UNSIGNED NOT NULL,
   `product_id` INT UNSIGNED NOT NULL,
-  `order_count` INT NOT NULL,
-  `delivery` NVARCHAR(1) NULL,
-  `date` TIMESTAMP NOT NULL DEFAULT current_timestamp,
-  `result` VARCHAR(45) NULL,
+  `order_count` INT NOT NULL DEFAULT 1,
+  `delivery` NVARCHAR(1) NULL DEFAULT 'N',
+  `date` TIMESTAMP NULL DEFAULT current_timestamp,
+  `result` VARCHAR(45) NULL DEFAULT 'N',
   PRIMARY KEY (`id`, `users_id`, `product_id`),
-  INDEX `fk_order_users1_idx` (`users_id` ASC) VISIBLE,
-  INDEX `fk_order_product1_idx` (`product_id` ASC) VISIBLE,
-  CONSTRAINT `fk_order_product1`
+  INDEX `fk_order_users2_idx` (`users_id` ASC) VISIBLE,
+  INDEX `fk_order_product2_idx` (`product_id` ASC) VISIBLE,
+  CONSTRAINT `fk_order_product2`
     FOREIGN KEY (`product_id`)
     REFERENCES `testdb`.`product` (`id`),
-  CONSTRAINT `fk_order_users1`
+  CONSTRAINT `fk_order_users2`
     FOREIGN KEY (`users_id`)
     REFERENCES `testdb`.`users` (`id`)
     ON DELETE CASCADE)
@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`product_ description` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `product_id` INT UNSIGNED NOT NULL,
   `description_name` NVARCHAR(45) NOT NULL,
-  `parameter` NVARCHAR(200) NULL,
+  `parameter` NVARCHAR(200)  NULL,
   PRIMARY KEY (`id`, `product_id`),
   INDEX `fk_product_ description_product1_idx` (`product_id` ASC) VISIBLE,
   CONSTRAINT `fk_product_ description_product1`

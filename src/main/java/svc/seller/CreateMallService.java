@@ -1,5 +1,6 @@
 package svc.seller;
 
+import static db.JdbcUtill.close;
 import static db.JdbcUtill.commit;
 import static db.JdbcUtill.getConnection;
 import static db.JdbcUtill.rollback;
@@ -21,6 +22,7 @@ public class CreateMallService {
 		
 		int Seller_id = dao.getSeller_id(users_id);
 
+		close(con);
 		
 		return Seller_id;
 	}
@@ -37,6 +39,9 @@ public class CreateMallService {
 		}else {
 			rollback(con);
 		}
+		
+		close(con);
+
 		return Check;
 	}
 

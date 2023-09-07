@@ -1,5 +1,6 @@
 package svc.user;
 
+import static db.JdbcUtill.close;
 import static db.JdbcUtill.commit;
 import static db.JdbcUtill.getConnection;
 import static db.JdbcUtill.rollback;
@@ -24,7 +25,7 @@ public class UsersupdateService {
 		}else {
 			rollback(con);
 		}
-		
+		close(con);
 		return Check;
 	}
 	

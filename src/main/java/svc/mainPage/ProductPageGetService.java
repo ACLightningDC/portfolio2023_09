@@ -1,6 +1,6 @@
 package svc.mainPage;
 
-import static db.JdbcUtill.getConnection;
+import static db.JdbcUtill.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -17,6 +17,9 @@ public class ProductPageGetService {
 		dao.setConnection(con);
 		
 		ArrayList<Product> products = dao.getAllProductList();
+		
+		close(con);
+
 		
 		return products;
 	}

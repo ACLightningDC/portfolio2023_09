@@ -1,5 +1,6 @@
 package svc;
 
+import static db.JdbcUtill.close;
 import static db.JdbcUtill.getConnection;
 
 import java.sql.Connection;
@@ -21,7 +22,7 @@ public class LoginService {
 		
 		System.out.println("login service logincheck" + loginCheck);
 		
-		
+		close(con);
 		return loginCheck;
 	}
 	
@@ -35,7 +36,7 @@ public class LoginService {
 
 		
 		Users userInfo = dao.getUsersInfo(id);
-				
+		close(con);	
 		return userInfo;
 	}
 
@@ -48,7 +49,7 @@ public class LoginService {
 
 		
 		int seller_id = dao.getSeller_id(id);
-				
+		close(con);
 		return seller_id;
 	}
 	

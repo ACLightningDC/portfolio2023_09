@@ -7,7 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col">
+			유저아이디<input type= "text" name="userid" value="${sessionScope.userinfo.userid}">
+		</div>
+	</div>
+</div>
 <form action="usersupdateAction.shop" method="post">
+<label for=""></label>
 <br>유저아이디<input type= "text" name="userid" value="${sessionScope.userinfo.userid}">
 <button>비밀번호 변경하기</button>
 <br>유저 이름<input type= "text" name="name" value="${sessionScope.userinfo.name}">

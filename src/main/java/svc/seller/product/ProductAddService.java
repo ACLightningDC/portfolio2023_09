@@ -21,7 +21,7 @@ public class ProductAddService {
 		}else {
 			rollback(con);
 		}
-		
+		close(con);
 		return check;
 	}
 	

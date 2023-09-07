@@ -15,7 +15,7 @@
 		<br>홈쇼핑 이름 ${sellermall.name}
 		<br>생성 날짜 ${sellermall.create_date}
 		<br>쇼핑몰 등급 ${sellermall.grade}
-		<button onclick="location.href='#'">${product.name}쇼핑몰 보기</button>
+		<button onclick="location.href='Mallpage.shop'">${product.name}쇼핑몰 보기</button>
 	</c:forEach>
 </c:if>
 

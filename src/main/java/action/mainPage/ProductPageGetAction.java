@@ -19,7 +19,7 @@ public class ProductPageGetAction implements Action {
 		
 		ProductPageGetService productPageGetService = new ProductPageGetService();
 		ArrayList<Product> products =  productPageGetService.productPageGetList();
-		
+
 		request.setAttribute("products", products);
 		
 		request.setAttribute("forward", "productPage.jsp");
