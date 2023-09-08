@@ -22,10 +22,13 @@ products
 		<br>제품 일자 : ${product.date}
 		<br>제품 구매수 : ${product.buycount}
 		<br>제품 사진경로 : ${product.img}
+		<form>
+			<input>
+		</form>
 		<br><img width="50px" alt="안나옴" src="images/${product.img}">
 		<button onclick="location.href='#'">${product.name}상품 바로구매</button>
-		<button onclick="location.href='shoppingCartProductAdd.shop?product_id=${product.id}'">${product.name}상품 장바구니</button>
-		<button onclick="location.href='#'">${product.name}상품 상세보기</button>
+		<button onclick="location.href='shoppingCartProductAdd.shop?product_id=${product.id}&order_count=1'">${product.name}상품 장바구니</button>
+		<button onclick="location.href='shoppingCartProductDetail.shop?product_id=${product.id}'">${product.name}상품 상세보기</button>
 	</c:forEach>
 </c:if>
 

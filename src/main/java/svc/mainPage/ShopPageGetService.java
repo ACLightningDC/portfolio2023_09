@@ -1,5 +1,6 @@
 package svc.mainPage;
 
+import static db.JdbcUtill.close;
 import static db.JdbcUtill.getConnection;
 
 import java.sql.Connection;
@@ -18,6 +19,9 @@ public class ShopPageGetService {
 		dao.setConnection(con);
 		
 		ArrayList<sellermall> sellermalls = dao.getAllsellermallList();
+		
+		close(con);
+
 		
 		return sellermalls;
 	}

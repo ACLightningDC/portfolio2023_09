@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import static db.JdbcUtill.*;
 
 import vo.Address;
+import vo.Order_list;
 import vo.Product;
+import vo.ShoppingCart;
 import vo.Users;
 import vo.sellermall;
 
@@ -541,29 +543,217 @@ public class DAO {
 			return sellerMalls;
 	}
 
-	public int shoppingCartProductAdd(int users_id, int product_id) {
+	public int shoppingCartProductAdd(int users_id, int product_id, int order_count) {
 
 		int check = 0;
-		String sql =" insert into order()value(?,?,?,?,?)";
+		String sql =" insert into order_list(users_id , product_id , order_count )value(?,?,?)";
 		try {
 								
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, users_id);
+			pstmt.setInt(2, product_id);
+			pstmt.setInt(3, order_count);
 			
-			pstmt.setInt(1, product.getSellerMall_id());
-			pstmt.setString(2, product.getName());
-			pstmt.setString(3, product.getKind());
-			pstmt.setString(4, product.getImg());
-			pstmt.setInt(5, product.getPrice());
 			
 			check= pstmt.executeUpdate();
 
 			}catch(Exception e){
-				System.out.println("[DAO] ProductAdd 에러" + e );
+				System.out.println("[DAO] shoppingCartProductAdd 에러" + e );
 			}finally {
 				close(pstmt);
 			}
 		
 		return check;
+	}
+
+	public int GetCartOrder_count(int users_id, int product_id) {
+		int order_count = 0;
+		String sql = " select order_count from order_list where users_id= ? and product_id = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, users_id);
+			pstmt.setInt(2, product_id);
+			
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				order_count = rs.getInt("order_count");
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] GetCartOrder_count 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return order_count;	
+	}
+
+	public ArrayList<ShoppingCart> shoppingCartView(int users_id) {
+		 ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
+			String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+					+ " ,sellerMall_id , price , name , kind ,img  "
+					+ " from order_list l join product r on l.product_id = r.id where users_id = ? ";
+			try {
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, users_id);	
+				rs= pstmt.executeQuery();
+				
+				while(rs.next()) {
+					ShoppingCart shoppingCart = new ShoppingCart();
+					shoppingCart.setId(rs.getInt("id"));
+					shoppingCart.setUsers_id(rs.getInt("users_id"));
+					shoppingCart.setProduct_id(rs.getInt("product_id"));
+					shoppingCart.setOrder_count(rs.getInt("order_count"));
+					shoppingCart.setDelivery(rs.getString("delivery"));
+					shoppingCart.setDate(rs.getString("date"));
+					shoppingCart.setResult(rs.getString("result"));
+					
+					shoppingCart.setSellerMall_id(rs.getInt("sellerMall_id"));
+					shoppingCart.setPrice(rs.getInt("price"));
+					shoppingCart.setName(rs.getString("name"));
+					shoppingCart.setKind(rs.getString("kind"));
+					shoppingCart.setImg(rs.getString("img"));
+					shoppingCartList.add(shoppingCart);
+				}
+				
+			}catch(Exception e){
+				System.out.println("[DAO] shoppingCartView 에러" + e );
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+				
+			return shoppingCartList;
+			}
+
+	public int shoppingCartProductUpdate(int users_id, int product_id, int order_count) {
+		int check = 0;
+		String sql =" update order_list set order_count= ? where users_id = ? and product_id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, order_count);
+			pstmt.setInt(2, users_id);
+			pstmt.setInt(3, product_id);
+			
+			
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] shoppingCartProductUpdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public Product getProduct(int product_id) {
+		Product product = null;
+		String sql = " select * from product where id = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, product_id);
+			
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				product = new Product();
+				product.setId(rs.getInt("id"));
+				product.setSellerMall_id(rs.getInt("sellerMall_id"));
+				product.setPrice(rs.getInt("price"));
+				product.setKind(rs.getString("kind"));
+				product.setName(rs.getString("name"));
+				product.setDate(rs.getString("date"));
+				product.setImg(rs.getString("img"));
+				product.setBuycount(rs.getInt("buycount"));
+				
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getProduct 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return product;	}
+
+	public int CartRemove(int i) {
+		int check = 0;
+		String sql ="delete from order_list where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, i);
+			
+			
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] CartRemove 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public String accountEmailCheck(String email) {
+		String emailCheck = null;
+		String sql = " select email from users where email = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, email);
+			
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				emailCheck = rs.getString("email");
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getProduct 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return emailCheck;
+	}
+
+	public String AccountUseridCheck(String userid) {
+		String useridCheck = null;
+		String sql = " select userid from users where userid = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, userid);
+			
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				useridCheck = rs.getString("userid");
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] AccountUseridCheck 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return useridCheck;
 	}
 	
 }

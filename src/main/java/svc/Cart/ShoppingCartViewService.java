@@ -1,4 +1,4 @@
-package svc.seller.product;
+package svc.Cart;
 
 import static db.JdbcUtill.close;
 import static db.JdbcUtill.getConnection;
@@ -7,19 +7,20 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.DAO;
-import vo.Product;
+import vo.Order_list;
+import vo.ShoppingCart;
 
-public class ProductManageService {
+public class ShoppingCartViewService {
 
-	public static ArrayList<Product> getProductList(int sellerMallid) {
-		
+	public ArrayList<ShoppingCart> shoppingCartView(int users_id) {
 		Connection con = getConnection();
 		DAO dao = DAO.getInstance();
 		dao.setConnection(con);
 		
-		ArrayList<Product> products = dao.getProductList(sellerMallid);
+		
+		ArrayList<ShoppingCart> ShoppingCart = dao.shoppingCartView(users_id);
 		close(con);
-		return products;
+		return ShoppingCart;
 	}
-	
+
 }

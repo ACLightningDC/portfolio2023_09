@@ -22,7 +22,7 @@ public class FindIdService {
 		String userid = dao.findId(name , email);
 		
 		
-		
+		close(con);
 		return userid;
 	}
 			

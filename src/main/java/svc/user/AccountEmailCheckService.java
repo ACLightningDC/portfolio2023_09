@@ -9,23 +9,23 @@ import java.sql.Connection;
 
 import dao.DAO;
 
-public class UsersupdateService {
+public class AccountEmailCheckService {
 
-	public int userupdate(int id , String userid, String name, String phone, String birthday) {
-		Connection con = getConnection();
+	public int accountIdCheck(String email) {
+Connection con = getConnection();
 		
 		DAO dao = DAO.getInstance();
 				
 		dao.setConnection(con);
 		
-		int Check = dao.userupdate(id , userid , name, phone, birthday);
-		
-		if(Check > 0  ) {
-			commit(con);
-		}else {
-			rollback(con);
+		String emailCheck = dao.accountEmailCheck(email);
+		System.out.println(emailCheck);
+		int Check = 0 ;
+		if(emailCheck!=null) {
+			Check = 1;
 		}
 		close(con);
+		
 		return Check;
 	}
 	

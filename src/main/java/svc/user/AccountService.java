@@ -23,7 +23,7 @@ public class AccountService {
 		}else {
 			rollback(con);
 		}
-		
+		close(con);
 		return Check;
 	}
 
@@ -41,7 +41,7 @@ public class AccountService {
 		}else {
 			rollback(con);
 		}
-		
+		close(con);
 		return Check;
 	}
 
@@ -53,7 +53,7 @@ public class AccountService {
 		dao.setConnection(con);
 		
 		int user_id = dao.usersIdGet(userid , password);
-				
+		close(con);	
 		return user_id;
 	}
 
@@ -72,7 +72,7 @@ public class AccountService {
 		}else {
 			rollback(con);
 		}
-		
+		close(con);
 		return Check;
 	}
 

@@ -127,7 +127,7 @@
 	}
 	
 </script>
-
+<script src="${pageContext.request.contextPath}/javascript/accountJoin.js"></script>
   </head>
   <body class="bg-body-tertiary">
  
@@ -143,9 +143,9 @@
 
     <div class="row g-5 ">
 
-      <div class=" d-flex justify-content-center">
+      <div class=" col-xl-8 d-grid mx-auto">
       
-        <form method="post" action="accountAction.shop" class="needs-validation" novalidate>
+        <form name="f"method="post" action="accountAction.shop" class="needs-validation" novalidate>
           <div class="row g-3">
           
           <div class="col-12">
@@ -154,6 +154,21 @@
                <div class="invalid-feedback">
                           아이디를 입력해주세요.
               </div>
+           </div>
+           <div class="col-12">
+           	<button type="button" class="btn btn-primary" onclick="check_id()" >아이디 중복 확인</button>
+           </div>
+           
+            <div class="col-12">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" id="email" autofocus="autofocus" placeholder="user@example.com" required="required">
+              <div class="invalid-feedback">
+                주문확인을 위해 이메일 주소를 입력해주세요.
+              </div>
+            </div>
+            
+			<div class="col-12">
+           	<button type="button" class="btn btn-primary" onclick="check_email()">이메일 확인</button>
            </div>
            
            <div class="col-12">
@@ -183,13 +198,6 @@
              </div>
             </div>
 
-            <div class="col-12">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" id="email" autofocus="autofocus" placeholder="user@example.com" required="required">
-              <div class="invalid-feedback">
-                주문확인을 위해 이메일 주소를 입력해주세요.
-              </div>
-            </div>
 
             <div class="col-12">
               <label for="birthday" class="form-label">생 일</label>
@@ -199,7 +207,7 @@
               </div>
             </div>
               <div class="col-12">
-				<button class="btn btn-primary btn-lg" onclick="findAddr()">주소 찾기</button>
+				<button type="button" class="btn btn-primary" onclick="findAddr()">주소 찾기</button>
               </div>
             <div class="col-12">
               <label for="postcode" class="form-label">우편번호</label>

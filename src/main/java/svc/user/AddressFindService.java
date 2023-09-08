@@ -1,5 +1,6 @@
 package svc.user;
 
+import static db.JdbcUtill.close;
 import static db.JdbcUtill.getConnection;
 
 import java.sql.Connection;
@@ -20,7 +21,7 @@ Connection con = getConnection();
 		
 		ArrayList<Address> addressS = dao.findAddress(id);
 		
-		
+		close(con);
 		return addressS;
 	}
 	

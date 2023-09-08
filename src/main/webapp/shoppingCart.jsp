@@ -6,9 +6,47 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="javascript/shoppingCart.js" type="text/javascript">
+
+</script>
 </head>
 <body>
+<form method="post" action="">
+	전체 체크<input type="checkbox" name="allCheck" onclick="CheckAll(this.form)">
+	<br>
+	<c:set var="totalmoney" value="0"></c:set>
 
+<c:if test="${not empty requestScope.ShoppingCartList }">
+	<c:forEach var="order" items="${requestScope.ShoppingCartList}">
+	<hr>
+	<input type="checkbox" name="remove" value="${order.id}">	
+	
+	제품 보기 
+	<hr>
+		<br>주문번호 : ${order.id} 
+		<br>유저 아이디 : ${order.users_id}
+		<br>제품 아이디 : ${order.product_id}
+		<br>주문 개수 : ${order.order_count}
+		<br>배송 상태 : ${order.delivery}
+		<br>배송 상태 : ${order.date}
+		<br>주문 상태 : ${order.result}
+		
+		<br>셀러 아이디 : ${order.sellerMall_id}
+		<br>가격 : ${order.price}
+		<br>이름 : ${order.name}
+		<br>종류: ${order.kind}
+		<br>이미지: ${order.img}
+		
+		
+		<button type="button" onclick="location.href='shoppingCartProductDetail.shop?product_id=${order.product_id}'">상품 상세보기</button>
+		
+	<hr>
+	
+	</c:forEach>
+</c:if>
 
+<input type="submit" value ="장바구니 삭제하기" formaction="CartRemove.shop" > 
+<input type="submit" value ="장바구니 제품 주문하기" formaction="CartBuy.shop" > 
+</form>
 </body>
 </html>
