@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-  <head><script src="../assets/js/color-modes.js"></script>
+<head>
+  <script src="../assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +16,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">	
 
     <style>
       .bd-placeholder-img {
@@ -98,10 +99,11 @@
     <link rel="stylesheet"href = "/resource/css/bootstrap.css">
 	<script src="/resource/js/bootstrap.bundle.js"></script>
     
-<link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
-<script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
-  </head>
-  <body class="bg-body-tertiary">
+	<link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
+	<script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
+
+</head>
+<body class="bg-body-tertiary">
  
 
     <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
@@ -154,7 +156,22 @@
         <form class="needs-validation" novalidate>
           <div class="row g-3">
           
-
+                     
+           <div class="col-sm-6">
+              <label for="id" class="form-label">사용자아이디</label>
+              <input type="text" class="form-control" name="id" id="id" autofocus="autofocus" placeholder="필수입력" required="required">
+               <div class="invalid-feedback">
+                          아이디를 입력해주세요.
+              </div>
+           </div>
+           
+           <div class="col-12">
+              <label for="password" class="form-label">비밀번호</label>
+              <input type="text" class="form-control" name="password" id="password" autofocus="autofocus" placeholder="영문대소문자포함 8~20자 입니다." required="required">
+               <div class="invalid-feedback">
+                          비밀번호를 입력해주세요.
+              </div>
+           </div>
            
             <div class="col-12">
               <label for="name" class="form-label">이 름</label>
@@ -164,7 +181,48 @@
               </div>
             </div>
 
+            
+            <div class="col-12">
+              <label for="phone" class="form-label">전화번호</label>
+             <div class="input-group has-validation">
+                <input type="text" class="form-control" name="phone" id="phone" autofocus="autofocus" placeholder="필수입력" required="required">
+                  <div class="invalid-feedback">
+                               전화번호를 입력해주세요.
+             	  </div>
+             </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" id="email" autofocus="autofocus" placeholder="user@example.com" required="required">
+              <div class="invalid-feedback">
+                주문확인을 위해 이메일 주소를 입력해주세요.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="birthday" class="form-label">생 일</label>
+              <input type="date" class="form-control" id="birthday" value="" placeholder="YYYY-MM-DD" required="required">
+              <div class="invalid-feedback">
+                생년월일을 입력해주세요.
+              </div>
+            </div>
+
+ 		<label for="grade" class="form-label">성 별</label>
+		<div class="col-md-3">
+          <div class="form-check  form-check">
+            <input type="radio" name ="gender" value="M" class="form-check-input" >
+            <label class="form-check-label" for="same-address">남</label>
+          </div>
+ 		</div>
  
+		<div class="col-md-3">
+          <div class="form-check  form-check-inline">
+            <input type="radio" name ="gender" value="F" class="form-check-input">
+            <label class="form-check-label" for="save-info">여</label>
+          </div>
+ 		</div>
+          <hr class="my-4">
 
           </div>
 
@@ -179,5 +237,7 @@
 </div>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="checkout.js"></script></body>
+    <script src="checkout.js"></script>
+    
+</body>
 </html>
