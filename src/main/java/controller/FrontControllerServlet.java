@@ -22,6 +22,8 @@ import action.seller.product.productManageAction;
 import action.user.PasswordFindAction;
 import action.user.accountAction;
 import action.user.accountDeleteAction;
+import action.user.accountEmailCheckAction;
+import action.user.accountUseridCheckAction;
 import action.user.findIdAction;
 import action.user.loginAction;
 import action.user.logoutAction;
@@ -162,6 +164,31 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/accountEmailCheck.shop")) {
+			forward = new ActionForward("AccountRelated/Check/JoinEmailCheck.jsp", false);
+		}
+		else if( command.equals("/accountEmailCheckAction.shop")) {
+			action = new accountEmailCheckAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/accountUseridCheck.shop")) {
+			forward = new ActionForward("AccountRelated/Check/joinIdCheck.jsp", false);
+		}
+		else if( command.equals("/accountUseridCheckAction.shop")) {
+			action = new accountUseridCheckAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		 
 		 /**
 		  * 회원 수정
 		  */
@@ -221,6 +248,15 @@ public class FrontControllerServlet extends HttpServlet {
 		}
 		else if(command.equals("/CartRemove.shop")) {
 			action = new CartRemoveAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/CartBuyForm.shop")) {
+			action = new CartBuyFormAction();
 			
 			try {
 				forward = action.execute(request, response);

@@ -705,5 +705,55 @@ public class DAO {
 		
 		return check;
 	}
+
+	public String accountEmailCheck(String email) {
+		String emailCheck = null;
+		String sql = " select email from users where email = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, email);
+			
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				emailCheck = rs.getString("email");
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getProduct 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return emailCheck;
+	}
+
+	public String AccountUseridCheck(String userid) {
+		String useridCheck = null;
+		String sql = " select userid from users where userid = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, userid);
+			
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				useridCheck = rs.getString("userid");
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] AccountUseridCheck 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return useridCheck;
+	}
 	
 }

@@ -12,8 +12,6 @@
 
 
 </script>
-<script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
-<link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 
 <div class="container-fluid">
 	<div class="row">

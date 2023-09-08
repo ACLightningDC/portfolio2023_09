@@ -9,7 +9,9 @@ select * from order_list;
 
 update order_list set order_count= 3 where users_id = 2 product_id = 2;
 
-
+select email from users where email = '0523mytop@gmail.com';
+select email from users where email = ?;
+select email from users where email = ?;
 delete from order_list where users_id = 2;
 select order_count from order_list where users_id= 1 and product_id = 1;
 

@@ -46,7 +46,7 @@
 </c:if>
 
 <input type="submit" value ="장바구니 삭제하기" formaction="CartRemove.shop" > 
-<input type="submit" value ="장바구니 제품 주문하기" formaction="" > 
+<input type="submit" value ="장바구니 제품 주문하기" formaction="CartBuy.shop" > 
 </form>
 </body>
 </html>
