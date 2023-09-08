@@ -127,6 +127,34 @@
 	}
 	
 </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	    <script>
+        $(document).ready(function() {
+            $("#requestButton").click(function() {
+                // 입력 필드에서 사업자 등록번호 가져오기
+                var bNo = $("#b_no").val();
+
+                var data = {
+                    "b_no": [bNo]
+                };
+
+                $.ajax({
+                    url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=oDzQWmOxHyVL7lTw1kHZO3QAZ3afJHiEN7j7XCDOO%2FfBTlWH3ax7z%2FGSAaN4bl%2BxkmB1Bk%2BYHq2Q6M1dc30MkQ%3D%3D",
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function(result) {
+                        // 결과를 페이지의 "response" <pre> 태그에 표시하고 JSON 문자열로 변환
+                        $("#response").text(JSON.stringify(result, null, 2));
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        $("#response").text("에러 상태 코드: " + xhr.status + "\n에러 메시지: " + errorThrown + "\n응답 텍스트: " + xhr.responseText);
+                    },
+                });
+            });
+        });
+    </script>
 <script src="${pageContext.request.contextPath}/javascript/accountJoin.js"></script>
   </head>
   <body class="bg-body-tertiary">
@@ -232,14 +260,16 @@
             </div>
             
             <div class="col-12">
-              <label for="" class="form-label">사업자 등록번호</label>
-              <input name="CompanyRegistrationNumber" type="text" class="form-control" id="CompanyRegistrationNumber" value="" placeholder="" required="required">
+              <label for="b_no" class="form-label">사업자 등록번호</label>
+              <input name="b_no" type="text" class="form-control" id="b_no" value="" placeholder="" required="required">
               <div class="invalid-feedback">
                 사업자등록번호를 입력해주세요.
               </div>
             </div>
-
-
+		    <button id="requestButton">서버에 요청 보내기</button>
+    		
+    		<pre id="response"></pre>
+		
  		<label for="grade" class="form-label">성 별</label>
 		<div class="col-md-3">
           <div class="form-check  form-check">

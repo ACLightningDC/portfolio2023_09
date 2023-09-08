@@ -255,15 +255,15 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/CartBuyForm.shop")) {
-			action = new CartBuyFormAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+//		else if(command.equals("/CartBuyForm.shop")) {
+//			action = new CartBuyFormAction();
+//			
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 		 /**
 		  * 제품 상세
 		  */
