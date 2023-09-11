@@ -38,8 +38,17 @@
 				<th scope="row">등급</th>
 				<td>${sessionScope.userinfo.grade}</td>
 			</tr>
+			<tr>
+				<th scope="row">기본주소</th>
+				<td></td>
+			</tr>
 			
 			</table>
+		</div>
+	</div>
+	<div class="row my-1">
+		<div class="d-grid col-8 mx-auto">
+			<button class="btn btn-primary" type="button" onclick="location.href='AddressForm.shop'">주소 관리하기</button>
 		</div>
 	</div>
 	<div class="row my-5">
@@ -73,7 +82,6 @@
 등급 ${sessionScope.userinfo.grade}<br>
 
 
-<button onclick="location.href='AddressAdd.shop'">주소 추가하기</button>
 
 </body>
 </html>

@@ -755,5 +755,55 @@ public class DAO {
 			
 		return useridCheck;
 	}
+
+	public ArrayList<Address> UserAddressGet(int user_id) {
+		ArrayList<Address> addressList = new ArrayList<Address>();
+		String sql = " select * from address where users_id= ?; ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, user_id);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Address address = new Address();
+				address.setId(rs.getInt("id"));
+				address.setUser_id(rs.getInt("users_id"));
+				address.setAddress1(rs.getString("address1"));
+				address.setAddress2(rs.getString("address2"));
+				address.setPostcode(rs.getString("postcode"));
+				
+				addressList.add(address);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] UserAddressGet 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return addressList;
+	}
+
+	public int CartCountUpdate(int id, int orderCount) {
+		int check = 0;
+		String sql ="update order_list set order_count = ? where id =?";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, orderCount);
+			pstmt.setInt(2, id);
+			
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] CartCountUpdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
 	
 }

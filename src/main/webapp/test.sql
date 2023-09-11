@@ -50,3 +50,6 @@ select *  from order_list l join product r on l.product_id = r.id where product_
 
 select l.id ,product_id ,users_id, order_count , delivery , l.date , result ,sellerMall_id , price , name , kind ,img  from order_list l join product r on l.product_id = r.id where users_id = 2 ;
 select * from order_list.l join product.r on l.product_id = r.id where users_id = 1 ;
+
+select * from address where users_id='2'; 
+update order_list set order_count = ? where id =?

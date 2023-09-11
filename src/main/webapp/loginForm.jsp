@@ -6,12 +6,12 @@
   <head>
 <link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
-
+<script type="text/javascript">
+/* 	var value = document.cookie.match('(^|;) ?' + '${user_id}' + '=([^;]*)(;|$)');
+	if value ? value[2] : null; */
+</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.115.4">
     <title>로그인</title>
 
     <style>
@@ -58,7 +58,7 @@
     </div>
 
     <div class="form-check text-start my-3">
-      <input id = "idremind" class="form-check-input" name ="checkbox" type="checkbox" value="remember-me" id="flexCheckDefault" >
+      <input id = "idremind" class="form-check-input" name ="checkbox" type="checkbox"  value="remember-me" id="flexCheckDefault" ${null != cookie.user_id.value ?  "checked=\"checked\"": ""}>
       <label class="form-check-label" for="flexCheckDefault">
         아이디 기억하기
       </label>
