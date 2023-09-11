@@ -9,6 +9,7 @@
 <script src="javascript/shoppingCart.js" type="text/javascript">
 
 </script>
+
 </head>
 <body>
 <form method="post" action="">
@@ -37,9 +38,16 @@
 		<br>종류: ${order.kind}
 		<br>이미지: ${order.img}
 		
-		
 		<button type="button" onclick="location.href='shoppingCartProductDetail.shop?product_id=${order.product_id}'">상품 상세보기</button>
+		<button type="button" onclick="productPluse('${order.order_count}','${order.id}');">상품 추가</button>
+		<button type="button" onclick="productMinus('${order.order_count}','${order.id}');">상품 감소</button>
 		
+		<button type="button" onclick="location.href='inquiryForm.shop'">상품 문의하기</button>
+		<div>
+			<input id="order_id" type="hidden" name="id" value="${order.id}">
+			<input id="orderCount" type="text" name="orderCount" value="">
+			<button type="button" onclick="productCount()">입력 변경</button>		
+		</div>
 	<hr>
 	
 	</c:forEach>

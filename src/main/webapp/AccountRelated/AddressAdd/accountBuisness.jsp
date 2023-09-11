@@ -2,14 +2,12 @@
     pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
+  <head><script src="../assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Checkout example · Bootstrap v5.3</title>
 
-
-
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Custom styles for this template -->
     <link href="checkout.css" rel="stylesheet">
@@ -17,7 +15,6 @@
     <link rel="stylesheet"href = "/resource/css/bootstrap.css">
 	<script src="/resource/js/bootstrap.bundle.js"></script>
     
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
@@ -67,7 +64,6 @@
                     success: function(result) {
                         // 결과를 페이지의 "response" <pre> 태그에 표시하고 JSON 문자열로 변환
                         $("#response").text(JSON.stringify(result, null, 2));
-                       결과 개별 ${result.data.tax_type}
                     },
                     error: function(xhr, textStatus, errorThrown) {
                         $("#response").text("에러 상태 코드: " + xhr.status + "\n에러 메시지: " + errorThrown + "\n응답 텍스트: " + xhr.responseText);

@@ -11,3 +11,8 @@
     window.close();
  }
  
+function namesendB_no(){
+	opener.document.f.userid.value = document.Form.b_no.value;
+	    window.close();
+
+}

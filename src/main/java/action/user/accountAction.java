@@ -52,10 +52,10 @@ public class accountAction implements Action {
 		}
 		
 		
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();	
 		
 		if(resultCheck < 0 && resultAddressCheck < 0 ) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();	
 			out.println("<script>");
 			out.println("alert('잘못된 이름 이메일 입니다.');");
 			out.println("history.back()");
