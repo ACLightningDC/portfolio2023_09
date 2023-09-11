@@ -128,11 +128,21 @@
 	
 </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	    <script>
+	<script>
         $(document).ready(function() {
             $("#requestButton").click(function() {
-                // 입력 필드에서 사업자 등록번호 가져오기
+                // 입력 필드에서 "b_no" 값을 가져오기
                 var bNo = $("#b_no").val();
+
+                // 사업자 등록번호 유효성 검사를 위한 정규 표현식
+                var regExp = /^[0-9]{10}$/;
+
+                if (!regExp.test(bNo)) {
+                    // 유효하지 않은 사업자 등록번호일 경우 메시지를 alert로 표시하고 입력 필드에 포커스 주기
+                    alert("유효하지 않은 사업자 등록번호입니다.");
+                    $("#b_no").focus();
+                    return;
+                }
 
                 var data = {
                     "b_no": [bNo]
@@ -145,11 +155,13 @@
                     dataType: "json",
                     contentType: "application/json",
                     success: function(result) {
-                        // 결과를 페이지의 "response" <pre> 태그에 표시하고 JSON 문자열로 변환
-                        $("#response").text(JSON.stringify(result, null, 2));
+                        // API 응답에서 "b_no", "b_stt", "b_stt_cd" 값을 추출하여 큰따옴표로 둘러싸서 alert로 표시
+                        var alertMessage = `"b_no": "${result.data[0].b_no}"\n"b_stt": "${result.data[0].b_stt}"\n"b_stt_cd": "${result.data[0].b_stt_cd}"`;
+                        alert(alertMessage);
                     },
                     error: function(xhr, textStatus, errorThrown) {
-                        $("#response").text("에러 상태 코드: " + xhr.status + "\n에러 메시지: " + errorThrown + "\n응답 텍스트: " + xhr.responseText);
+                        // 에러 메시지를 alert로 표시
+                        alert("에러 상태 코드: " + xhr.status + "\n에러 메시지: " + errorThrown + "\n응답 텍스트: " + xhr.responseText);
                     },
                 });
             });
@@ -234,9 +246,9 @@
                 생년월일을 입력해주세요.
               </div>
             </div>
-              <div class="col-12">
+            <div class="col-12">
 				<button type="button" class="btn btn-primary" onclick="findAddr()">주소 찾기</button>
-              </div>
+            </div>
             <div class="col-12">
               <label for="postcode" class="form-label">우편번호</label>
               <input name="postcode" type="text" class="form-control" id="postcode" value="" placeholder="" required="required" readonly="readonly">
@@ -266,9 +278,11 @@
                 사업자등록번호를 입력해주세요.
               </div>
             </div>
-		    <button id="requestButton">서버에 요청 보내기</button>
-    		
-    		<pre id="response"></pre>
+            
+			<div class="col-12">
+			 <button id="requestButton" class="btn btn-primary">서버에 요청 보내기</button>
+			</div> <!-- 부트스트랩 스타일을 적용한 버튼 -->
+		
 		
  		<label for="grade" class="form-label">성 별</label>
 		<div class="col-md-3">
