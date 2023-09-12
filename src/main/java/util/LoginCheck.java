@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import vo.Users;
 
 public class LoginCheck {
-	public static void CheckLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public static Users CheckLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session =  request.getSession();
 		Users user =  (Users)session.getAttribute("userinfo");
 		
@@ -23,7 +23,27 @@ public class LoginCheck {
 			out.println("</script>");
 		}
 		
+		return user;
+		
+	}
+	
+	public static void CheckCheck(HttpServletRequest request, HttpServletResponse response ,int Check , String contents) throws Exception {
+		
+		if(Check > 0) {
+			
+		}
+		else{
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			
+			out.println("<script>");
+			out.println("alert('로그인 후 사용 부탁드립니다.');");
+			out.println("location.href='loginForm.shop'");
+			out.println("</script>");
+		}
+		
 		return ;
 		
 	}
+	
 }

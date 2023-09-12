@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>헤드 네비게이션</title>
 <!-- 부트스트랩 리소스 임포트 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
 <link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 <style>

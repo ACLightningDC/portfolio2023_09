@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-  <head><script src="../assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,8 +11,6 @@
     <!-- Custom styles for this template -->
     <link href="checkout.css" rel="stylesheet">
     
-    <link rel="stylesheet"href = "/resource/css/bootstrap.css">
-	<script src="/resource/js/bootstrap.bundle.js"></script>
     
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -44,34 +41,7 @@
 		}).open();
 	}
 	
-</script>
-	    <script>
-        $(document).ready(function() {
-            $("#requestButton").click(function() {
-                // 입력 필드에서 사업자 등록번호 가져오기
-                var bNo = $("#b_no").val();
-
-                var data = {
-                    "b_no": [bNo]
-                };
-
-                $.ajax({
-                    url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=oDzQWmOxHyVL7lTw1kHZO3QAZ3afJHiEN7j7XCDOO%2FfBTlWH3ax7z%2FGSAaN4bl%2BxkmB1Bk%2BYHq2Q6M1dc30MkQ%3D%3D",
-                    type: "POST",
-                    data: JSON.stringify(data),
-                    dataType: "json",
-                    contentType: "application/json",
-                    success: function(result) {
-                        // 결과를 페이지의 "response" <pre> 태그에 표시하고 JSON 문자열로 변환
-                        $("#response").text(JSON.stringify(result, null, 2));
-                    },
-                    error: function(xhr, textStatus, errorThrown) {
-                        $("#response").text("에러 상태 코드: " + xhr.status + "\n에러 메시지: " + errorThrown + "\n응답 텍스트: " + xhr.responseText);
-                    },
-                });
-            });
-        });
-    </script>
+	</script>
   </head>
   <body class="bg-body-tertiary">
  

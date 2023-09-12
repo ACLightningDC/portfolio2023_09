@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import static db.JdbcUtill.*;
 
 import vo.Address;
+import vo.InquiryUser;
 import vo.Order_list;
 import vo.Product;
 import vo.ShoppingCart;
@@ -805,5 +806,138 @@ public class DAO {
 		
 		return check;
 	}
+
+	public int makeinquiry(int users_id, int seller_Mall_id, int product_id, String inquiry_name, String inquiry_contents) {
+		int check = 0;
+		String sql ="insert into inquiry(users_id , sellerrMall_id ,product_id , contents , name)value(?,?,?,?,?)";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, users_id);
+			pstmt.setInt(2, seller_Mall_id);
+			pstmt.setInt(3, product_id);
+			pstmt.setString(4, inquiry_name);
+			pstmt.setString(5, inquiry_contents);
+			
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] makeinquiry 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+//	public ArrayList<InquiryUser> getinquiryUser(int users_id) {
+//		ArrayList<InquiryUser> InquiryUserList = new ArrayList<InquiryUser>();
+//		String sql = " select * from address where users_id= ?; ";
+//		try {
+//			
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, users_id);
+//			rs= pstmt.executeQuery();
+//			
+//			while(rs.next()) {
+//				InquiryUser inquiryUser = new InquiryUser();
+//				inquiryUsers.setId(rs.getInt("id"));
+//				address.setUser_id(rs.getInt("users_id"));
+//				address.setAddress1(rs.getString("address1"));
+//				address.setAddress2(rs.getString("address2"));
+//				address.setPostcode(rs.getString("postcode"));
+//				
+//				InquiryUserList.add(inquiryUsers);
+//			}
+//			
+//		}catch(Exception e){
+//			System.out.println("[DAO] getinquiryUser 에러" + e );
+//		}finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+//			
+//		return InquiryUserList;
+//	}
+
+	public ShoppingCart cartBuy(int order_id) {
+		ShoppingCart shoppingCart = new ShoppingCart();
+			String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+					+ " ,sellerMall_id , price , name , kind ,img  "
+					+ " from order_list l join product r on l.product_id = r.id where l.id = ? ";
+			try {
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, order_id);	
+				rs= pstmt.executeQuery();
+				
+				if(rs.next()) {
+					shoppingCart.setId(rs.getInt("id"));
+					shoppingCart.setUsers_id(rs.getInt("users_id"));
+					shoppingCart.setProduct_id(rs.getInt("product_id"));
+					shoppingCart.setOrder_count(rs.getInt("order_count"));
+					shoppingCart.setDelivery(rs.getString("delivery"));
+					shoppingCart.setDate(rs.getString("date"));
+					shoppingCart.setResult(rs.getString("result"));
+					
+					shoppingCart.setSellerMall_id(rs.getInt("sellerMall_id"));
+					shoppingCart.setPrice(rs.getInt("price"));
+					shoppingCart.setName(rs.getString("name"));
+					shoppingCart.setKind(rs.getString("kind"));
+					shoppingCart.setImg(rs.getString("img"));
+				}
+				
+			}catch(Exception e){
+				System.out.println("[DAO] cartBuy 에러" + e );
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+				
+			return shoppingCart;
+		
+		
+	}
+
+//	public int addressUpdate(int user_id, String postcode, String address1, String address2) {
+//		int check = 0;
+//		String sql =" insert into address(id , postcode, address1, address2) value(?, ?, ?,?)";
+//		try {
+//								
+//			pstmt = con.prepareStatement(sql);
+//			
+//			pstmt.setInt(1, id);
+//			pstmt.setString(2, postcode);
+//			pstmt.setString(3, address1);
+//			pstmt.setString(4, address2);
+//			check= pstmt.executeUpdate();
+//
+//			}catch(Exception e){
+//				System.out.println("[DAO] addressAdd 에러" + e );
+//			}finally {
+//				close(pstmt);
+//			}
+//		return check;
+//	}
+
+	public int addressDelete(int id) {
+		int check = 0;
+		String sql =" delete from address where id = ?";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] addressDelete 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+
+	
 	
 }

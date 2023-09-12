@@ -67,8 +67,9 @@ public class AccountService {
 		int Check = dao.CompanyRegistrationNumber(user_id , companyRegistrationNumber);
 		int CheckGrade = dao.sellerGrade(user_id);
 		
-		if(Check > 0  ) {
+		if(Check > 0 & CheckGrade> 0 ) {
 			commit(con);
+			Check = 1;
 		}else {
 			rollback(con);
 		}

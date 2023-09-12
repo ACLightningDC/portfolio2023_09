@@ -13,6 +13,9 @@ import action.Cart.CartCountUpdateAction;
 import action.Cart.CartRemoveAction;
 import action.Cart.ShoppingCartProductAddAction;
 import action.Cart.shoppingCartView;
+import action.buy.CartBuyFormAction;
+import action.inquiry.InquiryAction;
+import action.inquiry.InquiryUserAction;
 import action.mainPage.ProductPageGetAction;
 import action.mainPage.ShopPageGetAction;
 import action.seller.CreateMallAction;
@@ -31,6 +34,7 @@ import action.user.loginAction;
 import action.user.logoutAction;
 import action.user.myImformationFormAddressFind;
 import action.user.usersupdateAction;
+import action.user.address.AddressAddAction;
 import action.user.product.ShoppingCartProductDetailAction;
 import vo.ActionForward;
 
@@ -234,6 +238,9 @@ public class FrontControllerServlet extends HttpServlet {
 			request.setAttribute("forward", "/myImformationForm.jsp");
 			forward = new ActionForward("template.jsp", false);
 		}
+		 /*
+		  * 주소 추가
+		  */
 		else if(command.equals("/AddressForm.shop")) {
 			action = new AddressFormAction();
 			
@@ -243,6 +250,21 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/AddressAddForm.shop")) {
+			request.setAttribute("forward", "/AccountRelated/AddressAdd/AddressAddFrom.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/AddressAdd.shop")) {
+			action = new AddressAddAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		 
+		 
 		
 		 /**
 		  * 쇼핑 카트 
@@ -301,15 +323,15 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-//		else if(command.equals("/CartBuyForm.shop")) {
-//			action = new CartBuyFormAction();
-//			
-//			try {
-//				forward = action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		else if(command.equals("/CartBuyForm.shop")) {
+			action = new CartBuyFormAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		 /**
 		  * 제품 상세
 		  */
@@ -329,6 +351,22 @@ public class FrontControllerServlet extends HttpServlet {
 			request.setAttribute("forward", "/inquiry/inquiryForm.jsp");
 			forward = new ActionForward("template.jsp", false);
 		} 
+		else if(command.equals("/inquiryAction.shop")){
+			action = new InquiryAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/inquiryUser.shop")){
+			action = new InquiryUserAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		 
 		/**
 		 * 아이디 찾기  

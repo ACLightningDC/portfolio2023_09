@@ -32,7 +32,7 @@ public class AddressFormAction implements Action {
 		request.setAttribute("address", address);
 		
 		
-		request.setAttribute("forward", "/myImformation/AddressAdd.jsp");
+		request.setAttribute("forward", "/AccountRelated/AddressAdd/AddressManage.jsp");
 		forward = new ActionForward("template.jsp", false);
 		return forward;
 	}
