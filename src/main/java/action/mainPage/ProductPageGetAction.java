@@ -15,10 +15,10 @@ public class ProductPageGetAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		
+		int page = Integer.parseInt(request.getParameter("page")) ;
+		 
 		ProductPageGetService productPageGetService = new ProductPageGetService();
-		ArrayList<Product> products =  productPageGetService.productPageGetList();
+		ArrayList<Product> products =  productPageGetService.productPageGetList(page);
 
 		request.setAttribute("products", products);
 		

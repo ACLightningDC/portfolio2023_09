@@ -33,7 +33,7 @@
 	</c:forEach>
 </div>
 </c:if>
-
+<c:for>
 
 페이지별로 15개씩 만들기
 </body>

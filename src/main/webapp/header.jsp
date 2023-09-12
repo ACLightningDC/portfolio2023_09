@@ -25,10 +25,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="productPage.shop">상품별 보기</a>
+              <a class="nav-link active" aria-current="page" href="productPage.shop?page=1">상품별 보기</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="shopPage.shop">매장별 보기</a>
+              <a class="nav-link" href="shopPage.shop?page=1">매장별 보기</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

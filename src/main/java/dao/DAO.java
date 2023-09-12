@@ -480,14 +480,14 @@ public class DAO {
 		return productList;
 	}
 
-	public ArrayList<Product> getAllProductList() {
+	public ArrayList<Product> getAllProductList(int page) {
 		 ArrayList<Product> productList = new ArrayList<Product>();
-			String sql = " select * from product ";
+			String sql = " select * from product nom";
 			try {
 				
 				pstmt = con.prepareStatement(sql);
 				
-				
+				pstmt.setInt(1, page);
 				rs= pstmt.executeQuery();
 				
 				while(rs.next()) {

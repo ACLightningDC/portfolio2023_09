@@ -31,8 +31,9 @@ products
 		<button onclick="location.href='shoppingCartProductDetail.shop?product_id=${product.id}'">${product.name}상품 상세보기</button>
 	</c:forEach>
 </c:if>
-
 페이지별로 15개씩 만들기
+1 2 3 4 5 6   11 11 12 13 14 
 
+<a href="productPage.shop?page=1">상품별 보기</a>
 </body>
 </html>

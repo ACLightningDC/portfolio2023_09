@@ -10,13 +10,13 @@ import vo.Product;
 
 public class ProductPageGetService {
 
-	public ArrayList<Product> productPageGetList() {
+	public ArrayList<Product> productPageGetList(int page) {
 		
 		Connection con = getConnection();
 		DAO dao = DAO.getInstance();
 		dao.setConnection(con);
 		
-		ArrayList<Product> products = dao.getAllProductList();
+		ArrayList<Product> products = dao.getAllProductList(page);
 		
 		close(con);
 
