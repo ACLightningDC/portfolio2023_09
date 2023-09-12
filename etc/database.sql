@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `gender` VARCHAR(1) NOT NULL,
   `email` VARCHAR(45) NULL,
   `birthday` DATE NULL,
-  `grade` NVARCHAR(1) NULL,
+  `grade` NVARCHAR(1) NULL DEFAULT 'N',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
@@ -61,38 +61,13 @@ CREATE TABLE IF NOT EXISTS `testdb`.`sellermall` (
   `seller_id` INT UNSIGNED NOT NULL,
   `name` NVARCHAR(45) NOT NULL,
   `create_date` TIMESTAMP NOT NULL DEFAULT current_timestamp,
-  `grade` NVARCHAR(1) NULL,
+  `grade` NVARCHAR(1) NULL DEFAULT 'N',
   PRIMARY KEY (`id`, `seller_id`),
   INDEX `fk_sellerrMall_seller1_idx` (`seller_id` ASC) VISIBLE,
   CONSTRAINT `fk_sellerrMall_seller1`
     FOREIGN KEY (`seller_id`)
-    REFERENCES `testdb`.`seller` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
-
-
--- -----------------------------------------------------
--- Table `testdb`.`inquiry`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `testdb`.`inquiry` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `users_id` INT UNSIGNED NOT NULL,
-  `sellerrMall_id` INT UNSIGNED NOT NULL,
-  `contents` NVARCHAR(300) NULL,
-  `name` NVARCHAR(45) NOT NULL,
-  `date` TIMESTAMP NULL DEFAULT current_timestamp,
-  `result` NVARCHAR(1) NULL,
-  PRIMARY KEY (`id`, `users_id`, `sellerrMall_id`),
-  INDEX `fk_inquiry_users1_idx` (`users_id` ASC) VISIBLE,
-  INDEX `fk_inquiry_sellerrMall1_idx` (`sellerrMall_id` ASC) VISIBLE,
-  CONSTRAINT `fk_inquiry_sellerrMall1`
-    FOREIGN KEY (`sellerrMall_id`)
-    REFERENCES `testdb`.`sellermall` (`id`)
-    ON DELETE CASCADE,
-  CONSTRAINT `fk_inquiry_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `testdb`.`users` (`id`)
-    ON DELETE NO ACTION)
+    REFERENCES `testdb`.`seller` (`id`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -131,15 +106,56 @@ CREATE TABLE IF NOT EXISTS `testdb`.`order_list` (
   `date` TIMESTAMP NULL DEFAULT current_timestamp,
   `result` VARCHAR(45) NULL DEFAULT 'N',
   PRIMARY KEY (`id`, `users_id`, `product_id`),
-  INDEX `fk_order_users2_idx` (`users_id` ASC) VISIBLE,
-  INDEX `fk_order_product2_idx` (`product_id` ASC) VISIBLE,
-  CONSTRAINT `fk_order_product2`
+  INDEX `fk_order_users1_idx` (`users_id` ASC) VISIBLE,
+  INDEX `fk_order_product1_idx` (`product_id` ASC) VISIBLE,
+  CONSTRAINT `fk_order_product1`
     FOREIGN KEY (`product_id`)
     REFERENCES `testdb`.`product` (`id`),
-  CONSTRAINT `fk_order_users2`
+  CONSTRAINT `fk_order_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `testdb`.`users` (`id`)
     ON DELETE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `testdb`.`inquiry`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `testdb`.`inquiry` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `users_id` INT UNSIGNED NOT NULL,
+  `sellerrMall_id` INT UNSIGNED NOT NULL,
+  `product_id` INT UNSIGNED NOT NULL,
+  `order_list_id` INT UNSIGNED NOT NULL,
+  `contents` NVARCHAR(300) NULL,
+  `name` NVARCHAR(45) NOT NULL,
+  `date` TIMESTAMP NULL DEFAULT current_timestamp,
+  `result` NVARCHAR(1) NULL DEFAULT 'N',
+  `answer` NVARCHAR(300) NULL,
+  PRIMARY KEY (`id`, `users_id`, `sellerrMall_id`, `product_id`, `order_list_id`),
+  INDEX `fk_inquiry_users1_idx` (`users_id` ASC) VISIBLE,
+  INDEX `fk_inquiry_sellerrMall1_idx` (`sellerrMall_id` ASC) VISIBLE,
+  INDEX `fk_inquiry_product1_idx` (`product_id` ASC) VISIBLE,
+  INDEX `fk_inquiry_order_list1_idx` (`order_list_id` ASC) VISIBLE,
+  CONSTRAINT `fk_inquiry_sellerrMall1`
+    FOREIGN KEY (`sellerrMall_id`)
+    REFERENCES `testdb`.`sellermall` (`id`)
+    ON DELETE CASCADE,
+  CONSTRAINT `fk_inquiry_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `testdb`.`users` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_inquiry_product1`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `testdb`.`product` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_inquiry_order_list1`
+    FOREIGN KEY (`order_list_id`)
+    REFERENCES `testdb`.`order_list` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -151,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`product_ description` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `product_id` INT UNSIGNED NOT NULL,
   `description_name` NVARCHAR(45) NOT NULL,
-  `parameter` NVARCHAR(200)  NULL,
+  `parameter` NVARCHAR(200) NULL,
   PRIMARY KEY (`id`, `product_id`),
   INDEX `fk_product_ description_product1_idx` (`product_id` ASC) VISIBLE,
   CONSTRAINT `fk_product_ description_product1`
@@ -195,6 +211,24 @@ CREATE TABLE IF NOT EXISTS `testdb`.`user_security` (
     FOREIGN KEY (`users_id`)
     REFERENCES `testdb`.`users` (`id`)
     ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `testdb`.`review`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `testdb`.`review` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `order_list_id` INT UNSIGNED NOT NULL,
+  `star_score` INT NOT NULL,
+  `contents` NVARCHAR(300) NULL,
+  PRIMARY KEY (`id`, `order_list_id`),
+  INDEX `fk_review_order_list1_idx` (`order_list_id` ASC) VISIBLE,
+  CONSTRAINT `fk_review_order_list1`
+    FOREIGN KEY (`order_list_id`)
+    REFERENCES `testdb`.`order_list` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 

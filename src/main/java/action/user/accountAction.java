@@ -27,7 +27,14 @@ public class accountAction implements Action {
 		String address1 = request.getParameter("address1");
 		String address2 = request.getParameter("address2");
 		
-		String CompanyRegistrationNumber = request.getParameter("CompanyRegistrationNumber");
+		System.out.println("스트링 출력"+request.getParameter("b_no"));
+		String b_noS = request.getParameter("b_no");
+		 String CompanyRegistrationNumber = null;
+		if(b_noS != null) {			
+			CompanyRegistrationNumber = b_noS;
+		}
+		
+		System.out.println("CompanyRegistrationNumber = " + CompanyRegistrationNumber);
 		
 		Users users =  new Users();
 		

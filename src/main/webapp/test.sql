@@ -6,6 +6,7 @@ select * from seller;
 select * from sellermall;
 select * from product;
 select * from order_list;
+select * from inquiry;
 
 update order_list set order_count= 3 where users_id = 2 product_id = 2;
 
@@ -13,6 +14,7 @@ select email from users where email = '0523mytop@gmail.com';
 select email from users where email = ?;
 select email from users where email = ?;
 delete from order_list where users_id = 2;
+delete from users where id = 3;
 select order_count from order_list where users_id= 1 and product_id = 1;
 
 update order_list set order_count= ? where users_id = ? product_id = ? ;
@@ -53,3 +55,10 @@ select * from order_list.l join product.r on l.product_id = r.id where users_id 
 
 select * from address where users_id='2'; 
 update order_list set order_count = ? where id =?
+
+insert into inquiry(users_id , sellerrMall_id , contents , name)value(?,?,?,?);
+
+select * from inquiry l join  product c on l.product_id = c.id join sellermall r on l.sellerrMall_id = r.id ; 
+
+update address set postcode = ? address1 = ? address2 = ? where id = ?;
+

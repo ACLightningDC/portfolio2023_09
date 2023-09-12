@@ -38,3 +38,13 @@
 		 }		 
 	 }
  }
+ 
+ function submit_Cart(){
+	var Check_arr =  document.getElementsByName("remove");
+		
+	for(var i = 0 ; i <Check_arr.length ; i++){
+		if(Check_arr == false)return false;
+	}
+	
+	document.CartForm.submit();
+ }
