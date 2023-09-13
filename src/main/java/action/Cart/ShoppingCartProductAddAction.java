@@ -1,6 +1,7 @@
 package action.Cart;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import svc.Cart.ShoppingCartProductAddService;
 import vo.ActionForward;
+import vo.Order_list;
 import vo.Users;
 
 public class ShoppingCartProductAddAction implements Action {
@@ -33,12 +35,23 @@ public class ShoppingCartProductAddAction implements Action {
 		
 		int Check  = 0;
 		ShoppingCartProductAddService shoppingCartProductAddService  = new ShoppingCartProductAddService(); 
-		int GetOrder_count = shoppingCartProductAddService.GetCartOrder_count(users_id , product_id );
-		System.out.println("기존 주문 개수 " +  GetOrder_count);
-		if(GetOrder_count > 0 ) {
-			System.out.println(" ture 실행");
-			order_count += GetOrder_count;
-			Check = shoppingCartProductAddService.shoppingCartProductUpdate(users_id , product_id ,order_count);
+		ArrayList<Order_list> order_List = shoppingCartProductAddService.GetCartOrder_Check(users_id , product_id );
+		int id = 0;
+		int GetOrderCount = 0;
+		String GetResult = null;
+		for(int i = 0 ; i < order_List.size(); i++) {
+			String tempResult = order_List.get(i).getResult();
+			if(tempResult.equals("N")) {
+				id = order_List.get(i).getId();
+				GetOrderCount = order_List.get(i).getOrder_count();
+				GetResult = order_List.get(i).getResult();
+			}
+		}
+		System.out.println("GetResult = "+ GetResult);
+		System.out.println("GetOrderCount = "+ GetOrderCount);
+		if(GetOrderCount > 0 && GetResult.equals("N")) {
+			order_count += GetOrderCount;
+			Check = shoppingCartProductAddService.shoppingCartProductUpdate(id ,order_count);
 
 		}else {
 			System.out.println(" else 실행");

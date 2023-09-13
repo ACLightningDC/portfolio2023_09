@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.DAO;
-import vo.Product;
+import vo.Order_list;
 
 public class ShoppingCartProductAddService {
 
@@ -31,22 +31,22 @@ public class ShoppingCartProductAddService {
 		
 	}
 
-	public int GetCartOrder_count(int users_id, int product_id) {
+	public ArrayList<Order_list> GetCartOrder_Check(int users_id, int product_id) {
 		Connection con = getConnection();
 		DAO dao = DAO.getInstance();
 		dao.setConnection(con);
 		
-		int order_count = dao.GetCartOrder_count(users_id , product_id);
+		ArrayList<Order_list> order_List = dao.GetCartOrder_Check(users_id , product_id);
 		close(con);
-		return order_count;
+		return order_List;
 	}
 
-	public int shoppingCartProductUpdate(int users_id, int product_id, int order_count) {
+	public int shoppingCartProductUpdate(int id, int order_count) {
 		Connection con = getConnection();
 		DAO dao = DAO.getInstance();
 		dao.setConnection(con);
 		
-		int check = dao.shoppingCartProductUpdate(users_id , product_id ,order_count);
+		int check = dao.shoppingCartProductUpdate(id ,order_count);
 		
 		if(check > 0) {
 			commit(con);

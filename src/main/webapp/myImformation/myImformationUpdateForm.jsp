@@ -23,16 +23,20 @@
 				<td><button>비밀번호 변경하기</button></td>
 			</tr>
 			<tr>
+				<th scope="row">유저이름</th>
+				<td>유저 이름<input type= "text" name="name" value="${sessionScope.userinfo.name}"></td>
+			</tr>
+			<tr>
 				<th scope="row">이메일</th>
-				<td>${sessionScope.userinfo.email}</td>
+				<td>이메일<input type= "text" name="email" value="${sessionScope.userinfo.email}"></td>
 			</tr>
 			<tr>
 				<th scope="row">휴대폰</th>
-				<td>${sessionScope.userinfo.phone}</td>
+				<td><input type= "text" name="phone" value="${sessionScope.userinfo.phone}"></td>
 			</tr>
 			<tr>
 				<th scope="row">생일</th>
-				<td>${sessionScope.userinfo.birthday}</td>
+				<td><input type= "date" name="birthday" value="${sessionScope.userinfo.birthday}"></td>
 			</tr>
 			<tr>
 				<th scope="row">등급</th>
@@ -67,19 +71,11 @@
 <form action="usersupdateAction.shop" method="post">
 <label for=""></label>
 <br>유저아이디<input type= "text" name="userid" value="${sessionScope.userinfo.userid}">
-<button>비밀번호 변경하기</button>
 <br>유저 이름<input type= "text" name="name" value="${sessionScope.userinfo.name}">
 <br>유저 전화번호<input type= "text" name="phone" value="${sessionScope.userinfo.phone}">
 <br>유저 생일<input type= "date" name="birthday" value="${sessionScope.userinfo.birthday}">
 <br><input type= "submit" value="입력 확인">
 </form>
-아이디 ${sessionScope.userinfo.userid}<br>
-이름 ${sessionScope.userinfo.name}<br>
-가입일시 ${sessionScope.userinfo.date}<br>
-이메일 ${sessionScope.userinfo.email}<br>
-휴대폰 ${sessionScope.userinfo.phone}<br>
-생일 ${sessionScope.userinfo.birthday}<br>
-등급 ${sessionScope.userinfo.grade}<br>
 
 
 

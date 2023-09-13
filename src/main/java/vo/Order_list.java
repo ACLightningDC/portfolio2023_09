@@ -1,6 +1,7 @@
 package vo;
 
 public class Order_list {
+
 private int id;
 private int users_id;
 private int product_id;
@@ -51,5 +52,9 @@ public String getResult() {
 public void setResult(String result) {
 	this.result = result;
 }
-
+@Override
+public String toString() {
+	return "Order_list [id=" + id + ", users_id=" + users_id + ", product_id=" + product_id + ", order_count="
+			+ order_count + ", delivery=" + delivery + ", date=" + date + ", result=" + result + "]";
+}
 }

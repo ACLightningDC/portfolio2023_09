@@ -50,7 +50,7 @@ insert into product(sellerrMall_id , name , kind , img)value(?,?,?,?);
 
 select *  from order_list l join product r on l.product_id = r.id where product_id = 1 ;
 
-select l.id ,product_id ,users_id, order_count , delivery , l.date , result ,sellerMall_id , price , name , kind ,img  from order_list l join product r on l.product_id = r.id where users_id = 2 ;
+select l.id ,product_id ,users_id, order_count , delivery , l.date , result ,sellerMall_id , price , name , kind ,img  from order_list l join product r on l.product_id = r.id where users_id = 2 and result = 'P';
 select * from order_list.l join product.r on l.product_id = r.id where users_id = 1 ;
 
 select * from address where users_id='2'; 
@@ -62,3 +62,8 @@ select * from inquiry l join  product c on l.product_id = c.id join sellermall r
 
 update address set postcode = ? address1 = ? address2 = ? where id = ?;
 
+update order_list set result = ? where id = ?;
+
+select order_count, result from order_list where users_id= 2 and product_id = 1;
+
+select id , order_count, result from order_list where users_id= 2 and product_id = 1;

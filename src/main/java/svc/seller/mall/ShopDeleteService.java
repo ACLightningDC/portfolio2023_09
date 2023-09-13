@@ -1,4 +1,4 @@
-package action.user.address;
+package svc.seller.mall;
 
 import static db.JdbcUtill.close;
 import static db.JdbcUtill.commit;
@@ -9,24 +9,22 @@ import java.sql.Connection;
 
 import dao.DAO;
 
-public class AddressUpdateService {
+public class ShopDeleteService {
 
-	public int AddressUpdate(String postcode, String address1, String address2, int user_id) {
+	public int shopDelete(int id) {
 		Connection con = getConnection();
 		DAO dao = DAO.getInstance();
 		dao.setConnection(con);
 		
-		int Check = dao.addressUpdate(user_id,postcode ,address1 ,address2 );
-
+		int Check = dao.ShopDelete(id);
+		
 		if(Check > 0  ) {
 			commit(con);
 		}else {
 			rollback(con);
 		}
-		
 		close(con);
-		
 		return Check;
 	}
-	
+
 }

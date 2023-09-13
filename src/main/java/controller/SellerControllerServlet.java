@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-
+import action.Cart.ShoppingBuyDeliveryShowAction;
+import action.Cart.ShoppingresultUpdate;
 import action.user.AddressFormAction;
 import action.user.address.AddressAddAction;
-import action.user.address.AddressBasicSelectAction;
 import action.user.address.AddressDeleteAction;
 import action.user.address.AddressUpdateAction;
 import vo.ActionForward;
@@ -20,14 +20,14 @@ import vo.ActionForward;
 /**
  * Servlet implementation class FrontController
  */
-@WebServlet("*.address")
-public class AddressControllerServlet extends HttpServlet {
+@WebServlet("*.Seller")
+public class SellerControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddressControllerServlet() {
+    public SellerControllerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -77,8 +77,8 @@ public class AddressControllerServlet extends HttpServlet {
 			request.setAttribute("forward", "/AccountRelated/AddressAdd/AddressAddFrom.jsp");
 			forward = new ActionForward("template.jsp", false);
 		}
-		else if(command.equals("/AddressAdd.shop")) {
-			action = new AddressAddAction();
+		if(command.equals("/ShoppingBuyDeliveryShow.Seller")) {
+			action = new ShoppingBuyDeliveryShowAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -86,8 +86,8 @@ public class AddressControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/AddressUpdate.address")) {
-			action = new AddressUpdateAction();
+		if(command.equals("/ShoppingresultUpdate.Seller")) {
+			action = new ShoppingresultUpdate();
 			
 			try {
 				forward = action.execute(request, response);
@@ -95,24 +95,7 @@ public class AddressControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/AddressDelete.address")) {
-			action = new AddressDeleteAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		else if(command.equals("/AddressBasicSelect.address")) {
-			action = new AddressBasicSelectAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+
 
 		 
 		 	System.out.println(forward.getPath());
