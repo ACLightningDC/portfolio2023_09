@@ -65,6 +65,8 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="shoppingCart.shop">장바구니</a></li>
                 <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="resultShopping.shop">배송조회 , 결과조회</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <c:if test="${sessionScope.userinfo.grade == 'S'}">
 					<li><a class="dropdown-item" href="ShoppingMallManage.shop">쇼핑몰 관리하기</a></li>
                 </c:if>	

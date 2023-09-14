@@ -56,8 +56,9 @@ break;
 <c:if test="${not empty requestScope.ShoppingCartList }">
 	<c:forEach var="order" items="${requestScope.ShoppingCartList}">
 	<hr>
+	<c:if test="${order.result==C}">
 	<input id="productCheck" type="checkbox" name="remove" value="${order.id}">	
-	
+	</c:if>
 	제품 보기 
 	<hr>
 		<br>주문번호 : ${order.id} 
@@ -75,23 +76,17 @@ break;
 		<br>이미지: ${order.img}
 		
 		<button type="button" onclick="location.href='shoppingCartProductDetail.shop?product_id=${order.product_id}'">상품 상세보기</button>
-		<button type="button" onclick="productPluse('${order.order_count}','${order.id}');">상품 추가</button>
-		<button type="button" onclick="productMinus('${order.order_count}','${order.id}');">상품 감소</button>
+		<button type="button" onclick="location.href='shoppingCartProductDetail.shop?product_id=${order.product_id}'">배송 조회하기</button>
+		
 		
 		<button type="button" onclick="location.href='inquiryForm.shop?seller_Mall_id=${order.sellerMall_id}&product_id=${order.product_id}'">상품 문의하기</button>
 		
-		<div>
-			<input id="order_id" type="hidden" name="id" value="${order.id}">
-			<input id="orderCount" type="text" name="orderCount" value="">
-			<button type="button" onclick="productCount()">입력 변경</button>		
-		</div>
+
 	<hr>
 	
 	</c:forEach>
 </c:if>
-
-<input type="submit" value ="장바구니 삭제하기" formaction="CartRemove.shop" > 
-<input type="submit" value ="체크한 장바구니 제품 주문하기" formaction="CartBuyForm.shop" onclick="checkform();return false;" > 
+		<input type="submit" value ="배송완료된 제품 삭제하기" formaction="CartRemove.shop" > 
 </form>
 </body>
 </html>

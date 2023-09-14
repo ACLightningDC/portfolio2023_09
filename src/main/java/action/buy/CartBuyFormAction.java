@@ -20,7 +20,14 @@ public class CartBuyFormAction implements Action {
 		CartBuyService cartBuyService = new CartBuyService(); 
 		ArrayList<ShoppingCart> BuyList = cartBuyService.cartBuy(Cartproduct);
 		
+		
+		int sumPrice = 0;
+		for(int i = 0 ; i < BuyList.size() ; i++) {
+			sumPrice += BuyList.get(i).getPrice()*BuyList.get(i).getOrder_count();
+		}
+		
 		request.setAttribute("buyList", BuyList);
+		request.setAttribute("sumPrice", sumPrice);
 		
 		request.setAttribute("forward", "/buy/BuyForm.jsp");
 		ActionForward forward = new ActionForward("template.jsp", false);

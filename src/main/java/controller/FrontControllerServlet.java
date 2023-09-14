@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.Cart.CartCountUpdateAction;
 import action.Cart.CartRemoveAction;
+import action.Cart.ShoppingBuyDeliveryShowAction;
 import action.Cart.ShoppingCartProductAddAction;
 import action.Cart.shoppingCartView;
 import action.buy.CartBuyFormAction;
@@ -21,6 +22,7 @@ import action.mainPage.ShopPageGetAction;
 import action.seller.CreateMallAction;
 import action.seller.ShoppingMallManageAction;
 import action.seller.ShoppingMallManageActionOne;
+import action.seller.mall.ShopDeleteAction;
 import action.seller.product.productAddAction;
 import action.seller.product.productManageAction;
 import action.user.AddressFormAction;
@@ -332,6 +334,15 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/resultShopping.shop")) {
+			action = new ShoppingBuyDeliveryShowAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		 /**
 		  * 제품 상세
 		  */
@@ -444,6 +455,14 @@ public class FrontControllerServlet extends HttpServlet {
 		else if(command.equals("/ShopUpdate.shop")) {
 			request.setAttribute("forward", "/MallManage/ShopManage/ShopUpdateForm.jsp");
 			forward = new ActionForward("template.jsp", false);
+		} 
+		else if(command.equals("/ShopDelete.shop")) {
+			action = new ShopDeleteAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} 
 		 /**
 		  * 제품 관리
