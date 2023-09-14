@@ -8,7 +8,10 @@ select * from product;
 select * from order_list;
 select * from inquiry;
 
+
+
 update order_list set order_count= 3 where users_id = 2 product_id = 2;
+update order_list set result= 'P' where id = 1;
 
 select email from users where email = '0523mytop@gmail.com';
 select email from users where email = ?;

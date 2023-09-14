@@ -19,6 +19,7 @@ public class Users {
 	//입력 필요 null 가능 
 	public String email;
 	public String birthday;
+	public int address_id;
 
 	public Users() {} 
 	
@@ -116,6 +117,14 @@ public class Users {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public int getAddress_id() {
+		return address_id;
+	}
+
+	public void setAddress_id(int address_id) {
+		this.address_id = address_id;
 	}
 
 	

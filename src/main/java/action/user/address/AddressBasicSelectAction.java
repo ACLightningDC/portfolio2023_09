@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import svc.user.address.AddressBasicSelectService;
@@ -23,10 +24,15 @@ public class AddressBasicSelectAction implements Action {
 		
 		int id = Integer.parseInt(request.getParameter("id")); 
 		
+		System.out.println("입력 id"+id);
+		
 		AddressBasicSelectService addressBasicSelectService = new AddressBasicSelectService();
 		int Check = addressBasicSelectService.addressBasicSelect(users_id , id);
 		
 		if(Check > 0  ) {
+			HttpSession session = request.getSession();
+			user.setAddress_id(id);
+			session.setAttribute("userinfo", user);
 			 forward = new ActionForward("AddressForm.shop", false);
 
 		}else {

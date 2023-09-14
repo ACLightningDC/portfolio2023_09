@@ -1,5 +1,7 @@
 package action.seller;
 
+import static util.LoginCheck.CheckLogin;
+
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +18,13 @@ public class CreateMallAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		Users user =  CheckLogin(request, response); 
+
+		int users_id = user.getId();
+		
 		String name = request.getParameter("name");
 		
-		HttpSession session = request.getSession();
-		Users users = (Users)session.getAttribute("userinfo");
 		
-		int users_id = users.getId();
 		
 		CreateMallService createMallService = new CreateMallService();
 		int seller_id = createMallService.getSeller_id(users_id);
@@ -39,7 +42,7 @@ public class CreateMallAction implements Action {
 			out.println("</script>");
 		}else {
 			
-			forward = new ActionForward("homePage.shop", false); 
+			forward = new ActionForward("ShoppingMallManage.shop", false); 
 		}
 		return forward;
 	}

@@ -49,6 +49,61 @@ break;
 </head>
 <body>
 <form method="post" action="" name="CartForm">
+
+	<div class="container">
+		<div class="row mt-5">
+		      <div class="col-12 mx-auto">
+		        <h4 class="d-flex justify-content-between align-items-center mb-3">
+		          <span class="text-primary">현재 쇼핑 카트</span>
+		          <span class="badge bg-primary rounded-pill" id="select_count">0</span>
+		        </h4>
+		        <ul class="list-group mb-3 ">
+		        	<li class="list-group-item d-flex justify-content-between">
+		            	<span>	전체 체크<input type="checkbox" name="allCheck" onclick="CheckAll(this.form)"></span>
+		          	</li>
+			        <c:if test="${not empty requestScope.ShoppingCartList}">
+						<c:forEach var="order" items="${requestScope.ShoppingCartList}" varStatus="status">
+							<li class="list-group-item d-flex justify-content-between lh-sm">
+						            	<img width="300px" alt="안나옴" src="${pageContext.request.contextPath}/images/${order.img}">
+						            	
+							           <h6 class="my-0">${order.name}</h6> 
+							              <small class="text-body-secondary"><br>가격 : ${order.price}</small>
+							              <small class="text-body-secondary"><br>종류: ${order.kind}</small>
+							              <small class="text-body-secondary"><br>주문 개수 : <span id="${status.index}order_count">${order.order_count}</span></small>
+						            <span class="text-body-secondary">체크하기 <input id="productCheck" type="checkbox" name="remove" value="${order.id}" onchange="checkbox(this, ${order.price},${order.order_count} )"> 가격 : <span id="${status.index}price">${order.price}</span></span>
+					          </li>
+					          <li class="list-group-item d-flex lh-sm text-break">
+						          <div class="btn-group" role="group">
+						          		<button class="btn btn-primary btn-sm" type="button" onclick="location.href='shoppingCartProductDetail.shop?product_id=${order.product_id}'">상품 상세보기</button>
+						          		<button class="btn btn-primary btn-sm" type="button" onclick="location.href='inquiryForm.shop?seller_Mall_id=${order.sellerMall_id}&product_id=${order.product_id}'">상품 문의하기</button>
+						          </div>
+						          <div class="btn-group mx-5" role="group">
+						          		<button class="btn btn-primary btn-sm" type="button" onclick="productPluse('${order.order_count}','${order.id}');">상품 추가</button>
+										<button class="btn btn-primary btn-sm" type="button" onclick="productMinus('${order.order_count}','${order.id}');">상품 감소</button>
+						          </div>
+						          
+						         <div id="CountDiv">
+									<input id="${order.id}order_id" type="hidden" name="id" value="${order.id}">
+									<input id="${order.id}orderCount" type="text" name="orderCount">
+									<button class="btn btn-primary btn-sm" type="button" onclick="productCount(${order.id})">입력 변경</button>		
+								</div>
+					          </li>
+					          </li>
+						</c:forEach>
+					</c:if>
+		          <li class="list-group-item d-flex">
+		            <span >총가격  &nbsp; </span>
+		            <strong id="sum_price">0</strong> &#8361
+		          </li>
+		        </ul>
+		</div>
+	</div>
+	
+	</div>
+</form>
+
+
+<form method="post" action="" name="CartForm">
 	전체 체크<input type="checkbox" name="allCheck" onclick="CheckAll(this.form)">
 	<br>
 	<c:set var="totalmoney" value="0"></c:set>

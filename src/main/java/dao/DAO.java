@@ -88,6 +88,7 @@ public class DAO {
 				userInfo.setPhone(rs.getString("phone"));
 				userInfo.setBirthday(rs.getString("birthday"));
 				userInfo.setGrade(rs.getString("grade"));
+				userInfo.setAddress_id(rs.getInt("address_id"));
 			}
 		}catch(Exception e){
 			System.out.println("[DAO] getUsersInfo 에러" + e );
@@ -1020,11 +1021,12 @@ public class DAO {
 
 	public int addressBasicSelect(int users_id, int id) {
 		int check = 0;
-		String sql =" update users set result address_id = ? where id = ? ";
+		String sql =" update users set address_id = ? where id = ? ";
 		try {
 								
 			pstmt = con.prepareStatement(sql);
-			
+			System.out.println("입력 id"+id);
+
 			pstmt.setInt(1, id);
 			pstmt.setInt(2, users_id);
 			check= pstmt.executeUpdate();
@@ -1035,6 +1037,45 @@ public class DAO {
 				close(pstmt);
 			}
 		return check;
+	}
+
+	public ArrayList<ShoppingCart> OrderManageShow(int sellerMallid) {
+		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
+		String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+				+ " ,sellerMall_id , price , name , kind ,img  "
+				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ?  and result = 'P'";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, sellerMallid);	
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ShoppingCart shoppingCart = new ShoppingCart();
+				shoppingCart.setId(rs.getInt("id"));
+				shoppingCart.setUsers_id(rs.getInt("users_id"));
+				shoppingCart.setProduct_id(rs.getInt("product_id"));
+				shoppingCart.setOrder_count(rs.getInt("order_count"));
+				shoppingCart.setDelivery(rs.getString("delivery"));
+				shoppingCart.setDate(rs.getString("date"));
+				shoppingCart.setResult(rs.getString("result"));
+				
+				shoppingCart.setSellerMall_id(rs.getInt("sellerMall_id"));
+				shoppingCart.setPrice(rs.getInt("price"));
+				shoppingCart.setName(rs.getString("name"));
+				shoppingCart.setKind(rs.getString("kind"));
+				shoppingCart.setImg(rs.getString("img"));
+				shoppingCartList.add(shoppingCart);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] OrderManageShow 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return shoppingCartList;
 	}
 
 

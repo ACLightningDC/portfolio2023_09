@@ -43,9 +43,12 @@
 </c:if>
 		<input type="hidden" name="result" value="P">
 		
+		기본 주소 사용하기 
+		<c:if test="${not empty sessionScope.userinfo.address_id}">
+			<input type="text" name="address_id" value="${sessionScope.userinfo.address_id}"		
+		</c:if>
 		
-		<br><button type="button" onclick="">배송지 선택 </button>
-
+		<br><button type="button" onclick="">배송지 선택</button>
 	</form>
 
 <form id="payForm">

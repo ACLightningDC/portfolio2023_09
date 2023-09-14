@@ -17,12 +17,15 @@
 	  <div class="card-body">
 	    <h5 class="card-title"></h5>
 	    <p class="card-text">
+	    
+			<br>아이디${addressList.id}
+			<br>${sessionScope.userinfo.address_id}
 			<br>우편번호 ${addressList.postcode}
 			<br>주소${addressList.address1}
 			<br>상세 주소${addressList.address2}
 	    </p>
 			<button class="btn btn-primary" onclick="location.href='AddressDelete.address?id=${addressList.id}'">주소 삭제</button>
-			<button class="btn btn-primary" onclick="location.href='AddressBasicSelect.address?id=${addressList.id}'" >기본 주소로 선택</button>
+			<button class="btn btn-primary" onclick="location.href='AddressBasicSelect.address?id=${addressList.id}'"  ${sessionScope.userinfo.address_id == addressList.id ? "disabled='disabled'":"" } >${sessionScope.userinfo.address_id == addressList.id ? "선택됨":"기본주소로 선택" }</button>
 	  </div>
 	</div>
 	</c:forEach>

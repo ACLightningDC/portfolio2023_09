@@ -19,9 +19,7 @@ public class ShoppingMallManageActionOne implements Action {
 		HttpSession session = request.getSession();
 		
 		int sellerMallid = Integer.parseInt(request.getParameter("sellerMallid")) ;
-		System.out.println("셀러 몰 아이디"+sellerMallid);
 		int Seller_id = (int)session.getAttribute("Seller_id");
-		System.out.println("셀러 아이디"+Seller_id);
 		
 		session.setAttribute("sellerMallid", sellerMallid);
 		
