@@ -48,18 +48,15 @@ break;
 </script>
 </head>
 <body>
-<form method="post" action="" name="CartForm">
-	전체 체크<input type="checkbox" name="allCheck" onclick="CheckAll(this.form)">
-	<br>
-	<c:set var="totalmoney" value="0"></c:set>
+<form action="orderManageDeliveryregistration.Seller" method="post">
 
 <c:if test="${not empty requestScope.ShoppingCartList }">
 	<c:forEach var="order" items="${requestScope.ShoppingCartList}">
-	<hr>
-	<input id="productCheck" type="checkbox" name="remove" value="${order.id}">	
 	
 	제품 보기 
 	<hr>
+	         <input type="hidden" class="form-control" id="order_list_id" name="order_list_id" value="${order.id} ">
+	
 		<br>주문번호 : ${order.id} 
 		<br>유저 아이디 : ${order.users_id}
 		<br>제품 아이디 : ${order.product_id}
@@ -81,8 +78,23 @@ break;
 	</c:forEach>
 </c:if>
 
-<input type="submit" value ="체크한 결제 상품 승인 취소" formaction="CartRemove.shop" > 
-<input type="submit" value ="체크한 장바구니 제품 배송하기" formaction="orderManageDelivery.Seller" onclick="checkform();return false;" > 
+
+배송 운송장 배송회사 선택
+
+            <div class="form-group">
+              <label for="t_code">택배사 코드</label>
+              <input type="text" class="form-control" name="delivery_company" id="delivery_company" placeholder="택배사 코드">
+            </div>
+            <div class="form-group">
+              <label for="t_invoice">운송장 번호</label>
+              <input type="text" class="form-control" name="delivery_num" id="delivery_num" placeholder="운송장 번호">
+            </div>
+            <button type="submit" class="btn btn-default">제품 배송등록</button>
+        </form>
+        
+
+ <input type="submit" value ="제품 배송시작" formaction="orderManageDelivery.Seller" onclick="checkform();return false;" >
+ 
 </form>
 </body>
 </html>

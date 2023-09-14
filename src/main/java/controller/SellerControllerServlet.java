@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.Cart.ShoppingBuyDeliveryShowAction;
 import action.Cart.ShoppingresultUpdate;
+import action.seller.order.orderManageDeliveryAction;
 import action.user.AddressFormAction;
 import action.user.address.AddressAddAction;
 import action.user.address.AddressDeleteAction;
@@ -76,6 +77,26 @@ public class SellerControllerServlet extends HttpServlet {
 		else if(command.equals("/AddressAddForm.shop")) {
 			request.setAttribute("forward", "/AccountRelated/AddressAdd/AddressAddFrom.jsp");
 			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/orderManageDelivery.Seller")) {
+			action = new orderManageDeliveryAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		else if(command.equals("/orderManageDeliveryregistration.Seller")) {
+			action = new orderManageDeliveryregistrationAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		if(command.equals("/ShoppingBuyDeliveryShow.Seller")) {
 			action = new ShoppingBuyDeliveryShowAction();

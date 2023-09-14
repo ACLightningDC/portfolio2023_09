@@ -59,7 +59,12 @@ break;
 		        </h4>
 		        <ul class="list-group mb-3 ">
 		        	<li class="list-group-item d-flex justify-content-between">
-		            	<span>	전체 체크<input type="checkbox" name="allCheck" onclick="CheckAll(this.form)"></span>
+		        	<div>
+		        		<input class="form-check-input" id="allCheck_id" type="checkbox" class="form-check form-check-inline" name="allCheck" onclick="CheckAll(this.form)">
+		        		 <label class="form-check-label" for="allCheck_id">
+						전체 체크  						
+						</label>
+		        	</div>
 		          	</li>
 			        <c:if test="${not empty requestScope.ShoppingCartList}">
 						<c:forEach var="order" items="${requestScope.ShoppingCartList}" varStatus="status">
@@ -70,7 +75,12 @@ break;
 							              <small class="text-body-secondary"><br>가격 : ${order.price}</small>
 							              <small class="text-body-secondary"><br>종류: ${order.kind}</small>
 							              <small class="text-body-secondary"><br>주문 개수 : <span id="${status.index}order_count">${order.order_count}</span></small>
-						            <span class="text-body-secondary">체크하기 <input id="productCheck" type="checkbox" name="remove" value="${order.id}" onchange="checkbox(this, ${order.price},${order.order_count} )"> 가격 : <span id="${status.index}price">${order.price}</span></span>
+						            <span class="text-body-secondary">
+						            <input class="form-check-input" id="productCheck" type="checkbox" name="remove" value="${order.id}" onchange="checkbox(this, ${order.price},${order.order_count} )">
+						            <label class="form-check-label" for="productCheck">
+									제품 선택 체크  						
+									</label>
+						            <br>가격 : <span id="${status.index}price">${order.price}</span></span>
 					          </li>
 					          <li class="list-group-item d-flex lh-sm text-break">
 						          <div class="btn-group" role="group">
@@ -78,14 +88,28 @@ break;
 						          		<button class="btn btn-primary btn-sm" type="button" onclick="location.href='inquiryForm.shop?seller_Mall_id=${order.sellerMall_id}&product_id=${order.product_id}'">상품 문의하기</button>
 						          </div>
 						          <div class="btn-group mx-5" role="group">
-						          		<button class="btn btn-primary btn-sm" type="button" onclick="productPluse('${order.order_count}','${order.id}');">상품 추가</button>
-										<button class="btn btn-primary btn-sm" type="button" onclick="productMinus('${order.order_count}','${order.id}');">상품 감소</button>
+						          		<button class="btn btn-primary btn-sm" type="button" onclick="productPluse('${order.order_count}','${order.id}');">상품 개수 추가</button>
+										<button class="btn btn-primary btn-sm" type="button" onclick="productMinus('${order.order_count}','${order.id}');">상품 개수 감소</button>
 						          </div>
 						          
 						         <div id="CountDiv">
 									<input id="${order.id}order_id" type="hidden" name="id" value="${order.id}">
-									<input id="${order.id}orderCount" type="text" name="orderCount">
-									<button class="btn btn-primary btn-sm" type="button" onclick="productCount(${order.id})">입력 변경</button>		
+									<div class="row g-3 align-items-center">
+										  <div class="col-auto">
+										    <label for="${order.id}orderCount" class="col-form-label">제품 개수</label>
+										  </div>
+										  <div class="col-auto">
+											<input id="${order.id}orderCount"  class="form-control" type="text" name="orderCount" aria-describedby="orderCountHelpInline">
+										  </div>
+										  <div class="col-auto">
+										    <span id="orderCountHelpInline" class="form-text">
+										      1개 이상의 수 부탁드립니다
+										    </span>
+										  </div>
+										  <div class="col-auto">
+											<button class="btn btn-primary btn-sm" type="button" onclick="productCount(${order.id})">입력 변경</button>		
+										  </div>
+										</div>
 								</div>
 					          </li>
 					          </li>
