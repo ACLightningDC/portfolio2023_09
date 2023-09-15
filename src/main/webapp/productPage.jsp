@@ -16,41 +16,6 @@
 <title>Insert title here</title>
 </head>
 
-<script>
-	//이전 버튼
-	function fn_prev(page, range, rangeSize){
-		var page = ((range - 2) * rangeSize) + 1;
-		var range = range -1;
-		
-	    var url = "productPage.shop"; //확인요
-		url = url + "?page=" + page;
-		url = url + "&range=" + range;
-		
-		location.href = url;
-	}
-	
-	//페이지 번호 클릭
-	function fn_page(page, range, rangeSize, searchType, keyword){
-		var url = "productPage.shop"; //확인요
-		url = url + "?page=" + page;
-		url = url + "&range=" + range;
-		
-		location.href = url;
-	} 
-	
-	//다음 버튼
-	function fn_next(page, range, rangeSiae){
-		var page = parseInt((range * rangeSiae)) + 1;
-		var range = parseInt(range) + 1;
-		
-		var url = "productPage.shop"; //확인요
-		url = url + "?page=" + page;
-		url = url + "&range=" + range;
-		
-		location.href = url;
-	}
-	
-</script>
 <body>
 
 products
@@ -75,30 +40,40 @@ ${requestScope.products[0].name}
 	</c:forEach>
 </c:if>
 
-<BR>상품개수${page.listCnt}
-<BR>페이지${page.page}
-<br>이전 페이지${page.prev}
-<br>이전 페이지${page.pageCnt}
+${pageInfo.startPage}
+
 <!-- 페이지네이션 -->
 <nav id="" aria-label="Page navigation example">
-  <ul class="pagination">
-  	<c:if test="${page.prev}">
-   	 	<li class="page-item">
-   	 		<a class="page-link" href="#" onClick="fn_prev('${page.page}', ${page.range}, ${page.rangeSize})">Previous</a>
-   	 	</li>
-	</c:if>
-	
-	<c:forEach begin="${page.startPage}" end="${page.endPage}" var="idx">
-    	<li class="page-item ${page.page == idx ? 'active' : ''}">
-    		<a class="page-link" href="#" onClick = "fn_page('${idx}', ${page.range}, ${page.rangeSize})">${idx}</a>
-    	</li>
-    </c:forEach>
-    
-    <c:if test="${page.next}">
-    	<li class="page-item">
-  			<a class="page-link" href="#" onClick="fn_next('${page.rangSize}', ${page.range}, ${page.rangeSize})">Next</a>
-  		</li>
+  <ul class="pagination justify-content-center">
+    <c:if test="${pageInfo.page <= 1}">
+        [이전]&nbsp;
     </c:if>
+    <c:choose>
+        <c:when test="${pageInfo.page > 1}">
+            <a href="productPage.shop?page=${pageInfo.page - 1}">[이전]</a>&nbsp;
+        </c:when>
+    </c:choose>
+
+    <c:forEach var="page" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
+        <c:choose>
+            <c:when test="${pageInfo.page == page}">
+                [<c:out value="${page}"/>]
+            </c:when>
+            <c:otherwise>
+                <a href="productPage.shop?page=${page}">[<c:out value="${page}"/>]</a>&nbsp;
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+
+    <c:if test="${pageInfo.page >= pageInfo.maxPage}">
+        [다음]
+    </c:if>
+    <c:choose>
+        <c:when test="${pageInfo.page < pageInfo.maxPage}">
+            <a href="productPage.shop?page=${pageInfo.page + 1}">[다음]</a>
+        </c:when>
+    </c:choose>
+    
   </ul>
 </nav>
 

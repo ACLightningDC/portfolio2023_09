@@ -86,3 +86,8 @@ insert into product(sellerMall_id , price ,name ,kind, img)value(1 , 2000 ,'홍�
 insert into product(sellerMall_id , price ,name ,kind, img)value(1 , 2000 ,'홍길동 쇼핑몰 제품' , '개' ,'Golden_retriever.jpg');
 insert into product(sellerMall_id , price ,name ,kind, img)value(1 , 2000 ,'홍길동 쇼핑몰 제품' , '개' ,'Golden_retriever.jpg');
 insert into product(sellerMall_id , price ,name ,kind, img)value(1 , 2000 ,'홍길동 쇼핑몰 제품' , '개' ,'Golden_retriever.jpg');
+
+select count(*) cnt from product;
+select count(*) cnt from product
+select  * from product LIMIT 0 , 15;
+select  * from product LIMIT 14 , 15;
