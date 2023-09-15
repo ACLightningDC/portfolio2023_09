@@ -482,15 +482,17 @@ public class DAO {
 			
 		return productList;
 	}
-
-	public ArrayList<Product> getAllProductList() {
+/********************************************************************/
+	/********************************************************************/
+	public ArrayList<Product> productPageGetList(int first , int limit) {
 		 ArrayList<Product> productList = new ArrayList<Product>();
-			String sql = " select * from product ";
+			String sql = " select  * from product LIMIT ? , ?";
 			try {
-				
 				pstmt = con.prepareStatement(sql);
 				
-				
+				pstmt.setInt(1, first);
+				pstmt.setInt(2, limit);
+				//pstmt.setInt(1, page);
 				rs= pstmt.executeQuery();
 				
 				while(rs.next()) {
@@ -508,7 +510,7 @@ public class DAO {
 				}
 				
 			}catch(Exception e){
-				System.out.println("[DAO] getAllProductList 에러" + e );
+				System.out.println("[DAO] productPageGetList 에러" + e );
 			}finally {
 				close(rs);
 				close(pstmt);
@@ -516,6 +518,32 @@ public class DAO {
 				
 			return productList;
 	}
+	
+	public int getAllProductListCnt() {
+		 int cnt = 0;
+			String sql = " select count(*) cnt from product ";
+			try {
+				
+				pstmt = con.prepareStatement(sql);
+				
+				//pstmt.setInt(1, page);
+				rs= pstmt.executeQuery();
+				
+				if(rs.next()) {
+					cnt = rs.getInt(1);
+				}
+				
+			}catch(Exception e){
+				System.out.println("[DAO] getAllProductListCnt 에러" + e );
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+				
+			return cnt;
+	}
+
+	/********************************************************************/
 
 	public ArrayList<sellermall> getAllsellermallList() {
 		 ArrayList<sellermall> sellerMalls = new ArrayList<sellermall>();
