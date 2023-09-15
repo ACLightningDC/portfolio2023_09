@@ -1,6 +1,6 @@
 package vo;
 
-public class delivery {
+public class Delivery {
 	private int id;
 	private int order_list_id;
 	private int delivery_company;

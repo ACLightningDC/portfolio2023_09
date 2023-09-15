@@ -1,5 +1,21 @@
-<Context>	
+<Context>
+	<!-- 
 	<Resource name="jdbc/portfolio" 
+	   auth="Container"
+	   type="javax.sql.DataSource" 
+	   
+	   username="ipc23ajkk" 
+	   password="ipc23ajkk"
+	   driverClassName="com.mysql.cj.jdbc.Driver"
+	   url="jdbc:mysql://118.131.179.138/ipc23ajkk?serverTimezone=Asia/Seoul"
+	   
+	   factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+	   
+	   maxActive="500" 
+	   maxIdle="100"
+	   maxWait="1000"/> 
+	 -->   
+		<Resource name="jdbc/portfolio" 
 	   auth="Container"
 	   type="javax.sql.DataSource" 
 	   
@@ -8,10 +24,9 @@
 	   driverClassName="com.mysql.cj.jdbc.Driver"
 	   url="jdbc:mysql://127.0.0.1:3306/testdb?serverTimezone=Asia/Seoul"
 	   
-	   
 	   factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 	   
 	   maxActive="500" 
 	   maxIdle="100"
-	   maxWait="1000"/> 
+	   maxWait="1000"/>
 </Context>

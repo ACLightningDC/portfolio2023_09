@@ -1,6 +1,6 @@
 package action.user.address;
 
-import static util.LoginCheck.CheckLogin;
+import static util.action.ActionUtil.CheckLogin;
 
 import java.io.PrintWriter;
 

@@ -22,7 +22,7 @@ public class ProductPageGetAction implements Action {
 
 		request.setAttribute("products", products);
 		
-		request.setAttribute("forward", "productPage.jsp");
+		request.setAttribute("forward", "/mainPage/productPage.jsp");
 		ActionForward forward = new ActionForward("template.jsp", false);	
 		return forward;
 	}

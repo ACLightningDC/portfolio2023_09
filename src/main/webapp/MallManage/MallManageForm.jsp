@@ -14,6 +14,7 @@
 
 <br><button onclick="location.href='inquiryManage.shop'">문의사항 답변하기</button>
 <br><button onclick="location.href='orderManage.shop'">배송 관리하기</button>
+<br><button onclick="location.href='orderManageSales.Seller'">매출 확인</button>
 
 <br><button onclick="location.href='ShopUpdate.shop'">쇼핑몰 변경하기</button>
 <br><button onclick="location.href='ShopDelete.shop?id=${sellerMallid}'">쇼핑몰 삭제</button>

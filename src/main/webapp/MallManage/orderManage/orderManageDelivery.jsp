@@ -12,50 +12,18 @@
 
 </script>
 <script type="text/javascript">
-function checkform()
-{
-  if($('[name=remove]:checked').length == 0) {
-    alert('항목을 체크하여 주십시오');
-    $('[name=remove]:eq(0)').focus();
-    return false;
-  }else{
-	  docuemnt.CartForm.submit();
-  }
-}
 
-function check()
-{
-  var effect_reason_yn = false;
- 
- 
-  var effect_reason = document.getElementsByName('effect_reason[]');
-  for (var i=0; i<effect_reason.length; i++)
-  {
-      if (effect_reason[i].checked == true)
-        {
-effect_reason_yn = true;
-break;
-        }
-      }
-
-      if (effect_reason_yn == false)
-      {
-        alert('항목을 체크하여 주십시오');
-        effect_reason[0].focus();
-        return false;
-      }
-}
 </script>
 </head>
 <body>
 <form action="orderManageDeliveryregistration.Seller" method="post">
-
-<c:if test="${not empty requestScope.ShoppingCartList }">
-	<c:forEach var="order" items="${requestScope.ShoppingCartList}">
+배송 리스트 ${requestScope.buyList}
+<c:if test="${not empty requestScope.buyList }">
+	<c:forEach var="order" items="${requestScope.buyList}">
 	
 	제품 보기 
 	<hr>
-	         <input type="hidden" class="form-control" id="order_list_id" name="order_list_id" value="${order.id} ">
+	         <input type="hidden" class="form-control" id="order_list_id" name="order_list_id" value="${order.id}">
 	
 		<br>주문번호 : ${order.id} 
 		<br>유저 아이디 : ${order.users_id}
@@ -93,7 +61,6 @@ break;
         </form>
         
 
- <input type="submit" value ="제품 배송시작" formaction="orderManageDelivery.Seller" onclick="checkform();return false;" >
  
 </form>
 </body>

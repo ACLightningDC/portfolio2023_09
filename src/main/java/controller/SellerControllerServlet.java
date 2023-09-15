@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.Cart.ShoppingBuyDeliveryShowAction;
 import action.Cart.ShoppingresultUpdate;
+import action.seller.mall.orderManageSalesView;
 import action.seller.order.orderManageDeliveryAction;
+import action.seller.order.orderManageDeliveryregistrationAction;
 import action.user.AddressFormAction;
 import action.user.address.AddressAddAction;
 import action.user.address.AddressDeleteAction;
@@ -109,6 +111,15 @@ public class SellerControllerServlet extends HttpServlet {
 		}
 		if(command.equals("/ShoppingresultUpdate.Seller")) {
 			action = new ShoppingresultUpdate();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if(command.equals("/orderManageSales.Seller")) {
+			action = new orderManageSalesView();
 			
 			try {
 				forward = action.execute(request, response);

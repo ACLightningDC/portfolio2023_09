@@ -1,6 +1,6 @@
 package action.seller.order;
 
-import static util.LoginCheck.CheckLogin;
+import static util.action.ActionUtil.CheckLogin;
 
 import java.util.ArrayList;
 
