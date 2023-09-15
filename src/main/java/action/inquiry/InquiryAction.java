@@ -19,7 +19,6 @@ public class InquiryAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		Users user = CheckLogin(request,response);
-		
 		int users_id = user.getId();
 		
 		int seller_Mall_id = Integer.parseInt(request.getParameter("seller_Mall_id"));
@@ -33,7 +32,7 @@ public class InquiryAction implements Action {
 		int Check= inquiryService.Makeinquiry(users_id , seller_Mall_id ,product_id, Inquiry_name , Inquiry_contents );
 		
 		ActionForward forward = null;
-		if(Check > 0 ) {
+		if(Check != 0 ) {
 			request.setAttribute("forward", "/inquiry/inquiryUser.shop");
 			forward = new ActionForward("template.jsp", false);
 		}else {			
