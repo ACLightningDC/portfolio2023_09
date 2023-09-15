@@ -1,10 +1,11 @@
 package action.seller;
 
+import static util.action.ActionUtil.*;
+
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import action.Action;
 import svc.seller.CreateMallService;
@@ -16,31 +17,21 @@ public class CreateMallAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		Users user =  CheckLogin(request, response); 
+		int users_id = user.getId();
+		
 		String name = request.getParameter("name");
-		
-		HttpSession session = request.getSession();
-		Users users = (Users)session.getAttribute("userinfo");
-		
-		int users_id = users.getId();
 		
 		CreateMallService createMallService = new CreateMallService();
 		int seller_id = createMallService.getSeller_id(users_id);
-		
 		int Check = createMallService.createMall(seller_id , name);
 		
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();	
-		ActionForward forward = null;
+		
+		ActionForward forwardGet = new ActionForward("ShoppingMallManage.shop", false); 
+		String Message = "쇼핑몰 생성에 실패했습니다.";
 
-		if(Check < 0  ) {
-			out.println("<script>");
-			out.println("alert('실패했습니다.');");
-			out.println("history.back()");
-			out.println("</script>");
-		}else {
-			
-			forward = new ActionForward("homePage.shop", false); 
-		}
+		ActionForward forward = ActionForwardForUpdateController(response, Check, Message, forwardGet);
+		
 		return forward;
 	}
 

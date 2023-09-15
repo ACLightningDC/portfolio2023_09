@@ -1,6 +1,6 @@
 package action.Cart;
 
-import static util.LoginCheck.CheckLogin;
+import static util.action.ActionUtil.CheckLogin;
 
 import java.util.ArrayList;
 
@@ -18,8 +18,8 @@ public class ShoppingBuyDeliveryShowAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		Users user =  CheckLogin(request, response); 
-
 		int users_id = user.getId();
 		
 		ShoppingBuyDeliveryShowService shoppingBuyDeliveryShowService = new ShoppingBuyDeliveryShowService();

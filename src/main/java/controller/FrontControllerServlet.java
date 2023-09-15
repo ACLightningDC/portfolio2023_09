@@ -23,6 +23,7 @@ import action.seller.CreateMallAction;
 import action.seller.ShoppingMallManageAction;
 import action.seller.ShoppingMallManageActionOne;
 import action.seller.mall.ShopDeleteAction;
+import action.seller.order.OrderManageAction;
 import action.seller.product.productAddAction;
 import action.seller.product.productManageAction;
 import action.user.AddressFormAction;
@@ -498,10 +499,19 @@ public class FrontControllerServlet extends HttpServlet {
 		 /**
 		  * 배송관리
 		  */
-		else if(command.equals("/orderManage.shop.shop")) {
+		else if(command.equals("/orderManage.shop")) {
+			action = new OrderManageAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			request.setAttribute("forward", "/MallManage/orderManage/orderManage.jsp");
 			forward = new ActionForward("template.jsp", false);
 		} 
+
 		 
 		 	System.out.println(forward.getPath());
 		if(forward !=null) {

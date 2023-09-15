@@ -1,5 +1,7 @@
 package action.Cart;
 
+import static util.action.ActionUtil.CheckLogin;
+
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import action.Action;
 import svc.Cart.ShoppingCartViewService;
-import static util.LoginCheck.CheckLogin;
 import vo.ActionForward;
 import vo.ShoppingCart;
 import vo.Users;

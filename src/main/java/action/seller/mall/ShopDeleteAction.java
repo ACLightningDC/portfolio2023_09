@@ -1,5 +1,7 @@
 package action.seller.mall;
 
+import static util.action.ActionUtil.CheckLogin;
+
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import svc.seller.mall.ShopDeleteService;
 import vo.ActionForward;
-import static util.LoginCheck.CheckLogin;
 
 public class ShopDeleteAction implements Action {
 

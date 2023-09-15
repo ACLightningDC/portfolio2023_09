@@ -45,7 +45,7 @@ public class ShopPageGetAction implements Action {
 		
 		request.setAttribute("sellermalls", sellermalls);
 		
-		request.setAttribute("forward", "shopPage.jsp");
+		request.setAttribute("forward", "mainPage/shopPage.jsp");
 		ActionForward forward = new ActionForward("template.jsp", false);	
 		return forward;
 	}

@@ -8,7 +8,10 @@ select * from product;
 select * from order_list;
 select * from inquiry;
 
+
+
 update order_list set order_count= 3 where users_id = 2 product_id = 2;
+update order_list set result= 'P' where id = 1;
 
 select email from users where email = '0523mytop@gmail.com';
 select email from users where email = ?;
@@ -63,7 +66,7 @@ select * from inquiry l join  product c on l.product_id = c.id join sellermall r
 update address set postcode = ? address1 = ? address2 = ? where id = ?;
 
 update order_list set result = ? where id = ?;
-
+insert into delivery (order_list_id,delivery_company,delivery_num)value(?,?,?)
 select order_count, result from order_list where users_id= 2 and product_id = 1;
 
 select id , order_count, result from order_list where users_id= 2 and product_id = 1;

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import static db.JdbcUtill.*;
 
 import vo.Address;
+import vo.Delivery;
 import vo.InquiryUser;
 import vo.Order_list;
 import vo.Product;
@@ -88,6 +89,7 @@ public class DAO {
 				userInfo.setPhone(rs.getString("phone"));
 				userInfo.setBirthday(rs.getString("birthday"));
 				userInfo.setGrade(rs.getString("grade"));
+				userInfo.setAddress_id(rs.getInt("address_id"));
 			}
 		}catch(Exception e){
 			System.out.println("[DAO] getUsersInfo 에러" + e );
@@ -703,6 +705,44 @@ public class DAO {
 		
 		return shoppingCartList;
 	}
+	public ArrayList<ShoppingCart> orderManageSalesView(int sellerMallid) {
+		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
+		String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+				+ " ,sellerMall_id , price , name , kind ,img  "
+				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ? order by result ,date asc ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, sellerMallid);	
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ShoppingCart shoppingCart = new ShoppingCart();
+				shoppingCart.setId(rs.getInt("id"));
+				shoppingCart.setUsers_id(rs.getInt("users_id"));
+				shoppingCart.setProduct_id(rs.getInt("product_id"));
+				shoppingCart.setOrder_count(rs.getInt("order_count"));
+				shoppingCart.setDelivery(rs.getString("delivery"));
+				shoppingCart.setDate(rs.getString("date"));
+				shoppingCart.setResult(rs.getString("result"));
+				
+				shoppingCart.setSellerMall_id(rs.getInt("sellerMall_id"));
+				shoppingCart.setPrice(rs.getInt("price"));
+				shoppingCart.setName(rs.getString("name"));
+				shoppingCart.setKind(rs.getString("kind"));
+				shoppingCart.setImg(rs.getString("img"));
+				shoppingCartList.add(shoppingCart);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] orderManageSalesView 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return shoppingCartList;
+	}
 
 	public int shoppingCartProductUpdate(int id, int order_count) {
 		int check = 0;
@@ -1048,11 +1088,12 @@ public class DAO {
 
 	public int addressBasicSelect(int users_id, int id) {
 		int check = 0;
-		String sql =" update users set result address_id = ? where id = ? ";
+		String sql =" update users set address_id = ? where id = ? ";
 		try {
 								
 			pstmt = con.prepareStatement(sql);
-			
+			System.out.println("입력 id"+id);
+
 			pstmt.setInt(1, id);
 			pstmt.setInt(2, users_id);
 			check= pstmt.executeUpdate();
@@ -1064,6 +1105,85 @@ public class DAO {
 			}
 		return check;
 	}
+
+	public ArrayList<ShoppingCart> OrderManageShow(int sellerMallid) {
+		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
+		String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+				+ " ,sellerMall_id , price , name , kind ,img  "
+				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ?  and result = 'P' or result = 'D' order by result desc";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, sellerMallid);	
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ShoppingCart shoppingCart = new ShoppingCart();
+				shoppingCart.setId(rs.getInt("id"));
+				shoppingCart.setUsers_id(rs.getInt("users_id"));
+				shoppingCart.setProduct_id(rs.getInt("product_id"));
+				shoppingCart.setOrder_count(rs.getInt("order_count"));
+				shoppingCart.setDelivery(rs.getString("delivery"));
+				shoppingCart.setDate(rs.getString("date"));
+				shoppingCart.setResult(rs.getString("result"));
+				
+				shoppingCart.setSellerMall_id(rs.getInt("sellerMall_id"));
+				shoppingCart.setPrice(rs.getInt("price"));
+				shoppingCart.setName(rs.getString("name"));
+				shoppingCart.setKind(rs.getString("kind"));
+				shoppingCart.setImg(rs.getString("img"));
+				shoppingCartList.add(shoppingCart);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] OrderManageShow 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return shoppingCartList;
+	}
+
+	public int OrderManageDeliveryregistration(int order_list_id, Delivery delivery) {
+		int check = 0;
+		String sql =" insert into delivery (order_list_id,delivery_company,delivery_num)value(?,?,?)";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, order_list_id);
+			pstmt.setInt(2, delivery.getDelivery_company());
+			pstmt.setInt(3, delivery.getDelivery_num());
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] OrderManageDeliveryregistration 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+
+	public int OrderManageDeliveryresultChange(int id) {
+		int check = 0;
+		String sql =" update order_list set result = ? where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, "D");
+			pstmt.setInt(2, id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] OrderManageDeliveryresultChange 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+	
 
 
 	

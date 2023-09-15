@@ -72,8 +72,12 @@ public class ProductPageGetAction implements Action {
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("products", products);
 		
+<<<<<<< HEAD
 		request.setAttribute("forward", "productPage.jsp");
 		
+=======
+		request.setAttribute("forward", "/mainPage/productPage.jsp");
+>>>>>>> branch 'master' of https://github.com/ACLightningDC/portfolio2023_09.git
 		ActionForward forward = new ActionForward("template.jsp", false);	
 		return forward;
 	}

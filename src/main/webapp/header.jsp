@@ -19,17 +19,25 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-light  ">
       <div class="container-fluid ">
-        <a class="navbar-brand " href="homePage.shop">홈쇼핑 ${sessionScope.userinfo.id}</a>
+        <a class="navbar-brand " href="${pageContext.request.contextPath}/homePage.shop">홈쇼핑 ${sessionScope.userinfo.id}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
+<<<<<<< HEAD
               <a class="nav-link active" aria-current="page" href="productPage.shop?page=1">상품별 보기</a>
+=======
+              <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/productPage.shop">상품별 보기</a>
+>>>>>>> branch 'master' of https://github.com/ACLightningDC/portfolio2023_09.git
             </li>
             <li class="nav-item">
+<<<<<<< HEAD
               <a class="nav-link" href="shopPage.shop?page=1">매장별 보기</a>
+=======
+              <a class="nav-link" href="${pageContext.request.contextPath}/shopPage.shop">매장별 보기</a>
+>>>>>>> branch 'master' of https://github.com/ACLightningDC/portfolio2023_09.git
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -61,29 +69,29 @@
                 내정보 관리 ${sessionScope.userinfo.grade} ${sessionScope.userinfo.grade == 'S'}
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="myImformationForm.shop">내 정보 변경 , 확인</a></li>
+                <li><a class="dropdown-item" href="<%=request.getContextPath()%>/myImformationForm.shop">내 정보 변경 , 확인</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="shoppingCart.shop">장바구니</a></li>
+                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shoppingCart.shop">장바구니</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="resultShopping.shop">배송조회 , 결과조회</a></li>
+                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/resultShopping.shop">배송조회 , 결과조회</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <c:if test="${sessionScope.userinfo.grade == 'S'}">
-					<li><a class="dropdown-item" href="ShoppingMallManage.shop">쇼핑몰 관리하기</a></li>
+					<li><a class="dropdown-item" href="${pageContext.request.contextPath}/ShoppingMallManage.shop">쇼핑몰 관리하기</a></li>
                 </c:if>	
                 
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="logout.shop">로그아웃</a>
+              <a class="nav-link" href="${pageContext.request.contextPath}/logout.shop">로그아웃</a>
             </li> 
            
           </c:when>
           <c:otherwise>
           	<li class="nav-item">
-              <a class="nav-link" href="loginForm.shop">로그인</a>
+              <a class="nav-link" href="${pageContext.request.contextPath}/loginForm.shop">로그인</a>
             </li>
 			<li class="nav-item ">
-              <a class="nav-link" href="account.shop">회원가입</a>
+              <a class="nav-link" href="${pageContext.request.contextPath}/account.shop">회원가입</a>
             </li>
           
           </c:otherwise>
