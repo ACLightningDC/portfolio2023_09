@@ -1,6 +1,6 @@
 package action.Cart;
 
-import static util.LoginCheck.CheckLogin;
+import static util.action.ActionUtil.CheckLogin;
 
 import java.util.ArrayList;
 
@@ -27,8 +27,7 @@ public class ShoppingBuyDeliveryShowAction implements Action {
 		
 		request.setAttribute("ShoppingCartList", ShoppingCartList);
 		
-		request.setAttribute("forward", "/shoppingPayAfter.jsp");
-		ActionForward forward = new ActionForward("/template.jsp", false);
+		ActionForward forward = new ActionForward("shoppingPayAfter.User", false);
 		
 		return forward;
 	}

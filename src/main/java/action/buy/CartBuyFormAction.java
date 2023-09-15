@@ -29,8 +29,7 @@ public class CartBuyFormAction implements Action {
 		request.setAttribute("buyList", BuyList);
 		request.setAttribute("sumPrice", sumPrice);
 		
-		request.setAttribute("forward", "/buy/BuyForm.jsp");
-		ActionForward forward = new ActionForward("template.jsp", false);
+		ActionForward forward = new ActionForward("BuyForm.User", false);
 		
 		return forward;
 		

@@ -6,12 +6,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body class="p-3 m-0 border-0 bd-example">
 <title>Insert title here</title>
 </head>
+
 <body>
 
 products
-
+${requestScope.products[0].name}
 <c:if test="${not empty requestScope.products }">
 	<c:forEach var="product" items="${requestScope.products}">
 		<br>제품 번호 : ${product.id}
@@ -32,7 +40,44 @@ products
 	</c:forEach>
 </c:if>
 
-페이지별로 15개씩 만들기
+${pageInfo.startPage}
 
+<!-- 페이지네이션 -->
+<nav id="" aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <c:if test="${pageInfo.page <= 1}">
+        [이전]&nbsp;
+    </c:if>
+    <c:choose>
+        <c:when test="${pageInfo.page > 1}">
+            <a href="productPage.shop?page=${pageInfo.page - 1}">[이전]</a>&nbsp;
+        </c:when>
+    </c:choose>
+
+    <c:forEach var="page" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
+        <c:choose>
+            <c:when test="${pageInfo.page == page}">
+                [<c:out value="${page}"/>]
+            </c:when>
+            <c:otherwise>
+                <a href="productPage.shop?page=${page}">[<c:out value="${page}"/>]</a>&nbsp;
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+
+    <c:if test="${pageInfo.page >= pageInfo.maxPage}">
+        [다음]
+    </c:if>
+    <c:choose>
+        <c:when test="${pageInfo.page < pageInfo.maxPage}">
+            <a href="productPage.shop?page=${pageInfo.page + 1}">[다음]</a>
+        </c:when>
+    </c:choose>
+    
+  </ul>
+</nav>
+
+
+<a href="productPage.shop?page=1">상품별 보기</a>
 </body>
 </html>

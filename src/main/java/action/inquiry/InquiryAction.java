@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import svc.inquiry.InquiryService;
 
-import static util.LoginCheck.*;
+import static util.action.ActionUtil.*;
 
 import java.io.PrintWriter;
 

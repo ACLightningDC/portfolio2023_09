@@ -64,7 +64,7 @@ public class AddressControllerServlet extends HttpServlet {
 		 /*
 		  * 주소 추가
 		  */
-		if(command.equals("/AddressForm.shop")) {
+		if(command.equals("/AddressForm.address")) {
 			action = new AddressFormAction();
 			
 			try {
@@ -73,8 +73,12 @@ public class AddressControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/AddressAddForm.shop")) {
-			request.setAttribute("forward", "/AccountRelated/AddressAdd/AddressAddFrom.jsp");
+		else if(command.equals("/AddressAddForm.address")) {
+			request.setAttribute("forward", "/userMain/account/address/AddressAddFrom.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/AddressManage.address")) {
+			request.setAttribute("forward", "/userMain/account/address/AddressManage.jsp");
 			forward = new ActionForward("template.jsp", false);
 		}
 		else if(command.equals("/AddressAdd.shop")) {

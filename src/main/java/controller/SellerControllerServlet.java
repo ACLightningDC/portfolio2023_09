@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.Cart.ShoppingBuyDeliveryShowAction;
 import action.Cart.ShoppingresultUpdate;
+import action.seller.mall.orderManageSalesView;
 import action.seller.order.orderManageDeliveryAction;
+import action.seller.order.orderManageDeliveryregistrationAction;
 import action.user.AddressFormAction;
 import action.user.address.AddressAddAction;
 import action.user.address.AddressDeleteAction;
@@ -62,22 +64,21 @@ public class SellerControllerServlet extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
+		if(command.equals("/ShoppingMallManage.Seller")) {
+			request.setAttribute("forward", "/sellerUser/shoppingMall/Mallmanage/ShoppingMallManage.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		if(command.equals("/MallManageForm.Seller")) {
+			request.setAttribute("forward", "sellerUser/shoppingMall/Mallmanage/MallManageForm.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		else if(command.equals("/productDetail.Seller")) {
+			request.setAttribute("forward", "buyUser/product/productDetail.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
 		 /*
 		  * 주소 추가
 		  */
-		if(command.equals("/AddressForm.shop")) {
-			action = new AddressFormAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		else if(command.equals("/AddressAddForm.shop")) {
-			request.setAttribute("forward", "/AccountRelated/AddressAdd/AddressAddFrom.jsp");
-			forward = new ActionForward("template.jsp", false);
-		}
 		else if(command.equals("/orderManageDelivery.Seller")) {
 			action = new orderManageDeliveryAction();
 			
@@ -109,6 +110,15 @@ public class SellerControllerServlet extends HttpServlet {
 		}
 		if(command.equals("/ShoppingresultUpdate.Seller")) {
 			action = new ShoppingresultUpdate();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if(command.equals("/orderManageSales.Seller")) {
+			action = new orderManageSalesView();
 			
 			try {
 				forward = action.execute(request, response);

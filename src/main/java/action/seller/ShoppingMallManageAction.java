@@ -27,8 +27,7 @@ public class ShoppingMallManageAction implements Action {
 			System.out.println("셀러 몰"+sellermalls);
 			request.setAttribute("sellermalls", sellermalls);
 		}
-		request.setAttribute("forward", "/ShoppingMallManage.jsp");
-		ActionForward forward = new ActionForward("/template.jsp", false);
+		ActionForward forward = new ActionForward("ShoppingMallManage.Seller", false);
 		return forward;
 	}
 

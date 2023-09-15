@@ -18,8 +18,7 @@ public class logoutAction implements Action {
 		session.removeAttribute("userinfo");
 		session.removeAttribute("Seller_id");
 		session.removeAttribute("sellerMallid");
-		 request.setAttribute("forward", "loginForm.jsp");
-		forward = new ActionForward("template.jsp", true);
+		forward = new ActionForward("loginForm.shop", true);
 		return forward;
 	}
 

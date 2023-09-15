@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import static db.JdbcUtill.*;
 
 import vo.Address;
+import vo.Delivery;
 import vo.InquiryUser;
 import vo.Order_list;
 import vo.Product;
@@ -481,15 +482,17 @@ public class DAO {
 			
 		return productList;
 	}
-
-	public ArrayList<Product> getAllProductList() {
+/********************************************************************/
+	/********************************************************************/
+	public ArrayList<Product> productPageGetList(int first , int limit) {
 		 ArrayList<Product> productList = new ArrayList<Product>();
-			String sql = " select * from product ";
+			String sql = " select  * from product LIMIT ? , ?";
 			try {
-				
 				pstmt = con.prepareStatement(sql);
 				
-				
+				pstmt.setInt(1, first);
+				pstmt.setInt(2, limit);
+				//pstmt.setInt(1, page);
 				rs= pstmt.executeQuery();
 				
 				while(rs.next()) {
@@ -507,7 +510,7 @@ public class DAO {
 				}
 				
 			}catch(Exception e){
-				System.out.println("[DAO] getAllProductList 에러" + e );
+				System.out.println("[DAO] productPageGetList 에러" + e );
 			}finally {
 				close(rs);
 				close(pstmt);
@@ -515,6 +518,32 @@ public class DAO {
 				
 			return productList;
 	}
+	
+	public int getAllProductListCnt() {
+		 int cnt = 0;
+			String sql = " select count(*) cnt from product ";
+			try {
+				
+				pstmt = con.prepareStatement(sql);
+				
+				//pstmt.setInt(1, page);
+				rs= pstmt.executeQuery();
+				
+				if(rs.next()) {
+					cnt = rs.getInt(1);
+				}
+				
+			}catch(Exception e){
+				System.out.println("[DAO] getAllProductListCnt 에러" + e );
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+				
+			return cnt;
+	}
+
+	/********************************************************************/
 
 	public ArrayList<sellermall> getAllsellermallList() {
 		 ArrayList<sellermall> sellerMalls = new ArrayList<sellermall>();
@@ -669,6 +698,44 @@ public class DAO {
 			
 		}catch(Exception e){
 			System.out.println("[DAO] shoppingCartView 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return shoppingCartList;
+	}
+	public ArrayList<ShoppingCart> orderManageSalesView(int sellerMallid) {
+		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
+		String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+				+ " ,sellerMall_id , price , name , kind ,img  "
+				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ? order by result ,date asc ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, sellerMallid);	
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ShoppingCart shoppingCart = new ShoppingCart();
+				shoppingCart.setId(rs.getInt("id"));
+				shoppingCart.setUsers_id(rs.getInt("users_id"));
+				shoppingCart.setProduct_id(rs.getInt("product_id"));
+				shoppingCart.setOrder_count(rs.getInt("order_count"));
+				shoppingCart.setDelivery(rs.getString("delivery"));
+				shoppingCart.setDate(rs.getString("date"));
+				shoppingCart.setResult(rs.getString("result"));
+				
+				shoppingCart.setSellerMall_id(rs.getInt("sellerMall_id"));
+				shoppingCart.setPrice(rs.getInt("price"));
+				shoppingCart.setName(rs.getString("name"));
+				shoppingCart.setKind(rs.getString("kind"));
+				shoppingCart.setImg(rs.getString("img"));
+				shoppingCartList.add(shoppingCart);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] orderManageSalesView 에러" + e );
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -1043,7 +1110,7 @@ public class DAO {
 		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
 		String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
 				+ " ,sellerMall_id , price , name , kind ,img  "
-				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ?  and result = 'P'";
+				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ?  and result = 'P' or result = 'D' order by result desc";
 		try {
 			
 			pstmt = con.prepareStatement(sql);
@@ -1077,6 +1144,46 @@ public class DAO {
 		
 		return shoppingCartList;
 	}
+
+	public int OrderManageDeliveryregistration(int order_list_id, Delivery delivery) {
+		int check = 0;
+		String sql =" insert into delivery (order_list_id,delivery_company,delivery_num)value(?,?,?)";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, order_list_id);
+			pstmt.setInt(2, delivery.getDelivery_company());
+			pstmt.setInt(3, delivery.getDelivery_num());
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] OrderManageDeliveryregistration 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+
+	public int OrderManageDeliveryresultChange(int id) {
+		int check = 0;
+		String sql =" update order_list set result = ? where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, "D");
+			pstmt.setInt(2, id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] OrderManageDeliveryresultChange 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+	
 
 
 	

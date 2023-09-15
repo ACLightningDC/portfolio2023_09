@@ -136,7 +136,7 @@ public class FrontControllerServlet extends HttpServlet {
 			 
 		 }
 		 if(command.equals("/loginForm.shop")){
-			 request.setAttribute("forward", "loginForm.jsp");
+			 request.setAttribute("forward", "userMain/login/loginForm.jsp");
 			 forward = new ActionForward("template.jsp", false);
 			 
 		 }
@@ -153,15 +153,7 @@ public class FrontControllerServlet extends HttpServlet {
 		 * 회원가입
 		 */
 		else if(command.equals("/account.shop")) {
-			request.setAttribute("forward", "/accountSelect.jsp");
-			forward = new ActionForward("template.jsp", false);
-		}
-		else if(command.equals("/accountBuisness.shop")) {
-			request.setAttribute("forward", "/AccountRelated/accountBuisness.jsp");
-			forward = new ActionForward("template.jsp", false);
-		}
-		else if(command.equals("/accountUsers.shop")) {
-			request.setAttribute("forward", "/AccountRelated/accountUsers.jsp");
+			request.setAttribute("forward", "/userMain/account/accountSelect.jsp");
 			forward = new ActionForward("template.jsp", false);
 		}
 		else if(command.equals("/accountAction.shop")) {
@@ -232,31 +224,13 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		 
-		else if(command.equals("/myImformationUpdateForm.shop")) {
-			request.setAttribute("forward", "/myImformation/myImformationUpdateForm.jsp");
-			forward = new ActionForward("template.jsp", false);
-		}
 		else if(command.equals("/myImformationForm.shop")) {
-			request.setAttribute("forward", "/myImformationForm.jsp");
+			request.setAttribute("forward", "userMain/userImformation/myImformationForm.jsp");
 			forward = new ActionForward("template.jsp", false);
 		}
 		 /*
 		  * 주소 추가
 		  */
-		else if(command.equals("/AddressForm.shop")) {
-			action = new AddressFormAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		else if(command.equals("/AddressAddForm.shop")) {
-			request.setAttribute("forward", "/AccountRelated/AddressAdd/AddressAddFrom.jsp");
-			forward = new ActionForward("template.jsp", false);
-		}
 		else if(command.equals("/AddressAdd.shop")) {
 			action = new AddressAddAction();
 			
