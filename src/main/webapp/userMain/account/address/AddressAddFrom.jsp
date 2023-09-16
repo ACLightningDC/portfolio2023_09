@@ -15,7 +15,7 @@
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
-<script src="${pageContext.request.contextPath}/javascript/accountJoin.js"></script>
+<script src="${pageContext.request.contextPath}/resource/javascript/accountJoin.js"></script>
 <script >
 	function findAddr(){
 		//카카오 지도 발생-> 주소 입력 후 [검색]-> 찾는 주소[선택]

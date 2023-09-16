@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script src="${pageContext.request.contextPath}/javascript/JoinCheck.js"></script>
+<script src="${pageContext.request.contextPath}/resource/javascript/JoinCheck.js"></script>
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
 <link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 <script type="text/javascript">

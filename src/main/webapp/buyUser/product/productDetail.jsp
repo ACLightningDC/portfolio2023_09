@@ -22,7 +22,7 @@
 		</form>
 		<br><img width="50px" alt="안나옴" src="images/${products.img}">
 		<button onclick="location.href='#'">${products.name}상품 바로구매</button>
-		<button onclick="location.href='shoppingCartProductAdd.shop?product_id=${products.id}&order_count=1'">${products.name}상품 장바구니</button>
+		<button onclick="location.href='shoppingCartproductAdd.Seller?product_id=${products.id}&order_count=1'">${products.name}상품 장바구니</button>
 </c:if>
 
 </body>

@@ -9,7 +9,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script> 
 	<!-- iamport.payment.js --> 
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/BuyForm.js"></script>
+<script src="${pageContext.request.contextPath}/resource/javascript/BuyForm.js"></script>
 
 
 <!DOCTYPE html>

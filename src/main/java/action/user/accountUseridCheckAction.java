@@ -22,7 +22,7 @@ public class accountUseridCheckAction implements Action {
 		request.setAttribute("checkUserid", check+1);
 		System.out.println(check);
 		
-			forward = new ActionForward("AccountRelated/Check/joinIdCheck.jsp",false);
+			forward = new ActionForward("accountUseridCheck.User",false);
 
 		
 		return forward;

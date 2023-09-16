@@ -9,7 +9,7 @@ alert("이메일을 입력하세요");
 document.f.email.focus();
 return;
  }
- url="accountEmailCheck.shop?email="+document.f.email.value;
+ url="accountEmailCheck.User?email="+document.f.email.value;
  var popupWidth = 500;
  var popupHeight = 400;
  
@@ -26,7 +26,7 @@ alert("아이디를 입력하세요");
 document.f.userid.focus();
 return;
  }
- url="accountUseridCheck.shop?userid="+document.f.userid.value;
+ url="accountUseridCheck.User?userid="+document.f.userid.value;
  var popupWidth = 500;
  var popupHeight = 400;
  
@@ -43,7 +43,7 @@ alert("사업자 등록번호를 입력하세요");
 document.f.b_no.focus();
 return;
  }
- url="accountB_noCheck.shop?userid="+document.f.b_no.value;
+ url="accountB_noCheck.User?userid="+document.f.b_no.value;
  var popupWidth = 500;
  var popupHeight = 400;
  

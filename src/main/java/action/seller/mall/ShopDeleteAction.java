@@ -1,5 +1,6 @@
 package action.seller.mall;
 
+import static util.action.ActionUtil.ActionForwardForUpdateController;
 import static util.action.ActionUtil.CheckLogin;
 
 import java.io.PrintWriter;
@@ -22,19 +23,8 @@ public class ShopDeleteAction implements Action {
 		ShopDeleteService shopDeleteService = new ShopDeleteService();
 		int Check = shopDeleteService.shopDelete(id);
 		
-		if(Check > 0  ) {
-			
-		}else {
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();	
-			out.println("<script>");
-			out.println("alert('잘못된 삭제 입니다.');");
-			out.println("history.back()");
-			out.println("</script>");
-			
-		}
+		ActionForward forward = ActionForwardForUpdateController(response, Check, "상품 삭제후 매장 삭제 부탁드립니다.", new ActionForward("ShoppingMallManage.shop", false));
 		
-		ActionForward forward = new ActionForward("ShoppingMallManage.shop", false);
 		return forward;
 	}
 

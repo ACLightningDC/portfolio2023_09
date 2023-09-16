@@ -84,6 +84,31 @@ public class UserControllerServlet extends HttpServlet {
 			request.setAttribute("forward", "/userMain/account/signup/accountUsers.jsp");
 			forward = new ActionForward("template.jsp", false);
 		}
+		else if(command.equals("/findIdForm.User")) {
+			request.setAttribute("forward", "/userMain/account/FindForgot/findIdForm.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/findIdComplete.User")) {
+			request.setAttribute("forward", "/userMain/account/FindForgot/findIdComplete.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/PasswordFindFrom.User")) {
+			request.setAttribute("forward", "/userMain/account/FindForgot/PasswordFindFrom.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/PasswordFindComplete.User")) {
+			request.setAttribute("forward", "/userMain/account/FindForgot/PasswordFindComplete.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/accountB_noCheck.User")) {
+			forward = new ActionForward("userMain/account/signup/check/JoinComRegCheck.jsp", false);
+		}
+		else if(command.equals("/accountEmailCheck.User")) {
+			forward = new ActionForward("userMain/account/signup/check/JoinEmailCheck.jsp", false);
+		}
+		else if(command.equals("/accountUseridCheck.User")) {
+			forward = new ActionForward("userMain/account/signup/check/joinIdCheck.jsp", false);
+		}
 		 	System.out.println(forward.getPath());
 		if(forward !=null) {
 			if(forward.isRedirect()) {

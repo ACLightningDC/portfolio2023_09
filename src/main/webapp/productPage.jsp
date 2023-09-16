@@ -35,7 +35,7 @@ ${requestScope.products[0].name}
 		</form>
 		<br><img width="50px" alt="안나옴" src="images/${product.img}">
 		<button onclick="location.href='#'">${product.name}상품 바로구매</button>
-		<button onclick="location.href='shoppingCartProductAdd.shop?product_id=${product.id}&order_count=1'">${product.name}상품 장바구니</button>
+		<button onclick="location.href='shoppingCartproductAdd.shop?product_id=${product.id}&order_count=1'">${product.name}상품 장바구니</button>
 		<button onclick="location.href='shoppingCartProductDetail.shop?product_id=${product.id}'">${product.name}상품 상세보기</button>
 	</c:forEach>
 </c:if>

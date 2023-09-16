@@ -20,7 +20,7 @@ public class accountEmailCheckAction implements Action {
 		ActionForward forward = null;
 		request.setAttribute("checkEmail", check+1);
 
-			forward = new ActionForward("AccountRelated/Check/JoinEmailCheck.jsp",false);
+			forward = new ActionForward("accountEmailCheck.User",false);
 		
 		return forward;
 	}

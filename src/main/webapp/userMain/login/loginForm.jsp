@@ -15,65 +15,57 @@
     <title>로그인</title>
 
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+    	#loginMain{
+    		  max-width: 450px;
+  				padding: 1rem;
+  				background-color:; 
+    	}
     </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="sign-in.css" rel="stylesheet">
   </head>
 
 
 
   
-  <body class="d-flex flex-column min-vh-100 bg-body-tertiary" >
+<body class="d-flex flex-column min-vh-100 bg-body-tertiary" >
 
 
-<div class="d-flex align-items-center py-4 pt-5">
 
-<main class="form-signin w-100 m-auto">
+<main id="loginMain" class="form-signin w-100 m-auto">
 
   <form action="login.shop" method="post">
-    <h1 class="h3 mb-3 fw-normal">로그인</h1>
+    <h3 class="h3 mb-3 fw-normal">아이디 로그인</h3>
 
-    <div class="form-floating">
-      <input type="text" name = "userid" value ="${cookie.user_id.value}" class="form-control" id="floatingInput" placeholder="">
+    <div class="form-floating py-1">
+      <input type="text" name = "userid" value ="${cookie.user_id.value}" class="form-control" id="floatingInput" placeholder="" required="required">
+      <div class="invalid-feedback">아이디를 입력하세요</div>
       <label for="floatingInput">아이디</label>
     </div>
-    <div class="form-floating">
-      <input type="password" name ="password" class="form-control" id="floatingPassword" placeholder="Password">
+    <div class="form-floating py-1">
+      <input type="password" name ="password" class="form-control" id="floatingPassword" placeholder="Password" required="required">
+                <div class="invalid-feedback">비밀번호를 입력하세요</div>
       <label for="floatingPassword">비밀번호</label>
     </div>
 
-    <div class="form-check text-start my-3">
-      <input id = "idremind" class="form-check-input" name ="checkbox" type="checkbox"  value="remember-me" id="flexCheckDefault" ${null != cookie.user_id.value ?  "checked=\"checked\"": ""}>
-      <label class="form-check-label" for="flexCheckDefault">
-        아이디 기억하기
-      </label>
+    <div class="form-check text-start my-3 justify-content-between d-flex justify-content-between align-items-center">
+	    <div>
+	      <input id = "idremind" class="form-check-input" name ="checkbox" type="checkbox"  value="remember-me" id="flexCheckDefault" ${null != cookie.user_id.value ?  "checked=\"checked\"": ""}>
+	      <label class="form-check-label" for="flexCheckDefault">
+	        아이디 기억하기
+	      </label>
+	    </div>
+      <div class="btn-group" role="group">
+    	<a class="btn btn-outline-primary btn-sm" href="findIdForm.User">아이디 찾기</a>
+		<a class="btn btn-outline-primary btn-sm" href="PasswordFindFrom.User">비밀번호 찾기</a>	
+      </div>
     </div>
     <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
-    <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
+    <hr>
   </form>
+    <button class="btn btn-outline-primary w-100 py-2" type="button" onclick="location.href='account.shop'">회원가입</button>
+    <p class="mt-5 mb-3 text-body-secondary">&copy; HomeShopping Corp.</p>
 </main>
-</div>
-<footer class="mt-auto">
-</footer>
 
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-<a href="findIdForm.shop">아이디 찾기</a>
-<a href="PasswordFindFrom.shop">비밀번호 찾기</a>
 <a href="">소셜 로그인 하기</a>
+<a href="">qr 코드 로그인</a>
     </body>
 </html>

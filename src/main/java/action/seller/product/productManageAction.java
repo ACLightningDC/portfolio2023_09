@@ -25,8 +25,7 @@ public class productManageAction implements Action {
 		
 		request.setAttribute("products", products);
 		
-		request.setAttribute("forward", "/MallManage/productManage/productManage.jsp");
-		ActionForward forward = new ActionForward("/template.jsp", false);
+		ActionForward forward = new ActionForward("productManage.Seller", false);
 		return forward;
 	}
 

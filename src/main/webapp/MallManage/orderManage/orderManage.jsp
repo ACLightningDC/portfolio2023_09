@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/resource/js/jquery-3.7.0.min.js"></script>
 
-<script src="javascript/shoppingCart.js" type="text/javascript">
+<script src="${pageContext.request.contextPath}/resource/javascript/shoppingCart.js" type="text/javascript">
 
 </script>
 <script type="text/javascript">

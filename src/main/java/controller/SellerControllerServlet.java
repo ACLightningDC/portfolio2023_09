@@ -126,7 +126,22 @@ public class SellerControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
+		else if(command.equals("/shopCreateForm.Seller")) {
+			request.setAttribute("forward", "/sellerUser/shoppingMall/Mallmanage/CreateShopForm.jsp");
+			forward = new ActionForward("template.jsp", false);
+		} 
+		else if(command.equals("/ShopUpdate.Seller")) {
+			request.setAttribute("forward", "/sellerUser/shoppingMall/Mallmanage/ShopUpdateForm.jsp");
+			forward = new ActionForward("template.jsp", false);
+		} 
+		else if(command.equals("/productAdd.Seller")) {
+			request.setAttribute("forward", "/sellerUser/shoppingMall/productManage/productAdd.jsp");
+			forward = new ActionForward("template.jsp", false);
+		} 
+		else if(command.equals("/productManage.Seller")) {
+			request.setAttribute("forward", "/sellerUser/shoppingMall/productManage/productManage.jsp");
+			forward = new ActionForward("template.jsp", false);
+		} 
 
 		 
 		 	System.out.println(forward.getPath());
