@@ -154,7 +154,7 @@ public class DAO {
 
 	public int accountjoin(Users users) {
 		int check = 0;
-		String sql =" insert into users(userid, password, name, phone , birthday  , email ,gender ) value(?, ?, ?, ?, ?, ?, ?)";
+		String sql =" insert into users(userid , password, name, phone , birthday  , email ,gender ) value(?, ?, ?, ?, ?, ?, ? )";
 		try {
 								
 			pstmt = con.prepareStatement(sql);
@@ -631,7 +631,7 @@ public class DAO {
 
 	public ArrayList<ShoppingCart> shoppingCartView(int users_id) {
 		 ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
-			String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+			String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
 					+ " ,sellerMall_id , price , name , kind ,img  "
 					+ " from order_list l join product r on l.product_id = r.id where users_id = ? and result = 'N'";
 			try {
@@ -646,7 +646,7 @@ public class DAO {
 					shoppingCart.setUsers_id(rs.getInt("users_id"));
 					shoppingCart.setProduct_id(rs.getInt("product_id"));
 					shoppingCart.setOrder_count(rs.getInt("order_count"));
-					shoppingCart.setDelivery(rs.getString("delivery"));
+					shoppingCart.setDelivery_id(rs.getInt("delivery_id"));
 					shoppingCart.setDate(rs.getString("date"));
 					shoppingCart.setResult(rs.getString("result"));
 					
@@ -669,7 +669,7 @@ public class DAO {
 			}
 	public ArrayList<ShoppingCart> shoppingResultView(int users_id) {
 		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
-		String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+		String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
 				+ " ,sellerMall_id , price , name , kind ,img  "
 				+ " from order_list l join product r on l.product_id = r.id where users_id = ?  and result = 'P'";
 		try {
@@ -684,7 +684,7 @@ public class DAO {
 				shoppingCart.setUsers_id(rs.getInt("users_id"));
 				shoppingCart.setProduct_id(rs.getInt("product_id"));
 				shoppingCart.setOrder_count(rs.getInt("order_count"));
-				shoppingCart.setDelivery(rs.getString("delivery"));
+				shoppingCart.setDelivery_id(rs.getInt("delivery_id"));
 				shoppingCart.setDate(rs.getString("date"));
 				shoppingCart.setResult(rs.getString("result"));
 				
@@ -707,7 +707,7 @@ public class DAO {
 	}
 	public ArrayList<ShoppingCart> orderManageSalesView(int sellerMallid) {
 		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
-		String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+		String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
 				+ " ,sellerMall_id , price , name , kind ,img  "
 				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ? order by result ,date asc ";
 		try {
@@ -722,7 +722,7 @@ public class DAO {
 				shoppingCart.setUsers_id(rs.getInt("users_id"));
 				shoppingCart.setProduct_id(rs.getInt("product_id"));
 				shoppingCart.setOrder_count(rs.getInt("order_count"));
-				shoppingCart.setDelivery(rs.getString("delivery"));
+				shoppingCart.setDelivery_id(rs.getInt("delivery_id"));
 				shoppingCart.setDate(rs.getString("date"));
 				shoppingCart.setResult(rs.getString("result"));
 				
@@ -973,7 +973,7 @@ public class DAO {
 
 	public ShoppingCart cartBuy(int order_id) {
 		ShoppingCart shoppingCart = new ShoppingCart();
-			String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+			String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
 					+ " ,sellerMall_id , price , name , kind ,img  "
 					+ " from order_list l join product r on l.product_id = r.id where l.id = ? ";
 			try {
@@ -987,7 +987,7 @@ public class DAO {
 					shoppingCart.setUsers_id(rs.getInt("users_id"));
 					shoppingCart.setProduct_id(rs.getInt("product_id"));
 					shoppingCart.setOrder_count(rs.getInt("order_count"));
-					shoppingCart.setDelivery(rs.getString("delivery"));
+					shoppingCart.setDelivery_id(rs.getInt("delivery_id"));
 					shoppingCart.setDate(rs.getString("date"));
 					shoppingCart.setResult(rs.getString("result"));
 					
@@ -1108,7 +1108,7 @@ public class DAO {
 
 	public ArrayList<ShoppingCart> OrderManageShow(int sellerMallid) {
 		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
-		String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+		String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
 				+ " ,sellerMall_id , price , name , kind ,img  "
 				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ?  and result = 'P' or result = 'D' order by result desc";
 		try {
@@ -1123,7 +1123,7 @@ public class DAO {
 				shoppingCart.setUsers_id(rs.getInt("users_id"));
 				shoppingCart.setProduct_id(rs.getInt("product_id"));
 				shoppingCart.setOrder_count(rs.getInt("order_count"));
-				shoppingCart.setDelivery(rs.getString("delivery"));
+				shoppingCart.setDelivery_id(rs.getInt("delivery_id"));
 				shoppingCart.setDate(rs.getString("date"));
 				shoppingCart.setResult(rs.getString("result"));
 				
@@ -1144,15 +1144,26 @@ public class DAO {
 		
 		return shoppingCartList;
 	}
-
-	public int OrderManageDeliveryregistration(int order_list_id, Delivery delivery) {
+//수정 필요 
+/**
+ * 
+ * 
+ * 
+ * 
+ * @param address_id
+ * @param delivery
+ * @return
+ */
+	public int OrderManageDeliveryregistration(int address_id, Delivery delivery) {
 		int check = 0;
-		String sql =" insert into delivery (order_list_id,delivery_company,delivery_num)value(?,?,?)";
+		String sql =" insert into delivery (address_id,delivery_company,delivery_num)value(?,?,?)";
 		try {
-								
+			
+			System.out.println(address_id);
+			
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setInt(1, order_list_id);
+			pstmt.setInt(1, address_id);
 			pstmt.setInt(2, delivery.getDelivery_company());
 			pstmt.setInt(3, delivery.getDelivery_num());
 			check= pstmt.executeUpdate();
@@ -1165,15 +1176,16 @@ public class DAO {
 		return check;
 	}
 
-	public int OrderManageDeliveryresultChange(int id) {
+	public int OrderManageDeliveryresultChange(int delivery_Id , int id) {
 		int check = 0;
-		String sql =" update order_list set result = ? where id = ? ";
+		String sql =" update order_list set delivery_id =?, result = ? where id = ? ";
 		try {
 								
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, "D");
-			pstmt.setInt(2, id);
+			pstmt.setInt(1, delivery_Id);
+			pstmt.setString(2, "D");
+			pstmt.setInt(3, id);
 			check= pstmt.executeUpdate();
 
 			}catch(Exception e){
@@ -1182,6 +1194,83 @@ public class DAO {
 				close(pstmt);
 			}
 		return check;
+	}
+
+	public Address getAddress(int address_id) {
+		Address address = null;
+		String sql = " select * from address where id= ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, address_id);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				address= new Address();
+				address.setId(rs.getInt("id"));
+				address.setUser_id(rs.getInt("users_id"));
+				address.setAddress1(rs.getString("address1"));
+				address.setAddress2(rs.getString("address2"));
+				address.setPostcode(rs.getString("postcode"));
+				
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] UserAddressGet 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return address;
+	}
+
+	public int GetAddress_id(int order_id) {
+		int address_id = 0;
+		String sql = " select r.address_id from order_list l join users r on l.users_id = r.id where l.id = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, order_id);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				address_id = rs.getInt(1);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] GetAddress_id 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return address_id;
+	}
+
+	public int getdeliveryId(int address_id, Delivery delivery) {
+		int delivery_Id = 0;
+		String sql = " select id from delivery where address_id = ? and delivery_company = ? and delivery_num = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, address_id);
+			pstmt.setInt(2, delivery.getDelivery_company());
+			pstmt.setInt(3, delivery.getDelivery_num());
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				delivery_Id = rs.getInt(1);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getdeliveryId 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return delivery_Id;
 	}
 	
 

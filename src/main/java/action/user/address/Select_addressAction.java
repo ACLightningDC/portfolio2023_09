@@ -1,13 +1,11 @@
-package action.user;
+package action.user.address;
 
 import static util.action.ActionUtil.CheckLogin;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import action.Action;
 import svc.user.AddressFormService;
@@ -15,10 +13,9 @@ import vo.ActionForward;
 import vo.Address;
 import vo.Users;
 
-public class AddressFormAction implements Action {
+public class Select_addressAction implements Action {
 
 	@Override
-	
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward= null;
 		
@@ -33,7 +30,8 @@ public class AddressFormAction implements Action {
 		
 		request.setAttribute("address", address);
 		
-		forward = new ActionForward("AddressManage.address", false);
+		
+		forward = new ActionForward("AddressForm.address", false);
 		return forward;
 	}
 

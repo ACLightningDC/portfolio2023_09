@@ -35,7 +35,6 @@ import action.user.accountUseridCheckAction;
 import action.user.findIdAction;
 import action.user.loginAction;
 import action.user.logoutAction;
-import action.user.myImformationFormAddressFind;
 import action.user.usersupdateAction;
 import action.user.address.AddressAddAction;
 import action.user.product.ShoppingCartProductDetailAction;
@@ -453,8 +452,7 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			request.setAttribute("forward", "/MallManage/orderManage/orderManage.jsp");
-			forward = new ActionForward("template.jsp", false);
+
 		} 
 
 		 

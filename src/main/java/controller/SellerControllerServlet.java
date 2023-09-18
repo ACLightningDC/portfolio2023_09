@@ -142,6 +142,10 @@ public class SellerControllerServlet extends HttpServlet {
 			request.setAttribute("forward", "/sellerUser/shoppingMall/productManage/productManage.jsp");
 			forward = new ActionForward("template.jsp", false);
 		} 
+		else if(command.equals("/orderCheck.Seller")) {
+			request.setAttribute("forward", "/MallManage/orderManage/orderCheck.jsp");
+			forward = new ActionForward("template.jsp", false);
+		} 
 
 		 
 		 	System.out.println(forward.getPath());

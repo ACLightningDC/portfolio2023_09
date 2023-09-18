@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.Cart.ShoppingBuyDeliveryShowAction;
 import action.Cart.ShoppingresultUpdate;
+import action.mainPage.ShopPageGetAction;
 import action.seller.mall.orderManageSalesView;
 import action.seller.order.orderManageDeliveryAction;
 import action.seller.order.orderManageDeliveryregistrationAction;
 import action.user.AddressFormAction;
+import action.user.LoginCheck.OTPResultAction;
 import action.user.address.AddressAddAction;
 import action.user.address.AddressDeleteAction;
 import action.user.address.AddressUpdateAction;
@@ -108,6 +110,17 @@ public class UserControllerServlet extends HttpServlet {
 		}
 		else if(command.equals("/accountUseridCheck.User")) {
 			forward = new ActionForward("userMain/account/signup/check/joinIdCheck.jsp", false);
+		}
+		else if(command.equals("/otpCheck.User")) {
+			forward = new ActionForward("/userMain/login/loginCheck/otpCheck.jsp", false);
+		}
+		else if(command.equals("/OTPResult.User")) {
+			action = new OTPResultAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		 	System.out.println(forward.getPath());
 		if(forward !=null) {

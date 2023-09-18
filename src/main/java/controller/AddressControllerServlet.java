@@ -15,6 +15,7 @@ import action.user.address.AddressAddAction;
 import action.user.address.AddressBasicSelectAction;
 import action.user.address.AddressDeleteAction;
 import action.user.address.AddressUpdateAction;
+import action.user.address.Select_addressAction;
 import vo.ActionForward;
 
 /**
@@ -110,6 +111,15 @@ public class AddressControllerServlet extends HttpServlet {
 		}
 		else if(command.equals("/AddressBasicSelect.address")) {
 			action = new AddressBasicSelectAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/select_address.address")) {
+			action = new Select_addressAction();
 			
 			try {
 				forward = action.execute(request, response);

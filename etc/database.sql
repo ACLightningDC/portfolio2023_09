@@ -97,12 +97,10 @@ CREATE TABLE IF NOT EXISTS `order_list` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `users_id` INT UNSIGNED NOT NULL,
   `product_id` INT UNSIGNED NOT NULL,
-  `order_listcol` VARCHAR(45) NULL,
   `order_count` INT NOT NULL DEFAULT 1,
-  `delivery` NVARCHAR(1) NULL DEFAULT 'N',
+  `delivery_id` INT NULL DEFAULT -1,
   `date` TIMESTAMP NULL DEFAULT current_timestamp,
   `result` VARCHAR(45) NULL DEFAULT 'N',
-  `address_id` INT NULL DEFAULT -1,
   PRIMARY KEY (`id`, `users_id`, `product_id`),
   INDEX `fk_order_users1_idx` (`users_id` ASC) VISIBLE,
   INDEX `fk_order_product1_idx` (`product_id` ASC) VISIBLE,
@@ -236,15 +234,53 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `delivery` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `order_list_id` INT UNSIGNED NOT NULL,
+  `address_id` INT UNSIGNED NOT NULL,
   `delivery_company` INT NOT NULL,
   `delivery_num` VARCHAR(60) NOT NULL,
-  PRIMARY KEY (`id`, `order_list_id`),
-  INDEX `fk_delivery_order_list1_idx` (`order_list_id` ASC) VISIBLE,
-  CONSTRAINT `fk_delivery_order_list1`
-    FOREIGN KEY (`order_list_id`)
-    REFERENCES `order_list` (`id`)
-    ON DELETE NO ACTION
+  PRIMARY KEY (`id`, `address_id`),
+  INDEX `fk_delivery_address1_idx` (`address_id` ASC) VISIBLE,
+  CONSTRAINT `fk_delivery_address1`
+    FOREIGN KEY (`address_id`)
+    REFERENCES `address` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sellerMallPage`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sellerMallPage` (
+  `id` INT NOT NULL,
+  `sellermall_id` INT UNSIGNED NOT NULL,
+  `type` VARCHAR(45) NOT NULL,
+  `name` NVARCHAR(45) NOT NULL,
+  `categori` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`, `sellermall_id`),
+  INDEX `fk_sellerMallPage_sellermall1_idx` (`sellermall_id` ASC) VISIBLE,
+  CONSTRAINT `fk_sellerMallPage_sellermall1`
+    FOREIGN KEY (`sellermall_id`)
+    REFERENCES `sellermall` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Contents`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Contents` (
+  `id` INT NOT NULL,
+  `sellerMallPage_id` INT NOT NULL,
+  `Name` VARCHAR(45) NULL,
+  `Content` NVARCHAR(5000) NULL,
+  `date` TIMESTAMP NULL DEFAULT current_timestamp,
+  PRIMARY KEY (`id`, `sellerMallPage_id`),
+  INDEX `fk_Contents_sellerMallPage1_idx` (`sellerMallPage_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Contents_sellerMallPage1`
+    FOREIGN KEY (`sellerMallPage_id`)
+    REFERENCES `sellerMallPage` (`id`)
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 

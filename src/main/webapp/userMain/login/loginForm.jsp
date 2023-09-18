@@ -6,6 +6,28 @@
   <head>
 <link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript">
+    Kakao.init('0b5733d74f6c32b9701c8c6784906f07');
+    function kakaoLogin() {
+        Kakao.Auth.login({
+            success: function (response) {
+                Kakao.API.request({
+                    url: '/v2/user/me',
+                    success: function (response) {
+                        alert(JSON.stringify(response))
+                    },
+                    fail: function (error) {
+                        alert(JSON.stringify(error))
+                    },
+                })
+            },
+            fail: function (error) {
+                alert(JSON.stringify(error))
+            },
+        })
+    }
+</script>
 <script type="text/javascript">
 /* 	var value = document.cookie.match('(^|;) ?' + '${user_id}' + '=([^;]*)(;|$)');
 	if value ? value[2] : null; */
@@ -31,9 +53,12 @@
 
 
 <main id="loginMain" class="form-signin w-100 m-auto">
-
+      <div class="btn-group" role="group">
+    	<a class="btn btn-outline-primary btn-sm" onclick="">아이디 로그인</a>
+		<a class="btn btn-outline-primary btn-sm" onclick="qrCodePage()">qr 코드 로그인</a>	
+      </div>
   <form action="login.shop" method="post">
-    <h3 class="h3 mb-3 fw-normal">아이디 로그인</h3>
+    <h3 id="MainHead"class="h3 mb-3 fw-normal">아이디 로그인</h3>
 
     <div class="form-floating py-1">
       <input type="text" name = "userid" value ="${cookie.user_id.value}" class="form-control" id="floatingInput" placeholder="" required="required">
@@ -62,8 +87,10 @@
     <hr>
   </form>
     <button class="btn btn-outline-primary w-100 py-2" type="button" onclick="location.href='account.shop'">회원가입</button>
+    <button class="btn btn-outline-primary w-100 py-2" type="button" onclick="kakaoLogin()">카카오 로그인 하기</button>
     <p class="mt-5 mb-3 text-body-secondary">&copy; HomeShopping Corp.</p>
 </main>
+
 
 <a href="">소셜 로그인 하기</a>
 <a href="">qr 코드 로그인</a>

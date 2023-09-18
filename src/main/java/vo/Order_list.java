@@ -6,7 +6,7 @@ private int id;
 private int users_id;
 private int product_id;
 private int order_count;
-private String delivery;
+private int delivery_id;
 private String date;
 private String result;
 
@@ -34,11 +34,11 @@ public int getOrder_count() {
 public void setOrder_count(int order_count) {
 	this.order_count = order_count;
 }
-public String getDelivery() {
-	return delivery;
+public int getDelivery_id() {
+	return delivery_id;
 }
-public void setDelivery(String delivery) {
-	this.delivery = delivery;
+public void setDelivery_id(int delivery_id) {
+	this.delivery_id = delivery_id;
 }
 public String getDate() {
 	return date;
@@ -55,6 +55,6 @@ public void setResult(String result) {
 @Override
 public String toString() {
 	return "Order_list [id=" + id + ", users_id=" + users_id + ", product_id=" + product_id + ", order_count="
-			+ order_count + ", delivery=" + delivery + ", date=" + date + ", result=" + result + "]";
+			+ order_count + ", delivery=" + delivery_id + ", date=" + date + ", result=" + result + "]";
 }
 }

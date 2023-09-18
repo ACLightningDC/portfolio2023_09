@@ -1,6 +1,5 @@
 
 <Context>
-	<!-- 
 	<Resource name="jdbc/portfolio" 
 	   auth="Container"
 	   type="javax.sql.DataSource" 
@@ -15,7 +14,7 @@
 	   maxActive="500" 
 	   maxIdle="100"
 	   maxWait="1000"/> 
-	 -->   
+<!-- 	   
 		<Resource name="jdbc/portfolio" 
 	   auth="Container"
 	   type="javax.sql.DataSource" 
@@ -31,6 +30,6 @@
 	   maxActive="500" 
 	   maxIdle="100"
 	   maxWait="1000"/> 
-	   
+	    -->
 
 </Context>

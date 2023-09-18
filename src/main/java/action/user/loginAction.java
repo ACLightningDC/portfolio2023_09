@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.User;
-
 import action.Action;
+import action.user.LoginCheck.OTPLoginCheck;
 import svc.LoginService;
 import util.SHA256;
 import vo.ActionForward;
 import vo.Users;
+import vo.login.OTP;
 
 public class loginAction implements Action {
 	
@@ -45,6 +45,10 @@ public class loginAction implements Action {
 		System.out.println("로그인 체크값"+loginCheck);
 		System.out.println("action loginCheck 실행 " + loginCheck);
 		
+		
+
+		
+		
 		if(loginCheck>0) {
 			HttpSession session =  request.getSession();
 			Users user =  loginService.getLoginInfo(loginCheck);
@@ -55,6 +59,8 @@ public class loginAction implements Action {
 				int Seller_id = loginService.getSeller_id(user.getId());
 				session.setAttribute("Seller_id", Seller_id);
 			}
+			
+			forward = new ActionForward("/homePage.shop" ,false);
 		}else {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -65,11 +71,22 @@ public class loginAction implements Action {
 			out.println("</script>");
 		}
 		
-		
+		//로그인 체크용
+		if(false) {
+	        String ipAddress=request.getRemoteAddr();
+
+			OTPLoginCheck OTPloginCheck = new OTPLoginCheck();
+			OTP otp = OTPloginCheck.CreateKey(id , ipAddress);
+			
+			request.setAttribute("encodedKey", otp.getEncodedKey());
+			request.setAttribute("url", otp.getUrl());
+			
+			forward = new ActionForward("otpCheck.User" ,false);
+			
+		}
 
 		
 		
-		forward = new ActionForward("/homePage.shop" ,false);
 
 		return forward;
 	}
