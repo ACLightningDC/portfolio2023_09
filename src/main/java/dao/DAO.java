@@ -1196,7 +1196,6 @@ public class DAO {
 		return check;
 	}
 
-<<<<<<< HEAD
 	public int shopUpdate(int sellerMallid, String name) {
 		int check = 0;
 		String sql =" update sellermall set name = ? where id = ? ";
@@ -1214,7 +1213,7 @@ public class DAO {
 				close(pstmt);
 			}
 		return check;
-=======
+	}
 	public Address getAddress(int address_id) {
 		Address address = null;
 		String sql = " select * from address where id= ? ";
@@ -1290,7 +1289,7 @@ public class DAO {
 		}
 			
 		return delivery_Id;
->>>>>>> branch 'master' of https://github.com/ACLightningDC/portfolio2023_09.git
+		
 	}
 	
 

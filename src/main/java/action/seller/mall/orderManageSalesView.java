@@ -36,7 +36,7 @@ public class orderManageSalesView implements Action {
 				
 				
 				String Message = "실패했습니다.";
-				ActionForward forward = ActionForwardForUpdate(request, response, 1, Message, "/MallManage/orderManage/orderManageSales.jsp" );
+				ActionForward forward = ActionForwardForUpdate(request, response, 1, Message, "/sellerUser/shoppingMall/orderManage/orderManageSales.jsp" );
 				
 				request.setAttribute("ShoppingCartList", ShoppingList);
 				request.setAttribute("sum", sum);
