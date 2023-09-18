@@ -6,7 +6,7 @@ public class ShoppingCart {
 	private int users_id;
 	private int product_id;
 	private int order_count;
-	private String delivery;
+	private int delivery_id;
 	private String date;
 	private String result;
 	
@@ -41,11 +41,12 @@ public class ShoppingCart {
 	public void setOrder_count(int order_count) {
 		this.order_count = order_count;
 	}
-	public String getDelivery() {
-		return delivery;
+	
+	public int getDelivery_id() {
+		return delivery_id;
 	}
-	public void setDelivery(String delivery) {
-		this.delivery = delivery;
+	public void setDelivery_id(int delivery_id) {
+		this.delivery_id = delivery_id;
 	}
 	public String getDate() {
 		return date;

@@ -94,3 +94,5 @@ select count(*) cnt from product;
 select count(*) cnt from product
 select  * from product LIMIT 0 , 15;
 select  * from product LIMIT 14 , 15;
+
+select r.address_id from order_list l join users r on l.users_id = r.id ;where id = ? 

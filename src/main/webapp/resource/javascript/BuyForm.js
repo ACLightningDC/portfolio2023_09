@@ -1,6 +1,7 @@
 /**
  * 
  */
+
  function select_address(){
 	 
  
@@ -11,9 +12,12 @@
  var popupX = (window.screen.width/ 2)-(popupWidth / 2);
  var popupY = (window.screen.height/ 2)-(popupHeight / 2);
  open(url,"주소 선택",'width='+popupWidth+',height='+popupHeight+',left='+popupX+',top='+popupY);
+ document.getElementById("s").innerText
  
  }
+ 
 	
+
 $(document).ready(function(){ 
 	$("#iamportPayment").click(function(){ 
     	payment(); //버튼 클릭하면 호출 
@@ -21,13 +25,12 @@ $(document).ready(function(){
 })
 $(document).ready(function(){ 
 	$("#Payment").click(function(){ 
-		alert("호출");
     	form_Pay(); //버튼 클릭하면 호출 
     }); 
 })
 
-
 function form_Pay(){
+	
 	
 	var form = document.getElementById("payForm");
 	
@@ -58,7 +61,6 @@ function payment(email , user_name ,tel, order_id ,pay_name, amount) {
         buyer_tel : tel
     }, function (rsp) { // callback
         if (rsp.success) {
-			alert("작동")
 			submit_id();
         } else {
             alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");

@@ -1,0 +1,53 @@
+1. cmd 창 열기
+mysql -h 118.131.179.138 -u ipc23a조ID -p
+show databases; 
+use ipc23a조ID
+[방법-1] cmd 창에서 create 테이블 작성
+-----------------------------------------------
+2. 이클립스
+[방법-2]이클립스 에서 create 테이블 작성
+(1). context.xml 수정
+username= "ipc23a조ID"
+password= "ipc23a조ID"
+url="jdbc:mysql://118.131.179.138/ipc23ayy?serverTimezone=Asia/Seoul"
+
+(2). MySQL 속성 수정 후 연결하기 
+jdbc:mysql://118.131.179.138/ipc23ayy?serverTimezone=Asia/Seoul"
+username= ipc23a조ID
+password= ipc23a조ID
+
+(3). create 테이블 작성
+-----------------------------------------------------------
+3. FileZilla
+(1) FileZilla 설치 후 열어 아래 내용 입력 후 빠른연결
+호스트번호 : 118.131.179.138
+사용자명 : ipc23a
+비밀번호 : ipc23a3313 
+
+(2) 프로젝트.war 를 찾아 더블클릭하여 올리기
+크롬 창 주소표시줄  
+http://java.swq.co.kr/MAC_2023(war파일명)      엔터
+
+(3) 프로젝트 수정하면 다시 war파일 만들기
+'수정한 프로젝트.war'를 찾아 더블클릭하면 같은이름으로 덮여씌워짐(이때, '최종 수정 시간' 확인)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

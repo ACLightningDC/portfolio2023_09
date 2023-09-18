@@ -11,11 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.Cart.ShoppingBuyDeliveryShowAction;
 import action.Cart.ShoppingresultUpdate;
+<<<<<<< HEAD
 import action.mainPage.ProductPageGetAction;
+=======
+import action.mainPage.ShopPageGetAction;
+>>>>>>> branch 'master' of https://github.com/ACLightningDC/portfolio2023_09.git
 import action.seller.mall.orderManageSalesView;
 import action.seller.order.orderManageDeliveryAction;
 import action.seller.order.orderManageDeliveryregistrationAction;
 import action.user.AddressFormAction;
+import action.user.LoginCheck.OTPResultAction;
 import action.user.address.AddressAddAction;
 import action.user.address.AddressDeleteAction;
 import action.user.address.AddressUpdateAction;
@@ -111,8 +116,16 @@ public class UserControllerServlet extends HttpServlet {
 		else if(command.equals("/accountUseridCheck.User")) {
 			forward = new ActionForward("userMain/account/signup/check/joinIdCheck.jsp", false);
 		}
+<<<<<<< HEAD
 		else if(command.equals("/user_securitySetting.User")) {
 			action = new user_securitySettingAction();
+=======
+		else if(command.equals("/otpCheck.User")) {
+			forward = new ActionForward("/userMain/login/loginCheck/otpCheck.jsp", false);
+		}
+		else if(command.equals("/OTPResult.User")) {
+			action = new OTPResultAction();
+>>>>>>> branch 'master' of https://github.com/ACLightningDC/portfolio2023_09.git
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

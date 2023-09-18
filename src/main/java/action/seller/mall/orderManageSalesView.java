@@ -1,11 +1,8 @@
 package action.seller.mall;
 
 import static util.action.ActionUtil.ActionForwardForUpdate;
-import static util.action.ActionUtil.ActionForwardForUpdateController;
 import static util.action.ActionUtil.CheckLogin;
 
-import java.beans.JavaBean;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,14 +13,13 @@ import action.Action;
 import svc.seller.mall.OrderManageSalesViewService;
 import vo.ActionForward;
 import vo.ShoppingCart;
-import vo.Users;
 
 public class orderManageSalesView implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//로그인 체크
-				Users user =  CheckLogin(request, response); 
+				CheckLogin(request, response); 
 				
 				HttpSession session =  request.getSession();
 				int sellerMallid = (int) session.getAttribute("sellerMallid");

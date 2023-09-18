@@ -8,15 +8,24 @@
 	 
 	var sumPrice = 0;
 	var getSumPrice = Number(document.getElementById("sum_price").innerText);	
-	
-	for(var i=0; i<theForm.remove.length ; i++){
-			let orderCount =  Number(document.getElementById(i+"order_count").innerText);
-			let Price =  Number(document.getElementById(i+"price").innerText);
-				if(theForm.allCheck.checked === false){
-					
-					}else{
-		sumPrice += orderCount * Price; 
-					}
+			if(theForm.remove.length == undefined){
+		let orderCount =  Number(document.getElementById(0+"order_count").innerText);
+				let Price =  Number(document.getElementById(0+"price").innerText);
+					if(theForm.allCheck.checked === false){
+						
+						}else{
+							sumPrice += orderCount * Price; 
+						}
+		}else{
+		for(var i=0; i<theForm.remove.length ; i++){
+				let orderCount =  Number(document.getElementById(i+"order_count").innerText);
+				let Price =  Number(document.getElementById(i+"price").innerText);
+					if(theForm.allCheck.checked === false){
+						
+						}else{
+							sumPrice += orderCount * Price; 
+						}
+		}
 	}
 
 	

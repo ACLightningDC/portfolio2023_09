@@ -1,5 +1,7 @@
 package action.user;
 
+import static util.action.ActionUtil.CheckLogin;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -20,12 +22,12 @@ public class AddressFormAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward= null;
 		
-		HttpSession session = request.getSession();
-		Users user = (Users) session.getAttribute("userinfo");
-		int user_id = user.getId();
+		Users user =  CheckLogin(request, response); 
+		int users_id = user.getId();
+		
 		
 		AddressFormService addressFormService = new AddressFormService();
-		ArrayList<Address> address = addressFormService.UserAddressGet(user_id);
+		ArrayList<Address> address = addressFormService.UserAddressGet(users_id);
 		
 		System.out.println(address);
 		

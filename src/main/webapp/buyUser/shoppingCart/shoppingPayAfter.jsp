@@ -76,7 +76,7 @@ break;
 						<div class="justify-content-between d-flex justify-content-between align-items-center">
 						<div>
 				<br>주문 개수 : ${order.order_count}
-				<br>배송 상태 : ${order.delivery}
+				<br>배송 아이디 : ${order.delivery_id}
 						</div>
 						<div>
 				<br>가격 : ${order.price}
