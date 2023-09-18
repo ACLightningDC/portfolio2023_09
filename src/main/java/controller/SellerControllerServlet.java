@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.Cart.ShoppingBuyDeliveryShowAction;
 import action.Cart.ShoppingresultUpdate;
+import action.seller.mall.ShopUpdateAction;
 import action.seller.mall.orderManageSalesView;
 import action.seller.order.orderManageDeliveryAction;
 import action.seller.order.orderManageDeliveryregistrationAction;
@@ -131,8 +132,13 @@ public class SellerControllerServlet extends HttpServlet {
 			forward = new ActionForward("template.jsp", false);
 		} 
 		else if(command.equals("/ShopUpdate.Seller")) {
-			request.setAttribute("forward", "/sellerUser/shoppingMall/Mallmanage/ShopUpdateForm.jsp");
-			forward = new ActionForward("template.jsp", false);
+			action = new ShopUpdateAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} 
 		else if(command.equals("/productAdd.Seller")) {
 			request.setAttribute("forward", "/sellerUser/shoppingMall/productManage/productAdd.jsp");

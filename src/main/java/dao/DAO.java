@@ -1183,6 +1183,25 @@ public class DAO {
 			}
 		return check;
 	}
+
+	public int shopUpdate(int sellerMallid, String name) {
+		int check = 0;
+		String sql =" update sellermall set name = ? where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, name);
+			pstmt.setInt(2, sellerMallid);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] shopUpdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
 	
 
 

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.Cart.ShoppingBuyDeliveryShowAction;
 import action.Cart.ShoppingresultUpdate;
+import action.mainPage.ProductPageGetAction;
 import action.seller.mall.orderManageSalesView;
 import action.seller.order.orderManageDeliveryAction;
 import action.seller.order.orderManageDeliveryregistrationAction;
@@ -18,6 +19,7 @@ import action.user.AddressFormAction;
 import action.user.address.AddressAddAction;
 import action.user.address.AddressDeleteAction;
 import action.user.address.AddressUpdateAction;
+import action.user.security.user_securitySettingAction;
 import vo.ActionForward;
 
 /**
@@ -108,6 +110,14 @@ public class UserControllerServlet extends HttpServlet {
 		}
 		else if(command.equals("/accountUseridCheck.User")) {
 			forward = new ActionForward("userMain/account/signup/check/joinIdCheck.jsp", false);
+		}
+		else if(command.equals("/user_securitySetting.User")) {
+			action = new user_securitySettingAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		 	System.out.println(forward.getPath());
 		if(forward !=null) {

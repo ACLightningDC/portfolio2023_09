@@ -9,6 +9,29 @@
 </head>
 <body>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">쇼핑몰 이름 변경</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="ShopUpdate.Seller" method="post">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">변경할 이름:</label>
+            <input type="text" class="form-control" id="recipient-name" name="name">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <input type="submit" class="btn btn-primary" value="이름 변경">
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+
 셀러몰 id ${sellerMallid}
 
 <div class="container-fluid ">
@@ -25,8 +48,7 @@
 <button class="btn btn-primary" onclick="location.href='orderManageSales.Seller'">매출 확인</button>
 </div>
 			<div class="card mb-4 m-3 col-md-10 mx-auto py-3">
-
-<button class="btn btn-primary" onclick="location.href='ShopUpdate.Seller'">쇼핑몰 변경하기</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">쇼핑몰 이름 변경</button>
 <br><button class="btn btn-danger" onclick="location.href='ShopDelete.shop?id=${sellerMallid}'">쇼핑몰 삭제</button>
 </div>
 </div>
