@@ -7,7 +7,7 @@ select * from sellermall;
 select * from product;
 select * from order_list;
 select * from inquiry;
-
+select * from user_security;
 
 
 update order_list set order_count= 3 where users_id = 2 product_id = 2;

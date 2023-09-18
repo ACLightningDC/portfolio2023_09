@@ -1291,6 +1291,45 @@ public class DAO {
 		return delivery_Id;
 		
 	}
+
+	public int user_securitySetting(int users_id, String ipAddress, String model) {
+		int check = 0;
+		String sql =" insert into user_security (users_id,ipAddress,model)value(?,?,?)";
+		try {
+			
+			
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, users_id);
+			pstmt.setString(2, ipAddress);
+			pstmt.setString(3, model);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] user_securitySetting 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+
+	public int user_securityCancel(int users_id) {
+		int check = 0;
+		String sql =" delete from user_security where users_id = ?";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, users_id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] user_securityCancel 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
 	
 
 

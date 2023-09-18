@@ -21,6 +21,7 @@ import action.user.LoginCheck.OTPResultAction;
 import action.user.address.AddressAddAction;
 import action.user.address.AddressDeleteAction;
 import action.user.address.AddressUpdateAction;
+import action.user.security.user_securityCancelAction;
 import action.user.security.user_securitySettingAction;
 import vo.ActionForward;
 
@@ -115,6 +116,14 @@ public class UserControllerServlet extends HttpServlet {
 		}
 		else if(command.equals("/user_securitySetting.User")) {
 			action = new user_securitySettingAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/user_securityCancel.User")) {
+			action = new user_securityCancelAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

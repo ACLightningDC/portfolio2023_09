@@ -10,20 +10,43 @@
 		text-align: center;
 	}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/mobile-detect@1.4.5/mobile-detect.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.5/mobile-detect.min.js"></script>
 <script>
-var md = new MobileDetect(navigator.userAgent);
 
-console.log( md.mobile() );          // 'Sony'
-console.log( md.phone() );           // 'Sony'
-console.log( md.tablet() );          // null
-console.log( md.userAgent() );       // 'Safari'
-console.log( md.os() );              // 'AndroidOS'
-console.log( md.is('iPhone') );      // false
-console.log( md.is('bot') );         // false
-console.log( md.version('Webkit') );         // 534.3
-console.log( md.versionStr('Build') );       // '4.1.A.0.562'
-console.log( md.match('playstation|xbox') ); // false
+function modelCheck(){
+	var md = new MobileDetect(navigator.userAgent);
+	/* 
+	console.log( md.mobile() );          // 'Sony'
+	console.log( md.phone() );           // 'Sony'
+	console.log( md.tablet() );          // null
+	console.log( md.userAgent() );       // 'Safari'
+	console.log( md.os() );              // 'AndroidOS'
+	console.log( md.is('iPhone') );      // false
+	console.log( md.is('bot') );         // false
+	console.log( md.version('Webkit') );         // 534.3
+	console.log( md.versionStr('Build') );       // '4.1.A.0.562'
+	console.log( md.match('playstation|xbox') ); // false
+	console.log( isDesktopOS() );
+	*/
+	
+	let model= "";
+	if(md.mobile()){
+		model = "phone"
+	}
+	else if(md.mobile()){
+		model = "phone"
+	}
+	else if(md.mobile()){
+		model = "tablet"
+	}
+	else if(isDesktopOS()){
+		model = "PC"
+	}
+	
+	return model;
+}
+
 
 
 function isDesktopOS(){
@@ -32,6 +55,11 @@ function isDesktopOS(){
 
 if(isDesktopOS()){
 	
+}
+
+function securitySetting(){
+	let model = modelCheck()
+	location.href='user_securitySetting.User?model='+model;
 }
 </script>
 </head>
@@ -47,14 +75,15 @@ if(isDesktopOS()){
         로그인 시 
         ip 와 기기정보를 대조한뒤 <br>
         새로운 기기 아이피 에서 요청된 로그인일 경우<br>
-         이메일 인증을 실행합니다.
+        구글 스토어에서 Google Authenticator 다운받아 구글 인증을 실행합니다.
+         <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=ko&gl=US">Google Authenticator</a>
          <hr>
          보안 설정 취소시 ip 정보와 기기 정보는 삭제됩니다.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         
-        <button type="button" class="btn btn-primary" onclick="location.href='user_securitySetting.User'">2단계 보안설정</button>
+        <button type="button" class="btn btn-primary" onclick="securitySetting()">2단계 보안설정</button>
         <button type="button" class="btn btn-primary" onclick="location.href='user_securityCancel.User'">2단계 보안설정 취소</button>
       </div>
     </div>
