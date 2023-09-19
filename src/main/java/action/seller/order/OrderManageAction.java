@@ -28,6 +28,8 @@ public class OrderManageAction implements Action {
 		OrderManageService orderManageService = new OrderManageService();
 		ArrayList<ShoppingCart> ShoppingCartList =  orderManageService.OrderManageShow(sellerMallid);
 		
+		
+		
 		request.setAttribute("ShoppingCartList", ShoppingCartList);
 		
 		request.setAttribute("forward", "/MallManage/orderManage/orderManage.jsp");

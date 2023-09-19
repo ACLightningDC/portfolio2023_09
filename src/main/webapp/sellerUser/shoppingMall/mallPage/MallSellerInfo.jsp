@@ -8,5 +8,7 @@
 </head>
 <body>
 
+판매자 정보 입니다.
+
 </body>
 </html>

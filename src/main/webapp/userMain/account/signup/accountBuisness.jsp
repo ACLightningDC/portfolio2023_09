@@ -33,34 +33,6 @@
 			}).open();
 		}
 	</script>
-		    <script>
-	        $(document).ready(function() {
-	            $("#requestButton").click(function() {
-	                // 입력 필드에서 사업자 등록번호 가져오기
-	                var bNo = $("#b_no").val();
-	
-	                var data = {
-	                    "b_no": [bNo]
-	                };
-	
-	                $.ajax({
-	                    url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=oDzQWmOxHyVL7lTw1kHZO3QAZ3afJHiEN7j7XCDOO%2FfBTlWH3ax7z%2FGSAaN4bl%2BxkmB1Bk%2BYHq2Q6M1dc30MkQ%3D%3D",
-	                    type: "POST",
-	                    data: JSON.stringify(data),
-	                    dataType: "json",
-	                    contentType: "application/json",
-	                    success: function(result) {
-	                        // 결과를 페이지의 "response" <pre> 태그에 표시하고 JSON 문자열로 변환
-	                        $("#response").text(JSON.stringify(result, null, 2));
-	                       결과 개별 ${result.data.tax_type}
-	                    },
-	                    error: function(xhr, textStatus, errorThrown) {
-	                        $("#response").text("에러 상태 코드: " + xhr.status + "\n에러 메시지: " + errorThrown + "\n응답 텍스트: " + xhr.responseText);
-	                    },
-	                });
-	            });
-	        });
-	    </script>
   </head>
   <body class="bg-body-tertiary">
  
@@ -83,7 +55,7 @@
           
           <div class="col-12">
               <label for="userid" class="form-label">아이디</label>
-              <input type="text" class="form-control" name="userid" id="userid" autofocus="autofocus" placeholder="필수입력" required="required">
+              <input type="text" class="form-control" name="userid" id="userid" autofocus="autofocus" placeholder="필수입력" required="required" readonly="readonly">
                <div class="invalid-feedback">
                           아이디를 입력해주세요.
               </div>
@@ -94,7 +66,7 @@
            
             <div class="col-12">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" id="email" autofocus="autofocus" placeholder="user@example.com" required="required">
+              <input type="email" class="form-control" name="email" id="email" autofocus="autofocus" placeholder="user@example.com" required="required" readonly="readonly">
               <div class="invalid-feedback">
                 주문확인을 위해 이메일 주소를 입력해주세요.
               </div>
@@ -122,7 +94,7 @@
 
             
             <div class="col-12">
-              <label for="phone" class="form-label">전화번호</label>
+              <label for="phone" class="form-label">휴대 전화번호</label>
              <div class="input-group has-validation">
                 <input type="text" class="form-control" name="phone" id="phone" autofocus="autofocus" placeholder="필수입력" required="required">
                   <div class="invalid-feedback">
@@ -166,12 +138,11 @@
             
             <div class="col-12">
               <label for="b_no" class="form-label">사업자 등록번호</label>
-              <input name="b_no" type="text" class="form-control" id="b_no" value="" placeholder="" required="required">
+              <input name="b_no" type="text" class="form-control" id="b_no" value="" placeholder="" required="required" readonly="readonly">
               <div class="invalid-feedback">
                 사업자등록번호를 입력해주세요.
               </div>
             </div>
-		    <button id="requestButton">서버에 요청 보내기</button>
     		
     		<pre id="response"></pre>
     		
@@ -197,8 +168,7 @@
 
           </div>
 
-
-          <button class="w-100 btn btn-primary btn-lg" type="submit">입력완료</button>
+          <button class="w-100 btn btn-primary btn-lg" type="button" onclick="CheckAllSubmit(this)">회원가입</button>
         </form>
       </div>
     </div>

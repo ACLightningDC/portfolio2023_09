@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+몰 메인 ${id}
 </body>
 </html>

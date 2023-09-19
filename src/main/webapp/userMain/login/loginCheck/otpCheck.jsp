@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +29,19 @@ Google Authenticator 를 다운 받아 주세요
 	<form action="OTPResult.User" method="get">
 	    code : <input name="user_code" type="text"><br><br>
 	     
-	    <input name="encodedKey" type="hidden" readonly="readonly" value="${encodedKey }">
+	     <input name="loginCheck" type="hidden" readonly="readonly" value="${loginCheck}">
+	     
+	    <input name="encodedKey" type="hidden" readonly="readonly" value="${encodedKey}">
+	     
 	    <input type="submit" value="전송!">
 	     
 	</form>
+	    <c:if test="${Check == 1}">
+	<form action="OTPResult.User">
+	    <input name="loginCheck" type="hidden" readonly="readonly" value="${loginCheck}">
+	    <input name="Check" type="hidden" readonly="readonly" value="${Check}">
+	    <input type="submit" value="이미 등록된 기기 입니다 . 2단계 보안 지나가기">
+	</form>	    
+	    </c:if>
 </body>
 </html>

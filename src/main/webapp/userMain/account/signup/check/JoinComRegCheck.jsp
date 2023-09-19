@@ -19,7 +19,7 @@ function b_noChange(){
 	
 	divText.innerText="사업자 등록번호가 수정되었습니다. \n 확인 부탁드립니다";
 	
-	CheckButton.remove();
+	CheckButton.style.display ='none';
 	
 	} 
 
@@ -27,6 +27,9 @@ function b_noChange(){
 </script>
 <script>
         $(document).ready(function() {
+            let Checkbutton = document.getElementById("CheckButton");
+            Checkbutton.style.display ='none';
+
             $("#requestButton").click(function() {
                 // 입력 필드에서 사업자 등록번호 가져오기
                 var bNo = $("#b_no").val();
@@ -54,22 +57,13 @@ function b_noChange(){
 		                 let divText =document.getElementById("divText");
 		                 divText.innerHTML ="사용가능한 사업자 등록번호 입니다";	
 		                 
+		                 Checkbutton.style.display ='block';
 		                 function namesendB_no(){
 		                		opener.document.f.userid.value = document.Form.b_no.value;
 		                		    window.close();
 
 		                	}
 		                 
-		                 var button = document.createElement('input');
-		                 button.type = 'button';
-		                 button.id = 'CheckButton';
-		                 button.id = 'button';
-		                 button.class = 'btn btn-primary'
-		                 button.onclick = 'namesendB_no()';
-		                 button.value = '이 사업자 등록번호로 결정 ';
-		                 
-		                 var button_div = document.getElementById('CheckButtonDiv');
-		                 button_div.appendChild(button);
                         }
                    	
                    	
@@ -137,11 +131,12 @@ function b_noChange(){
 			</div>
 			<div class="row py-3">
 				<div class="col d-grid mx-auto" id="CheckButtonDiv">
+					<button type="button" id="CheckButton" class="btn btn-primary" onclick="namesendB_no()" style="display: block">이 사업자 등록번호로 결정</button>    
 				</div>
 			</div>
 			
     		<pre id="CheckText"></pre>
-    		<pre id="response"></pre>
+    		<!-- <pre id="response"></pre> -->
     		
 </div>
 

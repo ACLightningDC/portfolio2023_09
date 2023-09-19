@@ -1,6 +1,7 @@
 package action.user;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import util.SHA256;
 import vo.ActionForward;
 import vo.Users;
 import vo.login.OTP;
+import vo.user_security.User_security;
 
 public class loginAction implements Action {
 	
@@ -27,6 +29,7 @@ public class loginAction implements Action {
 		LoginService loginService =  new LoginService();
 		//로그인 전송 데이터 변수에 받음
 		String id = request.getParameter("userid");
+		String encodeNoPassword = request.getParameter("password");
 		String password = 	SHA256.encodeSHA256(request.getParameter("password"));
 		String checkbox = request.getParameter("checkbox");
 		if(checkbox !=null) {
@@ -45,45 +48,57 @@ public class loginAction implements Action {
 		System.out.println("로그인 체크값"+loginCheck);
 		System.out.println("action loginCheck 실행 " + loginCheck);
 		
-		
 
-		
-		
-		if(loginCheck>0) {
-			HttpSession session =  request.getSession();
-			Users user =  loginService.getLoginInfo(loginCheck);
-			
-			session.setAttribute("userinfo", user);
-			
-			if(user.getGrade().equals("S")) {
-				int Seller_id = loginService.getSeller_id(user.getId());
-				session.setAttribute("Seller_id", Seller_id);
+			if(loginCheck>0) {
+				HttpSession session =  request.getSession();
+				Users user =  loginService.getLoginInfo(loginCheck);
+				ArrayList<User_security> user_securityList = loginService.getUser_security(user.getId());
+
+				if(user_securityList.size() > 0) {
+			        String ipAddress=request.getRemoteAddr();
+			        String model = request.getParameter("model");
+			        
+			        for(int i = 0 ;i<0 ;i++) {
+			        	User_security user_security = user_securityList.get(i);
+			        	if(user_security.getIpaddress().equals(ipAddress)
+			        			&& user_security.getModel().equals(model) ) {
+							request.setAttribute("Check", 1);
+			        	}
+			        }
+			        
+			        OTPLoginCheck OTPloginCheck = new OTPLoginCheck();
+			        OTP otp = OTPloginCheck.CreateKey(id , ipAddress);
+					
+			        request.setAttribute("loginCheck", loginCheck);
+					request.setAttribute("encodedKey", otp.getEncodedKey());
+					request.setAttribute("url", otp.getUrl());
+					
+					forward = new ActionForward("otpCheck.User" ,false);
+				}else {
+					
+					session.setAttribute("userinfo", user);
+					
+					if(user.getGrade().equals("S")) {
+						int Seller_id = loginService.getSeller_id(user.getId());
+						session.setAttribute("Seller_id", Seller_id);
+					}
+					
+					forward = new ActionForward("/homePage.shop" ,false);
+				}
+				
+			}else {
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				
+				out.println("<script>");
+				out.println("alert('잘못된 이름 이메일 입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
 			}
-			
-			forward = new ActionForward("/homePage.shop" ,false);
-		}else {
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			
-			out.println("<script>");
-			out.println("alert('잘못된 이름 이메일 입니다.');");
-			out.println("history.back();");
-			out.println("</script>");
-		}
+		
 		
 		//로그인 체크용
-		if(false) {
-	        String ipAddress=request.getRemoteAddr();
-
-			OTPLoginCheck OTPloginCheck = new OTPLoginCheck();
-			OTP otp = OTPloginCheck.CreateKey(id , ipAddress);
-			
-			request.setAttribute("encodedKey", otp.getEncodedKey());
-			request.setAttribute("url", otp.getUrl());
-			
-			forward = new ActionForward("otpCheck.User" ,false);
-			
-		}
+		
 
 		
 		

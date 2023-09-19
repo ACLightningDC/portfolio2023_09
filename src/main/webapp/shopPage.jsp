@@ -42,7 +42,6 @@
 </div>
 </c:if>
 <c:for>
-=======
       
 
       
@@ -56,9 +55,9 @@
 			<br>쇼핑몰 등급 ${sellermall.grade}              </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='Mallpage.shop'">${product.name}쇼핑몰 보기</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='Mallpage.Mall?id=${sellermall.seller_id}'">${product.name}쇼핑몰 보기</button>
                 </div>
-                <small class="text-body-secondary">9 mins</small>
+                <small class="text-body-secondary"></small>
               </div>
             </div>
           </div>
@@ -69,32 +68,40 @@
     </div>
   </div>
 </c:if>
->>>>>>> branch 'master' of https://github.com/ACLightningDC/portfolio2023_09.git
-${page.listCnt}
-${page.page}
 
 <!-- 페이지네이션 -->
 <nav id="" aria-label="Page navigation example">
-  <ul class="pagination">
-  	<c:if test="${pagination.prev}">
-   	 	<li class="page-item">
-   	 		<a class="page-link" href="#" onClick="fn_prev('${pagination.page}', ${pagination.range}, ${pagination.rangeSize})">Previous</a>
-   	 	</li>
-	</c:if>
-	
-	<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-    	<li class="page-item ${pagination.page == idx ? 'active' : ''}">
-    		<a class="page-link" href="#" onClick = "fn_pagination('${idx}', ${pagination.range}, ${pagination.rangeSize})">${idx}</a>
-    	</li>
-    </c:forEach>
-    
-    <c:if test="${pagination.next}">
-    	<li class="page-item">
-  			<a class="page-link" href="#" onClick="fn_next('${pagination.rangSize}', ${pagination.range}, ${pagination.rangeSize})">Next</a>
-  		</li>
+  <ul class="pagination justify-content-center">
+    <c:if test="${pageInfo.page <= 1}">
+        [이전]&nbsp;
     </c:if>
+    <c:choose>
+        <c:when test="${pageInfo.page > 1}">
+            <a href="productPage.shop?page=${pageInfo.page - 1}">[이전]</a>&nbsp;
+        </c:when>
+    </c:choose>
+
+    <c:forEach var="page" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
+        <c:choose>
+            <c:when test="${pageInfo.page == page}">
+                [<c:out value="${page}"/>]
+            </c:when>
+            <c:otherwise>
+                <a href="productPage.shop?page=${page}">[<c:out value="${page}"/>]</a>&nbsp;
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+
+    <c:if test="${pageInfo.page >= pageInfo.maxPage}">
+        [다음]
+    </c:if>
+    <c:choose>
+        <c:when test="${pageInfo.page < pageInfo.maxPage}">
+            <a href="productPage.shop?page=${pageInfo.page + 1}">[다음]</a>
+        </c:when>
+    </c:choose>
+    
   </ul>
 </nav>
-페이지별로 15개씩 만들기
 </body>
 </html>

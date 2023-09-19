@@ -27,7 +27,7 @@
 			<br>쇼핑몰 등급 ${sellermall.grade}              </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='Mallpage.shop'">${product.name}쇼핑몰 보기</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='Mallpage.Mall?id=${sellermall.id}'">${product.name}쇼핑몰 보기</button>
                 </div>
                 <small class="text-body-secondary">9 mins</small>
               </div>

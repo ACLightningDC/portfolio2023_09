@@ -67,6 +67,7 @@
 					</div>
 					<input type="hidden" name="address_id" value="${sessionScope.userinfo.address_id}">		
 					<button class="btn btn-primary " type="button" onclick="select_address()">다른 배송지 선택</button>
+					<button class="btn btn-primary btn-lg col-12"  type="submit">테스트 결제</button>
 				</form>
 			
 			<form id="payForm" name="payForm">
@@ -86,7 +87,7 @@
 				<h2>총 결제 금액 ${requestScope.sumPrice} &#8361</h2>
 			</div>
 			<hr>
-				<button class="btn btn-primary btn-lg col-12" id="Payment" type="button">결제</button>
+				<button class="btn btn-primary btn-lg col-12" id="Payment" type="button">카카오 페이 결제</button>
 		</div>
 	</div>	
 		

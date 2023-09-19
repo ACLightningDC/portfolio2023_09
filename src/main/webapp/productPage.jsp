@@ -40,7 +40,6 @@ ${requestScope.products[0].name}
 	</c:forEach>
 </c:if>
 
-${pageInfo.startPage}
 
 <!-- 페이지네이션 -->
 <nav id="" aria-label="Page navigation example">
@@ -78,6 +77,5 @@ ${pageInfo.startPage}
 </nav>
 
 
-<a href="productPage.shop?page=1">상품별 보기</a>
 </body>
 </html>

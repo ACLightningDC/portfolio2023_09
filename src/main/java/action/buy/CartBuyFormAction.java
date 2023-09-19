@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import action.Action;
 import svc.buy.CartBuyService;
 import vo.ActionForward;
@@ -32,6 +34,8 @@ public class CartBuyFormAction implements Action {
 		for(int i = 0 ; i < BuyList.size() ; i++) {
 			sumPrice += BuyList.get(i).getPrice()*BuyList.get(i).getOrder_count();
 		}
+		
+		
 		
 		request.setAttribute("buyList", BuyList);
 		request.setAttribute("sumPrice", sumPrice);

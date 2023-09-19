@@ -32,11 +32,13 @@
   </div>
 </div>
 
+
+
 셀러몰 id ${sellerMallid}
 
 <div class="container-fluid ">
   <h1 class="h3 mb-2 text-gray-800 py-2">쇼핑몰 관리</h1>
-	<div class="card shadow mb-4">
+	<div class="card shadow mb-4 col-8 mx-auto">
         <div class="row">
 			<div class="card mb-4 m-3 col-md-10 mx-auto py-3">
 <button class="btn btn-primary" onclick="location.href='productManage.shop'">상품 관리하기</button>
@@ -48,7 +50,8 @@
 <button class="btn btn-primary" onclick="location.href='orderManageSales.Seller'">매출 확인</button>
 </div>
 			<div class="card mb-4 m-3 col-md-10 mx-auto py-3">
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">쇼핑몰 이름 변경</button>
+			<button class="btn btn-primary" onclick="location.href='ShoppingMallManager.Seller'">쇼핑몰 홈페이지 관리하기</button>
+<br><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">쇼핑몰 이름 변경</button>
 <br><button class="btn btn-danger" onclick="location.href='ShopDelete.shop?id=${sellerMallid}'">쇼핑몰 삭제</button>
 </div>
 </div>

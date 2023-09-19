@@ -32,6 +32,38 @@
 /* 	var value = document.cookie.match('(^|;) ?' + '${user_id}' + '=([^;]*)(;|$)');
 	if value ? value[2] : null; */
 </script>
+<script src="https://cdn.jsdelivr.net/npm/mobile-detect@1.4.5/mobile-detect.min.js"></script>
+<script>
+function modelCheck(){
+	var md = new MobileDetect(navigator.userAgent);
+	
+	let model= "";
+	if(md.mobile()){
+		model = "phone"
+	}
+	else if(md.mobile()){
+		model = "phone"
+	}
+	else if(md.mobile()){
+		model = "tablet"
+	}
+	else if(isDesktopOS()){
+		model = "PC"
+	}
+	
+	return model;
+}
+
+function isDesktopOS(){
+	return ( 'win16|win32|win64|windows|mac|macintel|linux|freebsd|openbsd|sunos'.indexOf(navigator.platform.toLowerCase()) >= 0 );
+}
+
+function LoginSubmit(loginForm){
+	loginForm.model.value = modelCheck();
+	loginForm.submit();
+}
+</script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>로그인</title>
@@ -57,7 +89,7 @@
     	<a class="btn btn-outline-primary btn-sm" onclick="">아이디 로그인</a>
 		<a class="btn btn-outline-primary btn-sm" onclick="qrCodePage()">qr 코드 로그인</a>	
       </div>
-  <form action="login.shop" method="post">
+  <form action="login.shop" method="post" id="loginForm" onsubmit="LoginSubmit(this)" >
     <h3 id="MainHead"class="h3 mb-3 fw-normal">아이디 로그인</h3>
 
     <div class="form-floating py-1">
@@ -83,8 +115,9 @@
 		<a class="btn btn-outline-primary btn-sm" href="PasswordFindFrom.User">비밀번호 찾기</a>	
       </div>
     </div>
-    <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
+    <button class="btn btn-primary w-100 py-2" type="submit" >로그인</button>
     <hr>
+		<input type="hidden" name = "model" value =""  id="modelId">
   </form>
     <button class="btn btn-outline-primary w-100 py-2" type="button" onclick="location.href='account.shop'">회원가입</button>
     <button class="btn btn-outline-primary w-100 py-2" type="button" onclick="kakaoLogin()">카카오 로그인 하기</button>

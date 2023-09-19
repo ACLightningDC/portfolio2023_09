@@ -7,8 +7,61 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/resource/js/jquery-3.7.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"/>
+<script type="text/javascript">
+var url = "http:/localhost:7800/dic";
+$(function(){
+  $.ajax({
+    url: url
+    }).done(function(d){
+        var table = $("#dic").DataTable({
+        data: d,
+        dataSrc: "",
+        columns : [
+          { "data" : "ENT_ID" },
+          { "data" : "ID" },
+          { "data" : "NAME" },
+          { "data" : "TYPE1" },
+          { "data" : "TYPE2" },
+          { "data" : "REG_USER" }
+        ],
+        columnDefs: [
+          {
+          "targets" : [5],
+          "visible" : false
+          }
+        ]
+    });
+  })
+})
 
+$("#data_list").DataTable({
+    ajax: { url: "data.json", dataSrc: '' },
+    columns: [
+        { data: "id" },
+        { data: "name" },
+        { data: "location" }
+    ]
+});
 
+language : {
+  emptyTable: "데이터가 없습니다.",
+  lengthMenu: "_MENU_",
+  info: "현재 _START_ - _END_ / 총 _TOTAL_건",
+  infoEmpty: "데이터 없음",
+  infoFiltered: "( _MAX_건의 데이터에서 필터링됨 )",
+  loadingRecords: "로딩중...",
+  processing:     "잠시만 기다려 주세요...",
+  paginate: {
+  	"next": "다음",
+	"previous": "이전"
+  },
+  select: {
+    rows: ""
+  }
+}
+</script>
 </head>
 <body>
 	<c:set var="totalmoney" value="0"></c:set>
@@ -45,6 +98,24 @@
 		</div>
 	</div>
 </div>
+
+<table id="data_list" class="table table-borderd">
+	<thead>
+		<tr>
+			<th>주문번호</th>
+			<th>유저 아이디</th>
+			<th>제품 이름</th>
+			<th>제품 종류</th>
+			<th>주문 개수</th>
+			<th>가격</th>
+			<th>주문 상태</th>
+			<th>시간</th>
+			<th>제품 링크</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
 
 </body>
 </html>

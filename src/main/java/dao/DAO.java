@@ -1,20 +1,20 @@
 package dao;
 
+import static db.JdbcUtill.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import static db.JdbcUtill.*;
-
 import vo.Address;
 import vo.Delivery;
-import vo.InquiryUser;
 import vo.Order_list;
 import vo.Product;
 import vo.ShoppingCart;
 import vo.Users;
 import vo.sellermall;
+import vo.user_security.User_security;
 
 public class DAO {
 	private Connection con =null;
@@ -671,7 +671,7 @@ public class DAO {
 		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
 		String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
 				+ " ,sellerMall_id , price , name , kind ,img  "
-				+ " from order_list l join product r on l.product_id = r.id where users_id = ?  and result = 'P'";
+				+ " from order_list l join product r on l.product_id = r.id where users_id = ?  and result = 'P' or result = 'D' or result = 'C'";
 		try {
 			
 			pstmt = con.prepareStatement(sql);
@@ -1067,15 +1067,16 @@ public class DAO {
 		return check;
 	}
 
-	public int shoppingresultUpdate(String result, int id) {
+	public int shoppingresultUpdate(String result, int id, int delivery_id) {
 		int check = 0;
-		String sql =" update order_list set result = ? where id = ? ";
+		String sql =" update order_list set result = ? , delivery_id = ?  where id = ? ";
 		try {
 								
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, result);
-			pstmt.setInt(2, id);
+			pstmt.setInt(2, delivery_id);
+			pstmt.setInt(3, id);
 			check= pstmt.executeUpdate();
 
 			}catch(Exception e){
@@ -1329,6 +1330,78 @@ public class DAO {
 				close(pstmt);
 			}
 		return check;
+	}
+
+	public ArrayList<User_security> getUser_security(int id) {
+		ArrayList<User_security> user_securityList = new ArrayList<>();
+		String sql = " select * from user_security where users_id = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				User_security user_security = new User_security();
+				user_security.setId(rs.getInt("id"));
+				user_security.setUsers_id(rs.getInt("users_id")); 
+				user_security.setModel(rs.getString("model")); 
+				user_security.setIpaddress(rs.getString("ipaddress")); 
+				user_securityList.add(user_security);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getdeliveryId 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return user_securityList;
+		
+	}
+
+	public int createDelivery(int address_id) {
+		int check = 0;
+		String sql =" insert into delivery (address_id)value(?)";
+		try {
+			
+			
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, address_id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] delivery 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+
+	public int getDelivery_id(int address_id) {
+		int delivery_Id = 0;
+		String sql = " select id from delivery where address_id = ? and delivery_company is null and delivery_num is null";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, address_id);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				delivery_Id = rs.getInt(1);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getDelivery_id 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return delivery_Id;
+		
 	}
 	
 

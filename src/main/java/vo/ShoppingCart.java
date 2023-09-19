@@ -17,6 +17,7 @@ public class ShoppingCart {
 	private String img;
 	
 	
+	
 	public int getId() {
 		return id;
 	}

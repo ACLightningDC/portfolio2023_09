@@ -52,7 +52,7 @@ break;
 	<br>
 	<c:set var="totalmoney" value="0"></c:set>
 
-<div class="container-fluid ">
+<div class="container-fluid col-8 mx-auto">
   <h1 class="h3 mb-2 text-gray-800 py-2">주문 목록</h1>
 	<div class="card shadow mb-4">
 		<div class="card-header ">
@@ -66,7 +66,7 @@ break;
 		<c:if test="${order.result==C}">
 		<input id="productCheck" type="checkbox" name="remove" value="${order.id}">	
 		</c:if>
-			<div class="card mb-4 m-3 col-md-10 mx-auto">
+			<div class="card mb-4 m-3 col-md-11 mx-auto">
 		<div class="row g-0">
 			<div class="col-md-2">
 										            	<img height="100px" alt="안나옴" src="${pageContext.request.contextPath}/images/${order.img}">

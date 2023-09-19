@@ -41,7 +41,7 @@ public class orderManageDeliveryregistrationAction implements Action {
 			out.println("history.back()");
 			out.println("</script>");
 		}else {
-			forward = new ActionForward("BuyForm.User", false);
+			forward = new ActionForward("orderManage.shop", false);
 		}
 		
 		

@@ -77,6 +77,10 @@ public class SellerControllerServlet extends HttpServlet {
 			request.setAttribute("forward", "buyUser/product/productDetail.jsp");
 			forward = new ActionForward("template.jsp", false);
 		}
+		else if(command.equals("/ShoppingMallManager.Seller")) {
+			request.setAttribute("forward", "sellerUser/shoppingMall/Mallmanage/ShoppingMallManager.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
 		 /*
 		  * 주소 추가
 		  */

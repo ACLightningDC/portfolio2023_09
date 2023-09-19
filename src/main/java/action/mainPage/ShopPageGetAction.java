@@ -9,7 +9,6 @@ import action.Action;
 import svc.mainPage.ShopPageGetService;
 import svc.seller.ShoppingMallManageService;
 import vo.ActionForward;
-import vo.Pagination;
 import vo.sellermall;
 
 public class ShopPageGetAction implements Action {
@@ -37,10 +36,6 @@ public class ShopPageGetAction implements Action {
 		
 		int sellermallCount = sellermalls.size();
 		
-		Pagination pagination = new Pagination();
-		pagination.pageInfo(page, PAGE_SIZE, sellermallCount);
-		
-		request.setAttribute("page",  pagination);
 		
 		
 		request.setAttribute("sellermalls", sellermalls);
@@ -50,6 +45,4 @@ public class ShopPageGetAction implements Action {
 		return forward;
 	}
 
-	//페이지당 아이템 수를 상수로 정의
-	private static final int PAGE_SIZE = 15;
 }

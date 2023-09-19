@@ -21,7 +21,7 @@
           href="https://datatables.net">official DataTables documentation</a>.</p>
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-                           <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                           <h6 class="m-0 font-weight-bold text-primary">배송할 주문</h6>
         </div>
 		<div class="card-body">
 			<div class="table-responsive">
@@ -44,12 +44,12 @@
 			</div>
 		</div>
 	</div>
-</div>
-
-
-배송 운송장 배송회사 선택
-
-            <div class="form-group">
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+                           <h6 class="m-0 font-weight-bold text-primary">배송 운송장 & 배송회사 선택</h6>
+        </div>
+		<div class="card-body">
+			            <div class="form-group">
               <label for="t_code">택배사 코드</label>
               <input type="text" class="form-control" name="delivery_company" id="delivery_company" placeholder="택배사 코드">
             </div>
@@ -57,11 +57,18 @@
               <label for="t_invoice">운송장 번호</label>
               <input type="text" class="form-control" name="delivery_num" id="delivery_num" placeholder="운송장 번호">
             </div>
-            <button type="submit" class="btn btn-default">제품 배송등록</button>
+            <button type="submit" class="btn btn-primary my-2">제품 배송등록</button>
         </form>
+		</div>
+	</div>
+</div>
+
+
+
+
+
         
 
  
-</form>
 </body>
 </html>
