@@ -709,7 +709,7 @@ public class DAO {
 		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
 		String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
 				+ " ,sellerMall_id , price , name , kind ,img  "
-				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ? order by result ,date asc ";
+				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ? and( result = 'D' or result='P' )order by result ,date asc ";
 		try {
 			
 			pstmt = con.prepareStatement(sql);
@@ -1347,6 +1347,7 @@ public class DAO {
 				user_security.setUsers_id(rs.getInt("users_id")); 
 				user_security.setModel(rs.getString("model")); 
 				user_security.setIpaddress(rs.getString("ipaddress")); 
+				user_security.setSecurity_check(rs.getInt("security_check")); 
 				user_securityList.add(user_security);
 			}
 			
@@ -1363,7 +1364,7 @@ public class DAO {
 
 	public int createDelivery(int address_id) {
 		int check = 0;
-		String sql =" insert into delivery (address_id)value(?)";
+		String sql =" insert into delivery (address_id)VALUES (?)";
 		try {
 			
 			
@@ -1429,6 +1430,49 @@ public class DAO {
 		}
 			
 		return del;
+	}
+
+	public int secu_checkUpdate(int secu_check, int secuid) {
+		
+		int check = 0;
+		String sql =" update user_security set security_check = ? where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, secu_check);
+			pstmt.setInt(2, secuid);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] secu_checkUpdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public int createSecu(int loginCheck, int secu_check, String ipAddress, String model) {
+		int check = 0;
+		String sql =" insert into user_security (users_id , ipaddress, model ,security_check) values(?,?,?,?) ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, loginCheck);
+			pstmt.setString(2, ipAddress);
+			pstmt.setString(3, model);
+			pstmt.setInt(4, secu_check);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] createSecu 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
 	}
 	
 

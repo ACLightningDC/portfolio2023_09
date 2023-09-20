@@ -7,9 +7,10 @@ select * from sellermall;
 select * from product;
 select * from order_list;
 select * from inquiry;
-select * from user_security;
+select * from user_security where check = 0;
 select * from delivery;
 
+update user_security set where id = 5 ;
 select * from delivery where delivery_company is null;
 
 update order_list set order_count= 3 where users_id = 2 product_id = 2;
