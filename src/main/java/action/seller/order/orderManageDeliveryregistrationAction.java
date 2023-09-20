@@ -24,8 +24,8 @@ public class orderManageDeliveryregistrationAction implements Action {
 		
 		
 		Delivery delivery = new Delivery();
-		delivery.setDelivery_company(Integer.parseInt(request.getParameter("delivery_company")));
-		delivery.setDelivery_num(Integer.parseInt(request.getParameter("delivery_num")));
+		delivery.setDelivery_company(request.getParameter("delivery_company"));
+		delivery.setDelivery_num(request.getParameter("delivery_num"));
 		
 		OrderManageDeliveryregistrationService OrderManageDeliveryregistrationService = new OrderManageDeliveryregistrationService(); 
 		int Address_id = OrderManageDeliveryregistrationService.GetAddress_id(Integer.parseInt(Cartproduct[0]));

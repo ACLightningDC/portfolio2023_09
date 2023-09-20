@@ -19,6 +19,7 @@ import action.user.AddressFormAction;
 import action.user.address.AddressAddAction;
 import action.user.address.AddressDeleteAction;
 import action.user.address.AddressUpdateAction;
+import svc.seller.order.orderCheckForm;
 import vo.ActionForward;
 
 /**
@@ -78,7 +79,7 @@ public class SellerControllerServlet extends HttpServlet {
 			forward = new ActionForward("template.jsp", false);
 		}
 		else if(command.equals("/ShoppingMallManager.Seller")) {
-			request.setAttribute("forward", "sellerUser/shoppingMall/Mallmanage/ShoppingMallManager.jsp");
+			request.setAttribute("forward", "sellerUser/shoppingMall/Mallmanage/ShoppingMallIndexMake.jsp");
 			forward = new ActionForward("template.jsp", false);
 		}
 		 /*
@@ -153,8 +154,15 @@ public class SellerControllerServlet extends HttpServlet {
 			forward = new ActionForward("template.jsp", false);
 		} 
 		else if(command.equals("/orderCheck.Seller")) {
-			request.setAttribute("forward", "/MallManage/orderManage/orderCheck.jsp");
-			forward = new ActionForward("template.jsp", false);
+			action = new orderCheckForm();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
 		} 
 
 		 

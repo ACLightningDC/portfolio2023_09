@@ -19,6 +19,7 @@ import action.user.AddressFormAction;
 import action.user.address.AddressAddAction;
 import action.user.address.AddressDeleteAction;
 import action.user.address.AddressUpdateAction;
+import svc.seller.mallPage.IndexMakeAction;
 import vo.ActionForward;
 
 /**
@@ -81,9 +82,8 @@ public class MallControllerServlet extends HttpServlet {
 		 /*
 		  * 주소 추가
 		  */
-		else if(command.equals("/orderManageDelivery.Seller")) {
-			action = new orderManageDeliveryAction();
-			
+		else if(command.equals("/IndexMake.Mall")) {
+			action = new IndexMakeAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

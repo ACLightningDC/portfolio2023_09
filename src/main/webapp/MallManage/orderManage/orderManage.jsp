@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/resource/js/jquery-3.7.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/javascript/shoppingCart.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/resource/javascript/seller/orderManager.js" type="text/javascript">
 <script type="text/javascript">
 function checkform()
 {
@@ -43,6 +42,18 @@ break;
         return false;
       }
 }
+
+function check_post(del_id){
+	 
+	 url="orderCheck.Seller?delivery_id="+del_id;
+	 var popupWidth = 500;
+	 var popupHeight = 1000;
+	 
+	 var popupX = (window.screen.width/ 2)-(popupWidth / 2);
+	 var popupY = (window.screen.height/ 2)-(popupHeight / 2);
+	 open(url,"배송확인",'width='+popupWidth+',height='+popupHeight+',left='+popupX+',top='+popupY);
+	 
+	 }
 </script>
 </head>
 <body>
@@ -119,7 +130,7 @@ break;
 						<input id="productCheck" type="checkbox" name="remove" value="${order.id}">
 						</c:if>
 						<c:if test="${order.result=='D'}">
-						<button class="btn btn-primary btn-sm" type="button" onclick="location.href='orderCheck.Seller'"">배송 확인</button>
+						<button class="btn btn-primary btn-sm" type="button" onclick="check_post(${order.delivery_id})">배송 확인</button>
 						</c:if>
 						</td>
 							<td>${order.id} </td><td>${order.users_id}</td><td>${order.delivery_id}</td>

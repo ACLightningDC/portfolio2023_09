@@ -3,8 +3,12 @@ package action.seller.mall;
 import static util.action.ActionUtil.ActionForwardForUpdate;
 import static util.action.ActionUtil.CheckLogin;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -36,9 +40,25 @@ public class orderManageSalesView implements Action {
 					ShoppingCart order = ShoppingList.get(i);
 					sum += order.getOrder_count() * order.getPrice();
 				}
+				//gson 파일 뿌리기
+//				String path = request.getContextPath()+"/resource/json/saleDatabase.json";
 				
-				String json = new Gson().toJson(ShoppingList);
-				System.out.println("제이슨 결과 " +json);
+				ServletContext context = request.getServletContext();
+				String uploadPath = context.getRealPath("/resource/json/saleDatabase"+sellerMallid+".json");
+				
+				File file = new File(uploadPath);
+				if(!file.exists()) {
+					file.createNewFile();
+				}
+				
+				try(PrintWriter out = new PrintWriter(new FileWriter(uploadPath))){
+					String jsonShoppingList = new Gson().toJson(ShoppingList);
+					out.write(jsonShoppingList);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+				
+				//끝
 				
 				
 				String Message = "실패했습니다.";

@@ -20,7 +20,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="get" action="IndexMake.Mall>
 
 			<br>
 			<input type="radio" name="pageType" value="pro">제품 
@@ -45,7 +45,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="get" action="IndexMake.Mall>
           <select name="categori">
 				<option value="카테고리 없음">
 			</select>
@@ -72,7 +72,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="get" action="IndexMake.Mall>
         				새로운 카테고리 사용<input type="text"name="categori" value="N">
         	
 			<hr>

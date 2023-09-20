@@ -9,6 +9,35 @@
 <script src="${pageContext.request.contextPath}/resource/js/jquery-3.7.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/javascript/shoppingCart.js" type="text/javascript">
 </script>
+<script>
+$(document).ready(function(){
+	var myKey = "JUI5lF7RHlbZHdNPCjhfYw"; // sweet tracker에서 발급받은 자신의 키 넣는다.
+	
+		// 택배사 목록 조회 company-api
+        $.ajax({
+            type:"GET",
+            dataType : "json",
+            url:"http://info.sweettracker.co.kr/api/v1/companylist?t_key="+myKey,
+            success:function(data){
+            		
+            		// 방법 1. JSON.parse 이용하기
+            		var parseData = JSON.parse(JSON.stringify(data));
+             		console.log(parseData.Company); // 그중 Json Array에 접근하기 위해 Array명 Company 입력
+            		
+            		// 방법 2. Json으로 가져온 데이터에 Array로 바로 접근하기
+            		var CompanyArray = data.Company; // Json Array에 접근하기 위해 Array명 Company 입력
+            		console.log(CompanyArray); 
+            		
+            		var myData="";
+            		$.each(CompanyArray,function(key,value) {
+	            			myData += ('<option value='+value.Code+'>' +'key:'+key+', Code:'+value.Code+',Name:'+value.Name + '</option>');        				
+            		});
+            		$("#tekbeCompnayList").html(myData);
+            }
+        });
+});
+
+</script>
 </head>
 <body>
 <form action="orderManageDeliveryregistration.Seller" method="post">
@@ -49,6 +78,9 @@
                            <h6 class="m-0 font-weight-bold text-primary">배송 운송장 & 배송회사 선택</h6>
         </div>
 		<div class="card-body">
+			<span id="tekbeCompnayName">택배회사명: </span>
+<select id="tekbeCompnayList" name="tekbeCompnayList"></select><br/><br/>
+			
 			            <div class="form-group">
               <label for="t_code">택배사 코드</label>
               <input type="text" class="form-control" name="delivery_company" id="delivery_company" placeholder="택배사 코드">

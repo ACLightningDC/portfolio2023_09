@@ -1165,8 +1165,8 @@ public class DAO {
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, address_id);
-			pstmt.setInt(2, delivery.getDelivery_company());
-			pstmt.setInt(3, delivery.getDelivery_num());
+			pstmt.setString(2, delivery.getDelivery_company());
+			pstmt.setString(3, delivery.getDelivery_num());
 			check= pstmt.executeUpdate();
 
 			}catch(Exception e){
@@ -1274,8 +1274,8 @@ public class DAO {
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, address_id);
-			pstmt.setInt(2, delivery.getDelivery_company());
-			pstmt.setInt(3, delivery.getDelivery_num());
+			pstmt.setString(2, delivery.getDelivery_company());
+			pstmt.setString(3, delivery.getDelivery_num());
 			rs= pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -1402,6 +1402,33 @@ public class DAO {
 			
 		return delivery_Id;
 		
+	}
+
+	public Delivery orderCheckForm(int delivery_id) {
+		Delivery del = null;
+		String sql = " select * from delivery where id = ?";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, delivery_id);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				del = new Delivery();
+				del.setId(rs.getInt("id"));
+				del.setAddress_id(rs.getInt("address_id"));
+				del.setDelivery_company(rs.getString("delivery_company"));
+				del.setDelivery_num(rs.getString("delivery_num"));
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getDelivery_id 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return del;
 	}
 	
 
