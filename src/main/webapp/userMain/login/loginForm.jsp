@@ -15,7 +15,9 @@
                 Kakao.API.request({
                     url: '/v2/user/me',
                     success: function (response) {
-                        alert(JSON.stringify(response))
+                        alert(JSON.stringify(response));
+                        
+                        
                     },
                     fail: function (error) {
                         alert(JSON.stringify(error))

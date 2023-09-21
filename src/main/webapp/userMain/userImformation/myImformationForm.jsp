@@ -21,8 +21,12 @@
                 Kakao.API.request({
                     url: '/v2/user/me',
                     success: function (response) {
-                        alert(JSON.stringify(response))
-
+                        alert(JSON.stringify(response));
+                        alert(response.id + "," + response.kakao_account.email);
+                        
+                        document.getElementById("snsId").value= response.id
+                        document.getElementById("snsEmail").value= response.kakao_account.email
+                        document.getElementById("snsSubmitForm").submit();
                         
                     },
                     fail: function (error) {
@@ -162,7 +166,10 @@ function securitySetting(){
 		</div>
 	</div>
 </div>
-
+<form action="snsSubmit.User" method="post" id="snsSubmitForm">
+	<input type="text" name="snsId" id="snsId" value="">
+	<input type="text" name="snsEmail" id="snsEmail" value="">
+</form>
 
 
 </body>

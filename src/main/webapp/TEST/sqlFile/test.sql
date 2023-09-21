@@ -10,6 +10,10 @@ select * from inquiry;
 select * from user_security where check = 0;
 select * from delivery;
 
+delete from product where = "6";
+delete from product where id = '6';
+delete from product where id = '9';
+
 update user_security set where id = 5 ;
 select * from delivery where delivery_company is null;
 

@@ -121,6 +121,14 @@ public class UserControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+//		else if(command.equals("/snsSubmit.User")) {
+//			action = new snsSubmit();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 		else if(command.equals("/myImformationUpdateaAction.User")) {
 			action = new myImformationUpdateaAction();
 			try {

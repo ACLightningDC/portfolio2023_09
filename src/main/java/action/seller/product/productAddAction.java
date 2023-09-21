@@ -22,7 +22,7 @@ public class productAddAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ServletContext context = request.getServletContext();
-		String uploadPath = context.getRealPath("/images");
+		String uploadPath = context.getRealPath("images");
 		
 		File dir = new File(uploadPath);
 		if(!dir.exists()) {
