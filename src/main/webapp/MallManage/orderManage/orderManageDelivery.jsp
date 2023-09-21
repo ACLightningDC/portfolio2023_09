@@ -56,7 +56,7 @@ $(document).ready(function(){
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered">
 				<tr>
-					<th>주문번호</th><th>유저 아이디</th><th>제품 이름</th><th>제품 종류</th><th>주문 개수</th><th>가격</th><th>주문 상태</th><th>시간</th><th>제품 링크</th>
+					<th>주문번호</th><th>유저 아이디</th><th>제품 이름</th><th>제품 종류</th><th>주문 개수</th><th>가격</th><th>주문 상태</th><th>시간</th><th>제품 링크</th>l
 				</tr>
 					<c:if test="${not empty requestScope.buyList }">
 						<c:forEach var="order" items="${requestScope.buyList}">
