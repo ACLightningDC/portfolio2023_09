@@ -18,7 +18,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
-        <a class="navbar-brand " href="${pageContext.request.contextPath}/homePage.shop">홈쇼핑 ${sessionScope.userinfo.id}</a>
+        <a class="navbar-brand " href="${pageContext.request.contextPath}/homePage.shop">홈쇼핑</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -53,11 +53,11 @@
 				              
             </li>
            <li class="nav-item ">
-              <a class="nav-link" >${sessionScope.Seller_id}/${sessionScope.userinfo.name}${sessionScope.userinfo.grade == 'S' ? '판매자님' : '님' } 로그인되었습니다.</a>
+              <a class="nav-link" >${sessionScope.userinfo.name}${sessionScope.userinfo.grade == 'S' ? '판매자님' : '님' } 로그인되었습니다.</a>
             </li> 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                내정보 관리 ${sessionScope.userinfo.grade} ${sessionScope.userinfo.grade == 'S'}
+                내정보 관리 
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<%=request.getContextPath()%>/myImformationForm.shop">내 정보 변경 , 확인</a></li>

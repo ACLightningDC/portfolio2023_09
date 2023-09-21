@@ -85,10 +85,6 @@ function LoginSubmit(loginForm){
 
 
 <main id="loginMain" class="form-signin w-100 m-auto">
-      <div class="btn-group" role="group">
-    	<a class="btn btn-outline-primary btn-sm" onclick="">아이디 로그인</a>
-		<a class="btn btn-outline-primary btn-sm" onclick="qrCodePage()">qr 코드 로그인</a>	
-      </div>
   <form action="login.shop" method="post" id="loginForm" onsubmit="LoginSubmit(this)" >
     <h3 id="MainHead"class="h3 mb-3 fw-normal">아이디 로그인</h3>
 

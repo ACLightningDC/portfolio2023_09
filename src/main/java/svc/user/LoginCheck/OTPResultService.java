@@ -1,5 +1,8 @@
 package svc.user.LoginCheck;
 
+import static util.svc.SvcUtil.commitOrCloseSvc;
+import static util.svc.SvcUtil.daoSetConnection;
+
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -8,9 +11,11 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base32;
 
+import vo.util.svc.ConAndDAO;
+
 public class OTPResultService {
 
- 
+	
 
 	public boolean check_code(String secret, long code, long t) throws NoSuchAlgorithmException, InvalidKeyException {
         Base32 codec = new Base32();
@@ -60,4 +65,23 @@ public class OTPResultService {
  
         return (int) truncatedHash;
     }
+
+	public int secu_checkUpdate(int secu_check, int secuid) {
+		ConAndDAO conAndDao= daoSetConnection();
+		
+		int Check = conAndDao.getDao().secu_checkUpdate(secu_check ,secuid);
+		
+		commitOrCloseSvc(Check , conAndDao.getCon());
+		return Check;
+
+	}
+
+	public int createSecu(int loginCheck, int secu_check, String ipAddress, String model) {
+		ConAndDAO conAndDao= daoSetConnection();
+		
+		int Check = conAndDao.getDao().createSecu(loginCheck , secu_check ,ipAddress ,model);
+		
+		commitOrCloseSvc(Check , conAndDao.getCon());
+		return Check;
+	}
 }

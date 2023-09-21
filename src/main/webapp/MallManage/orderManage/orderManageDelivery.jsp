@@ -11,7 +11,7 @@
 </script>
 <script>
 $(document).ready(function(){
-	var myKey = "JUI5lF7RHlbZHdNPCjhfYw"; // sweet tracker에서 발급받은 자신의 키 넣는다.
+	var myKey = "um4IttvBOTuvNj1IjsEZJg"; // sweet tracker에서 발급받은 자신의 키 넣는다.
 	
 		// 택배사 목록 조회 company-api
         $.ajax({
@@ -78,12 +78,10 @@ $(document).ready(function(){
                            <h6 class="m-0 font-weight-bold text-primary">배송 운송장 & 배송회사 선택</h6>
         </div>
 		<div class="card-body">
-			<span id="tekbeCompnayName">택배회사명: </span>
-<select id="tekbeCompnayList" name="tekbeCompnayList"></select><br/><br/>
+			<span id="tekbeCompnayName">택배회사 코드 </span>
+				<select id="tekbeCompnayList" name="delivery_company"></select><br/><br/>
 			
 			            <div class="form-group">
-              <label for="t_code">택배사 코드</label>
-              <input type="text" class="form-control" name="delivery_company" id="delivery_company" placeholder="택배사 코드">
             </div>
             <div class="form-group">
               <label for="t_invoice">운송장 번호</label>

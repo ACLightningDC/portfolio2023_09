@@ -43,6 +43,18 @@ break;
         return false;
       }
 }
+
+function check_post(del_id){
+	 
+	 url="orderCheck.Seller?delivery_id="+del_id;
+	 var popupWidth = 500;
+	 var popupHeight = 1000;
+	 
+	 var popupX = (window.screen.width/ 2)-(popupWidth / 2);
+	 var popupY = (window.screen.height/ 2)-(popupHeight / 2);
+	 open(url,"배송확인",'width='+popupWidth+',height='+popupHeight+',left='+popupX+',top='+popupY);
+	 
+	 }
 </script>
 </head>
 
@@ -95,7 +107,7 @@ break;
 			<div class="btn-group" role="group">
           		<button class="btn btn-primary" type="button" onclick="location.href='shoppingCartProductDetail.shop?product_id=${order.product_id}'">상품 상세보기</button>
           		<button class="btn btn-primary" type="button" onclick="location.href='inquiryForm.shop?seller_Mall_id=${order.sellerMall_id}&product_id=${order.product_id}'">상품 문의하기</button>
-				<button class="btn btn-primary" type="button" onclick="location.href='shoppingCartProductDetail.shop?product_id=${order.product_id}'">배송 조회하기</button>
+				<button class="btn btn-primary" type="button" onclick="check_post(${order.delivery_id})">배송 확인</button>
 			</div>
 				
 		</div>

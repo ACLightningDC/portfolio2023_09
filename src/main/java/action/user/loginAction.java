@@ -57,18 +57,26 @@ public class loginAction implements Action {
 				if(user_securityList.size() > 0) {
 			        String ipAddress=request.getRemoteAddr();
 			        String model = request.getParameter("model");
-			        
-			        for(int i = 0 ;i<0 ;i++) {
+			        System.out.println(ipAddress +"," +model );
+			        for(int i = 0 ;i<user_securityList.size() ;i++) {
 			        	User_security user_security = user_securityList.get(i);
-			        	if(user_security.getIpaddress().equals(ipAddress)
-			        			&& user_security.getModel().equals(model) ) {
+			        	System.out.println(user_security);
+			        	int secu_id =0;
+			        	if(user_security.getSecurity_check()==1) {
 							request.setAttribute("Check", 1);
+			        	}
+			        	if(user_security.getUsers_id()==user.getId() && user_security.getIpaddress().equals(ipAddress)
+			        			&& user_security.getModel().equals(model) ) {
+			        		secu_id = user_security.getId();
+							request.setAttribute("Check2",secu_id );
 			        	}
 			        }
 			        
 			        OTPLoginCheck OTPloginCheck = new OTPLoginCheck();
 			        OTP otp = OTPloginCheck.CreateKey(id , ipAddress);
 					
+			        request.setAttribute("ipAddress", ipAddress);
+			        request.setAttribute("model", model);
 			        request.setAttribute("loginCheck", loginCheck);
 					request.setAttribute("encodedKey", otp.getEncodedKey());
 					request.setAttribute("url", otp.getUrl());
