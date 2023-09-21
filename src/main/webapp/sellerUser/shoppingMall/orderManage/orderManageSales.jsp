@@ -22,7 +22,11 @@ url = "${pageContext.request.contextPath}/resource/json/saleDatabase${sellerMall
 $(function(){
   $.ajax({
     url: url
-    }).done(function(d){
+    })
+    .fail(function() {
+        	alert("테이블을 생성하는 중입니다. 새로고침을 해주세요")
+     })
+    .done(function(d){
         var table = $("#data_list").DataTable({
          	deferRender : true,
              buttons: [
@@ -133,7 +137,10 @@ $(function(){
 		    },
 		    
 		    
+		    
         });
+        
+
         
         let minDate, maxDate;
   	  
@@ -178,7 +185,7 @@ $(function(){
     	
         });/*function 끝  */
   		
-  		
+
   
   });
   

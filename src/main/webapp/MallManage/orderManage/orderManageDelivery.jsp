@@ -13,7 +13,7 @@
 $(document).ready(function(){
 	var myKey = "um4IttvBOTuvNj1IjsEZJg"; // sweet tracker에서 발급받은 자신의 키 넣는다.
 	
-		// 택배사 목록 조회 company-api
+		// 택배사 목록 조회 company-apiㅁ
         $.ajax({
             type:"GET",
             dataType : "json",

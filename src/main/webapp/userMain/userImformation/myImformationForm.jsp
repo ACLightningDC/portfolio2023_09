@@ -12,6 +12,30 @@
 </style>
 <script src="https://cdn.jsdelivr.net/npm/mobile-detect@1.4.5/mobile-detect.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.5/mobile-detect.min.js"></script>
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript">
+    Kakao.init('0b5733d74f6c32b9701c8c6784906f07');
+    function kakaoLogin() {
+        Kakao.Auth.login({
+            success: function (response) {
+                Kakao.API.request({
+                    url: '/v2/user/me',
+                    success: function (response) {
+                        alert(JSON.stringify(response))
+
+                        
+                    },
+                    fail: function (error) {
+                        alert("카카오 로그인 등록 실패");
+                    },
+                })
+            },
+            fail: function (error) {
+                alert(JSON.stringify(error))
+            },
+        })
+    }
+</script>
 <script>
 
 function modelCheck(){
@@ -89,6 +113,7 @@ function securitySetting(){
 	<div class="container-fluid my-5">
 		<div class="row">
 			<div class="col-8 mx-auto ">
+				
 			
 				<table class="table table-striped table-bordered" id="infoTable">
 				<tr>
@@ -124,6 +149,9 @@ function securitySetting(){
 				<button class="btn btn-primary" onclick="location.href='myImformationUpdateForm.User'">내 정보 변경하기</button>
 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 				  2단계 보안설정하기
+				</button>
+				<button type="button" class="btn btn-primary" onclick="kakaoLogin()">
+				  카카오 로그인 설정하기
 				</button>
 			</div>
 		</div>

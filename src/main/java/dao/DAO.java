@@ -1474,6 +1474,86 @@ public class DAO {
 		
 		return check;
 	}
+
+	public ArrayList<sellermall> getAllsellermallList(int page, int limit) {
+		ArrayList<sellermall> sellermallList = new ArrayList<sellermall>();
+		String sql = " select  * from sellermall LIMIT ? , ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, page);
+			pstmt.setInt(2, limit);
+			//pstmt.setInt(1, page);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				sellermall mall = new sellermall();
+				mall.setId(rs.getInt("id"));
+				mall.setSeller_id(rs.getInt("seller_id"));
+				mall.setName(rs.getString("name"));
+				mall.setCreate_date(rs.getString("create_date"));
+				mall.setGrade(rs.getString("grade"));
+				sellermallList.add(mall);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] productPageGetList 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return sellermallList;
+	}
+
+	public int shopPageGet() {
+		 int cnt = 0;
+			String sql = " select count(*) cnt from sellermall ";
+			try {
+				
+				pstmt = con.prepareStatement(sql);
+				
+				//pstmt.setInt(1, page);
+				rs= pstmt.executeQuery();
+				
+				if(rs.next()) {
+					cnt = rs.getInt(1);
+				}
+				
+			}catch(Exception e){
+				System.out.println("[DAO] getAllProductListCnt 에러" + e );
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+				
+			return cnt;
+	}
+
+	public int myImformationUpdate(Users inputuser) {
+		int check = 0;
+		
+		String sql =" update users set userid = ? ,password=? , name=? ,email=? ,phone = ?where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, inputuser.getUserid());
+			pstmt.setString(2, inputuser.getPassword());
+			pstmt.setString(3, inputuser.getName());
+			pstmt.setString(4, inputuser.getEmail());
+			pstmt.setString(5, inputuser.getPhone());
+			pstmt.setInt(6, inputuser.getId());
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] myImformationUpdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
 	
 
 

@@ -20,7 +20,7 @@ public class ProductPageGetAction implements Action {
 		
 		int page = 1; //현재 페이지를 표시 (기본값: 1)
 		
-		int limit = 15; //한 페이지당 15개
+		int limit = 9; //한 페이지당 15개
 		
 		//int proudcut_cnt = 0; //제품 개수
 		

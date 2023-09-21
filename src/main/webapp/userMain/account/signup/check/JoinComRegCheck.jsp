@@ -49,20 +49,12 @@ function b_noChange(){
                        	
                         $("#CheckText").text(result.data[0].tax_type);
                         $("#response").text(JSON.stringify(result, null, 2));
-                        alert(JSON.stringify(result.data[0].tax_type, null, 2));
-                        alert(result.data[0].b_no);
                         
                         if(result.data[0].b_stt_cd){
-	                   	 alert('사용가능한 번호입니다');
 		                 let divText =document.getElementById("divText");
 		                 divText.innerHTML ="사용가능한 사업자 등록번호 입니다";	
 		                 
 		                 Checkbutton.style.display ='block';
-		                 function namesendB_no(){
-		                		opener.document.f.userid.value = document.Form.b_no.value;
-		                		    window.close();
-
-		                	}
 		                 
                         }
                    	

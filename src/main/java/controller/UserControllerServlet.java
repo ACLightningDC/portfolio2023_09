@@ -17,6 +17,7 @@ import action.seller.mall.orderManageSalesView;
 import action.seller.order.orderManageDeliveryAction;
 import action.seller.order.orderManageDeliveryregistrationAction;
 import action.user.AddressFormAction;
+import action.user.myImformationUpdateaAction;
 import action.user.LoginCheck.OTPResultAction;
 import action.user.address.AddressAddAction;
 import action.user.address.AddressDeleteAction;
@@ -82,12 +83,10 @@ public class UserControllerServlet extends HttpServlet {
 			forward = new ActionForward("template.jsp", false);
 		}
 		else if(command.equals("/accountBuisness.User")) {
-			request.setAttribute("forward", "/userMain/account/signup/accountBuisness.jsp");
-			forward = new ActionForward("template.jsp", false);
+			forward = new ActionForward("/userMain/account/signup/accountBuisness.jsp", false);
 		}
 		else if(command.equals("/accountUsers.User")) {
-			request.setAttribute("forward", "/userMain/account/signup/accountUsers.jsp");
-			forward = new ActionForward("template.jsp", false);
+			forward = new ActionForward("/userMain/account/signup/accountUsers.jsp", false);
 		}
 		else if(command.equals("/findIdForm.User")) {
 			request.setAttribute("forward", "/userMain/account/FindForgot/findIdForm.jsp");
@@ -116,6 +115,14 @@ public class UserControllerServlet extends HttpServlet {
 		}
 		else if(command.equals("/user_securitySetting.User")) {
 			action = new user_securitySettingAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/myImformationUpdateaAction.User")) {
+			action = new myImformationUpdateaAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

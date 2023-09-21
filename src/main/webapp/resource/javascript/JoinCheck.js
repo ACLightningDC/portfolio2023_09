@@ -32,6 +32,6 @@ function namesendB_no(){
     $("#b_no").focus();
     return;
 	}
-	opener.document.f.userid.value = document.Form.b_no.value;
+	opener.document.f.b_no.value = document.Form.b_no.value;
 	    window.close();
 }

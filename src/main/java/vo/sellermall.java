@@ -1,6 +1,7 @@
 package vo;
 
 public class sellermall {
+
 	private int id;
 	private int seller_id;
 	private String name;
@@ -37,5 +38,9 @@ public class sellermall {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	
+	@Override
+	public String toString() {
+		return "sellermall [id=" + id + ", seller_id=" + seller_id + ", name=" + name + ", create_date=" + create_date
+				+ ", grade=" + grade + "]";
+	}
 }

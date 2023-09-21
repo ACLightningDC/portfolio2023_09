@@ -6,8 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>사업자 회원가입</title>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="${pageContext.request.contextPath}/resource/js/jquery-3.7.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
+	<link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 	<script src="${pageContext.request.contextPath}/resource/javascript/accountJoin.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script >
 		function findAddr(){
 			//카카오 지도 발생-> 주소 입력 후 [검색]-> 찾는 주소[선택]
@@ -50,7 +53,7 @@
 
       <div class=" col-xl-8 d-grid mx-auto">
       
-        <form name="f"method="post" action="accountAction.shop" class="needs-validation" novalidate>
+        <form id="acountForm" name="f"method="post" action="accountAction.shop" class="needs-validation" novalidate >
           <div class="row g-3">
           
           <div class="col-12">
@@ -78,7 +81,7 @@
            
            <div class="col-12">
               <label for="password" class="form-label">비밀번호</label>
-              <input type="text" class="form-control" name="password" id="password" autofocus="autofocus" placeholder="영문대소문자포함 8~20자 입니다." required="required">
+              <input type="password" class="form-control" name="password" id="password" autofocus="autofocus" placeholder="영문대소문자포함 4~20자 입니다." required="required">
                <div class="invalid-feedback">
                           비밀번호를 입력해주세요.
               </div>
@@ -168,7 +171,7 @@
 
           </div>
 
-          <button class="w-100 btn btn-primary btn-lg" type="button" onclick="CheckAllSubmit(this)">회원가입</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit" onclick="CheckAllSubmit(this); return false;">회원가입</button>
         </form>
       </div>
     </div>
@@ -176,7 +179,6 @@
 
 
 </div>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="checkout.js"></script></body>
 </html>

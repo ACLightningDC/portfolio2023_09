@@ -25,7 +25,7 @@ function IdChange(){
 </script>
 </head>
 <body>
-	<form method="get" action="accountEmailCheckAction.shop" name="emailForm">
+	<form method="post" action="accountEmailCheckAction.shop" name="emailForm">
 
 <div class="container">
 		<div class="container-fluid p-2">
@@ -47,9 +47,17 @@ function IdChange(){
 								사용가능한 이메일입니다				
 						</div>
 					</div>
+					<!-- 					
 					<div class="row py-3">
 						<div class="col d-grid mx-auto">
-							<button id="CheckButton"class="btn btn-primary" type="button" onclick="namesendEmail()">이 이메일로 결정 </button>
+							<input type="text" name="randomPassword" onclick="">
+							<button id="CheckButton"class="btn btn-primary" type="button" onclick="namesendEmail()">이메일 인증</button>
+						</div>
+					</div>
+					 -->
+					<div class="row py-3">
+						<div class="col d-grid mx-auto">
+							<button id="CheckButton"class="btn btn-primary" type="button" onclick="namesendEmail()">이메일로 결정 </button>
 						</div>
 					</div>
 				</c:when> 

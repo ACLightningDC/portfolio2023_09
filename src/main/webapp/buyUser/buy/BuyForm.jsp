@@ -59,14 +59,18 @@
 					<c:if test="${not empty sessionScope.userinfo.address_id}">
 						기본주소 아이디 ${sessionScope.userinfo.address_id}
 					</c:if>
-					 --%>
-					<div>
-						우편번호 : <span id="postcode">${address.postcode}</span>
-						<br>주소 : <span id="address1">${address.address1}</span>						
-						<br>상세주소 :<span id="address2">${address.address2}</span>			
-					</div>
-					<input type="hidden" name="address_id" value="${sessionScope.userinfo.address_id}">		
-					<button class="btn btn-primary " type="button" onclick="select_address()">다른 배송지 선택</button>
+					 --%><c:if test="${not empty sessionScope.userinfo.address_id  }">
+							<div>
+								우편번호 : <span id="postcode">${address.postcode}</span>
+								<br>주소 : <span id="address1">${address.address1}</span>						
+								<br>상세주소 :<span id="address2">${address.address2}</span>			
+							</div>
+						<input type="hidden" name="address_id" value="${sessionScope.userinfo.address_id}">		
+					 </c:if>
+					 <c:if test="">
+					 	배송지 선택 바랍니다.
+					 </c:if>
+					<button class="btn btn-primary " type="button" onclick="select_address()">배송지 선택</button>
 					<button class="btn btn-primary btn-lg col-12"  type="submit">테스트 결제</button>
 				</form>
 			
@@ -92,25 +96,7 @@
 	</div>	
 		
 	
-	<c:if test="${not empty requestScope.buyList }">
-	<c:forEach var="buy" items="${requestScope.buyList}">
-		<br>주문번호 : ${buy.id} 
-		<br>유저 아이디 : ${buy.users_id}
-		<br>제품 아이디 : ${buy.product_id}
-		<br>주문 개수 : ${buy.order_count}
-		<br>배송 상태 : ${buy.delivery_id}
-		<br>장바구니 시각 : ${buy.date}
-		<br>주문 상태 : ${buy.result}
-		
-		<br>아이디 : ${buy.sellerMall_id}
-		<br>가격 : ${buy.price}
-		<br>이름 : ${buy.name}
-		<br>종류: ${buy.kind}
-		<br>이미지: ${buy.img}
-		
-		<input type="hidden" name="order_id" value="${buy.id}">
-	</c:forEach>
-</c:if>
+
 
 
 

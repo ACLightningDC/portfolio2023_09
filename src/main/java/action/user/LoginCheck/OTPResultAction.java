@@ -84,13 +84,6 @@ public class OTPResultAction implements Action {
 				if(comit_Check >0) {
 					
 				}else {
-					response.setContentType("text/html;charset=UTF-8");
-					PrintWriter out = response.getWriter();
-					
-					out.println("<script>");
-					out.println("alert('잘못된 번호 입니다.');");
-					out.println("history.back();");
-					out.println("</script>");
 				}
 			}
 				

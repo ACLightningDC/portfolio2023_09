@@ -85,7 +85,7 @@
  function productCount(id){
 	 const order_id = document.getElementById(id+"order_id").value;
 	 const orderCount = document.getElementById(id+"orderCount").value;
-	 if(orderCount == null & orderCount<0){
+	 if(orderCount == 0 || orderCount<0){
 		 alert("0이상의 개수를 적어주세요");
 	 }else{
 		 if(orderCount == 1){

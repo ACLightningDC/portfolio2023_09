@@ -40,7 +40,41 @@
     </div>
   </div>
 </c:if>
-
-페이지별로 15개씩 만들기
+        <footer class="py-2 bg">
+	         <nav id="" aria-label="Page navigation example">
+			  <ul class="pagination justify-content-center">
+			  <div class="btn-group text-align-center">
+			    <c:if test="${pageInfo.page <= 1}">
+			        <div class="btn btn-outline-primary">이전&nbsp;</div>
+			    </c:if>
+			    <c:choose>
+			        <c:when test="${pageInfo.page > 1}">
+			            <a class="btn btn-outline-primary" href="productPage.shop?page=${pageInfo.page - 1}">이전</a>&nbsp;
+			        </c:when>
+			    </c:choose>
+			
+			    <c:forEach var="page" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
+			        <c:choose>
+			            <c:when test="${pageInfo.page == page}">
+			                <div class="btn btn-outline-primary"><c:out value="${page}"/></div>
+			            </c:when>
+			            <c:otherwise>
+			                <a class="btn btn-outline-primary" href="productPage.shop?page=${page}"><c:out value="${page}"/></a>&nbsp;
+			            </c:otherwise>
+			        </c:choose>
+			    </c:forEach>
+			
+			    <c:if test="${pageInfo.page >= pageInfo.maxPage}">
+			        <div class="btn btn-outline-primary">다음</div>
+			    </c:if>
+			    <c:choose>
+			        <c:when test="${pageInfo.page < pageInfo.maxPage}">
+			            <a class="btn btn-outline-primary" href="productPage.shop?page=${pageInfo.page + 1}">다음</a>
+			        </c:when>
+			    </c:choose>
+			    </div>
+			  </ul>
+			</nav>
+        </footer>
 </body>
 </html>
