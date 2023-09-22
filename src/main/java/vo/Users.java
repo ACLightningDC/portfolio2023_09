@@ -20,6 +20,33 @@ public class Users {
 	public String email;
 	public String birthday;
 	public int address_id;
+	
+	public String snsLogin_id;
+	public String userSecurity_id;
+	
+	@Override
+	public String toString() {
+		return "Users [id=" + id + ", date=" + date + ", grade=" + grade + ", userid=" + userid + ", password="
+				+ password + ", name=" + name + ", gender=" + gender + ", email=" + email + ", birthday=" + birthday
+				+ ", address_id=" + address_id + ", snsLogin_id=" + snsLogin_id + ", userSecurity_id=" + userSecurity_id
+				+ ", phone=" + phone + "]";
+	}
+
+	public String getSnsLogin_id() {
+		return snsLogin_id;
+	}
+
+	public void setSnsLogin_id(String snsLogin_id) {
+		this.snsLogin_id = snsLogin_id;
+	}
+
+	public String getUserSecurity_id() {
+		return userSecurity_id;
+	}
+
+	public void setUserSecurity_id(String userSecurity_id) {
+		this.userSecurity_id = userSecurity_id;
+	}
 
 	public Users() {} 
 	

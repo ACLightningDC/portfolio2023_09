@@ -10,6 +10,10 @@ select * from inquiry;
 select * from user_security where check = 0;
 select * from delivery;
 
+select * from snsLogin;
+delete from snsLogin where users_id = "2";
+
+
 delete from product where = "6";
 delete from product where id = '6';
 delete from product where id = '9';

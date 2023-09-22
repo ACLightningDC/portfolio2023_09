@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` VARCHAR(45) NULL,
   `birthday` DATE NULL,
   `grade` NVARCHAR(1) NULL DEFAULT 'N',
+  `snsLogin_id` VARCHAR(45) NULL DEFAULT '00',
+  `userSecurity_id` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
@@ -98,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `order_list` (
   `users_id` INT UNSIGNED NOT NULL,
   `product_id` INT UNSIGNED NOT NULL,
   `order_count` INT NOT NULL DEFAULT 1,
-  `delivery_id` INT NULL DEFAULT -1,
+  `delivery_id` INT NOT NULL DEFAULT -1,
   `date` TIMESTAMP NULL DEFAULT current_timestamp,
   `result` VARCHAR(45) NULL DEFAULT 'N',
   PRIMARY KEY (`id`, `users_id`, `product_id`),
@@ -197,10 +199,11 @@ ENGINE = InnoDB;
 -- Table `user_security`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `user_security` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `users_id` INT UNSIGNED NOT NULL,
   `ipaddress` VARCHAR(200) NULL,
   `model` VARCHAR(200) NULL,
+  `security_check` INT NULL DEFAULT 0,
   PRIMARY KEY (`id`, `users_id`),
   INDEX `fk_user_security_users1_idx` (`users_id` ASC) VISIBLE,
   CONSTRAINT `fk_user_security_users1`
@@ -235,8 +238,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `delivery` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `address_id` INT UNSIGNED NOT NULL,
-  `delivery_company` INT NOT NULL,
-  `delivery_num` VARCHAR(60) NOT NULL,
+  `delivery_company` VARCHAR(10) NULL,
+  `delivery_num` VARCHAR(60) NULL,
   PRIMARY KEY (`id`, `address_id`),
   INDEX `fk_delivery_address1_idx` (`address_id` ASC) VISIBLE,
   CONSTRAINT `fk_delivery_address1`
@@ -251,11 +254,11 @@ ENGINE = InnoDB;
 -- Table `sellerMallPage`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sellerMallPage` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `sellermall_id` INT UNSIGNED NOT NULL,
   `type` VARCHAR(45) NOT NULL,
   `name` NVARCHAR(45) NOT NULL,
-  `categori` VARCHAR(45) NULL,
+  `categori` VARCHAR(45) NULL DEFAULT 'N',
   PRIMARY KEY (`id`, `sellermall_id`),
   INDEX `fk_sellerMallPage_sellermall1_idx` (`sellermall_id` ASC) VISIBLE,
   CONSTRAINT `fk_sellerMallPage_sellermall1`
@@ -267,10 +270,10 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Contents`
+-- Table `TextContents`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Contents` (
-  `id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `TextContents` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `sellerMallPage_id` INT NOT NULL,
   `Name` VARCHAR(45) NULL,
   `Content` NVARCHAR(5000) NULL,
@@ -281,6 +284,42 @@ CREATE TABLE IF NOT EXISTS `Contents` (
     FOREIGN KEY (`sellerMallPage_id`)
     REFERENCES `sellerMallPage` (`id`)
     ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `ProductContents`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ProductContents` (
+  `id` INT NOT NULL,
+  `sellerMallPage_id` INT NOT NULL,
+  `kind` NVARCHAR(45) NULL,
+  `description_name` NVARCHAR(45) NULL,
+  PRIMARY KEY (`id`, `sellerMallPage_id`),
+  INDEX `fk_table1_sellerMallPage1_idx` (`sellerMallPage_id` ASC) VISIBLE,
+  CONSTRAINT `fk_table1_sellerMallPage1`
+    FOREIGN KEY (`sellerMallPage_id`)
+    REFERENCES `sellerMallPage` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `snsLogin`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `snsLogin` (
+  `id` INT NOT NULL,
+  `users_id` INT UNSIGNED NOT NULL,
+  `snsId` VARCHAR(45) NOT NULL,
+  `snsEmail` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`, `users_id`),
+  INDEX `fk_snsLogin_users1_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_snsLogin_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `users` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 

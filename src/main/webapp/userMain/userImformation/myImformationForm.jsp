@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,6 @@
                     url: '/v2/user/me',
                     success: function (response) {
                         alert(JSON.stringify(response));
-                        alert(response.id + "," + response.kakao_account.email);
                         
                         document.getElementById("snsId").value= response.id
                         document.getElementById("snsEmail").value= response.kakao_account.email
@@ -154,9 +154,14 @@ function securitySetting(){
 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 				  2단계 보안설정하기
 				</button>
-				<button type="button" class="btn btn-primary" onclick="kakaoLogin()">
-				  카카오 로그인 설정하기
-				</button>
+				<c:if test="${sessionScope.userinfo.snsLogin_id == '00'}">
+					<button type="button" class="btn btn-primary" onclick="kakaoLogin()">
+					  카카오 로그인 설정하기
+					</button>
+				</c:if>
+				<c:if test="${sessionScope.userinfo.snsLogin_id == '1'}">
+					  카카오 로그인 설정중
+				</c:if>
 			</div>
 		</div>
 		<div class="row my-5">
@@ -166,10 +171,12 @@ function securitySetting(){
 		</div>
 	</div>
 </div>
-<form action="snsSubmit.User" method="post" id="snsSubmitForm">
-	<input type="text" name="snsId" id="snsId" value="">
-	<input type="text" name="snsEmail" id="snsEmail" value="">
-</form>
+<div style="display: none;">
+	<form action="snsSubmit.User" method="post" id="snsSubmitForm">
+		<input type="text" name="snsId" id="snsId" value="">
+		<input type="text" name="snsEmail" id="snsEmail" value="">
+	</form>
+</div>
 
 
 </body>

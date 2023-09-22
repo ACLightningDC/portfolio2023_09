@@ -18,18 +18,23 @@
     }
     
     %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>쇼핑몰 헤더</title>
+<script src="${pageContext.request.contextPath}/resource/js/jquery-3.7.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
+<link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 </head>
 <body>
 몰 헤더
-<a>전체 제품</a>
-<a>쇼핑몰 메인 가기</a>
-<a>판매자 정보</a>
+
+<a href="?id=${id}">전체 제품</a>
+<a href="?id=${id}">쇼핑몰 메인 가기</a>
+<a href="?id=${id}">판매자 정보</a>
 
 </body>
 </html>

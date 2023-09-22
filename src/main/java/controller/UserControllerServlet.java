@@ -18,6 +18,8 @@ import action.seller.order.orderManageDeliveryAction;
 import action.seller.order.orderManageDeliveryregistrationAction;
 import action.user.AddressFormAction;
 import action.user.myImformationUpdateaAction;
+import action.user.snsLoginAction;
+import action.user.snsSubmit;
 import action.user.LoginCheck.OTPResultAction;
 import action.user.address.AddressAddAction;
 import action.user.address.AddressDeleteAction;
@@ -74,6 +76,14 @@ public class UserControllerServlet extends HttpServlet {
 			request.setAttribute("forward", "buyUser/shoppingCart/shoppingPayAfter.jsp");
 			forward = new ActionForward("/template.jsp", false);
 		}
+		if(command.equals("/snsLogin.User")) {
+			action = new snsLoginAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		else if(command.equals("/myImformationUpdateForm.User")) {
 			request.setAttribute("forward", "userMain/userImformation/myImformationUpdateForm.jsp");
 			forward = new ActionForward("template.jsp", false);
@@ -121,14 +131,14 @@ public class UserControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-//		else if(command.equals("/snsSubmit.User")) {
-//			action = new snsSubmit();
-//			try {
-//				forward = action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		else if(command.equals("/snsSubmit.User")) {
+			action = new snsSubmit();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		else if(command.equals("/myImformationUpdateaAction.User")) {
 			action = new myImformationUpdateaAction();
 			try {

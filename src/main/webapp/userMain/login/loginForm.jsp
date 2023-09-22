@@ -16,7 +16,10 @@
                     url: '/v2/user/me',
                     success: function (response) {
                         alert(JSON.stringify(response));
-                        
+    					                    
+                        document.getElementById("snsId").value= response.id
+                        document.getElementById("snsEmail").value= response.kakao_account.email
+                        document.getElementById("snsSubmitForm").submit();
                         
                     },
                     fail: function (error) {
@@ -121,9 +124,12 @@ function LoginSubmit(loginForm){
     <button class="btn btn-outline-primary w-100 py-2" type="button" onclick="kakaoLogin()">카카오 로그인 하기</button>
     <p class="mt-5 mb-3 text-body-secondary">&copy; HomeShopping Corp.</p>
 </main>
+<div style="display: none;">
+	<form action="snsLogin.User" method="post" id="snsSubmitForm">
+		<input type="text" name="snsId" id="snsId" value="">
+		<input type="text" name="snsEmail" id="snsEmail" value="">
+	</form>
+</div>
 
-
-<a href="">소셜 로그인 하기</a>
-<a href="">qr 코드 로그인</a>
     </body>
 </html>

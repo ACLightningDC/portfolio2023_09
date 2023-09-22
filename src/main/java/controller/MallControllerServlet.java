@@ -71,12 +71,16 @@ public class MallControllerServlet extends HttpServlet {
 			forward = new ActionForward("/sellerUser/shoppingMall/mallPage/MallTemplate.jsp", false);
 			
 		}
-		else if(command.equals("/Mallpage.Mall")) {
-			request.setAttribute("forward", "/sellerUser/shoppingMall/mallPage/MallMain.jsp");
+		else if(command.equals("/MallSellerInfo.Mall")) {
+			request.setAttribute("forward", "/sellerUser/shoppingMall/mallPage/MallSellerInfo.jsp");
 			forward = new ActionForward("/sellerUser/shoppingMall/mallPage/MallTemplate.jsp", false);
 		}
-		else if(command.equals("/Mallpage.Mall")) {
-			request.setAttribute("forward", "/sellerUser/shoppingMall/mallPage/MallMain.jsp");
+		else if(command.equals("/Mallproduct.Mall")) {
+			request.setAttribute("forward", "/sellerUser/shoppingMall/mallPage/Mallproduct.jsp");
+			forward = new ActionForward("/sellerUser/shoppingMall/mallPage/MallTemplate.jsp", false);
+		}
+		else if(command.equals("/MallBulletinBoard.Mall")) {
+			request.setAttribute("forward", "/sellerUser/shoppingMall/mallPage/MallBulletinBoard.jsp");
 			forward = new ActionForward("/sellerUser/shoppingMall/mallPage/MallTemplate.jsp", false);
 		}
 		 /*

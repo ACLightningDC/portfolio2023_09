@@ -90,6 +90,9 @@ public class DAO {
 				userInfo.setBirthday(rs.getString("birthday"));
 				userInfo.setGrade(rs.getString("grade"));
 				userInfo.setAddress_id(rs.getInt("address_id"));
+				userInfo.setSnsLogin_id(rs.getString("snsLogin_id"));
+				userInfo.setUserSecurity_id(rs.getString("userSecurity_id"));
+				
 			}
 		}catch(Exception e){
 			System.out.println("[DAO] getUsersInfo 에러" + e );
@@ -1553,6 +1556,74 @@ public class DAO {
 			}
 		
 		return check;
+	}
+
+	public int snsSubmit(int users_id, String snsId, String snsEmail) {
+		int check = 0;
+		String sql =" insert into snsLogin (users_id , snsId, snsEmail ) values(?,?,?) ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, users_id);
+			pstmt.setString(2, snsId);
+			pstmt.setString(3, snsEmail);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] snsSubmit 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public int usersupdatesnsSubmit(int users_id) {
+		int check = 0;
+		
+		String sql =" update users set snsLogin_id = 01 where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, users_id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] myImformationUpdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public int ForSnsLoginGetUsers_id(String snsId, String snsEmail) {
+		 int users_id = 0;
+			String sql = " select users_id from snsLogin where snsId = ? and snsEmail = ? ";
+			try {
+				
+				
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, snsId);
+				pstmt.setString(2, snsEmail);
+				//pstmt.setInt(1, page);
+				rs= pstmt.executeQuery();
+				
+				if(rs.next()) {
+					users_id = rs.getInt("users_id");
+				}
+				
+			}catch(Exception e){
+				System.out.println("[DAO] ForSnsLoginGetUsers_id 에러" + e );
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+				
+			return users_id;
 	}
 	
 

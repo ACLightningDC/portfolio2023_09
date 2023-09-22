@@ -45,10 +45,6 @@ public class loginAction implements Action {
 		
 		int loginCheck = loginService.getLogin(id, password);
 
-		System.out.println("로그인 체크값"+loginCheck);
-		System.out.println("action loginCheck 실행 " + loginCheck);
-		
-
 			if(loginCheck>0) {
 				HttpSession session =  request.getSession();
 				Users user =  loginService.getLoginInfo(loginCheck);
