@@ -439,6 +439,9 @@ public class FrontControllerServlet extends HttpServlet {
 		else if(command.equals("/inquiryManage.shop")) {
 			request.setAttribute("forward", "/MallManage/inquiryManage/inquiryManage.jsp");
 			forward = new ActionForward("template.jsp", false);
+			
+			
+			
 		} 
 		 /**
 		  * 배송관리

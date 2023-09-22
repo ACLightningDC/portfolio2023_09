@@ -9,14 +9,13 @@
 ${seller_Mall_id}
 ${product_id}
 <body>
-	<form>
 		<form method="post" action="inquiryAction.shop">
 			<input name="seller_Mall_id" type="text" value="${param.seller_Mall_id}">
 			<input name="product_id" type="text" value="${param.product_id}">
+			<input name="order_id" type="text" value="${param.order_id}">
 			제목<input name="name" type="text">
 			텍스트<input name="contents" type="text">
 			<input type="submit" value="전송하기">
 		</form>
-	</form>
 </body>
 </html>

@@ -921,9 +921,9 @@ public class DAO {
 		return check;
 	}
 
-	public int makeinquiry(int users_id, int seller_Mall_id, int product_id, String inquiry_name, String inquiry_contents) {
+	public int makeinquiry(int users_id, int seller_Mall_id, int product_id, String inquiry_name, String inquiry_contents, int order_id ) {
 		int check = 0;
-		String sql ="insert into inquiry(users_id , seller_Mall_id ,product_id , contents , name)value(?,?,?,?,?)";
+		String sql ="insert into inquiry(users_id , sellerrMall_id ,product_id ,contents , name ,order_list_id)value(?,?,?,?,?,?)";
 		try {
 								
 			pstmt = con.prepareStatement(sql);
@@ -932,6 +932,7 @@ public class DAO {
 			pstmt.setInt(3, product_id);
 			pstmt.setString(4, inquiry_name);
 			pstmt.setString(5, inquiry_contents);
+			pstmt.setInt(6, order_id);
 			
 			check= pstmt.executeUpdate();
 
