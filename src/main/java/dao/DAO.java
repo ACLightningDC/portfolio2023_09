@@ -920,7 +920,7 @@ public class DAO {
 
 	public int makeinquiry(int users_id, int seller_Mall_id, int product_id, String inquiry_name, String inquiry_contents) {
 		int check = 0;
-		String sql ="insert into inquiry(users_id , sellerrMall_id ,product_id , contents , name)value(?,?,?,?,?)";
+		String sql ="insert into inquiry(users_id , seller_Mall_id ,product_id , contents , name)value(?,?,?,?,?)";
 		try {
 								
 			pstmt = con.prepareStatement(sql);

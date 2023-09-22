@@ -22,7 +22,7 @@
 			<button onclick="location.href='Mallpage.shop'">${product.name}해당 상품 보기</button>
 	  </div>
 	</div>
-	</c:forEach>
+
 </div>
 </c:if>
 </body>
