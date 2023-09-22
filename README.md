@@ -59,3 +59,4 @@ Ctrl + Shift + G 작업공간에서 참조 찾기 f3 참조한 곳 찾기
 
 commit 하기 # + Ctrl
 
+https://www.chartjs.org/docs/latest/

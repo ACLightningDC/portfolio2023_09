@@ -35,7 +35,7 @@ public class findIdAction implements Action {
 		}else {
 			request.setAttribute("userid", userid);
 			
-			forward = new ActionForward("findIdComplete.shop", false); 
+			forward = new ActionForward("findIdComplete.User", false); 
 		}
 		
 		return forward;

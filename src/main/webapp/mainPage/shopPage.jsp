@@ -27,7 +27,7 @@
 			<br>쇼핑몰 등급 ${sellermall.grade}              </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='Mallpage.shop'">${product.name}쇼핑몰 보기</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='Mallpage.Mall?id=${sellermall.id}'">${product.name}쇼핑몰 보기</button>
                 </div>
                 <small class="text-body-secondary">9 mins</small>
               </div>
@@ -40,7 +40,41 @@
     </div>
   </div>
 </c:if>
-
-페이지별로 15개씩 만들기
+        <footer class="py-2 bg">
+	         <nav id="" aria-label="Page navigation example">
+			  <ul class="pagination justify-content-center">
+			  <div class="btn-group text-align-center">
+			    <c:if test="${pageInfo.page <= 1}">
+			        <div class="btn btn-outline-primary">이전&nbsp;</div>
+			    </c:if>
+			    <c:choose>
+			        <c:when test="${pageInfo.page > 1}">
+			            <a class="btn btn-outline-primary" href="productPage.shop?page=${pageInfo.page - 1}">이전</a>&nbsp;
+			        </c:when>
+			    </c:choose>
+			
+			    <c:forEach var="page" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
+			        <c:choose>
+			            <c:when test="${pageInfo.page == page}">
+			                <div class="btn btn-outline-primary"><c:out value="${page}"/></div>
+			            </c:when>
+			            <c:otherwise>
+			                <a class="btn btn-outline-primary" href="productPage.shop?page=${page}"><c:out value="${page}"/></a>&nbsp;
+			            </c:otherwise>
+			        </c:choose>
+			    </c:forEach>
+			
+			    <c:if test="${pageInfo.page >= pageInfo.maxPage}">
+			        <div class="btn btn-outline-primary">다음</div>
+			    </c:if>
+			    <c:choose>
+			        <c:when test="${pageInfo.page < pageInfo.maxPage}">
+			            <a class="btn btn-outline-primary" href="productPage.shop?page=${pageInfo.page + 1}">다음</a>
+			        </c:when>
+			    </c:choose>
+			    </div>
+			  </ul>
+			</nav>
+        </footer>
 </body>
 </html>

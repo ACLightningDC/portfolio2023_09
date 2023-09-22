@@ -25,11 +25,9 @@ public class shoppingCartView implements Action {
 		ShoppingCartViewService ShoppingCartViewService = new ShoppingCartViewService();
 		ArrayList<ShoppingCart> ShoppingCartList =  ShoppingCartViewService.shoppingCartView(users_id);
 		
-		
-		
 		request.setAttribute("ShoppingCartList", ShoppingCartList);
 		
-		request.setAttribute("forward", "/shoppingCart.jsp");
+		request.setAttribute("forward", "buyUser/shoppingCart/shoppingCart.jsp");
 		ActionForward forward = new ActionForward("/template.jsp", false);
 		return forward;
 	}

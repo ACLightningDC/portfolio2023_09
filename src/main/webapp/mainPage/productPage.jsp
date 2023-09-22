@@ -10,16 +10,16 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
-        <header class="bg-dark py-5">
+        <header class="bg py-1">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                <div class="text-center ">
+                    <h1 class="display-4 fw-bolder">상품 보기</h1>
+                    <p class="lead fw-normal text-50 mb-0">상품별 보기</p>
                 </div>
             </div>
         </header>
         <!-- Section-->
-        <section class="py-5">
+        <section class="py-3">
             <div class="container px-4 px-lg-5 mt-5">
 				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 	            	<c:if test="${not empty requestScope.products }">
@@ -54,7 +54,7 @@
 			                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 				                            <div class="text-center" >
 				                                <div class="btn-group">
-													<button class="btn btn-outline-dark mt-auto" onclick="location.href='shoppingCartProductAdd.shop?product_id=${product.id}&order_count=1'">장바구니</button>
+													<button class="btn btn-outline-dark mt-auto" onclick="location.href='shoppingCartproductAdd.shop?product_id=${product.id}&order_count=1'">장바구니</button>
 													<button class="btn btn-outline-dark mt-auto" onclick="location.href='shoppingCartProductDetail.shop?product_id=${product.id}'">상세보기</button>
 				                                </div>
 				                            </div>
@@ -67,28 +67,42 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+        <footer class="py-2 bg">
+	         <nav id="" aria-label="Page navigation example">
+			  <ul class="pagination justify-content-center">
+			  <div class="btn-group text-align-center">
+			    <c:if test="${pageInfo.page <= 1}">
+			        <div class="btn btn-outline-primary">이전&nbsp;</div>
+			    </c:if>
+			    <c:choose>
+			        <c:when test="${pageInfo.page > 1}">
+			            <a class="btn btn-outline-primary" href="productPage.shop?page=${pageInfo.page - 1}">이전</a>&nbsp;
+			        </c:when>
+			    </c:choose>
+			
+			    <c:forEach var="page" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
+			        <c:choose>
+			            <c:when test="${pageInfo.page == page}">
+			                <div class="btn btn-outline-primary"><c:out value="${page}"/></div>
+			            </c:when>
+			            <c:otherwise>
+			                <a class="btn btn-outline-primary" href="productPage.shop?page=${page}"><c:out value="${page}"/></a>&nbsp;
+			            </c:otherwise>
+			        </c:choose>
+			    </c:forEach>
+			
+			    <c:if test="${pageInfo.page >= pageInfo.maxPage}">
+			        <div class="btn btn-outline-primary">다음</div>
+			    </c:if>
+			    <c:choose>
+			        <c:when test="${pageInfo.page < pageInfo.maxPage}">
+			            <a class="btn btn-outline-primary" href="productPage.shop?page=${pageInfo.page + 1}">다음</a>
+			        </c:when>
+			    </c:choose>
+			    </div>
+			  </ul>
+			</nav>
         </footer>
-        <!-- Bootstrap core JS-->
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        
-        <br>제품 번호 : ${product.id}
-		<br>소속 쇼핑몰 : ${product.sellerMall_id}
-		<br>제품 이름 : ${product.name}
-		<br>제품 가격 : ${product.price}
-		<br>제품 종류 : ${product.kind}
-		<br>제품 일자 : ${product.date}
-		<br>제품 구매수 : ${product.buycount}
-		<br>제품 사진경로 : ${product.img}
-		<form>
-			<input>
-		</form>
-		<br><img width="50px" alt="안나옴" src="images/${product.img}">
-		<button onclick="location.href='#'">${product.name}상품 바로구매</button>
-		<button onclick="location.href='shoppingCartProductAdd.shop?product_id=${product.id}&order_count=1'">${product.name}상품 장바구니</button>
-		<button onclick="location.href='shoppingCartProductDetail.shop?product_id=${product.id}'">${product.name}상품 상세보기</button>
         
     </body>
 </html>

@@ -20,8 +20,7 @@ public class OrderManageAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		Users user =  CheckLogin(request, response); 
-		int users_id = user.getId();
+		CheckLogin(request, response); 
 		
 		HttpSession session = request.getSession();
 		int sellerMallid = (int) session.getAttribute("sellerMallid");
@@ -29,10 +28,12 @@ public class OrderManageAction implements Action {
 		OrderManageService orderManageService = new OrderManageService();
 		ArrayList<ShoppingCart> ShoppingCartList =  orderManageService.OrderManageShow(sellerMallid);
 		
+		
+		
 		request.setAttribute("ShoppingCartList", ShoppingCartList);
 		
-		request.setAttribute("forward", "/shoppingPayAfter.jsp");
-		ActionForward forward = new ActionForward("/template.jsp", false);
+		request.setAttribute("forward", "/MallManage/orderManage/orderManage.jsp");
+		ActionForward forward = new ActionForward("template.jsp", false);
 		
 		return forward;
 	}

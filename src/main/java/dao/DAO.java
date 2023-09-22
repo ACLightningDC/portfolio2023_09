@@ -1,20 +1,20 @@
 package dao;
 
+import static db.JdbcUtill.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import static db.JdbcUtill.*;
-
 import vo.Address;
 import vo.Delivery;
-import vo.InquiryUser;
 import vo.Order_list;
 import vo.Product;
 import vo.ShoppingCart;
 import vo.Users;
 import vo.sellermall;
+import vo.user_security.User_security;
 
 public class DAO {
 	private Connection con =null;
@@ -90,6 +90,9 @@ public class DAO {
 				userInfo.setBirthday(rs.getString("birthday"));
 				userInfo.setGrade(rs.getString("grade"));
 				userInfo.setAddress_id(rs.getInt("address_id"));
+				userInfo.setSnsLogin_id(rs.getString("snsLogin_id"));
+				userInfo.setUserSecurity_id(rs.getString("userSecurity_id"));
+				
 			}
 		}catch(Exception e){
 			System.out.println("[DAO] getUsersInfo 에러" + e );
@@ -154,7 +157,7 @@ public class DAO {
 
 	public int accountjoin(Users users) {
 		int check = 0;
-		String sql =" insert into users(userid, password, name, phone , birthday  , email ,gender ) value(?, ?, ?, ?, ?, ?, ?)";
+		String sql =" insert into users(userid , password, name, phone , birthday  , email ,gender ) value(?, ?, ?, ?, ?, ?, ? )";
 		try {
 								
 			pstmt = con.prepareStatement(sql);
@@ -631,7 +634,7 @@ public class DAO {
 
 	public ArrayList<ShoppingCart> shoppingCartView(int users_id) {
 		 ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
-			String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+			String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
 					+ " ,sellerMall_id , price , name , kind ,img  "
 					+ " from order_list l join product r on l.product_id = r.id where users_id = ? and result = 'N'";
 			try {
@@ -646,7 +649,7 @@ public class DAO {
 					shoppingCart.setUsers_id(rs.getInt("users_id"));
 					shoppingCart.setProduct_id(rs.getInt("product_id"));
 					shoppingCart.setOrder_count(rs.getInt("order_count"));
-					shoppingCart.setDelivery(rs.getString("delivery"));
+					shoppingCart.setDelivery_id(rs.getInt("delivery_id"));
 					shoppingCart.setDate(rs.getString("date"));
 					shoppingCart.setResult(rs.getString("result"));
 					
@@ -669,9 +672,9 @@ public class DAO {
 			}
 	public ArrayList<ShoppingCart> shoppingResultView(int users_id) {
 		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
-		String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+		String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
 				+ " ,sellerMall_id , price , name , kind ,img  "
-				+ " from order_list l join product r on l.product_id = r.id where users_id = ?  and result = 'P'";
+				+ " from order_list l join product r on l.product_id = r.id where users_id = ?  and result = 'P' or result = 'D' or result = 'C'";
 		try {
 			
 			pstmt = con.prepareStatement(sql);
@@ -684,7 +687,7 @@ public class DAO {
 				shoppingCart.setUsers_id(rs.getInt("users_id"));
 				shoppingCart.setProduct_id(rs.getInt("product_id"));
 				shoppingCart.setOrder_count(rs.getInt("order_count"));
-				shoppingCart.setDelivery(rs.getString("delivery"));
+				shoppingCart.setDelivery_id(rs.getInt("delivery_id"));
 				shoppingCart.setDate(rs.getString("date"));
 				shoppingCart.setResult(rs.getString("result"));
 				
@@ -707,9 +710,9 @@ public class DAO {
 	}
 	public ArrayList<ShoppingCart> orderManageSalesView(int sellerMallid) {
 		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
-		String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+		String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
 				+ " ,sellerMall_id , price , name , kind ,img  "
-				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ? order by result ,date asc ";
+				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ? and( result = 'D' or result='P' )order by result ,date asc ";
 		try {
 			
 			pstmt = con.prepareStatement(sql);
@@ -722,7 +725,7 @@ public class DAO {
 				shoppingCart.setUsers_id(rs.getInt("users_id"));
 				shoppingCart.setProduct_id(rs.getInt("product_id"));
 				shoppingCart.setOrder_count(rs.getInt("order_count"));
-				shoppingCart.setDelivery(rs.getString("delivery"));
+				shoppingCart.setDelivery_id(rs.getInt("delivery_id"));
 				shoppingCart.setDate(rs.getString("date"));
 				shoppingCart.setResult(rs.getString("result"));
 				
@@ -973,7 +976,7 @@ public class DAO {
 
 	public ShoppingCart cartBuy(int order_id) {
 		ShoppingCart shoppingCart = new ShoppingCart();
-			String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+			String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
 					+ " ,sellerMall_id , price , name , kind ,img  "
 					+ " from order_list l join product r on l.product_id = r.id where l.id = ? ";
 			try {
@@ -987,7 +990,7 @@ public class DAO {
 					shoppingCart.setUsers_id(rs.getInt("users_id"));
 					shoppingCart.setProduct_id(rs.getInt("product_id"));
 					shoppingCart.setOrder_count(rs.getInt("order_count"));
-					shoppingCart.setDelivery(rs.getString("delivery"));
+					shoppingCart.setDelivery_id(rs.getInt("delivery_id"));
 					shoppingCart.setDate(rs.getString("date"));
 					shoppingCart.setResult(rs.getString("result"));
 					
@@ -1067,15 +1070,16 @@ public class DAO {
 		return check;
 	}
 
-	public int shoppingresultUpdate(String result, int id) {
+	public int shoppingresultUpdate(String result, int id, int delivery_id) {
 		int check = 0;
-		String sql =" update order_list set result = ? where id = ? ";
+		String sql =" update order_list set result = ? , delivery_id = ?  where id = ? ";
 		try {
 								
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, result);
-			pstmt.setInt(2, id);
+			pstmt.setInt(2, delivery_id);
+			pstmt.setInt(3, id);
 			check= pstmt.executeUpdate();
 
 			}catch(Exception e){
@@ -1108,7 +1112,7 @@ public class DAO {
 
 	public ArrayList<ShoppingCart> OrderManageShow(int sellerMallid) {
 		ArrayList<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
-		String sql = " select l.id ,product_id ,users_id, order_count , delivery , l.date , result"
+		String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
 				+ " ,sellerMall_id , price , name , kind ,img  "
 				+ " from order_list l join product r on l.product_id = r.id where sellerMall_id = ?  and result = 'P' or result = 'D' order by result desc";
 		try {
@@ -1123,7 +1127,7 @@ public class DAO {
 				shoppingCart.setUsers_id(rs.getInt("users_id"));
 				shoppingCart.setProduct_id(rs.getInt("product_id"));
 				shoppingCart.setOrder_count(rs.getInt("order_count"));
-				shoppingCart.setDelivery(rs.getString("delivery"));
+				shoppingCart.setDelivery_id(rs.getInt("delivery_id"));
 				shoppingCart.setDate(rs.getString("date"));
 				shoppingCart.setResult(rs.getString("result"));
 				
@@ -1144,17 +1148,28 @@ public class DAO {
 		
 		return shoppingCartList;
 	}
-
-	public int OrderManageDeliveryregistration(int order_list_id, Delivery delivery) {
+//수정 필요 
+/**
+ * 
+ * 
+ * 
+ * 
+ * @param address_id
+ * @param delivery
+ * @return
+ */
+	public int OrderManageDeliveryregistration(int address_id, Delivery delivery) {
 		int check = 0;
-		String sql =" insert into delivery (order_list_id,delivery_company,delivery_num)value(?,?,?)";
+		String sql =" insert into delivery (address_id,delivery_company,delivery_num)value(?,?,?)";
 		try {
-								
+			
+			System.out.println(address_id);
+			
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setInt(1, order_list_id);
-			pstmt.setInt(2, delivery.getDelivery_company());
-			pstmt.setInt(3, delivery.getDelivery_num());
+			pstmt.setInt(1, address_id);
+			pstmt.setString(2, delivery.getDelivery_company());
+			pstmt.setString(3, delivery.getDelivery_num());
 			check= pstmt.executeUpdate();
 
 			}catch(Exception e){
@@ -1165,15 +1180,16 @@ public class DAO {
 		return check;
 	}
 
-	public int OrderManageDeliveryresultChange(int id) {
+	public int OrderManageDeliveryresultChange(int delivery_Id , int id) {
 		int check = 0;
-		String sql =" update order_list set result = ? where id = ? ";
+		String sql =" update order_list set delivery_id =?, result = ? where id = ? ";
 		try {
 								
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, "D");
-			pstmt.setInt(2, id);
+			pstmt.setInt(1, delivery_Id);
+			pstmt.setString(2, "D");
+			pstmt.setInt(3, id);
 			check= pstmt.executeUpdate();
 
 			}catch(Exception e){
@@ -1182,6 +1198,432 @@ public class DAO {
 				close(pstmt);
 			}
 		return check;
+	}
+
+	public int shopUpdate(int sellerMallid, String name) {
+		int check = 0;
+		String sql =" update sellermall set name = ? where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, name);
+			pstmt.setInt(2, sellerMallid);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] shopUpdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+	public Address getAddress(int address_id) {
+		Address address = null;
+		String sql = " select * from address where id= ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, address_id);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				address= new Address();
+				address.setId(rs.getInt("id"));
+				address.setUser_id(rs.getInt("users_id"));
+				address.setAddress1(rs.getString("address1"));
+				address.setAddress2(rs.getString("address2"));
+				address.setPostcode(rs.getString("postcode"));
+				
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] UserAddressGet 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return address;
+	}
+
+	public int GetAddress_id(int order_id) {
+		int address_id = 0;
+		String sql = " select r.address_id from order_list l join users r on l.users_id = r.id where l.id = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, order_id);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				address_id = rs.getInt(1);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] GetAddress_id 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return address_id;
+	}
+
+	public int getdeliveryId(int address_id, Delivery delivery) {
+		int delivery_Id = 0;
+		String sql = " select id from delivery where address_id = ? and delivery_company = ? and delivery_num = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, address_id);
+			pstmt.setString(2, delivery.getDelivery_company());
+			pstmt.setString(3, delivery.getDelivery_num());
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				delivery_Id = rs.getInt(1);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getdeliveryId 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return delivery_Id;
+		
+	}
+
+	public int user_securitySetting(int users_id, String ipAddress, String model) {
+		int check = 0;
+		String sql =" insert into user_security (users_id,ipAddress,model)value(?,?,?)";
+		try {
+			
+			
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, users_id);
+			pstmt.setString(2, ipAddress);
+			pstmt.setString(3, model);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] user_securitySetting 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+
+	public int user_securityCancel(int users_id) {
+		int check = 0;
+		String sql =" delete from user_security where users_id = ?";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, users_id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] user_securityCancel 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+
+	public ArrayList<User_security> getUser_security(int id) {
+		ArrayList<User_security> user_securityList = new ArrayList<>();
+		String sql = " select * from user_security where users_id = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				User_security user_security = new User_security();
+				user_security.setId(rs.getInt("id"));
+				user_security.setUsers_id(rs.getInt("users_id")); 
+				user_security.setModel(rs.getString("model")); 
+				user_security.setIpaddress(rs.getString("ipaddress")); 
+				user_security.setSecurity_check(rs.getInt("security_check")); 
+				user_securityList.add(user_security);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getdeliveryId 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return user_securityList;
+		
+	}
+
+	public int createDelivery(int address_id) {
+		int check = 0;
+		String sql =" insert into delivery (address_id)VALUES (?)";
+		try {
+			
+			
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, address_id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] delivery 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		return check;
+	}
+
+	public int getDelivery_id(int address_id) {
+		int delivery_Id = 0;
+		String sql = " select id from delivery where address_id = ? and delivery_company is null and delivery_num is null";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, address_id);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				delivery_Id = rs.getInt(1);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getDelivery_id 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return delivery_Id;
+		
+	}
+
+	public Delivery orderCheckForm(int delivery_id) {
+		Delivery del = null;
+		String sql = " select * from delivery where id = ?";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, delivery_id);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				del = new Delivery();
+				del.setId(rs.getInt("id"));
+				del.setAddress_id(rs.getInt("address_id"));
+				del.setDelivery_company(rs.getString("delivery_company"));
+				del.setDelivery_num(rs.getString("delivery_num"));
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getDelivery_id 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return del;
+	}
+
+	public int secu_checkUpdate(int secu_check, int secuid) {
+		
+		int check = 0;
+		String sql =" update user_security set security_check = ? where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, secu_check);
+			pstmt.setInt(2, secuid);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] secu_checkUpdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public int createSecu(int loginCheck, int secu_check, String ipAddress, String model) {
+		int check = 0;
+		String sql =" insert into user_security (users_id , ipaddress, model ,security_check) values(?,?,?,?) ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, loginCheck);
+			pstmt.setString(2, ipAddress);
+			pstmt.setString(3, model);
+			pstmt.setInt(4, secu_check);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] createSecu 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public ArrayList<sellermall> getAllsellermallList(int page, int limit) {
+		ArrayList<sellermall> sellermallList = new ArrayList<sellermall>();
+		String sql = " select  * from sellermall LIMIT ? , ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, page);
+			pstmt.setInt(2, limit);
+			//pstmt.setInt(1, page);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				sellermall mall = new sellermall();
+				mall.setId(rs.getInt("id"));
+				mall.setSeller_id(rs.getInt("seller_id"));
+				mall.setName(rs.getString("name"));
+				mall.setCreate_date(rs.getString("create_date"));
+				mall.setGrade(rs.getString("grade"));
+				sellermallList.add(mall);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] productPageGetList 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return sellermallList;
+	}
+
+	public int shopPageGet() {
+		 int cnt = 0;
+			String sql = " select count(*) cnt from sellermall ";
+			try {
+				
+				pstmt = con.prepareStatement(sql);
+				
+				//pstmt.setInt(1, page);
+				rs= pstmt.executeQuery();
+				
+				if(rs.next()) {
+					cnt = rs.getInt(1);
+				}
+				
+			}catch(Exception e){
+				System.out.println("[DAO] getAllProductListCnt 에러" + e );
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+				
+			return cnt;
+	}
+
+	public int myImformationUpdate(Users inputuser) {
+		int check = 0;
+		
+		String sql =" update users set userid = ? ,password=? , name=? ,email=? ,phone = ?where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, inputuser.getUserid());
+			pstmt.setString(2, inputuser.getPassword());
+			pstmt.setString(3, inputuser.getName());
+			pstmt.setString(4, inputuser.getEmail());
+			pstmt.setString(5, inputuser.getPhone());
+			pstmt.setInt(6, inputuser.getId());
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] myImformationUpdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public int snsSubmit(int users_id, String snsId, String snsEmail) {
+		int check = 0;
+		String sql =" insert into snsLogin (users_id , snsId, snsEmail ) values(?,?,?) ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, users_id);
+			pstmt.setString(2, snsId);
+			pstmt.setString(3, snsEmail);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] snsSubmit 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public int usersupdatesnsSubmit(int users_id) {
+		int check = 0;
+		
+		String sql =" update users set snsLogin_id = 01 where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, users_id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] myImformationUpdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public int ForSnsLoginGetUsers_id(String snsId, String snsEmail) {
+		 int users_id = 0;
+			String sql = " select users_id from snsLogin where snsId = ? and snsEmail = ? ";
+			try {
+				
+				
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, snsId);
+				pstmt.setString(2, snsEmail);
+				//pstmt.setInt(1, page);
+				rs= pstmt.executeQuery();
+				
+				if(rs.next()) {
+					users_id = rs.getInt("users_id");
+				}
+				
+			}catch(Exception e){
+				System.out.println("[DAO] ForSnsLoginGetUsers_id 에러" + e );
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+				
+			return users_id;
 	}
 	
 

@@ -11,13 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.Cart.ShoppingBuyDeliveryShowAction;
 import action.Cart.ShoppingresultUpdate;
+import action.mainPage.ProductPageGetAction;
+import action.mainPage.ShopPageGetAction;
 import action.seller.mall.orderManageSalesView;
 import action.seller.order.orderManageDeliveryAction;
 import action.seller.order.orderManageDeliveryregistrationAction;
 import action.user.AddressFormAction;
+import action.user.myImformationUpdateaAction;
+import action.user.snsLoginAction;
+import action.user.snsSubmit;
+import action.user.LoginCheck.OTPResultAction;
 import action.user.address.AddressAddAction;
 import action.user.address.AddressDeleteAction;
 import action.user.address.AddressUpdateAction;
+import action.user.security.user_securityCancelAction;
+import action.user.security.user_securitySettingAction;
 import vo.ActionForward;
 
 /**
@@ -64,7 +72,100 @@ public class UserControllerServlet extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
-		 
+		if(command.equals("/shoppingPayAfter.User")) {
+			request.setAttribute("forward", "buyUser/shoppingCart/shoppingPayAfter.jsp");
+			forward = new ActionForward("/template.jsp", false);
+		}
+		if(command.equals("/snsLogin.User")) {
+			action = new snsLoginAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/myImformationUpdateForm.User")) {
+			request.setAttribute("forward", "userMain/userImformation/myImformationUpdateForm.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/BuyForm.User")) {
+			request.setAttribute("forward", "/buyUser/buy/BuyForm.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/accountBuisness.User")) {
+			forward = new ActionForward("/userMain/account/signup/accountBuisness.jsp", false);
+		}
+		else if(command.equals("/accountUsers.User")) {
+			forward = new ActionForward("/userMain/account/signup/accountUsers.jsp", false);
+		}
+		else if(command.equals("/findIdForm.User")) {
+			request.setAttribute("forward", "/userMain/account/FindForgot/findIdForm.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/findIdComplete.User")) {
+			request.setAttribute("forward", "/userMain/account/FindForgot/findIdComplete.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/PasswordFindFrom.User")) {
+			request.setAttribute("forward", "/userMain/account/FindForgot/PasswordFindFrom.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/PasswordFindComplete.User")) {
+			request.setAttribute("forward", "/userMain/account/FindForgot/PasswordFindComplete.jsp");
+			forward = new ActionForward("template.jsp", false);
+		}
+		else if(command.equals("/accountB_noCheck.User")) {
+			forward = new ActionForward("userMain/account/signup/check/JoinComRegCheck.jsp", false);
+		}
+		else if(command.equals("/accountEmailCheck.User")) {
+			forward = new ActionForward("userMain/account/signup/check/JoinEmailCheck.jsp", false);
+		}
+		else if(command.equals("/accountUseridCheck.User")) {
+			forward = new ActionForward("userMain/account/signup/check/joinIdCheck.jsp", false);
+		}
+		else if(command.equals("/user_securitySetting.User")) {
+			action = new user_securitySettingAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/snsSubmit.User")) {
+			action = new snsSubmit();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/myImformationUpdateaAction.User")) {
+			action = new myImformationUpdateaAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/user_securityCancel.User")) {
+			action = new user_securityCancelAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/otpCheck.User")) {
+			forward = new ActionForward("/userMain/login/loginCheck/otpCheck.jsp", false);
+		}
+		else if(command.equals("/OTPResult.User")) {
+			action = new OTPResultAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		 	System.out.println(forward.getPath());
 		if(forward !=null) {
 			if(forward.isRedirect()) {

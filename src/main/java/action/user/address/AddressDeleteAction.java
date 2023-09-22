@@ -31,7 +31,7 @@ public class AddressDeleteAction implements Action {
 			
 		}
 		
-		ActionForward forward = new ActionForward("AddressForm.shop", false);
+		ActionForward forward = new ActionForward("AddressForm.address", false);
 		return forward;
 	}
 

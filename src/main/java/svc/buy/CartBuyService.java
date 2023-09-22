@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.DAO;
+import vo.Address;
 import vo.ShoppingCart;
 
 public class CartBuyService {
@@ -21,7 +22,6 @@ public class CartBuyService {
 		
 		ArrayList<ShoppingCart> BuyList = new ArrayList<>(); 
 		
-		int Check = 0;
 		
 		for(int i=0 ; i < cartproduct.length ; i++)
 		{
@@ -33,6 +33,19 @@ public class CartBuyService {
 		close(con);
 		
 		return BuyList;
+	}
+
+	public Address addressGet(int address_id) {
+		Connection con = getConnection();
+		DAO dao = DAO.getInstance();
+		dao.setConnection(con);
+		
+		Address address = dao.getAddress(address_id); 
+		
+		
+		close(con);
+		
+		return address;
 	}
 
 }

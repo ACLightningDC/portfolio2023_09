@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>헤드 네비게이션</title>
 <!-- 부트스트랩 리소스 임포트 -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resource/js/jquery-3.7.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
 <link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 <style>
@@ -17,27 +17,18 @@
 </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-light  ">
-      <div class="container-fluid ">
-        <a class="navbar-brand " href="${pageContext.request.contextPath}/homePage.shop">홈쇼핑 ${sessionScope.userinfo.id}</a>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <a class="navbar-brand " href="${pageContext.request.contextPath}/homePage.shop">홈쇼핑</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto ">
             <li class="nav-item">
-<<<<<<< HEAD
-              <a class="nav-link active" aria-current="page" href="productPage.shop?page=1">상품별 보기</a>
-=======
               <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/productPage.shop">상품별 보기</a>
->>>>>>> branch 'master' of https://github.com/ACLightningDC/portfolio2023_09.git
             </li>
             <li class="nav-item">
-<<<<<<< HEAD
-              <a class="nav-link" href="shopPage.shop?page=1">매장별 보기</a>
-=======
               <a class="nav-link" href="${pageContext.request.contextPath}/shopPage.shop">매장별 보기</a>
->>>>>>> branch 'master' of https://github.com/ACLightningDC/portfolio2023_09.git
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,11 +53,11 @@
 				              
             </li>
            <li class="nav-item ">
-              <a class="nav-link" >${sessionScope.Seller_id}/${sessionScope.userinfo.name}${sessionScope.userinfo.grade == 'S' ? '판매자님' : '님' } 로그인되었습니다.</a>
+              <a class="nav-link" >${sessionScope.userinfo.name}${sessionScope.userinfo.grade == 'S' ? '판매자님' : '님' } 로그인되었습니다.</a>
             </li> 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                내정보 관리 ${sessionScope.userinfo.grade} ${sessionScope.userinfo.grade == 'S'}
+                내정보 관리 
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<%=request.getContextPath()%>/myImformationForm.shop">내 정보 변경 , 확인</a></li>
@@ -104,7 +95,6 @@
           </ul>
 
         </div>
-      </div>
     </nav>
     
     

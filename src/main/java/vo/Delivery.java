@@ -2,9 +2,9 @@ package vo;
 
 public class Delivery {
 	private int id;
-	private int order_list_id;
-	private int delivery_company;
-	private int delivery_num;
+	private int address_id;
+	private String delivery_company;
+	private String delivery_num;
 	
 	
 	public int getId() {
@@ -13,22 +13,23 @@ public class Delivery {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getOrder_list_id() {
-		return order_list_id;
+	
+	public int getAddress_id() {
+		return address_id;
 	}
-	public void setOrder_list_id(int order_list_id) {
-		this.order_list_id = order_list_id;
+	public void setAddress_id(int address_id) {
+		this.address_id = address_id;
 	}
-	public int getDelivery_company() {
+	public String getDelivery_company() {
 		return delivery_company;
 	}
-	public void setDelivery_company(int delivery_company) {
+	public void setDelivery_company(String delivery_company) {
 		this.delivery_company = delivery_company;
 	}
-	public int getDelivery_num() {
+	public String getDelivery_num() {
 		return delivery_num;
 	}
-	public void setDelivery_num(int delivery_num) {
+	public void setDelivery_num(String delivery_num) {
 		this.delivery_num = delivery_num;
 	}
 	

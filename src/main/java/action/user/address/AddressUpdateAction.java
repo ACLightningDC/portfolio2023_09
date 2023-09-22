@@ -43,7 +43,7 @@ public class AddressUpdateAction implements Action {
 		}
 		
 		
-		forward = new ActionForward("AddressForm.shop", false);
+		forward = new ActionForward("AddressForm.address", false);
 		return forward;
 	}
 

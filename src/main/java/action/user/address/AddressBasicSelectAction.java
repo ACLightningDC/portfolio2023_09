@@ -33,7 +33,7 @@ public class AddressBasicSelectAction implements Action {
 			HttpSession session = request.getSession();
 			user.setAddress_id(id);
 			session.setAttribute("userinfo", user);
-			 forward = new ActionForward("AddressForm.shop", false);
+			 forward = new ActionForward("AddressForm.address", false);
 
 		}else {
 			response.setContentType("text/html;charset=UTF-8");

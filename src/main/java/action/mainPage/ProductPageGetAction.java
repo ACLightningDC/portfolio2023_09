@@ -20,7 +20,7 @@ public class ProductPageGetAction implements Action {
 		
 		int page = 1; //현재 페이지를 표시 (기본값: 1)
 		
-		int limit = 15; //한 페이지당 15개
+		int limit = 8; //한 페이지당 15개
 		
 		//int proudcut_cnt = 0; //제품 개수
 		
@@ -72,12 +72,7 @@ public class ProductPageGetAction implements Action {
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("products", products);
 		
-<<<<<<< HEAD
-		request.setAttribute("forward", "productPage.jsp");
-		
-=======
 		request.setAttribute("forward", "/mainPage/productPage.jsp");
->>>>>>> branch 'master' of https://github.com/ACLightningDC/portfolio2023_09.git
 		ActionForward forward = new ActionForward("template.jsp", false);	
 		return forward;
 	}

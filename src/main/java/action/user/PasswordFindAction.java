@@ -92,7 +92,7 @@ ActionForward forward = null;
 			
 			request.setAttribute("userid", userid);
 			request.setAttribute("email", email);
-			forward = new ActionForward("PasswordFindComplete.shop", false); 
+			forward = new ActionForward("PasswordFindComplete.User", false); 
 		}else {
 			out.println("<script>");
 			out.println("alert('잘못된 입력이거나 없는 계정 입니다.');");

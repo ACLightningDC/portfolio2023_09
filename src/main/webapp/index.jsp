@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인 페이지</title>
 </head>
 <body>
-<a href="template.jsp">홈페이지 가기</a>
+<jsp:include page="/userMain/login/loginForm.jsp"/>
+
 </body>
 </html>

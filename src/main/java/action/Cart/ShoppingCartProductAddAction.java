@@ -62,7 +62,8 @@ public class ShoppingCartProductAddAction implements Action {
 			ActionForward forward = null;
 
 		if(Check > 0 ) {
-			forward = new ActionForward("/shoppingCart.shop", false);
+			forward = new ActionForward("shoppingCart.shop", false);
+			System.out.println("true 작동 ");
 		}else {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();	

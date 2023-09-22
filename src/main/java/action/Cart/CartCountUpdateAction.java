@@ -1,6 +1,9 @@
 package action.Cart;
 
 
+import static util.action.ActionUtil.ActionForwardForUpdateController;
+import static util.action.ActionUtil.CheckLogin;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,16 +15,17 @@ public class CartCountUpdateAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward= null;
-		System.out.println(request.getParameter("id"));
-		System.out.println(request.getParameter("orderCount"));
+		
+		CheckLogin(request, response);
+		
 		int id = Integer.parseInt(request.getParameter("id"));
 		int orderCount = Integer.parseInt(request.getParameter("orderCount"));
 		
 		CartCountUpdateService cartCountUpdateService = new CartCountUpdateService();
 		int Check = cartCountUpdateService.CartCountUpdate(id , orderCount);
 		
-		forward = new ActionForward("shoppingCart.shop", true);
+		ActionForward forward = ActionForwardForUpdateController(response, Check, "개수 업데이트에 실패함", new ActionForward("shoppingCart.shop", true));
+		
 		return forward;
 	}
 

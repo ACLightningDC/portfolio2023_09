@@ -24,8 +24,7 @@ public class ShoppingMallManageActionOne implements Action {
 		session.setAttribute("sellerMallid", sellerMallid);
 		
 		
-		 request.setAttribute("forward", "MallManage/MallManageForm.jsp");
-		ActionForward actionForward = new ActionForward("template.jsp", false);
+		ActionForward actionForward = new ActionForward("MallManageForm.Seller", false);
 		return actionForward;
 	}
 

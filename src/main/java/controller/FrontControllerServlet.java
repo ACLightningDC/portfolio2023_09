@@ -35,7 +35,6 @@ import action.user.accountUseridCheckAction;
 import action.user.findIdAction;
 import action.user.loginAction;
 import action.user.logoutAction;
-import action.user.myImformationFormAddressFind;
 import action.user.usersupdateAction;
 import action.user.address.AddressAddAction;
 import action.user.product.ShoppingCartProductDetailAction;
@@ -136,8 +135,7 @@ public class FrontControllerServlet extends HttpServlet {
 			 
 		 }
 		 if(command.equals("/loginForm.shop")){
-			 request.setAttribute("forward", "loginForm.jsp");
-			 forward = new ActionForward("template.jsp", false);
+			 forward = new ActionForward("/userMain/login/loginForm.jsp", false);
 			 
 		 }
 		else if(command.equals("/logout.shop")) {
@@ -153,15 +151,7 @@ public class FrontControllerServlet extends HttpServlet {
 		 * 회원가입
 		 */
 		else if(command.equals("/account.shop")) {
-			request.setAttribute("forward", "/accountSelect.jsp");
-			forward = new ActionForward("template.jsp", false);
-		}
-		else if(command.equals("/accountBuisness.shop")) {
-			request.setAttribute("forward", "/AccountRelated/accountBuisness.jsp");
-			forward = new ActionForward("template.jsp", false);
-		}
-		else if(command.equals("/accountUsers.shop")) {
-			request.setAttribute("forward", "/AccountRelated/accountUsers.jsp");
+			request.setAttribute("forward", "/userMain/account/accountSelect.jsp");
 			forward = new ActionForward("template.jsp", false);
 		}
 		else if(command.equals("/accountAction.shop")) {
@@ -173,9 +163,7 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/accountEmailCheck.shop")) {
-			forward = new ActionForward("AccountRelated/Check/JoinEmailCheck.jsp", false);
-		}
+
 		else if( command.equals("/accountEmailCheckAction.shop")) {
 			action = new accountEmailCheckAction();
 			
@@ -185,9 +173,7 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/accountUseridCheck.shop")) {
-			forward = new ActionForward("AccountRelated/Check/joinIdCheck.jsp", false);
-		}
+
 		else if( command.equals("/accountUseridCheckAction.shop")) {
 			action = new accountUseridCheckAction();
 			
@@ -196,9 +182,6 @@ public class FrontControllerServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if(command.equals("/accountB_noCheck.shop")) {
-			forward = new ActionForward("AccountRelated/Check/JoinComRegCheck.jsp", false);
 		}
 		else if( command.equals("/accountUseridCheckAction.shop")) {
 			action = new accountUseridCheckAction();
@@ -232,31 +215,13 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		 
-		else if(command.equals("/myImformationUpdateForm.shop")) {
-			request.setAttribute("forward", "/myImformation/myImformationUpdateForm.jsp");
-			forward = new ActionForward("template.jsp", false);
-		}
 		else if(command.equals("/myImformationForm.shop")) {
-			request.setAttribute("forward", "/myImformationForm.jsp");
+			request.setAttribute("forward", "userMain/userImformation/myImformationForm.jsp");
 			forward = new ActionForward("template.jsp", false);
 		}
 		 /*
 		  * 주소 추가
 		  */
-		else if(command.equals("/AddressForm.shop")) {
-			action = new AddressFormAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		else if(command.equals("/AddressAddForm.shop")) {
-			request.setAttribute("forward", "/AccountRelated/AddressAdd/AddressAddFrom.jsp");
-			forward = new ActionForward("template.jsp", false);
-		}
 		else if(command.equals("/AddressAdd.shop")) {
 			action = new AddressAddAction();
 			
@@ -281,7 +246,7 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/shoppingCartProductAdd.shop")) {
+		else if(command.equals("/shoppingCartproductAdd.shop")) {
 			action = new ShoppingCartProductAddAction();
 			
 			try {
@@ -383,10 +348,7 @@ public class FrontControllerServlet extends HttpServlet {
 		/**
 		 * 아이디 찾기  
 		 */
-		else if(command.equals("/findIdForm.shop")) {
-			request.setAttribute("forward", "LoginRelated/findIdForm.jsp");
-			forward = new ActionForward("template.jsp", false);
-		}
+
 		else if(command.equals("/findIdAction.shop")){
 			action = new findIdAction();			
 			try {
@@ -395,15 +357,10 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/findIdComplete.shop")) {
-			request.setAttribute("forward", "/LoginRelated/findIdComplete.jsp");
-			forward = new ActionForward("template.jsp", false);
-		}
-		 
 		/**
 		 * 비밀번호 찾기  
 		 */		 
-		else if(command.equals("/PasswordFindFrom.shop")) {
+		else if(command.equals("/PasswordFindFrom.User")) {
 			request.setAttribute("forward", "LoginRelated/PasswordFind/PasswordFindFrom.jsp");
 			forward = new ActionForward("template.jsp", false);
 		}
@@ -414,10 +371,6 @@ public class FrontControllerServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if(command.equals("/PasswordFindComplete.shop")) {
-			request.setAttribute("forward", "/LoginRelated/PasswordFind/PasswordFindComplete.jsp");
-			forward = new ActionForward("template.jsp", false);
 		}
 		 /**
 		  * 홈쇼핑 생성
@@ -430,10 +383,7 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		} 
-		else if(command.equals("/shopCreateForm.shop")) {
-			request.setAttribute("forward", "/MallManage/CreateShopForm.jsp");
-			forward = new ActionForward("template.jsp", false);
-		} 
+
 		else if(command.equals("/CreateMall.shop")){
 			action = new CreateMallAction();			
 			try {
@@ -453,10 +403,7 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		} 
-		else if(command.equals("/ShopUpdate.shop")) {
-			request.setAttribute("forward", "/MallManage/ShopManage/ShopUpdateForm.jsp");
-			forward = new ActionForward("template.jsp", false);
-		} 
+
 		else if(command.equals("/ShopDelete.shop")) {
 			action = new ShopDeleteAction();			
 			try {
@@ -468,10 +415,7 @@ public class FrontControllerServlet extends HttpServlet {
 		 /**
 		  * 제품 관리
 		  */
-		else if(command.equals("/productAdd.shop")) {
-			request.setAttribute("forward", "/MallManage/productManage/productAdd.jsp");
-			forward = new ActionForward("template.jsp", false);
-		} 
+
 		else if(command.equals("/productManage.shop")) {
 			action = new productManageAction();			
 			try {
@@ -508,8 +452,7 @@ public class FrontControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			request.setAttribute("forward", "/MallManage/orderManage/orderManage.jsp");
-			forward = new ActionForward("template.jsp", false);
+
 		} 
 
 		 

@@ -31,9 +31,7 @@ public class ProductPageGetService {
 		DAO dao = DAO.getInstance();
 		dao.setConnection(con);
 		
-		System.out.println(page);
 		int first = (page-1)* limit; 
-		System.out.println(first);
 		
 		ArrayList<Product> products = dao.productPageGetList(first ,limit);
 		

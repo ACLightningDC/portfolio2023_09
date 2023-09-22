@@ -4,9 +4,11 @@ import static db.JdbcUtill.close;
 import static db.JdbcUtill.getConnection;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import dao.DAO;
 import vo.Users;
+import vo.user_security.User_security;
 
 public class LoginService {
 	
@@ -51,6 +53,17 @@ public class LoginService {
 		int seller_id = dao.getSeller_id(id);
 		close(con);
 		return seller_id;
+	}
+
+	public ArrayList<User_security> getUser_security(int id) {
+		Connection con =getConnection();
+		DAO dao = DAO.getInstance();
+		dao.setConnection(con);
+		
+		ArrayList<User_security> user_securityList = dao.getUser_security(id);
+		close(con);
+		return user_securityList;
+		
 	}
 	
 }
