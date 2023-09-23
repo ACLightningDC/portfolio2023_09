@@ -1,13 +1,11 @@
-package action.Board;
+package action;
 
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import action.Action;
-import svc.Board.BoardReplyProService;
+import svc.BoardReplyProService;
 import vo.ActionForward;
-import vo.Board.BoardBean;
+import vo.BoardBean;
 
 public class BoardReplyProAction implements Action {
 	
@@ -15,11 +13,8 @@ public class BoardReplyProAction implements Action {
 	 throws Exception{
 		 
 		 	ActionForward forward = null;
-		 	
 		    String nowPage = request.getParameter("page");
-		    
-		 	BoardBean article = new BoardBean(); 
-		 	
+		 	BoardBean article = new BoardBean();  		
 		 	article.setBOARD_NUM(Integer.parseInt(request.getParameter("BOARD_NUM")));
 		 	article.setBOARD_NAME(request.getParameter("BOARD_NAME"));
 		 	article.setBOARD_PASS(request.getParameter("BOARD_PASS"));
@@ -27,8 +22,7 @@ public class BoardReplyProAction implements Action {
 		 	article.setBOARD_CONTENT(request.getParameter("BOARD_CONTENT"));
 		 	article.setBOARD_RE_REF(Integer.parseInt(request.getParameter("BOARD_RE_REF")));
 		 	article.setBOARD_RE_LEV(Integer.parseInt(request.getParameter("BOARD_RE_LEV")));
-		 	article.setBOARD_RE_SEQ(Integer.parseInt(request.getParameter("BOARD_RE_SEQ")));
-		 	
+		 	article.setBOARD_RE_SEQ(Integer.parseInt(request.getParameter("BOARD_RE_SEQ")));	   		
 		 	BoardReplyProService boardReplyProService = new BoardReplyProService();
 		 	boolean isReplySuccess = boardReplyProService.replyArticle(article);
 		 	
@@ -39,11 +33,9 @@ public class BoardReplyProAction implements Action {
 	   		}
 	   		else{
 	   			response.setContentType("text/html;charset=UTF-8");
-	   			
 	   			PrintWriter out = response.getWriter();
-	   			
 	   			out.println("<script>");
-	   			out.println("alert('ë‹µìž¥ì‹¤íŒ¨')");
+	   			out.println("alert('´äÀå½ÇÆÐ')");
 	   			out.println("history.back()");
 	   			out.println("</script>");
 	   		}

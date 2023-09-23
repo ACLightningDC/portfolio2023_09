@@ -1,4 +1,4 @@
-package vo.Board;
+package vo;
 
 import java.sql.Date;
 

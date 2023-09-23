@@ -1,36 +1,33 @@
-package action.Board;
+package action;
 
-import java.util.ArrayList;
-
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import action.Action;
-import svc.Board.BoardListService;
+import svc.BoardListService;
 import vo.ActionForward;
+import vo.BoardBean;
 import vo.PageInfo;
-import vo.Board.BoardBean;
 
  public class BoardListAction implements Action {
 	 
 	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		 
-		ArrayList<BoardBean> articleList = new ArrayList<BoardBean>();
-	  	int page = 1;
-		int limit = 10;
+		ArrayList<BoardBean> articleList=new ArrayList<BoardBean>();
+	  	int page=1;
+		int limit=10;
 		
 		if(request.getParameter("page")!=null){
 			page=Integer.parseInt(request.getParameter("page"));
 		}
 		
 		BoardListService boardListService = new BoardListService();
-		int listCount = boardListService.getListCount(); //ì´ ë¦¬ìŠ¤íŠ¸ ìˆ˜ë¥¼ ë°›ì•„ì˜´.
-		articleList = boardListService.getArticleList(page, limit); //ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ì•„ì˜´.
-		//ì´ íŽ˜ì´ì§€ìˆ˜
-   		int maxPage=(int)((double)listCount/limit+0.95); //0.95ë¥¼ ë”í•´ì„œ ì˜¬ë¦¼ ì²˜ë¦¬.
-   		//í˜„ìž¬ íŽ˜ì´ì§€ì— ë³´ì—¬ì¤„ ì‹œìž‘ íŽ˜ì´ì§€ ìˆ˜(1, 11, 21ë“±)
+		int listCount=boardListService.getListCount(); //ÃÑ ¸®½ºÆ® ¼ö¸¦ ¹Þ¾Æ¿È.
+		articleList = boardListService.getArticleList(page,limit); //¸®½ºÆ®¸¦ ¹Þ¾Æ¿È.
+		//ÃÑ ÆäÀÌÁö ¼ö.
+   		int maxPage=(int)((double)listCount/limit+0.95); //0.95¸¦ ´õÇØ¼­ ¿Ã¸² Ã³¸®.
+   		//ÇöÀç ÆäÀÌÁö¿¡ º¸¿©ÁÙ ½ÃÀÛ ÆäÀÌÁö ¼ö(1, 11, 21 µî...)
    		int startPage = (((int) ((double)page / 10 + 0.9)) - 1) * 10 + 1;
-   		//í˜„ìž¬ íŽ˜ì´ì§€ì— ë³´ì—¬ì¤„ ë§ˆì§€ë§‰ íŽ˜ì´ì§€ ìˆ˜(10, 20, 30ë“±)
+   		//ÇöÀç ÆäÀÌÁö¿¡ º¸¿©ÁÙ ¸¶Áö¸· ÆäÀÌÁö ¼ö.(10, 20, 30 µî...)
    	        int endPage = startPage+10-1;
 
    		if (endPage> maxPage) endPage= maxPage;
@@ -41,13 +38,10 @@ import vo.Board.BoardBean;
 		pageInfo.setMaxPage(maxPage);
 		pageInfo.setPage(page);
 		pageInfo.setStartPage(startPage);	
-		
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("articleList", articleList);
-		
-		ActionForward forward = new ActionForward();
+		ActionForward forward= new ActionForward();
    		forward.setPath("/board/qna_board_list.jsp");
-   		
    		return forward;
    		
 	 }
