@@ -1,10 +1,12 @@
-package action;
+package action.Board;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import svc.BoardDetailService;
+
+import action.Action;
+import svc.Board.BoardDetailService;
 import vo.ActionForward;
-import vo.BoardBean;
+import vo.Board.BoardBean;
 
 public class BoardReplyFormAction implements Action {
 	
@@ -12,13 +14,19 @@ public class BoardReplyFormAction implements Action {
 	 	throws Exception{
 		 
 		 	ActionForward forward = new ActionForward();
+		 	
 	   		String nowPage = request.getParameter("page");
-	   		int board_num=Integer.parseInt(request.getParameter("board_num"));
+	   		
+	   		int board_num = Integer.parseInt(request.getParameter("board_num"));
+	   		
 	   		BoardDetailService boardDetailService = new BoardDetailService();
-	   		BoardBean article=boardDetailService.getArticle(board_num);	
+	   		BoardBean article = boardDetailService.getArticle(board_num);
+	   		
 	   		request.setAttribute("article", article);
 	   		request.setAttribute("page", nowPage);
+	   		
 	   		forward.setPath("/board/qna_board_reply.jsp");
+	   		
 	   		return forward;
 	   		
 	}

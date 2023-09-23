@@ -1,10 +1,11 @@
-package action;
+package action.Board;
 
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.Action;
 import svc.Board.BoardDeleteProService;
 import vo.ActionForward;
 
@@ -14,16 +15,16 @@ public class BoardDeleteProAction implements Action {
 			throws Exception{	 
 
 		ActionForward forward = null;
-		int board_num=Integer.parseInt(request.getParameter("board_num"));
+		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		String nowPage = request.getParameter("page");
 		BoardDeleteProService boardDeleteProService = new BoardDeleteProService();
-		boolean isArticleWriter =boardDeleteProService.isArticleWriter(board_num, request.getParameter("BOARD_PASS"));
+		boolean isArticleWriter = boardDeleteProService.isArticleWriter(board_num, request.getParameter("BOARD_PASS"));
 
 		if(!isArticleWriter){
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out=response.getWriter();
 			out.println("<script>");
-			out.println("alert('������ ������ �����ϴ�');");
+			out.println("alert('삭제할 권한이 없습니다.');");
 			out.println("history.back();");
 			out.println("</script>");
 			out.close();
@@ -37,7 +38,7 @@ public class BoardDeleteProAction implements Action {
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out=response.getWriter();
 				out.println("<script>");
-				out.println("alert('��������');");
+				out.println("alert('삭제실패');");
 				out.println("history.back();");
 				out.println("</script>");
 				out.close();

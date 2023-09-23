@@ -1,9 +1,6 @@
-package svc;
+package svc.Board;
 
-import static db.JdbcUtil.close;
-import static db.JdbcUtil.commit;
-import static db.JdbcUtil.getConnection;
-import static db.JdbcUtil.rollback;
+import static db.Board.JdbcUtil.*;
 import java.sql.Connection;
 import dao.BoardDAO;
 
