@@ -1,8 +1,8 @@
-package svc;
+package svc.Board;
 
-import static db.JdbcUtil.*;
+import static db.Board.JdbcUtil.*;
 import java.sql.Connection;
-import vo.BoardBean;
+import vo.Board.BoardBean;
 import dao.BoardDAO;
 
 public class BoardModifyProService {

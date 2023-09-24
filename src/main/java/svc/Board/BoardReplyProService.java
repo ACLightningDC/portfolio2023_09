@@ -1,9 +1,9 @@
-package svc;
+package svc.Board;
 
-import static db.JdbcUtil.*;
+import static db.Board.JdbcUtil.*;
 import java.sql.Connection;
 import dao.BoardDAO;
-import vo.BoardBean;
+import vo.Board.BoardBean;
 
 public class BoardReplyProService {
 

@@ -1,4 +1,4 @@
-package vo;
+package vo.Board;
 
 public class ActionForward {
 	private boolean isRedirect=false;

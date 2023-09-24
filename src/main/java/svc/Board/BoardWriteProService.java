@@ -1,9 +1,10 @@
-package svc;
+package svc.Board;
 
+import static db.Board.JdbcUtil.*;
 import java.sql.Connection;
 import dao.BoardDAO;
-import vo.BoardBean;
-import static db.JdbcUtil.*;
+import vo.Board.BoardBean;
+
 public class BoardWriteProService {
 
 	public boolean registArticle(BoardBean boardBean) throws Exception{
@@ -27,5 +28,6 @@ public class BoardWriteProService {
 		return isWriteSuccess;
 		
 	}
+
 
 }
