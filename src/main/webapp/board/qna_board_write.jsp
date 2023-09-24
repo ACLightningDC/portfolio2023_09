@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"%>  --%>
+<!-- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +39,7 @@ table {
 </style>
 </head>
 <body>
-	<!-- 게시판 등록 -->
+	 게시판 등록
 
 	<section id="writeForm">
 		<h2>게시판글등록</h2>
@@ -77,6 +78,7 @@ table {
 			</section>
 		</form>
 	</section>
-	<!-- 게시판 등록 -->
+	게시판 등록
 </body>
-</html>
+</html> 
+-->

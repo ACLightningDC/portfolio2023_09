@@ -31,7 +31,7 @@ public class InquiryAction implements Action {
 		String Inquiry_contents = request.getParameter("contents");
 		
 		InquiryService inquiryService = new InquiryService(); 
-		int Check= inquiryService.Makeinquiry(users_id , seller_Mall_id ,product_id, Inquiry_name , Inquiry_contents ,order_id );
+		int Check = inquiryService.Makeinquiry(users_id , seller_Mall_id ,product_id, Inquiry_name , Inquiry_contents ,order_id );
 		
 		ActionForward forward = null;
 		if(Check > 0 ) {

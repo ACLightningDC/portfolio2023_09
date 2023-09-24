@@ -4,9 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품문의</title>
+<title>문의등록</title>
 <style type="text/css">
-
 #registForm {
 	width: 500px;
 	height: 610px;
@@ -14,8 +13,10 @@
 	margin: auto;
 }
 
-h2 {text-align: center;}
 
+h2 {
+	text-align: center;
+}
 
 table {
 	margin: 0 auto;
@@ -27,7 +28,7 @@ table {
 .td_left {
 	width: 150px;
 	border: 1px solid orange;
-	padding: px;
+	padding: 5px;
 	text-align: center;
 }
 
@@ -38,44 +39,54 @@ table {
 	margin: 2px;
 }
 
-input {padding: 5px;}
+input {
+	padding: 5px;
+}
 
-select {padding: 5px; width: 175px; }
-
+select {
+	padding: 5px; 
+	width: 175px;
+}
 
 #commandCell {
 	text-align: center;
 	margin-top: 4px;
 }
-
 </style> 
 
 </head>
 ${seller_Mall_id}
 ${product_id}
+
 <body>
-<!-- 상품문의 등록 -->
+<!-- 문의 등록 -->
 
 <form method="post" action="inquiryAction.shop">
-	<section id="writeForm">
+	<section>
 
 	<h2>문의하기</h2>
 		<table>
 			<tr>
-				<td class="td_left"><label for="BOARD_NAME">[문의유형]</label></td>
+				<td class="td_left">
+					<label for="inquiry_type">[문의유형]</label>
+				</td>
+				
 				<td class="td_right">
-					<select>
+					<select name="inquiry_type" id="inquiry_type">
 				        <option value="product">상품문의</option>
-				        <option value="payment">결제문의</option>
+				        <option value="return">반품문의</option>
+				        <option value="exchange">교환문의</option>
+				        <option value="cancellation">취소문의</option>
+				        <option value="payment">결제문의</option>			        
 				        <option value="delivery">배송문의</option>
-				        <option value="etc">기타</option>
+				        <option value="etc">기타문의</option>
 				    </select>
 				</td>
 			</tr>
 			
 			<tr>
 				<td class="td_left">
-					<label for="BOARD_NAME">[소속 쇼핑몰]</label>
+					<label for="seller_Mall_id">[소속 쇼핑몰]</label>
 				</td>
 				<td class="td_right">
 					<input name="seller_Mall_id" type="text" value="${param.seller_Mall_id}"/>
@@ -84,7 +95,7 @@ ${product_id}
 			
 			<tr>
 				<td class="td_left">
-					<label for="BOARD_PASS">[제품 번호]</label>
+					<label for="product_id">[제품 번호]</label>
 				</td>
 				<td class="td_right">
 					<input name="product_id" type="text" value="${param.product_id}"/>
@@ -93,7 +104,7 @@ ${product_id}
 			
 			<tr>
 				<td class="td_left">
-					<label for="BOARD_SUBJECT">[주문 ID]</label>
+					<label for="order_id">[주문 ID]</label>
 				</td>
 				<td class="td_right">
 					<input name="order_id" type="text" value="${param.order_id}"/>
@@ -102,7 +113,7 @@ ${product_id}
 			
 			<tr>
 				<td class="td_left">
-					<label for="BOARD_SUBJECT">[제 목]</label>
+					<label for="name">[제 목]</label>
 				</td>
 				<td class="td_right">
 					<input name="name" type="text" required="required"/>
@@ -111,11 +122,12 @@ ${product_id}
 				
 			<tr>
 				<td class="td_left">
-					<label for="BOARD_CONTENT">[내 용]</label>
+					<label for="contents">[내 용]</label>
 				</td>
 				<td>
-					<textarea name="contents" type="text" id="BOARD_CONTENT" name="BOARD_CONTENT" cols="40" rows="15" 
-						required="required" style="resize: none; margin-left:5px;" maxlength="1024" placeholder="텍스트를 입력하세요."></textarea>
+					<textarea name="contents" id="contents" cols="40" rows="15" 
+					 required="required" style="resize: none; margin-left:5px;" maxlength="1024"
+					 placeholder="텍스트를 입력하세요."></textarea>
 				</td>
 			</tr>
 		</table>
@@ -125,6 +137,6 @@ ${product_id}
 		<input type="submit" value="전송하기">
 	</section>	
 </form>
-<!-- 상품문의 등록 -->		
+<!-- 문의 등록 -->		
 </body>
 </html>
