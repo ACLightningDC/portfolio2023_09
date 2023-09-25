@@ -1661,6 +1661,46 @@ public class DAO {
 			
 		return productList;
 	}
+
+	public int userIdsecuritySetting(int users_id) {
+		int check = 0;
+		
+		String sql =" update users set userSecurity_id = 1 where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, users_id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] userIdsecuritySetting 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public int userIdSecurityCancel(int users_id) {
+int check = 0;
+		
+		String sql =" update users set userSecurity_id = 0 where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, users_id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] userIdSecurityCancel 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
 	
 
 

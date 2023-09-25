@@ -148,7 +148,7 @@ https://{ORIGIN}/success?paymentKey={PAYMENT_KEY}&orderId={ORDER_ID}&amount={AMO
 					 	배송지 선택 바랍니다.
 					 </c:if>
 					<button class="btn btn-primary " type="button" onclick="select_address()">배송지 선택</button>
-					<button class="btn btn-primary btn-lg col-12"  type="submit">테스트 결제</button>
+					<!-- <button class="btn btn-primary btn-lg col-12"  type="submit">테스트 결제</button> -->
 				</form>
 			
 			<form id="payForm" name="payForm">
@@ -156,7 +156,7 @@ https://{ORIGIN}/success?paymentKey={PAYMENT_KEY}&orderId={ORDER_ID}&amount={AMO
 				<input type="hidden" name="email"  value="${sessionScope.userinfo.email}">
 				<input type="hidden" name="user_name"  value="${sessionScope.userinfo.name}">
 				<input type="hidden" name="tel"  value="${sessionScope.userinfo.phone}">
-				<input type="text" name="order_id" value="${requestScope.buyList[0].id}">
+				 <input type="text" name="order_id" value="${requestScope.buyList[0].id}"> 
 				<br>
 				${requestScope.buyList[0].name} ${not empty requestScope.buyList[1]? "외 물건 구매":"구매"}
 				<input type="hidden" name="pay_name" value="${requestScope.buyList[0].name}">
@@ -169,7 +169,7 @@ https://{ORIGIN}/success?paymentKey={PAYMENT_KEY}&orderId={ORDER_ID}&amount={AMO
 			</div>
 			<hr>
 				<button class="btn btn-primary btn-lg col-12" id="Payment" type="button">카카오 페이 결제</button>
-									<button class="btn btn-primary btn-lg col-12"  type="submit">토스 페이번츠 결제</button>
+									<!-- <button class="btn btn-primary btn-lg col-12"  type="submit">토스 페이번츠 결제</button> -->
 				
 		</div>
 	</div>	

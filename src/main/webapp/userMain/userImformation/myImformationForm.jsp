@@ -22,8 +22,9 @@
                 Kakao.API.request({
                     url: '/v2/user/me',
                     success: function (response) {
+                    	/* 
                         alert(JSON.stringify(response));
-                        
+                         */
                         document.getElementById("snsId").value= response.id
                         document.getElementById("snsEmail").value= response.kakao_account.email
                         document.getElementById("snsSubmitForm").submit();
