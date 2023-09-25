@@ -62,7 +62,7 @@ public class JdbcUtill {
 	public static void rollback(Connection con) {
 		try {
 			con.rollback();
-			System.out.println("commit success");
+			System.out.println("rollback success");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

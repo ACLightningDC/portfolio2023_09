@@ -5,16 +5,25 @@ import static db.JdbcUtill.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.Address;
 import vo.Delivery;
 import vo.Order_list;
+
 import vo.Product;
 import vo.ShoppingCart;
 import vo.Users;
 import vo.sellermall;
 import vo.user_security.User_security;
+
+//리스트 내역 추가--------
+import java.util.Date;
+import java.util.List;
+import vo.Inquiry;
+import vo.PageInfo;
+//--------------------
 
 public class DAO {
 	private Connection con =null;
@@ -921,9 +930,9 @@ public class DAO {
 		return check;
 	}
 
-	public int makeinquiry(int users_id, int seller_Mall_id, int product_id, String inquiry_name, String inquiry_contents) {
+	public int makeinquiry(int users_id, int seller_Mall_id, int product_id, String inquiry_name, String inquiry_contents, int order_id ) {
 		int check = 0;
-		String sql ="insert into inquiry(users_id , sellerrMall_id ,product_id , contents , name)value(?,?,?,?,?)";
+		String sql ="insert into inquiry(users_id , sellerrMall_id ,product_id ,contents , name ,order_list_id) values(?,?,?,?,?,?)";
 		try {
 								
 			pstmt = con.prepareStatement(sql);
@@ -932,6 +941,7 @@ public class DAO {
 			pstmt.setInt(3, product_id);
 			pstmt.setString(4, inquiry_name);
 			pstmt.setString(5, inquiry_contents);
+			pstmt.setInt(6, order_id);
 			
 			check= pstmt.executeUpdate();
 
@@ -974,6 +984,84 @@ public class DAO {
 //		return InquiryUserList;
 //	}
 
+
+//리스트 내역 추가 ->시작 --------------------------------------------
+    public List<Inquiry> getInquiryList(int users_id, PageInfo pageInfo) {
+        List<Inquiry> inquiryList = new ArrayList<>();
+        String sql = "SELECT * FROM inquiry WHERE users_id = ? LIMIT ?, ?";
+        
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, users_id);
+            pstmt.setInt(2, pageInfo.getStartPage());
+            pstmt.setInt(3, pageInfo.getListCount());
+            rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+                Inquiry inquiry = new Inquiry();
+                
+                inquiry.setId(rs.getInt("id"));
+                inquiry.setUsers_id(rs.getInt("users_id"));
+                inquiry.setSellerMall_id(rs.getInt("sellerrMall_id"));
+                inquiry.setProduct_id(rs.getInt("product_id"));
+                inquiry.setContents(rs.getString("contents"));
+                inquiry.setName(rs.getString("name"));
+                inquiry.setOrder_list_id(rs.getInt("order_list_id"));
+                inquiry.setInquiryDate(rs.getString("date"));
+                inquiryList.add(inquiry);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 리소스 해제 코드
+            close(rs);
+            close(pstmt);
+        }
+        return inquiryList;
+    }
+
+//---------	
+    
+	public ArrayList<Inquiry> getinquiryUser(int users_id, int startRow, int endRow ) {
+			System.out.println(users_id + ","+ startRow +"," +endRow);
+		    ArrayList<Inquiry> inquiryUserList = new ArrayList<>();
+
+		    try {
+		        // 데이터베이스 연결 및 쿼리 작성
+		        String sql = "SELECT * FROM inquiry WHERE users_id = ? LIMIT ?, ?";
+		        pstmt = con.prepareStatement(sql);
+		        pstmt.setInt(1, users_id);
+		        pstmt.setInt(2, startRow);
+		        pstmt.setInt(3, endRow);
+
+		        // 쿼리 실행
+		        rs = pstmt.executeQuery();
+
+		        // 결과 처리
+		        while (rs.next()) {
+		            Inquiry inquiryUser = new Inquiry();
+		            inquiryUser.setId(rs.getInt("id"));
+		            inquiryUser.setName(rs.getString("name"));
+		            inquiryUser.setInquiryDate(rs.getString("name"));
+		            
+
+		            inquiryUserList.add(inquiryUser);
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        // 리소스 해제
+		        close(rs);
+		        close(pstmt);
+		        close(con);
+		    }
+
+		    return inquiryUserList;
+		}
+
+
+//리스트 내역 추가 ->끝-------------------------------------------------------------------
+	
 	public ShoppingCart cartBuy(int order_id) {
 		ShoppingCart shoppingCart = new ShoppingCart();
 			String sql = " select l.id ,product_id ,users_id, order_count , delivery_id , l.date , result"
@@ -1694,6 +1782,7 @@ int check = 0;
 	
 
 
-	
+
+
 	
 }
