@@ -67,7 +67,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="py-2 bg">
+        <footer class="bg">
 	         <nav id="" aria-label="Page navigation example">
 			  <ul class="pagination justify-content-center">
 			  <div class="btn-group text-align-center">
@@ -79,7 +79,6 @@
 			            <a class="btn btn-outline-primary" href="productPage.shop?page=${pageInfo.page - 1}">이전</a>&nbsp;
 			        </c:when>
 			    </c:choose>
-			
 			    <c:forEach var="page" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
 			        <c:choose>
 			            <c:when test="${pageInfo.page == page}">
@@ -90,7 +89,6 @@
 			            </c:otherwise>
 			        </c:choose>
 			    </c:forEach>
-			
 			    <c:if test="${pageInfo.page >= pageInfo.maxPage}">
 			        <div class="btn btn-outline-primary">다음</div>
 			    </c:if>

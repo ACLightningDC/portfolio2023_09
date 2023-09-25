@@ -22,8 +22,10 @@ public class ShoppingresultUpdateService {
 		for(int i =0; i < id.length;i++) {
 			int id_parse = Integer.parseInt(id[i]);
 			Check  = dao.shoppingresultUpdate(order_result, id_parse , delivery_id);
+			Check  = dao.shoppingresultCountUpdate(id_parse);
 			if(Check == 0)break;
 		}
+		
 		
 		if(Check > 0) {
 			commit(con);

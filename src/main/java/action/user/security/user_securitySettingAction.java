@@ -4,8 +4,11 @@ import static util.action.ActionUtil.ActionForwardForUpdate;
 import static util.action.ActionUtil.ActionForwardForUpdateController;
 import static util.action.ActionUtil.CheckLogin;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import svc.user.security.user_securitySettingService;
@@ -25,9 +28,25 @@ public class user_securitySettingAction implements Action {
 		user_securitySettingService user_securitySettingservice = new user_securitySettingService();
 		int Check = user_securitySettingservice.user_securitySetting(users_id , ipAddress , model); 
 		
-		ActionForward forward = null;
 		String Message = "2단계 보안 설정에 실패했습니다.";
-		forward = ActionForwardForUpdateController(response, Check, Message, new ActionForward("myImformationForm.shop",true));
+		
+		ActionForward forward = null;
+		if(Check == 0  ) {
+			System.out.println("실행됨? ");
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();	
+			
+			out.println("<script>");
+			out.println("alert('"+Message+".');");
+			out.println("history.back()");
+			out.println("</script>");
+		}else {
+			user.setUserSecurity_id("1");
+			HttpSession session =  request.getSession();
+			session.setAttribute("userinfo", user);
+			
+			forward = new ActionForward("myImformationForm.shop" , false);
+		}
 		
 		return forward;
 	}

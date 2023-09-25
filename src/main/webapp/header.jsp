@@ -35,9 +35,10 @@
                 카테고리
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">식자재</a></li>
-                <li><a class="dropdown-item" href="#">전자재품</a></li>
-                <li><a class="dropdown-item" href="#">생활용품</a></li>
+                <li><a class="dropdown-item" href="#">음식</a></li>
+                <li><a class="dropdown-item" href="#">여행</a></li>
+                <li><a class="dropdown-item" href="#">전자기기</a></li>
+                <li><a class="dropdown-item" href="#">컴퓨터</a></li>
                 <li><hr class="dropdown-divider"></li>
               </ul>
             </li> 

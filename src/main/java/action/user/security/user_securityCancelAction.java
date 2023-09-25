@@ -3,8 +3,11 @@ package action.user.security;
 import static util.action.ActionUtil.ActionForwardForUpdateController;
 import static util.action.ActionUtil.CheckLogin;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import svc.user.security.user_securityCancelService;
@@ -25,8 +28,24 @@ public class user_securityCancelAction implements Action {
 		
 		ActionForward forward = null;
 		String Message = "2단계 보안 삭제에 실패했습니다.";
-		forward = ActionForwardForUpdateController(response, Check, Message, new ActionForward("myImformationForm.shop",true));
 		
+		if(Check == 0  ) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();	
+			
+			out.println("<script>");
+			out.println("alert('"+Message+".');");
+			out.println("history.back()");
+			out.println("</script>");
+		}else {
+			user.setUserSecurity_id("0");
+			HttpSession session =  request.getSession();
+			session.setAttribute("userinfo", user);
+			
+			forward = new ActionForward("myImformationForm.shop" , true);
+		}
+		
+		System.out.println(forward);
 		return forward;
 	}
 
