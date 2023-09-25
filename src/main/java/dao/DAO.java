@@ -1625,6 +1625,42 @@ public class DAO {
 				
 			return users_id;
 	}
+
+	public ArrayList<Product> mallproductGet(int mallID) {
+		ArrayList<Product> productList = new ArrayList<Product>();
+		String sql = " select * from product where sellerMall_id = ? ";
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, mallID);
+			
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getInt("id"));
+				product.setSellerMall_id(rs.getInt("sellerMall_id"));
+				product.setPrice(rs.getInt("price"));
+				product.setKind(rs.getString("kind"));
+				product.setName(rs.getString("name"));
+				product.setDate(rs.getString("date"));
+				product.setImg(rs.getString("img"));
+				product.setBuycount(rs.getInt("buycount"));
+				product.setStock(rs.getInt("stock"));
+				
+				productList.add(product);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getProduct 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return productList;
+	}
 	
 
 

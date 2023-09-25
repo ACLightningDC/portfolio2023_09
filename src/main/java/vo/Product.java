@@ -9,7 +9,14 @@ private String kind;
 private String date;
 private String img;
 private int buycount;
+private int stock;
 
+public int getStock() {
+	return stock;
+}
+public void setStock(int stock) {
+	this.stock = stock;
+}
 public int getId() {
 	return id;
 }

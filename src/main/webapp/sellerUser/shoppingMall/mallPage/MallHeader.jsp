@@ -32,9 +32,9 @@
 <body>
 몰 헤더
 
-<a href="?id=${id}">전체 제품</a>
-<a href="?id=${id}">쇼핑몰 메인 가기</a>
-<a href="?id=${id}">판매자 정보</a>
+<a href="Mallproduct.Mall?id=${id}">전체 제품</a>
+<a href="Mallpage.Mall?id=${id}">쇼핑몰 메인 가기</a>
+<a href="MallSellerInfo.Mall?id=${id}">판매자 정보</a>
 
 </body>
 </html>
