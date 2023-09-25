@@ -12,6 +12,7 @@ public class PageInfo {
 	public PageInfo() {	}
 
 
+
 	public PageInfo(int page, int maxPage, int startPage, int endPage, int listCount) {
 		super();
 		Page = page;
@@ -22,9 +23,18 @@ public class PageInfo {
 	}
 
 
+	public PageInfo(int page, int listCount) {
+		super();
+		Page = page;
+		this.listCount = listCount;
+	}
+
+
+
 	public int getPage() {
 		return Page;
 	}
+
 
 
 	public void setPage(int page) {
@@ -32,9 +42,11 @@ public class PageInfo {
 	}
 
 
+
 	public int getMaxPage() {
 		return maxPage;
 	}
+
 
 
 	public void setMaxPage(int maxPage) {
@@ -42,9 +54,11 @@ public class PageInfo {
 	}
 
 
+
 	public int getStartPage() {
 		return startPage;
 	}
+
 
 
 	public void setStartPage(int startPage) {
@@ -52,9 +66,11 @@ public class PageInfo {
 	}
 
 
+
 	public int getEndPage() {
 		return endPage;
 	}
+
 
 
 	public void setEndPage(int endPage) {
@@ -62,9 +78,11 @@ public class PageInfo {
 	}
 
 
+
 	public int getListCount() {
 		return listCount;
 	}
+
 
 
 	public void setListCount(int listCount) {
@@ -72,14 +90,6 @@ public class PageInfo {
 	}
 
 
-	@Override
-	public String toString() {
-		return "PageInfo [Page=" + Page + ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage=" + endPage
-				+ ", listCount=" + listCount + "]";
-	}
 
-
-	
-	
 
 }

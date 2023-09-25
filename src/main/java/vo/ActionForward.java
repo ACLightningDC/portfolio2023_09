@@ -1,7 +1,7 @@
 package vo;
 
 public class ActionForward {
-	private String path =null;
+	private String path = null;
 	private boolean isRedirect = false;
 	
 	public ActionForward() {}

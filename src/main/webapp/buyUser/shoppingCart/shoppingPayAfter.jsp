@@ -106,7 +106,7 @@ function check_post(del_id){
 				
 			<div class="btn-group" role="group">
           		<button class="btn btn-primary" type="button" onclick="location.href='shoppingCartProductDetail.shop?product_id=${order.product_id}'">상품 상세보기</button>
-          		<button class="btn btn-primary" type="button" onclick="location.href='inquiryForm.shop?seller_Mall_id=${order.sellerMall_id}&product_id=${order.product_id}'">상품 문의하기</button>
+          		<button class="btn btn-primary" type="button" onclick="location.href='inquiryForm.shop?seller_Mall_id=${order.sellerMall_id}&product_id=${order.product_id}&id=${order.id}'">상품 문의하기</button>
           		<c:if test="${order.result == 'D'}">
 				<button class="btn btn-primary" type="button" onclick="check_post(${order.delivery_id})">배송 확인</button>
           		</c:if>

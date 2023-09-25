@@ -15,9 +15,9 @@ public class logoutAction implements Action {
 		
 		HttpSession session= request.getSession();
 		
-		session.removeAttribute("userinfo");
-		session.removeAttribute("Seller_id");
-		session.removeAttribute("sellerMallid");
+		session.removeAttribute("userinfo"); //users DTO 객체
+		session.removeAttribute("Seller_id");// seller Id
+		session.removeAttribute("sellerMallid");// seller Mallid Id
 		forward = new ActionForward("loginForm.shop", true);
 		return forward;
 	}
