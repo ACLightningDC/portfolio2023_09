@@ -87,16 +87,16 @@ function check_post(del_id){
 						<div class="card-body">
 						<div class="justify-content-between d-flex justify-content-between align-items-center">
 						<div>
-				<br>주문 개수 : ${order.order_count}
+				주문 개수 : ${order.order_count}
 				<br>배송 아이디 : ${order.delivery_id}
 						</div>
 						<div>
-				<br>가격 : ${order.price}
+				가격 : ${order.price}
 				<br>이름 : ${order.name}
 				<br>종류: ${order.kind}
 						</div>
 						<div>
-										<br>배송 시작 시각 : ${order.date}
+										배송 시작 시각 : ${order.date}
 				<br>주문 상태 : ${order.result}
 				</div>
 						<div>
@@ -106,8 +106,10 @@ function check_post(del_id){
 				
 			<div class="btn-group" role="group">
           		<button class="btn btn-primary" type="button" onclick="location.href='shoppingCartProductDetail.shop?product_id=${order.product_id}'">상품 상세보기</button>
-          		<button class="btn btn-primary" type="button" onclick="location.href='inquiryForm.shop?seller_Mall_id=${order.sellerMall_id}&product_id=${order.product_id}'">상품 문의하기</button>
+          		<button class="btn btn-primary" type="button" onclick="location.href='inquiryForm.shop?seller_Mall_id=${order.sellerMall_id}&product_id=${order.product_id}&id=${order.id}'">상품 문의하기</button>
+          		<c:if test="${order.result == 'D'}">
 				<button class="btn btn-primary" type="button" onclick="check_post(${order.delivery_id})">배송 확인</button>
+          		</c:if>
 			</div>
 				
 		</div>

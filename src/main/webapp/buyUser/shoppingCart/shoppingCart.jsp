@@ -65,7 +65,6 @@
 						<c:forEach var="order" items="${requestScope.ShoppingCartList}" varStatus="status">
 							<li class="list-group-item d-flex justify-content-between lh-sm">
 						            	<img width="100px" alt="안나옴" src="${pageContext.request.contextPath}/images/${order.img}">
-						            	${status.index}
 							           <h6 class="my-0">${order.name}</h6> 
 							              <small class="text-body-secondary"><br>가격 : ${order.price}</small>
 							              <small class="text-body-secondary"><br>종류: ${order.kind}</small>
@@ -80,7 +79,7 @@
 					          <li class="list-group-item d-flex lh-sm text-break">
 						          <div class="btn-group" role="group">
 						          		<button class="btn btn-primary btn-sm" type="button" onclick="location.href='shoppingCartProductDetail.shop?product_id=${order.product_id}'">상품 상세보기</button>
-						          		<button class="btn btn-primary btn-sm" type="button" onclick="location.href='inquiryForm.shop?seller_Mall_id=${order.sellerMall_id}&product_id=${order.product_id}'">상품 문의하기</button>
+						          		<button class="btn btn-primary btn-sm" type="button" onclick="location.href='inquiryForm.shop?seller_Mall_id=${order.sellerMall_id}&product_id=${order.product_id}&order_id=${order.id}'">${order.id}상품 문의하기</button>
 						          </div>
 						          <div class="btn-group mx-5" role="group">
 						          		<button class="btn btn-primary btn-sm" type="button" onclick="productPluse('${order.order_count}','${order.id}');">상품 개수 추가</button>

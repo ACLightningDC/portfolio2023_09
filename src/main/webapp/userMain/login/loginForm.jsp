@@ -4,8 +4,8 @@
 <!doctype html>
 <html lang="en" >
   <head>
-<link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
-<script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
+<script src="${pageContext.request.contextPath}/resource/js/jquery-3.7.0.min.js"></script>
+
 <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
     Kakao.init('0b5733d74f6c32b9701c8c6784906f07');
@@ -87,7 +87,59 @@ function LoginSubmit(loginForm){
   
 <body class="d-flex flex-column min-vh-100 bg-body-tertiary" >
 
+<div class="modal fade" id="idFindModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">아이디 찾기</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<form action="findIdAction.shop" method="post" >
+          <div class="mb-1">
+            <label for="name" class="col-form-label">이름</label>
+            <input type="text" class="form-control" id="name" name="name">
+          </div>
+          <div class="mb-1">
+            <label for="email" class="col-form-label">이메일</label>
+            <input type="text" class="form-control" id="email" name="email">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <input type="submit" class="btn btn-primary" value="아이디 찾기">
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
 
+<div class="modal fade" id="PWFindModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">아이디 찾기</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<form action="PasswordFindAction.shop" method="post" >
+          <div class="mb-1">
+            <label for="userid" class="col-form-label">아이디</label>
+            <input type="text" class="form-control" id="userid" name="userid">
+          </div>
+          <div class="mb-1">
+            <label for="email" class="col-form-label">이메일</label>
+            <input type="text" class="form-control" id="email" name="email">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <input type="submit" class="btn btn-primary" value="비밀번호 찾기">
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
 
 <main id="loginMain" class="form-signin w-100 m-auto">
   <form action="login.shop" method="post" id="loginForm" onsubmit="LoginSubmit(this)" >
@@ -112,8 +164,8 @@ function LoginSubmit(loginForm){
 	      </label>
 	    </div>
       <div class="btn-group" role="group">
-    	<a class="btn btn-outline-primary btn-sm" href="findIdForm.User">아이디 찾기</a>
-		<a class="btn btn-outline-primary btn-sm" href="PasswordFindFrom.User">비밀번호 찾기</a>	
+    	<button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#idFindModal" data-bs-whatever="@getbootstrap">아이디 찾기</button>
+    	<button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#PWFindModal" data-bs-whatever="@getbootstrap">비밀번호 찾기</button>
       </div>
     </div>
     <button class="btn btn-primary w-100 py-2" type="submit" >로그인</button>
@@ -132,4 +184,6 @@ function LoginSubmit(loginForm){
 </div>
 
     </body>
+    <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
+<link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 </html>

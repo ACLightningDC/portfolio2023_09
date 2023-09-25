@@ -14,6 +14,7 @@ public class user_securitySettingService {
 		ConAndDAO conAndDao= daoSetConnection();
 		
 		int Check = conAndDao.getDao().user_securitySetting(users_id , ipAddress , model);
+			Check = conAndDao.getDao().userIdsecuritySetting(users_id);
 		
 		commitOrCloseSvc(Check , conAndDao.getCon());
 		

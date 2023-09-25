@@ -127,6 +127,18 @@ public class AddressControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/select_addressForPopup.address")) {
+			action = new AddressFormAction();
+			
+			
+			try {
+				forward = action.execute(request, response);
+				forward = new ActionForward("/userMain/account/address/AddressManage.jsp", false);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 		 
 		 	System.out.println(forward.getPath());

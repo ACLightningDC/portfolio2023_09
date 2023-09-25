@@ -33,7 +33,9 @@ public class AddressFormAction implements Action {
 		
 		request.setAttribute("address", address);
 		
-		forward = new ActionForward("AddressManage.address", false);
+		request.setAttribute("forward", "/userMain/account/address/AddressManage.jsp");
+		forward = new ActionForward("template.jsp", false);
+		
 		return forward;
 	}
 

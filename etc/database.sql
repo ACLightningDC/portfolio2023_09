@@ -13,7 +13,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `users` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `address_id` INT NULL DEFAULT -1,
   `userid` VARCHAR(45) NOT NULL,
   `password` VARCHAR(500) NOT NULL,
   `name` NVARCHAR(45) NOT NULL,
@@ -23,8 +22,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` VARCHAR(45) NULL,
   `birthday` DATE NULL,
   `grade` NVARCHAR(1) NULL DEFAULT 'N',
+  `address_id` INT NULL DEFAULT -1,
   `snsLogin_id` VARCHAR(45) NULL DEFAULT '00',
-  `userSecurity_id` VARCHAR(45) NULL,
+  `userSecurity_id` VARCHAR(45) NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
@@ -132,27 +132,23 @@ CREATE TABLE IF NOT EXISTS `inquiry` (
   `result` NVARCHAR(1) NULL DEFAULT 'N',
   `answer` NVARCHAR(300) NULL,
   PRIMARY KEY (`id`, `users_id`, `sellerrMall_id`, `product_id`, `order_list_id`),
-  INDEX `fk_inquiry_users1_idx` (`users_id` ASC) VISIBLE,
   INDEX `fk_inquiry_sellerrMall1_idx` (`sellerrMall_id` ASC) VISIBLE,
   INDEX `fk_inquiry_product1_idx` (`product_id` ASC) VISIBLE,
   INDEX `fk_inquiry_order_list1_idx` (`order_list_id` ASC) VISIBLE,
   CONSTRAINT `fk_inquiry_sellerrMall1`
     FOREIGN KEY (`sellerrMall_id`)
     REFERENCES `sellermall` (`id`)
-    ON DELETE CASCADE,
-  CONSTRAINT `fk_inquiry_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `users` (`id`)
-    ON DELETE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_inquiry_product1`
     FOREIGN KEY (`product_id`)
     REFERENCES `product` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_inquiry_order_list1`
     FOREIGN KEY (`order_list_id`)
     REFERENCES `order_list` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
@@ -310,7 +306,7 @@ ENGINE = InnoDB;
 -- Table `snsLogin`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `snsLogin` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `users_id` INT UNSIGNED NOT NULL,
   `snsId` VARCHAR(45) NOT NULL,
   `snsEmail` VARCHAR(100) NOT NULL,
@@ -319,6 +315,36 @@ CREATE TABLE IF NOT EXISTS `snsLogin` (
   CONSTRAINT `fk_snsLogin_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `pay_table`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pay_table` (
+  `orderId` VARCHAR(64) NOT NULL,
+  `mId` NVARCHAR(14) NOT NULL,
+  `paymentKey` VARCHAR(200) NOT NULL,
+  `order_num` INT UNSIGNED NOT NULL,
+  `id` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `orderName` VARCHAR(100) NULL,
+  `pay_method` VARCHAR(10) NOT NULL,
+  `easyPay` VARCHAR(100) NULL,
+  `pay_bank` VARCHAR(10) NULL,
+  `pay_status` VARCHAR(45) NOT NULL,
+  `pay_date` DATETIME NOT NULL,
+  `totalAmount` INT NOT NULL,
+  `cancelReason` NVARCHAR(100) NOT NULL,
+  `cancel_date` DATETIME NULL,
+  `cancelAmount` INT NULL,
+  PRIMARY KEY (`orderId`, `order_num`),
+  INDEX `fk_pay_table_order_list1_idx` (`order_num` ASC) VISIBLE,
+  CONSTRAINT `fk_pay_table_order_list1`
+    FOREIGN KEY (`order_num`)
+    REFERENCES `order_list` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

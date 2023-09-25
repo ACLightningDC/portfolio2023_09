@@ -5,7 +5,7 @@
  function select_address(){
 	 
  
- url="select_address.address";
+ url="select_addressForPopup.address";
  var popupWidth = 500;
  var popupHeight = 1000;
  

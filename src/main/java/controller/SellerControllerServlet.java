@@ -95,6 +95,16 @@ public class SellerControllerServlet extends HttpServlet {
 			}
 			
 		}
+		else if(command.equals("/productUpdate.Seller")) {
+			action = new orderManageDeliveryAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
 		else if(command.equals("/orderManageDeliveryregistration.Seller")) {
 			action = new orderManageDeliveryregistrationAction();
 			

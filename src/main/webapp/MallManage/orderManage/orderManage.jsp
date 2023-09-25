@@ -58,10 +58,10 @@ function check_post(del_id){
 </head>
 <body>
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
@@ -105,17 +105,13 @@ function check_post(del_id){
 </div>
 
 <form method="post" action="" name="CartForm">
-	전체 체크<input type="checkbox" name="allCheck" onclick="CheckAll(this.form)">
-	<br>
 
 <div class="container-fluid">
   <h1 class="h3 mb-2 text-gray-800">배송 하기</h1>
-  <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-      For more information about DataTables, please visit the <a target="_blank"
-          href="https://datatables.net">official DataTables documentation</a>.</p>
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-                           <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                           <h6 class="m-0 font-weight-bold text-primary">배송 대기 목록입니다.</h6>
+                           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">제품 배송하기</button>
         </div>
 		<div class="card-body">
 			<div class="table-responsive">
@@ -138,18 +134,18 @@ function check_post(del_id){
 							<td>${order.date}</td>
 							<td><button class="btn btn-primary btn-sm" type="button" onclick="location.href='shoppingCartProductDetail.shop?product_id=${order.product_id}'">상품 상세보기</button></td>
 						</tr>	
-	
 						</c:forEach>
 					</c:if>
 				</table>
+							<input type="submit" class="btn btn-primary btn" value ="체크한 결제 상품 승인 취소" formaction="CartRemove.shop" > 
+							<input type="submit" class="btn btn-primary btn" value ="체크한 장바구니 제품 배송하기" formaction="orderManageDelivery.Seller" onclick="checkform();return false;" > 
 			</div>
 		</div>
 	</div>
 </div>
 
 
-<input type="submit" value ="체크한 결제 상품 승인 취소" formaction="CartRemove.shop" > 
-<input type="submit" value ="체크한 장바구니 제품 배송하기" formaction="orderManageDelivery.Seller" onclick="checkform();return false;" > 
+
 </form>
 
 

@@ -41,7 +41,6 @@ $(function(){
 	        data: d,
 	        dataSrc: "",
 	        columns : [
-	        	{"data" : "id"},
 	          { "data" : "id" },
 	          { "data" : "users_id" },
 	          { "data" : "name" },
@@ -61,14 +60,6 @@ $(function(){
         			},
         		   "orderable": false
         		  },
-  	        	{
-
-           		   "targets": 0,
-           		   "render": function(data, type, row){
-           		    return "<input type=\"checkbox\" name=\"remove\" value="+data+">";
-           			},
-           		   "orderable": false
-           		  },
         		  
 	        ],
 	    	"language": {
@@ -110,30 +101,30 @@ $(function(){
 		 
 		        // Total over all pages
 		        total = api
-		            .column(6)
+		            .column(5)
 		            .data()
 		            .reduce((a, b) => intVal(a) + intVal(b), 0)
 		            * 
 		            api
-		            .column(5)
+		            .column(4)
 		            .data()
 		            .reduce((a, b) => intVal(a) + intVal(b), 0)
 		            ;
 		 
 		        // Total over this page
 		        pageTotal = api 
-		            .column(6, { page: 'current' })
+		            .column(5, { page: 'current' })
 		            .data()
 		            .reduce((a, b) => intVal(a) + intVal(b), 0)
 		            *
 		            api 
-		            .column(5, { page: 'current' })
+		            .column(4, { page: 'current' })
 		            .data()
 		            .reduce((a, b) => intVal(a) + intVal(b), 0)
 		            ;
 		 
 		        // Update footer
-		        api.column(7).footer().innerHTML =  pageTotal + '원 ( ' + total + '원 총합)';
+		        api.column(6).footer().innerHTML =  pageTotal + '원 ( ' + total + '원 총합)';
 		    },
 		    
 		    
@@ -148,7 +139,7 @@ $(function(){
     	DataTable.ext.search.push(function (settings, data, dataIndex) {
     	    let min = minDate.val();
     	    let max = maxDate.val();
-    	    let date = new Date(data[8]);
+    	    let date = new Date(data[7]);
     	 
     	    if (
     	        (min === null && max === null) ||
@@ -192,7 +183,6 @@ $(function(){
 </script>
 </head>
 <body>
-	<c:set var="totalmoney" value="0"></c:set>
 <div class="container-fluid">
 		<div class="card shadow mb-4">
 			<div class="card-body">
@@ -209,7 +199,6 @@ $(function(){
     <table id="data_list" class="display nowrap" style="width:100%">
 			<thead>
 				<tr>
-					<th>선택</th>
 					<th>주문번호</th>
 					<th>유저 아이디</th>
 					<th>제품 이름</th>
@@ -225,7 +214,7 @@ $(function(){
 			</tbody>
 			<tfoot>
             <tr>
-                <th colspan="9" style="text-align:right">합계:</th>
+                <th colspan="8" style="text-align:right">합계:</th>
                 <th ></th>
             </tr>
       		</tfoot>
