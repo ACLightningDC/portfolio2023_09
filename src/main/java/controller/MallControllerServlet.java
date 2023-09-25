@@ -7,10 +7,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import action.Cart.ShoppingBuyDeliveryShowAction;
 import action.Cart.ShoppingresultUpdate;
+import action.seller.mall.MakeMallSession;
 import action.seller.mall.ShopUpdateAction;
 import action.seller.mall.orderManageSalesView;
 import action.seller.order.orderManageDeliveryAction;
@@ -67,8 +69,15 @@ public class MallControllerServlet extends HttpServlet {
 		ActionForward forward = null;
 		
 		if(command.equals("/Mallpage.Mall")) {
-			request.setAttribute("forward", "/sellerUser/shoppingMall/mallPage/MallMain.jsp");
-			forward = new ActionForward("/sellerUser/shoppingMall/mallPage/MallTemplate.jsp", false);
+			
+			action = new MakeMallSession();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
 			
 		}
 		else if(command.equals("/MallSellerInfo.Mall")) {

@@ -1,23 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    String id = "";
-    if(request.getAttribute("id")!=null){
-    	id = (String)request.getAttribute("id");
-    	request.setAttribute("id", id);
-    }else if(request.getParameter("id")!=null){
-    	id = request.getParameter("id");
-    	request.setAttribute("id", id);
-    }else {
-		response.setContentType("text/html;charset=UTF-8");
-		
-		out.println("<script>");
-		out.println("alert('잘못된 접근 입니다.');");
-		out.println("href.location='homePage.shop'");
-		out.println("</script>");
-    }
-    
-    %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -31,10 +13,10 @@
 </head>
 <body>
 몰 헤더
-
-<a href="?id=${id}">전체 제품</a>
-<a href="?id=${id}">쇼핑몰 메인 가기</a>
-<a href="?id=${id}">판매자 정보</a>
+${sessionScope.id}
+<a href="Mallproduct.Mall?id=${id}">전체 제품</a>
+<a href="MallBulletinBoard.Mall?id=${id}">쇼핑몰 메인 가기</a>
+<a href="MallSellerInfo.Mall?id=${id}">판매자 정보</a>
 
 </body>
 </html>

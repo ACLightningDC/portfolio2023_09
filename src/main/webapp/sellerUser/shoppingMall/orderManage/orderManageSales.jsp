@@ -183,7 +183,6 @@ $(function(){
 </script>
 </head>
 <body>
-	<c:set var="totalmoney" value="0"></c:set>
 <div class="container-fluid">
 		<div class="card shadow mb-4">
 			<div class="card-body">

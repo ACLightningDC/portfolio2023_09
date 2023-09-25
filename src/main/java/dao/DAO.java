@@ -1686,6 +1686,11 @@ int check = 0;
 		return check;
 	}
 
+	public void mallProductSelet(int id) {
+		// TODO 자동 생성된 메소드 스텁
+		
+	}
+
 	
 
 

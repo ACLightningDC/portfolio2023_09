@@ -44,6 +44,34 @@
   </div>
 </div>
 
+<div class="modal fade" id="PWFindModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">아이디 찾기</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<form action="PasswordFindAction.shop" method="post" >
+          <div class="mb-1">
+            <label for="userid" class="col-form-label">아이디</label>
+            <input type="text" class="form-control" id="userid" name="userid">
+          </div>
+          <div class="mb-1">
+            <label for="email" class="col-form-label">이메일</label>
+            <input type="text" class="form-control" id="email" name="email">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <input type="submit" class="btn btn-primary" value="비밀번호 찾기">
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+
 <div class="container-fluid ">
   <h1 class="h3 mb-2 text-gray-800 py-3">상품 관리하기</h1>
 	<div class="card shadow mb-4">
@@ -72,7 +100,7 @@
 							<td>${product.date}</td>
 							<td>${product.buycount}</td>
 							<td><img width="50px" alt="안나옴" src="images/${product.img}"></td>
-							<td><button class="btn btn-primary" type="button"  onclick="location.href='#'">${product.name}상품 관리하러 가기</button></td>
+							<td><button class="btn btn-primary" type="button"  onclick="location.href='productUpdate.Seller?id=${product.id}'">${product.name}상품 관리하러 가기</button></td>
 						</tr>	
 						</c:forEach>
 					</c:if>

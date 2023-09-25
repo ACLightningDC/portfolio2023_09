@@ -23,7 +23,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto ">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0  ">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/productPage.shop">상품별 보기</a>
             </li>
@@ -39,7 +39,6 @@
                 <li><a class="dropdown-item" href="#">여행</a></li>
                 <li><a class="dropdown-item" href="#">전자기기</a></li>
                 <li><a class="dropdown-item" href="#">컴퓨터</a></li>
-                <li><hr class="dropdown-divider"></li>
               </ul>
             </li> 
           </ul>
