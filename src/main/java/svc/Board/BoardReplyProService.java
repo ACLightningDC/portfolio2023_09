@@ -11,14 +11,18 @@ public class BoardReplyProService {
 		// TODO Auto-generated method stub
 		
 		boolean isReplySuccess = false;
+		
 		int insertCount = 0;
+		
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
+		
 		insertCount = boardDAO.insertReplyArticle(article);
 		
 		if(insertCount > 0){
 			commit(con);
+			
 			isReplySuccess = true;
 		}
 		else{
@@ -26,6 +30,7 @@ public class BoardReplyProService {
 		}
 		
 		close(con);
+		
 		return isReplySuccess;
 		
 	}

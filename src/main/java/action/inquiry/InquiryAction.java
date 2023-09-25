@@ -21,6 +21,8 @@ public class InquiryAction implements Action {
 		Users user = CheckLogin(request,response);
 		int users_id = user.getId();
 		
+		String type = request.getParameter("inquiry_type");
+		
 		int seller_Mall_id = Integer.parseInt(request.getParameter("seller_Mall_id"));
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		
@@ -34,9 +36,13 @@ public class InquiryAction implements Action {
 		int Check = inquiryService.Makeinquiry(users_id , seller_Mall_id ,product_id, Inquiry_name , Inquiry_contents ,order_id );
 		
 		ActionForward forward = null;
+						
 		if(Check > 0 ) {
+			
 			forward = new ActionForward("inquiryUser.shop", false);
-		}else {			
+			
+		}else {	
+
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			
@@ -44,6 +50,8 @@ public class InquiryAction implements Action {
 			out.println("alert(' 입력 실패함.');");
 			out.println("location.href='loginForm.shop'");
 			out.println("</script>");
+			
+			forward = new ActionForward("loginForm.shop", true);
 		}
 		
 		return forward;

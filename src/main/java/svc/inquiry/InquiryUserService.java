@@ -9,10 +9,11 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.DAO;
+import vo.Inquiry;
 
-//import vo.InquiryUser;
-
-import vo.Inquiry; //리스트내역 추가
+// 리스트내역 추가 -------
+import vo.PageInfo;
+//--------------------
 
 //public class InquiryUserService {
 //
@@ -32,8 +33,8 @@ import vo.Inquiry; //리스트내역 추가
 
 public class InquiryUserService {
 	
-}
-	public ArrayList<Inquiry> getInquiryList(int users_id, PageInfo pageInfo) {
+
+	public ArrayList<Inquiry> getinquiryUser(int users_id, PageInfo pageInfo) {
 	    Connection con = getConnection();
 	    DAO dao = DAO.getInstance();
 	    dao.setConnection(con);
@@ -42,9 +43,16 @@ public class InquiryUserService {
 	    int startRow = (pageInfo.getPage() - 1) * pageInfo.getListCount() + 1;
 	    int endRow = startRow + pageInfo.getListCount() - 1;
 
-	    ArrayList<Inquiry> inquiryList = dao.getInquiryList(users_id, startRow, endRow);
+	    ArrayList<Inquiry> inquiryUserList = dao.getinquiryUser(users_id, startRow , endRow);
+	  
 
 	    close(con);
-	    return inquiryList;
+	    
+	    return inquiryUserList;
 	
+}
+
+
+
+
 }

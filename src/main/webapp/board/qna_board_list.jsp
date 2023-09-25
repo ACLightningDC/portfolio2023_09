@@ -56,11 +56,11 @@ table {
 </head>
 
 <body>
-	<!-- 문의내역 리스트 -->
+	<!-- 게시판 리스트 -->
 
 	<section id="listForm">
 		<h2>
-			목록<a href="boardWriteForm.bo">문의</a>
+			글 목록<a href="boardWriteForm.bo">게시판글쓰기</a>
 		</h2>
 		<table>
 			<%

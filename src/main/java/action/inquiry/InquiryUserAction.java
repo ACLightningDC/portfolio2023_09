@@ -10,14 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import svc.inquiry.InquiryUserService;
 import vo.ActionForward;
-
-import vo.InquiryUser; 
-import vo.Users;
-
-//리스트내역 추가-----
 import vo.Inquiry;
+//리스트내역 추가-----
 import vo.PageInfo;
 //------------------
+import vo.Users;
 
 public class InquiryUserAction implements Action {
 
@@ -42,15 +39,17 @@ public class InquiryUserAction implements Action {
         PageInfo pageInfo = new PageInfo(page, listCount);
 
         // 페이지네이션을 고려하여 문의 리스트 가져오기
-        ArrayList<InquiryUser> inquiryUserList = inquiryUserService.getInquiryUser(users_id, pageInfo);
+        ArrayList<Inquiry> inquiryUserList = inquiryUserService.getinquiryUser(users_id, pageInfo);
 
         // 조회 결과 및 페이지 정보를 request에 저장하여 JSP 페이지로 전달
+        System.out.println(inquiryUserList);
         request.setAttribute("inquiryUserList", inquiryUserList);
         request.setAttribute("pageInfo", pageInfo);
 
         // 이동할 JSP 페이지 경로를 설정
-        ActionForward forward = new ActionForward("inquiryUser.jsp", false);
-
+        request.setAttribute("forward", "/inquiry/inquiryUser.jsp");
+		ActionForward forward = new ActionForward("template.jsp", false);
+        
         return forward;
 		
 		//return null;

@@ -14,6 +14,7 @@ public class BoardDetailService {
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
+		
 		int updateCount = boardDAO.updateReadCount(board_num);
 		
 		if(updateCount > 0){
@@ -24,7 +25,9 @@ public class BoardDetailService {
 		}
 		
 		article = boardDAO.selectArticle(board_num);
+		
 		close(con);
+		
 		return article;
 		
 	}

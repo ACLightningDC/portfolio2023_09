@@ -59,7 +59,7 @@ ${seller_Mall_id}
 ${product_id}
 
 <body>
-<!-- 문의 등록 -->
+<!-- 문의 하기 -->
 
 <form method="post" action="inquiryAction.shop">
 	<section>
@@ -107,7 +107,7 @@ ${product_id}
 					<label for="order_id">[주문 ID]</label>
 				</td>
 				<td class="td_right">
-					<input name="order_id" type="text" value="${param.order_id}"/>
+					<input name="order_id" type="text" value="${param.id}"/>
 				</td>
 			</tr>
 			
@@ -127,7 +127,7 @@ ${product_id}
 				<td>
 					<textarea name="contents" id="contents" cols="40" rows="15" 
 					 required="required" style="resize: none; margin-left:5px;" maxlength="1024"
-					 placeholder="텍스트를 입력하세요."></textarea>
+					 placeholder="문의 내용을 남겨주세요.(한글 250자 이내) "></textarea>
 				</td>
 			</tr>
 		</table>
@@ -137,6 +137,6 @@ ${product_id}
 		<input type="submit" value="전송하기">
 	</section>	
 </form>
-<!-- 문의 등록 -->		
+<!-- 문의 하기 -->		
 </body>
 </html>

@@ -984,6 +984,7 @@ public class DAO {
 //		return InquiryUserList;
 //	}
 
+
 //리스트 내역 추가 ->시작 --------------------------------------------
     public List<Inquiry> getInquiryList(int users_id, PageInfo pageInfo) {
         List<Inquiry> inquiryList = new ArrayList<>();
@@ -1006,7 +1007,7 @@ public class DAO {
                 inquiry.setContents(rs.getString("contents"));
                 inquiry.setName(rs.getString("name"));
                 inquiry.setOrder_list_id(rs.getInt("order_list_id"));
-                inquiry.setInquiryDate(rs.getDate("inquiryDate"));
+                inquiry.setInquiryDate(rs.getString("date"));
                 inquiryList.add(inquiry);
             }
         } catch (Exception e) {
@@ -1019,7 +1020,46 @@ public class DAO {
         return inquiryList;
     }
 
-	
+//---------	
+    
+	public ArrayList<Inquiry> getinquiryUser(int users_id, int startRow, int endRow ) {
+			System.out.println(users_id + ","+ startRow +"," +endRow);
+		    ArrayList<Inquiry> inquiryUserList = new ArrayList<>();
+
+		    try {
+		        // 데이터베이스 연결 및 쿼리 작성
+		        String sql = "SELECT * FROM inquiry WHERE users_id = ? LIMIT ?, ?";
+		        pstmt = con.prepareStatement(sql);
+		        pstmt.setInt(1, users_id);
+		        pstmt.setInt(2, startRow);
+		        pstmt.setInt(3, endRow);
+
+		        // 쿼리 실행
+		        rs = pstmt.executeQuery();
+
+		        // 결과 처리
+		        while (rs.next()) {
+		            Inquiry inquiryUser = new Inquiry();
+		            inquiryUser.setId(rs.getInt("id"));
+		            inquiryUser.setName(rs.getString("name"));
+		            inquiryUser.setInquiryDate(rs.getString("name"));
+		            
+
+		            inquiryUserList.add(inquiryUser);
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        // 리소스 해제
+		        close(rs);
+		        close(pstmt);
+		        close(con);
+		    }
+
+		    return inquiryUserList;
+		}
+
+
 //리스트 내역 추가 ->끝-------------------------------------------------------------------
 	
 	public ShoppingCart cartBuy(int order_id) {
@@ -1673,9 +1713,9 @@ public class DAO {
 				
 			return users_id;
 	}
-	
 
 
-	
+
+
 	
 }

@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="boardWriteForm.bo">게시판글쓰기</a>
+<a href="WriteForm.bo">게시판글쓰기</a>
 </body>
 </html>
   

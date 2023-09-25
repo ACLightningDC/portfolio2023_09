@@ -227,7 +227,7 @@ public class BoardDAO {
 			pstmt.setString(3, article.getBOARD_PASS());
 			pstmt.setString(4, article.getBOARD_SUBJECT());
 			pstmt.setString(5, article.getBOARD_CONTENT());
-			pstmt.setString(6, ""); //답장에는 파일을 업로드하지 않음
+			pstmt.setString(6, ""); //답장에는 파일을 업로드하지 않음.
 			pstmt.setInt(7, re_ref);
 			pstmt.setInt(8, re_lev);
 			pstmt.setInt(9, re_seq);

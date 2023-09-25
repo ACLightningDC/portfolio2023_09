@@ -11,13 +11,16 @@ public class BoardWriteProService {
 		// TODO Auto-generated method stub
 		
 		boolean isWriteSuccess = false;
+		
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
+		
 		int insertCount = boardDAO.insertArticle(boardBean);
 		
 		if(insertCount > 0){
 			commit(con);
+			
 			isWriteSuccess = true;
 		}
 		else{
@@ -25,6 +28,7 @@ public class BoardWriteProService {
 		}
 		
 		close(con);
+		
 		return isWriteSuccess;
 		
 	}

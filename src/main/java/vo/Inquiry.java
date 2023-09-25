@@ -7,24 +7,36 @@ public class Inquiry {
     private int users_id;
     private int sellerMall_id;
     private int product_id;
+    private int order_list_id;
+    
     private String contents; //내용
     private String name;  //제목
-    private int order_list_id;
-    private Date inquiryDate; //문의 작성일
+ 
+    private String inquiryDate; //문의 작성일
 	
+
+
+	private String result;
+    private String answer;
+    
+    
 	public Inquiry() { }
 
-	public Inquiry(int id, int users_id, int sellerMall_id, int product_id, String contents, String name,
-			int order_list_id, Date inquiryDate) {
+	
+	public Inquiry(int id, int users_id, int sellerMall_id, int product_id, int order_list_id, String contents,
+			String name, String inquiryDate, String result, String answer) {
 		super();
+		
 		this.id = id;
 		this.users_id = users_id;
 		this.sellerMall_id = sellerMall_id;
 		this.product_id = product_id;
+		this.order_list_id = order_list_id;
 		this.contents = contents;
 		this.name = name;
-		this.order_list_id = order_list_id;
 		this.inquiryDate = inquiryDate;
+		this.result = result;
+		this.answer = answer;
 	}
 
 	public int getId() {
@@ -59,6 +71,14 @@ public class Inquiry {
 		this.product_id = product_id;
 	}
 
+	public int getOrder_list_id() {
+		return order_list_id;
+	}
+
+	public void setOrder_list_id(int order_list_id) {
+		this.order_list_id = order_list_id;
+	}
+
 	public String getContents() {
 		return contents;
 	}
@@ -75,23 +95,39 @@ public class Inquiry {
 		this.name = name;
 	}
 
-	public int getOrder_list_id() {
-		return order_list_id;
+
+	public String getResult() {
+		return result;
 	}
 
-	public void setOrder_list_id(int order_list_id) {
-		this.order_list_id = order_list_id;
+	public void setResult(String result) {
+		this.result = result;
 	}
 
-	public Date getInquiryDate() {
+	public String getInquiryDate() {
 		return inquiryDate;
 	}
-
-	public void setInquiryDate(Date inquiryDate) {
+	
+	
+	public void setInquiryDate(String inquiryDate) {
 		this.inquiryDate = inquiryDate;
 	}
+	public String getAnswer() {
+		return answer;
+	}
 
-	
-	
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Inquiry [id=" + id + ", users_id=" + users_id + ", sellerMall_id=" + sellerMall_id + ", product_id="
+				+ product_id + ", order_list_id=" + order_list_id + ", contents=" + contents + ", name=" + name
+				+ ", inquiryDate=" + inquiryDate + ", result=" + result + ", answer=" + answer + "]";
+	}
+
+
 	
 }

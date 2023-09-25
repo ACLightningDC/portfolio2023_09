@@ -1,6 +1,9 @@
 package svc.Board;
 
-import static db.Board.JdbcUtil.*;
+import static db.Board.JdbcUtil.close;
+import static db.Board.JdbcUtil.commit;
+import static db.Board.JdbcUtil.getConnection;
+import static db.Board.JdbcUtil.rollback;
 import java.sql.Connection;
 import dao.BoardDAO;
 
@@ -14,7 +17,9 @@ public class BoardDeleteProService {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		isArticleWriter = boardDAO.isArticleBoardWriter(board_num, pass);
+		
 		close(con);
+		
 		return isArticleWriter;
 		
 	}
@@ -30,13 +35,15 @@ public class BoardDeleteProService {
 		
 		if(deleteCount > 0){
 			commit(con);
-			isRemoveSuccess=true;
+			
+			isRemoveSuccess = true;
 		}
 		else{
 			rollback(con);
 		}
 		
 		close(con);
+		
 		return isRemoveSuccess;
 	}
 

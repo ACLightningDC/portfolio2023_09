@@ -4,17 +4,21 @@ import java.sql.Date;
 
 public class BoardBean {
 	
-	private int BOARD_NUM;
-	private String BOARD_NAME;
-	private String BOARD_PASS;
-	private String BOARD_SUBJECT;
-	private String BOARD_CONTENT;
-	private String BOARD_FILE;
+	private int BOARD_NUM; //글 번호
+	
+	private String BOARD_NAME; //작성자
+	private String BOARD_PASS; //비밀번호
+	private String BOARD_SUBJECT; //제목
+	private String BOARD_CONTENT; //내용
+	private String BOARD_FILE; //첨부파일
+	
 	private int BOARD_RE_REF;
-	private int BOARD_RE_LEV;
+	private int BOARD_RE_LEV; 
 	private int BOARD_RE_SEQ;
-	private int BOARD_READCOUNT;
-	private Date BOARD_DATE;
+	private int BOARD_READCOUNT; //조회수
+	
+	private Date BOARD_DATE; //작성일
+	
 	
 	public int getBOARD_NUM() {
 		return BOARD_NUM;

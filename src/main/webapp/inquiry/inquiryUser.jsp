@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </c:when>
-        <c:when test="${not empty requestScope.inquiryList}">
+        <c:when test="${not empty requestScope.inquiryUserList}">
             <!-- 상품 문의 리스트 표시 -->
             <h1>상품 문의 리스트</h1>
             <table>
@@ -67,7 +67,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${inquiryList}" var="inquiry">
+                    <c:forEach items="${inquiryUserList}" var="inquiry">
                         <tr>
                             <td>${inquiry.name}</td>
                             <td>${inquiry.users_id}</td>

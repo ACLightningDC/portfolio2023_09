@@ -22,14 +22,14 @@ public class BoardWriteProAction implements Action {
 		BoardBean boardBean = null;
 		String realFolder = "";
 		String saveFolder = "/boardUpload";
-		int fileSize = 5*1024*1024;
+		int fileSize = 5 * 1024 * 1024;
 		ServletContext context = request.getServletContext();
 		realFolder = context.getRealPath(saveFolder);   		
-		MultipartRequest multi=new MultipartRequest(request,
-													realFolder,
-													fileSize,
-													"UTF-8",
-													new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request,
+													  realFolder,
+												   	  fileSize,
+													  "UTF-8",
+													  new DefaultFileRenamePolicy());
 		boardBean = new BoardBean();
 		boardBean.setBOARD_NAME(multi.getParameter("BOARD_NAME"));
 		boardBean.setBOARD_PASS(multi.getParameter("BOARD_PASS"));

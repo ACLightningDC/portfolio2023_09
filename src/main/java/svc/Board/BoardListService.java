@@ -16,8 +16,11 @@ public class BoardListService {
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
+		
 		listCount = boardDAO.selectListCount();
+		
 		close(con);
+		
 		return listCount;
 		
 	}
@@ -25,11 +28,15 @@ public class BoardListService {
 	public ArrayList<BoardBean> getArticleList(int page, int limit) throws Exception{
 		
 		ArrayList<BoardBean> articleList = null;
+		
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
+		
 		articleList = boardDAO.selectArticleList(page,limit);
+		
 		close(con);
+		
 		return articleList;
 		
 	}
