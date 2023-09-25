@@ -91,6 +91,7 @@ https://{ORIGIN}/success?paymentKey={PAYMENT_KEY}&orderId={ORDER_ID}&amount={AMO
 		var today = new Date().toISOString().substring(0, 9+1);//"2023-09-22"만 가져옴
 		bir = document.getElementById("now_date");
 		bir.value = today;
+		
 	}
 </script>
 <!DOCTYPE html>
@@ -134,21 +135,16 @@ https://{ORIGIN}/success?paymentKey={PAYMENT_KEY}&orderId={ORDER_ID}&amount={AMO
 		        </ul>
 		        
 		        		<input type="hidden" name="result" value="P">
-		
 					<h4>주소</h4>
-					<%--  
-					<c:if test="${not empty sessionScope.userinfo.address_id}">
-						기본주소 아이디 ${sessionScope.userinfo.address_id}
-					</c:if>
-					 --%><c:if test="${not empty sessionScope.userinfo.address_id  }">
-							<div>
+					 <c:if test="${not empty address}">
+							<div >
 								우편번호 : <span id="postcode">${address.postcode}</span>
 								<br>주소 : <span id="address1">${address.address1}</span>						
 								<br>상세주소 :<span id="address2">${address.address2}</span>			
 							</div>
 						<input type="hidden" name="address_id" value="${sessionScope.userinfo.address_id}">		
 					 </c:if>
-					 <c:if test="">
+					 <c:if test="${empty address }">
 					 	배송지 선택 바랍니다.
 					 </c:if>
 					<button class="btn btn-primary " type="button" onclick="select_address()">배송지 선택</button>

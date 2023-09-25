@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>주소 관리</title>
+<script src="${pageContext.request.contextPath}/resource/js/jquery-3.7.0.min.js"></script>
+
 <script>
 $(window).bind("beforeunload", function (e){
 		opener.document.infoPayForm.address_id.value = "${sessionScope.userinfo.address_id}";
@@ -54,4 +56,6 @@ function Addressrefresh(address_id){
 	</div>
 </div>
 </body>
+ <script src="${pageContext.request.contextPath}/resource/js/bootstrap.bundle.js"></script>
+<link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 </html>

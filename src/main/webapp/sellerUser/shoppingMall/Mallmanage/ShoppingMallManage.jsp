@@ -8,14 +8,35 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div class="modal fade"  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">2단계 보안설정하기</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      	<form action="CreateMall.shop" method="get">
+      	
+          <div class="mb-1">
+            <label for="name" class="col-form-label">쇼핑몰 이름 입력:</label>
+            <input type="text" class="form-control" id="name" name="name" maxlength="45">
+          </div>
+			<input type="submit" class="btn btn-primary" value="확인" >	
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
 
 <div class="container-fluid ">
   <h1 class="h3 mb-2 text-gray-800 py-5">쇼핑몰 관리하기</h1>
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
                            <h6 class="m-0 font-weight-bold text-primary">
-                           <button class="btn btn-primary" onclick="location.href='shopCreateForm.Seller'">쇼핑몰 생성하기</button>
+                           <!-- <button class="btn btn-primary" onclick="location.href='shopCreateForm.Seller'">쇼핑몰 생성하기</button> -->
+                           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">쇼핑몰 생성하기</button>
                            </h6>
         </div>
 		<div class="card-body">

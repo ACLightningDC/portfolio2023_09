@@ -65,7 +65,6 @@
 						<c:forEach var="order" items="${requestScope.ShoppingCartList}" varStatus="status">
 							<li class="list-group-item d-flex justify-content-between lh-sm">
 						            	<img width="100px" alt="안나옴" src="${pageContext.request.contextPath}/images/${order.img}">
-						            	${status.index}
 							           <h6 class="my-0">${order.name}</h6> 
 							              <small class="text-body-secondary"><br>가격 : ${order.price}</small>
 							              <small class="text-body-secondary"><br>종류: ${order.kind}</small>

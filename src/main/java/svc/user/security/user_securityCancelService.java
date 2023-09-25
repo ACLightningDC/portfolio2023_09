@@ -11,6 +11,7 @@ public class user_securityCancelService {
 		ConAndDAO conAndDao= daoSetConnection();
 		
 		int Check = conAndDao.getDao().user_securityCancel(users_id);
+			Check = conAndDao.getDao().userIdSecurityCancel(users_id);
 		
 		commitOrCloseSvc(Check , conAndDao.getCon());
 		

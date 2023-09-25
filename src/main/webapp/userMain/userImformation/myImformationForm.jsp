@@ -106,9 +106,12 @@ function securitySetting(){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        
+        <c:if test="${userinfo.userSecurity_id == 0 }">
         <button type="button" class="btn btn-primary" onclick="securitySetting()">2단계 보안설정</button>
+        </c:if>
+        <c:if test="${userinfo.userSecurity_id == 1 }">
         <button type="button" class="btn btn-primary" onclick="location.href='user_securityCancel.User'">2단계 보안설정 취소</button>
+        </c:if>
       </div>
     </div>
   </div>
@@ -117,8 +120,7 @@ function securitySetting(){
 	<div class="container-fluid my-5">
 		<div class="row">
 			<div class="col-8 mx-auto ">
-				
-			
+
 				<table class="table table-striped table-bordered" id="infoTable">
 				<tr>
 					<th scope="row">아이디</th>
@@ -152,7 +154,12 @@ function securitySetting(){
 				</table>
 				<button class="btn btn-primary" onclick="location.href='myImformationUpdateForm.User'">내 정보 변경하기</button>
 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-				  2단계 보안설정하기
+  					           2단계 <c:if test="${userinfo.userSecurity_id == 0 }">
+					          보안 설정하기
+						        </c:if>
+						        <c:if test="${userinfo.userSecurity_id == 1 }">
+						        보안 설정취소
+						        </c:if>
 				</button>
 				<c:if test="${sessionScope.userinfo.snsLogin_id == '00'}">
 					<button type="button" class="btn btn-primary" onclick="kakaoLogin()">

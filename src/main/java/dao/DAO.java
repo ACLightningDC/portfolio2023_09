@@ -1714,6 +1714,73 @@ public class DAO {
 			return users_id;
 	}
 
+	public int userIdsecuritySetting(int users_id) {
+		int check = 0;
+		
+		String sql =" update users set userSecurity_id = 1 where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, users_id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] userIdsecuritySetting 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public int userIdSecurityCancel(int users_id) {
+		int check = 0;
+		
+		String sql =" update users set userSecurity_id = 0 where id = ? ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, users_id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] userIdSecurityCancel 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public int shoppingresultCountUpdate(int id) {
+int check = 0;
+		
+		String sql =" update product set buycount = buycount+1 where id = (select product_id from order_list where id = ?) ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] shoppingresultCountUpdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
+	public void mallProductSelet(int id) {
+		// TODO 자동 생성된 메소드 스텁
+		
+	}
+
+	
+
 
 
 

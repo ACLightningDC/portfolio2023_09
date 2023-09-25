@@ -41,13 +41,9 @@ $(document).ready(function(){
 </head>
 <body>
 <form action="orderManageDeliveryregistration.Seller" method="post">
-배송 리스트 ${requestScope.buyList}
 
 <div class="container-fluid">
   <h1 class="h3 mb-2 text-gray-800">배송 하기</h1>
-  <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-      For more information about DataTables, please visit the <a target="_blank"
-          href="https://datatables.net">official DataTables documentation</a>.</p>
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
                            <h6 class="m-0 font-weight-bold text-primary">배송할 주문</h6>
@@ -56,7 +52,7 @@ $(document).ready(function(){
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered">
 				<tr>
-					<th>주문번호</th><th>유저 아이디</th><th>제품 이름</th><th>제품 종류</th><th>주문 개수</th><th>가격</th><th>주문 상태</th><th>시간</th><th>제품 링크</th>l
+					<th>주문번호</th><th>유저 아이디</th><th>제품 이름</th><th>제품 종류</th><th>주문 개수</th><th>가격</th><th>주문 상태</th><th>시간</th><th>제품 링크</th>
 				</tr>
 					<c:if test="${not empty requestScope.buyList }">
 						<c:forEach var="order" items="${requestScope.buyList}">
@@ -79,7 +75,7 @@ $(document).ready(function(){
         </div>
 		<div class="card-body">
 			<span id="tekbeCompnayName">택배회사 코드 </span>
-				<select id="tekbeCompnayList" name="delivery_company"></select><br/><br/>
+				<select class="form-select" id="tekbeCompnayList" name="delivery_company"></select>
 			
 			            <div class="form-group">
             </div>
