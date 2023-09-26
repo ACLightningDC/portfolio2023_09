@@ -148,7 +148,7 @@ https://{ORIGIN}/success?paymentKey={PAYMENT_KEY}&orderId={ORDER_ID}&amount={AMO
 					 	배송지 선택 바랍니다.
 					 </c:if>
 					<button class="btn btn-primary " type="button" onclick="select_address()">배송지 선택</button>
-					<!-- <button class="btn btn-primary btn-lg col-12"  type="submit">테스트 결제</button> -->
+					<button class="btn btn-primary btn-lg col-12"  type="submit">테스트 결제</button>
 				</form>
 			
 			<form id="payForm" name="payForm">

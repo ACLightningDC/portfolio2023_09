@@ -1703,6 +1703,62 @@ int check = 0;
 	}
 	
 
+	public ArrayList<Product> getProductCategoriList(String type) {
+		 ArrayList<Product> productList = new ArrayList<Product>();
+		 System.out.println(type);
+		String sql = " select * from product where kind= ? ";
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, type);
+			
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getInt("id"));
+				product.setSellerMall_id(rs.getInt("sellerMall_id"));
+				product.setPrice(rs.getInt("price"));
+				product.setKind(rs.getString("kind"));
+				product.setName(rs.getString("name"));
+				product.setDate(rs.getString("date"));
+				product.setImg(rs.getString("img"));
+				product.setBuycount(rs.getInt("buycount"));
+				
+				productList.add(product);
+			}
+			
+		}catch(Exception e){
+			System.out.println("[DAO] getProductCategoriList 에러" + e );
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return productList;
+	}
+	
+
+	public int shoppingresultCountUpdate(int id) {
+int check = 0;
+		
+		String sql =" update product set buycount = buycount+1 where id = (select product_id from order_list where id = ?) ";
+		try {
+								
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, id);
+			check= pstmt.executeUpdate();
+
+			}catch(Exception e){
+				System.out.println("[DAO] shoppingresultCountUpdate 에러" + e );
+			}finally {
+				close(pstmt);
+			}
+		
+		return check;
+	}
+
 
 	
 	

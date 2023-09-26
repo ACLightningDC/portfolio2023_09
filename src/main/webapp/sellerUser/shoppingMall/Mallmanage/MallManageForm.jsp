@@ -34,7 +34,6 @@
 
 
 
-셀러몰 id ${sellerMallid}
 
 <div class="container-fluid ">
   <h1 class="h3 mb-2 text-gray-800 py-2">쇼핑몰 관리</h1>

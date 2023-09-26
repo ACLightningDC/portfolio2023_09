@@ -19,10 +19,10 @@
 <script type="text/javascript">
 $(function(){
 	$.ajax({
-		url  :  "MallProduct.ForJson",
+		url  :  "categoriProduct.ForJson",
 		type : 'POST',
 		data : {
-			"id" : "*",
+			"type" : "${kind_forProduct}",
 		},
 		
 	}).done(function(d){
@@ -186,7 +186,6 @@ $(function(){
 </head>
 <body>
 
-<div class="btn"></div>
 
 <div class="container-fluid">
 		<div class="card shadow mb-4">
@@ -195,7 +194,7 @@ $(function(){
     class="class="table table-bordered compact dataTable no-footer cards"
     cellspacing="0" role="grid">
 			<thead>
-				<tr >
+				<tr class="col-3">
 					<th>가격</th>
 					<th>제품이름</th>
 					<th>종류</th>
@@ -213,7 +212,6 @@ $(function(){
 		</div>
 	</div>
 </div>
-
 
 </body>
 </html>

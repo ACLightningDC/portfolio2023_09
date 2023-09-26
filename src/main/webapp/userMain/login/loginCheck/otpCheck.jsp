@@ -45,7 +45,7 @@ Google Authenticator 를 다운 받아 주세요<br>
 			    <input name="encodedKey" type="hidden" readonly="readonly" value="${encodedKey}">
 			    <input name="ipAddress" type="hidden" readonly="readonly" value="${ipAddress}">
 			    <input name="model" type="hidden" readonly="readonly" value="${model}">
-			    <input name="Check2" type="hidden" readonly="readonly" value="${Check2}">
+			    <input name="Check2" type="text" readonly="readonly" value="${Check2}">
 			    <c:if test="${Check == 1}">
 			    이 기기의 2단계 인증 다시 필수로 하기(재인증 필요)<input type="checkbox" name="secu_check" value="0">
 			    </c:if>

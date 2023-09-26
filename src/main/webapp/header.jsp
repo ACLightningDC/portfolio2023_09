@@ -35,10 +35,7 @@
                 카테고리
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/mainPage/homePageCategori.shop">음식</a></li>
-                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/mainPage/homePageCategori.shop">여행</a></li>
-                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/mainPage/homePageCategori.shop">전자기기</a></li>
-                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/mainPage/homePageCategori.shop">컴퓨터</a></li>
+                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/homePageCategori.shop?kind_forProduct=1">음식</a></li>
               </ul>
             </li> 
           </ul>

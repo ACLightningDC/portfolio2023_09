@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 
 import action.ActionForJson;
 import action.json.seller.MallProductSeletAction;
+import action.json.seller.MallProductSeletCategoriAction;
 import vo.ActionForward;
 
 /**
@@ -61,8 +62,18 @@ public class JsonControllerServlet extends HttpServlet {
 		
 		
 		if(command.equals("/MallProduct.ForJson")) {
-			
+//			
 			action = new MallProductSeletAction();
+			
+			try {
+				jObj = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/categoriProduct.ForJson")) {
+			
+			action = new MallProductSeletCategoriAction();
 			
 			try {
 				jObj = action.execute(request, response);
