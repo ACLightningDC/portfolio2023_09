@@ -134,6 +134,11 @@ public class FrontControllerServlet extends HttpServlet {
 			forward = new ActionForward("template.jsp", false);
 			 
 		 }
+		 if(command.equals("/homePageCategori.shop")){
+			 request.setAttribute("forward", "/mainpage/productPageCategori.jsp");
+			 forward = new ActionForward("template.jsp", false);
+			 
+		 }
 		 if(command.equals("/loginForm.shop")){
 			 forward = new ActionForward("/userMain/login/loginForm.jsp", false);
 			 

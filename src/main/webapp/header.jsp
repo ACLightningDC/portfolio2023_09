@@ -18,7 +18,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
-        <a class="navbar-brand " href="${pageContext.request.contextPath}/homePage.shop">홈쇼핑</a>
+        <a class="navbar-brand mx-2" href="${pageContext.request.contextPath}/homePage.shop">홈쇼핑</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,10 +35,10 @@
                 카테고리
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">음식</a></li>
-                <li><a class="dropdown-item" href="#">여행</a></li>
-                <li><a class="dropdown-item" href="#">전자기기</a></li>
-                <li><a class="dropdown-item" href="#">컴퓨터</a></li>
+                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/mainPage/homePageCategori.shop">음식</a></li>
+                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/mainPage/homePageCategori.shop">여행</a></li>
+                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/mainPage/homePageCategori.shop">전자기기</a></li>
+                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/mainPage/homePageCategori.shop">컴퓨터</a></li>
               </ul>
             </li> 
           </ul>
