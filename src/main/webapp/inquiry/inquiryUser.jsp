@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <!DOCTYPE html>
 <html>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
 <head>
 <meta charset="UTF-8">
 <%--
@@ -55,27 +58,32 @@
                 </div>
             </div>
         </c:when>
+        
         <c:when test="${not empty requestScope.inquiryUserList}">
             <!-- 상품 문의 리스트 표시 -->
-            <h1>상품 문의 리스트</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>문의 제목</th>
-                        <th>작성자</th>
-                        <th>작성일</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${inquiryUserList}" var="inquiry">
-                        <tr>
-                            <td>${inquiry.name}</td>
-                            <td>${inquiry.users_id}</td>
-                            <td>${inquiry.inquiryDate}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+            <h1 class="text-center">문의 리스트</h1>
+            <div class="container">
+             <table class="table table-bordered table-striped  text-center">
+	                <thead class="table-dark"> 
+	                    <tr>
+	                    	<th scope="col">#</th> <!-- 번호매기기위한 열추가 -->
+	                        <th scope="col">문의 제목</th>
+	                        <th scope="col">작성자</th>
+	                        <th scope="col">작성일</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <c:forEach items="${inquiryUserList}" var="inquiry" varStatus="loop">
+	                        <tr>
+	                        	<th scope="row">${loop.index + 1}</td> <!-- 인덱스(0부터 시작)를 숫자로 표시 -->
+	                            <td>${inquiry.name}</td>
+	                            <td>${inquiry.users_id}</td>
+	                            <td>${inquiry.inquiryDate}</td>
+	                        </tr>
+	                    </c:forEach>
+	                </tbody>
+               </table>
+      		</div>
     
             <c:if test="${pageInfo.maxPage > 1}">
                 <div>
@@ -105,6 +113,7 @@
             <p>표시할 데이터가 없습니다.</p>
         </c:otherwise>
     </c:choose>
+    
 </body>
 </html>
 
