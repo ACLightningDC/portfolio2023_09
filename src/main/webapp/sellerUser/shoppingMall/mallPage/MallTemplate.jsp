@@ -12,7 +12,6 @@
 </head>
 <body>
 <div>
-	몰 템플릿${forward}
 </div>
 <jsp:include page="MallHeader.jsp"/>
 <c:if test="${!empty forward}">

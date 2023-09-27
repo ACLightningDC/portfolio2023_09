@@ -64,7 +64,7 @@ $(function(){
 	    	"language": {
 	            "decimal":        "",
 	            "emptyTable":     "표에서 사용할 수있는 데이터가 없습니다.",
-	            "info":           "총 _TOTAL_개 | _START_에서 _END_개 까지 표시",
+	            "info":           "총 _TOTAL_개   _START_에서 _END_개 까지 표시",
 	            "infoEmpty":      "0 개 제품 중 0 ~ 0 개 표시중",
 	            "infoFiltered":   "(_MAX_ 총 항목에서 필터링 됨)",
 	            "infoPostFix":    "",
@@ -166,6 +166,7 @@ $(function(){
 #data_list tbody tr {
     float: left;
 	width: 20em;
+	height: 30em;
 	margin: 0.5em;
 	padding: 0.5em;
 	border: 1px solid #bfbfbf;
@@ -194,7 +195,7 @@ $(function(){
     class="class="table table-bordered compact dataTable no-footer cards"
     cellspacing="0" role="grid">
 			<thead>
-				<tr >
+				<tr>
 					<th>가격</th>
 					<th>제품이름</th>
 					<th>종류</th>
@@ -204,7 +205,7 @@ $(function(){
 					<th>상세보기</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="container">
 			</tbody>
 			<tfoot>
       		</tfoot>
@@ -215,4 +216,6 @@ $(function(){
 
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 </html>

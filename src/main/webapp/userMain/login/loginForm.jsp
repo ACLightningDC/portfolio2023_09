@@ -15,7 +15,6 @@
                 Kakao.API.request({
                     url: '/v2/user/me',
                     success: function (response) {
-                        alert(JSON.stringify(response));
     					                    
                         document.getElementById("snsId").value= response.id
                         document.getElementById("snsEmail").value= response.kakao_account.email
@@ -118,7 +117,7 @@ function LoginSubmit(loginForm){
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">아이디 찾기</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">비밀번호 찾기</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

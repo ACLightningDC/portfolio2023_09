@@ -12,7 +12,6 @@
 </head>
 <body>
 <div>
-	템플릿${forward}
 </div>
 <jsp:include page="header.jsp"/>
 <c:if test="${!empty forward}">

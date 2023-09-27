@@ -7,12 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import action.Action;
 import action.Cart.ShoppingBuyDeliveryShowAction;
 import action.Cart.ShoppingresultUpdate;
-import action.seller.mall.MakeMallSession;
+import action.seller.mall.MallproductAction;
 import action.seller.mall.ShopUpdateAction;
 import action.seller.mall.orderManageSalesView;
 import action.seller.order.orderManageDeliveryAction;
@@ -64,29 +63,25 @@ public class MallControllerServlet extends HttpServlet {
 		System.out.println("address 커맨드 변수 "+command);
 
 		
-		
 		Action action = null;
 		ActionForward forward = null;
 		
 		if(command.equals("/Mallpage.Mall")) {
-			
-			action = new MakeMallSession();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			
+			request.setAttribute("forward", "/sellerUser/shoppingMall/mallPage/MallMain.jsp");
+			forward = new ActionForward("/sellerUser/shoppingMall/mallPage/MallTemplate.jsp", false);
 			
 		}
 		else if(command.equals("/MallSellerInfo.Mall")) {
+			
 			request.setAttribute("forward", "/sellerUser/shoppingMall/mallPage/MallSellerInfo.jsp");
 			forward = new ActionForward("/sellerUser/shoppingMall/mallPage/MallTemplate.jsp", false);
 		}
 		else if(command.equals("/Mallproduct.Mall")) {
 			request.setAttribute("forward", "/sellerUser/shoppingMall/mallPage/Mallproduct.jsp");
 			forward = new ActionForward("/sellerUser/shoppingMall/mallPage/MallTemplate.jsp", false);
+		}
+		else if(command.equals("/MallproductAjax.Mall")) {
+			action = new MallproductAction();
 		}
 		else if(command.equals("/MallBulletinBoard.Mall")) {
 			request.setAttribute("forward", "/sellerUser/shoppingMall/mallPage/MallBulletinBoard.jsp");

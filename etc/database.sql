@@ -132,23 +132,27 @@ CREATE TABLE IF NOT EXISTS `inquiry` (
   `result` NVARCHAR(1) NULL DEFAULT 'N',
   `answer` NVARCHAR(300) NULL,
   PRIMARY KEY (`id`, `users_id`, `sellerrMall_id`, `product_id`, `order_list_id`),
+  INDEX `fk_inquiry_users1_idx` (`users_id` ASC) VISIBLE,
   INDEX `fk_inquiry_sellerrMall1_idx` (`sellerrMall_id` ASC) VISIBLE,
   INDEX `fk_inquiry_product1_idx` (`product_id` ASC) VISIBLE,
   INDEX `fk_inquiry_order_list1_idx` (`order_list_id` ASC) VISIBLE,
   CONSTRAINT `fk_inquiry_sellerrMall1`
     FOREIGN KEY (`sellerrMall_id`)
     REFERENCES `sellermall` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE,
+  CONSTRAINT `fk_inquiry_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `users` (`id`)
+    ON DELETE NO ACTION,
   CONSTRAINT `fk_inquiry_product1`
     FOREIGN KEY (`product_id`)
     REFERENCES `product` (`id`)
-    ON DELETE CASCADE
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_inquiry_order_list1`
     FOREIGN KEY (`order_list_id`)
     REFERENCES `order_list` (`id`)
-    ON DELETE CASCADE
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;

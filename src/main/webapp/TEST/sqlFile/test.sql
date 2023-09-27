@@ -23,7 +23,7 @@ delete from snsLogin where users_id = "2";
 
 update users set userSecurity_id = '1' where id = '2';
 
-delete from product where = "6";
+delete from product  where  id = '11';
 delete from product where id = '6';
 delete from product where id = '9';
 

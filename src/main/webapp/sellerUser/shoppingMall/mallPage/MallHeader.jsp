@@ -1,5 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    String id = "";
+    if(request.getAttribute("id")!=null){
+    	id = (String)request.getAttribute("id");
+    	request.setAttribute("id", id);
+    }else if(request.getParameter("id")!=null){
+    	id = request.getParameter("id");
+    	request.setAttribute("id", id);
+    }else {
+		response.setContentType("text/html;charset=UTF-8");
+		
+		out.println("<script>");
+		out.println("alert('잘못된 접근 입니다.');");
+		out.println("href.location='homePage.shop'");
+		out.println("</script>");
+    }
+    %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -12,11 +29,22 @@
 <link rel="stylesheet"href = "${pageContext.request.contextPath}/resource/css/bootstrap.css">
 </head>
 <body>
-몰 헤더
-${sessionScope.id}
-<a href="Mallproduct.Mall?id=${id}">전체 제품</a>
-<a href="MallBulletinBoard.Mall?id=${id}">쇼핑몰 메인 가기</a>
-<a href="MallSellerInfo.Mall?id=${id}">판매자 정보</a>
+
+	
+
+  <div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a class="nav-link" href="Mallproduct.Mall?id=${id}">전체 제품</a></li>
+        <li class="nav-item"><a class="nav-link" href="Mallpage.Mall?id=${id}">쇼핑몰 메인 가기</a></li>
+        <li class="nav-item"><a class="nav-link" href="MallSellerInfo.Mall?id=${id}">판매자 정보</a></li>
+      </ul>
+    </header>
+  </div>
+
+
+
+
 
 </body>
 </html>

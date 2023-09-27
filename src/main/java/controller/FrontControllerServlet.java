@@ -76,7 +76,7 @@ public class FrontControllerServlet extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command= requestURI.substring(contextPath.length());
-		
+		System.out.println("작동");
 		System.out.println("커맨드 변수 "+command);
 
 		
@@ -129,12 +129,16 @@ public class FrontControllerServlet extends HttpServlet {
 			}
 			
 		}
-		 if(command.equals("/homePage.shop")){
+		 else if(command.equals("/homePage.shop")){
 			 request.setAttribute("forward", "homePage.jsp");
 			forward = new ActionForward("template.jsp", false);
 			 
 		 }
-		 if(command.equals("/loginForm.shop")){
+		 else if(command.equals("/homePageCategori.shop")){
+			 request.setAttribute("forward", "/mainPage/productPageCategori.jsp");
+			 forward = new ActionForward("template.jsp", false);
+		 }
+		 else if(command.equals("/loginForm.shop")){
 			 forward = new ActionForward("/userMain/login/loginForm.jsp", false);
 			 
 		 }
