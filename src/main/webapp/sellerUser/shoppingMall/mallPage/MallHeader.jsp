@@ -36,8 +36,8 @@
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
       	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/homePage.shop">쇼핑몰 홈페이지</a></li>
+        <li class="nav-item"><a class="nav-link" href="Mallpage.Mall?id=${id}">개인 몰 메인</a></li>
         <li class="nav-item"><a class="nav-link" href="Mallproduct.Mall?id=${id}">전체 제품</a></li>
-        <li class="nav-item"><a class="nav-link" href="Mallpage.Mall?id=${id}">쇼핑몰 메인 가기</a></li>
         <li class="nav-item"><a class="nav-link" href="MallSellerInfo.Mall?id=${id}">판매자 정보</a></li>
       </ul>
     </header>
